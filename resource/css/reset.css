@@ -207,11 +207,13 @@ select::-ms-expand {
 	border: none;
 	background-color: inherit;
 }
-
+html {
+	font-size: 10px;
+}
 body {
 	overflow-y: scroll;
 	color: #444;
-	font-size: 16px;
+	font-size: 1.6rem;
 	font-family: 'Noto Sans KR', sans-serif, 'Nanum Gothic', 돋움, dotum, 굴림, gulim, Helvetica, AppleGothic;
 	line-height: 28px;
 }

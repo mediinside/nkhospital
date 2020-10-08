@@ -7,6 +7,96 @@
 /*
 	header
 */
+header {
+  width: 100%; }
+
+#login-bar {
+  display: flex;
+  width: 100%;
+  padding: 5px 75px;
+  box-sizing: border-box;
+  background-color: #323232; }
+  #login-bar ul li {
+    display: inline-block;
+    padding: 0 20px;
+    color: #7b7b7b;
+    font-size: 1.5rem; }
+    #login-bar ul li:first-of-type {
+      position: relative;
+      padding-left: 0; }
+      #login-bar ul li:first-of-type:after {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 1px;
+        height: 12px;
+        margin-top: -5px;
+        background-color: #7b7b7b;
+        content: ''; }
+    #login-bar ul li span {
+      display: inline-block;
+      margin-left: 10px;
+      color: #fff; }
+  #login-bar .left {
+    margin-right: auto; }
+  #login-bar .right {
+    margin-left: auto; }
+    #login-bar .right li {
+      padding: 0 0 0 20px; }
+      #login-bar .right li:after {
+        display: none; }
+    #login-bar .right input {
+      width: 240px;
+      height: 30px;
+      padding: 0 15px;
+      border: none;
+      border-radius: 30px;
+      outline: none;
+      box-shadow: none;
+      box-sizing: border-box;
+      background-color: #fff;
+      vertical-align: bottom; }
+    #login-bar .right button {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      background-color: transparent;
+      transform: translateY(-50%);
+      cursor: pointer; }
+      #login-bar .right button:active {
+        right: 29px;
+        transform: translateY(-48%); }
+
+#top-bnnr .swiper-pagination {
+  width: auto;
+  height: 30px;
+  top: 50%;
+  right: 175px;
+  left: auto;
+  color: #fff;
+  transform: translateY(-50%); }
+#top-bnnr .swiper-button-next {
+  width: 42px;
+  height: 42px;
+  right: 120px;
+  left: auto;
+  margin-top: -21px;
+  border: none;
+  background-image: url(/resource/images/top-right.png);
+  background-repeat: no-repeat; }
+#top-bnnr .swiper-button-prev {
+  width: 42px;
+  height: 42px;
+  right: 220px;
+  left: auto;
+  margin-top: -21px;
+  border: none;
+  background-image: url(/resource/images/top-left.png);
+  background-repeat: no-repeat; }
+
 /*
 	main
 */
