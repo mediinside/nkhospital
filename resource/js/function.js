@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	//메인슬라이드
+	//네비 슬라이드
 	var swiper = new Swiper('#top-bnnr', {
 		loop: true,
 		pagination: {
-			el: '.swiper-pagination',
+			el: '#top-bnnr .swiper-pagination',
 			type: 'fraction',
 		},
 		autoplay: {
@@ -11,8 +11,24 @@ $(document).ready(function(){
 			disableOnInteraction: false,
 		},
 		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
+			nextEl: '#top-bnnr .swiper-button-next',
+			prevEl: '#top-bnnr .swiper-button-prev',
+		},
+	});
+	//메인 슬라이드
+	var swiper = new Swiper('#main-bnnr', {
+		loop: true,
+		pagination: {
+			el: '#main-bnnr .swiper-pagination',
+			clickable: true,
+		},
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false,
+		},
+		navigation: {
+			nextEl: '#main-bnnr .swiper-button-next',
+			prevEl: '#main-bnnr .swiper-button-prev',
 		},
 	});
 });

@@ -6,8 +6,11 @@
 
 
 /*
-	공통
+	공통레이아웃
 */
+#container {
+	width: 100%;
+}
 
 
 /*
@@ -83,14 +86,79 @@ header {
 			transform: translateY(-50%);
 			cursor: pointer;
 			&:active {
-				right: 29px;
+				right: 9px;
 				transform: translateY(-48%);
 			}
 		}//end button
 	}
 }//end #login-bar
 
+nav {
+	display: flex;
+	width: 100%;
+}//end nav
+
+#logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 310px;
+	background-color: #032a5b;
+}//end #logo
+
+#menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 198px;
+	span {
+		display: inline-block;
+		margin-left: 10px;
+		color:#333;
+		font-size: 1.5rem;
+		font-weight: bold;
+	}//end span
+}//end #menu
+
+#gnb {
+	display: none;
+}//end #gnb
+
+#reserve-btn-group {
+	display: flex;
+	width: 476px;
+	padding:26px 0;
+	box-sizing: border-box;
+	background-color: #26b27c;
+	a {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		width: 50%;
+		span {
+			display: inline-block;
+			margin-left: 10px;
+			font-size: 2rem;
+			line-height: 1.2;
+		}//end span
+
+		&:first-of-type:after {
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			width: 1px;
+			height: 40px;
+			margin-top: -20px;
+			background-color: #fff;
+			opacity: 0.3;
+			content:'';
+		}
+	}//end a
+}//end #reserve-btn-group
+
 #top-bnnr {
+	max-width: 936px;
 	.swiper-pagination {
 		width: auto;
 		height: 30px;
@@ -122,10 +190,54 @@ header {
 	}
 }//end #top-vnnr
 
+
+
 /*
 	main
 */
-
+#main-bnnr {
+	.swiper-slide {
+		> a {
+			display: block;
+			position: relative;
+			.swiper-cont {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 100%;
+				max-width: 1300px;
+				height: 1px;
+				transform: translateX(-50%);
+				.tit {
+					margin-bottom: 30px;
+					font-size: 5rem;
+					font-weight: bold;
+					line-height: 1.2;
+					letter-spacing: -3.75px;
+				}//end tit
+				.text {
+					font-size: 2.2rem;
+					font-weight: 300;
+					letter-spacing: -1.65px;
+				}
+			}//end .swiper-cont
+		}//end a
+	}//end .swiper-slide
+	.swiper-pagination {
+		bottom: 30px;
+		.swiper-pagination-bullet {
+			width: 12px;
+			height: 12px;
+			margin:0 10px;
+			border:2px solid #fff;
+			background-color: transparent;
+			opacity: 1;
+		}
+		.swiper-pagination-bullet-active {
+			background-color: #fff;
+		}
+	}
+}//end #main-bnnr
 
 /*
 	sub
