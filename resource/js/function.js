@@ -31,4 +31,9 @@ $(document).ready(function(){
 			prevEl: '#main-bnnr .swiper-button-prev',
 		},
 	});
+
+	//메뉴 이벤트
+	$("#menu").on("click",function(){
+		$("#gnb").slideToggle(300);
+	});
 });
