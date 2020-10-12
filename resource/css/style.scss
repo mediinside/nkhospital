@@ -351,6 +351,162 @@ nav {
 }//end #main-bnnr
 
 
+#center-list {
+	min-height:778px;
+	padding:100px 0;
+	box-sizing: border-box;
+	background-image: url(/resource/images/center-list-bg.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: auto 100%;
+	background-color: #f2f2f2;
+	.inner {
+		max-width: 1520px;
+	}
+	.tab {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		li {
+			position: relative;
+			padding:0 20px;
+			&:not(:last-of-type):after {
+				position: absolute;
+				top: 50%;
+				left: 100%;
+				width: 1px;
+				height: 14px;
+				margin-top: -7px;
+				background-color: #333;
+				content:'';
+			}
+			&.on,
+			&:hover,
+			&:focus {
+				a {
+					color:#333;
+					transition: all 0.1s;
+				}//end a
+			}
+			a {
+				color:#bababa;
+				font-size: 3.5rem;
+				font-weight: 500;
+			}//end a
+		}//end li
+	}//end .tab
+	.tab + p {
+		padding: 15px 0;
+		color:#989898;
+		font-size: 1.8rem;
+		text-align: center;
+	}//end p
+
+	#filter {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin:30px 0;
+		&.tab-1 li {
+			&.on,
+			&:hover,
+			&:focus {
+				a {
+					background-color: #26b27c;
+				}//end a
+			}
+		}
+		&.tab-2 li {
+			&.on,
+			&:hover,
+			&:focus {
+				a {
+					background-color: #1886ba;
+				}//end a
+			}
+		}
+		&.tab-3 li {
+			&.on,
+			&:hover,
+			&:focus {
+				a {
+					background-color: #eb3447;
+				}//end a
+			}
+		}
+		li {
+			margin:0 5px;
+			&.on,
+			&:hover,
+			&:focus {
+				a {
+					color:#fff;
+					transition: all 0.1s;
+				}//end a
+			}
+			a {
+				display: flex;
+				width: 44px;
+				height: 44px;
+				justify-content: center;
+				align-items: center;
+				color:#333;
+				border-radius:100%;
+				background-color: #fff;
+			}//end a
+		}//end li
+	}//end filter
+
+	#tab-1 {
+		display: block;
+		.list {
+			li:hover a {
+				border-color: #26b27c;
+			}//end li
+		}//end .list
+	}//end #tab-1
+	#tab-2 {
+		.list {
+			li:hover a {
+				border-color: #1886ba;
+			}//end li
+		}//end .list
+	}//end #tab-1
+	#tab-3 {
+		.list {
+			li:hover a {
+				border-color: #eb3447;
+			}//end li
+		}//end .list
+	}//end #tab-1
+	.tab-cont {
+		display: none;
+		.list {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+			li {
+				margin:5.5px;
+				a {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-wrap: wrap;
+					flex-flow: column;
+					width: 179px;
+					height: 179px;
+					color:#a3a3a3;
+					border:12px solid #fff;
+					box-sizing: border-box;
+					background-color: #fff;
+				}//end a
+			}//end li
+		}//end .list
+	}//end .tab-cont
+}//end #center-list
+
+
 /*
 	sub
 */

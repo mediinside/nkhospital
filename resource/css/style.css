@@ -282,6 +282,100 @@ nav {
   #main-bnnr .swiper-pagination .swiper-pagination-bullet-active {
     background-color: #fff; }
 
+#center-list {
+  min-height: 778px;
+  padding: 100px 0;
+  box-sizing: border-box;
+  background-image: url(/resource/images/center-list-bg.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto 100%;
+  background-color: #f2f2f2; }
+  #center-list .inner {
+    max-width: 1520px; }
+  #center-list .tab {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #center-list .tab li {
+      position: relative;
+      padding: 0 20px; }
+      #center-list .tab li:not(:last-of-type):after {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 1px;
+        height: 14px;
+        margin-top: -7px;
+        background-color: #333;
+        content: ''; }
+      #center-list .tab li.on a, #center-list .tab li:hover a, #center-list .tab li:focus a {
+        color: #333;
+        transition: all 0.1s; }
+      #center-list .tab li a {
+        color: #bababa;
+        font-size: 3.5rem;
+        font-weight: 500; }
+  #center-list .tab + p {
+    padding: 15px 0;
+    color: #989898;
+    font-size: 1.8rem;
+    text-align: center; }
+  #center-list #filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0; }
+    #center-list #filter.tab-1 li.on a, #center-list #filter.tab-1 li:hover a, #center-list #filter.tab-1 li:focus a {
+      background-color: #26b27c; }
+    #center-list #filter.tab-2 li.on a, #center-list #filter.tab-2 li:hover a, #center-list #filter.tab-2 li:focus a {
+      background-color: #1886ba; }
+    #center-list #filter.tab-3 li.on a, #center-list #filter.tab-3 li:hover a, #center-list #filter.tab-3 li:focus a {
+      background-color: #eb3447; }
+    #center-list #filter li {
+      margin: 0 5px; }
+      #center-list #filter li.on a, #center-list #filter li:hover a, #center-list #filter li:focus a {
+        color: #fff;
+        transition: all 0.1s; }
+      #center-list #filter li a {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+        border-radius: 100%;
+        background-color: #fff; }
+  #center-list #tab-1 {
+    display: block; }
+    #center-list #tab-1 .list li:hover a {
+      border-color: #26b27c; }
+  #center-list #tab-2 .list li:hover a {
+    border-color: #1886ba; }
+  #center-list #tab-3 .list li:hover a {
+    border-color: #eb3447; }
+  #center-list .tab-cont {
+    display: none; }
+    #center-list .tab-cont .list {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap; }
+      #center-list .tab-cont .list li {
+        margin: 5.5px; }
+        #center-list .tab-cont .list li a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          flex-flow: column;
+          width: 179px;
+          height: 179px;
+          color: #a3a3a3;
+          border: 12px solid #fff;
+          box-sizing: border-box;
+          background-color: #fff; }
+
 /*
 	sub
 */
