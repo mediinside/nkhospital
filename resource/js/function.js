@@ -37,6 +37,7 @@ $(document).ready(function(){
 		$("#gnb").slideToggle(300);
 	});
 
+	//메인 진료센터,진료과,특수클리닉 이벤트
 	$("#center-list .tab li a").on("click",function(){
 		var $tab_li = $(this).parent("li");
 		var idx = $tab_li.index();
@@ -49,5 +50,13 @@ $(document).ready(function(){
 	$("#filter li a").on("click",function(){
 		var $filter_li = $(this).parent("li");
 		$filter_li.addClass("on").siblings().removeClass("on");
+	});
+
+	//메인 커뮤니티 이벤트
+	$("#main-notice .tab li a").on("click", function () {
+		var $tab_li = $(this).parent("li");
+		// var idx = $tab_li.index();
+
+		$tab_li.addClass("on").siblings().removeClass("on");
 	});
 });
