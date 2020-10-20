@@ -35,29 +35,29 @@
 							<div class="row">
 								<dl>
 									<dt>예약/발급</dt>
-									<dd><a href="#">진료예약</a></dd>
-									<dd><a href="#">검진예약</a></dd>
-									<dd><a href="#">증명서발급안내</a></dd>
+									<dd><a href="/service/page01.html">진료예약</a></dd>
+									<dd><a href="/service/page02.html">검진예약</a></dd>
+									<dd><a href="/service/page03.html">증명서발급안내</a></dd>
 								</dl>
 								<dl>
 									<dt>입/퇴원 안내</dt>
-									<dd><a href="#">입/퇴원 안내</a></dd>
-									<dd><a href="#">입원생활안내</a></dd>
-									<dd><a href="#">면회안내</a></dd>
+									<dd><a href="/service/page06.html">입/퇴원 안내</a></dd>
+									<dd><a href="/service/page07.html">입원생활안내</a></dd>
+									<dd><a href="/service/page08.html">면회안내</a></dd>
 								</dl>
 							</div>
 							<div class="row">
 								<dl>
 									<dt>진료안내</dt>
-									<dd><a href="#">외래진료안내</a></dd>
-									<dd><a href="#">응급진료안내</a></dd>
+									<dd><a href="/service/page04.html">외래진료안내</a></dd>
+									<dd><a href="/service/page05.html">응급진료안내</a></dd>
 								</dl>
 								<dl>
 									<dt>병원안내</dt>
-									<dd><a href="#">병원둘러보기</a></dd>
-									<dd><a href="#">오시는길/주차안내</a></dd>
-									<dd><a href="#">장례식장</a></dd>
-									<dd><a href="#">전화번호 안내</a></dd>
+									<dd><a href="/service/page09.html">병원둘러보기</a></dd>
+									<dd><a href="/service/page10.html">오시는길/주차안내</a></dd>
+									<dd><a href="/service/page11.html">장례식장</a></dd>
+									<dd><a href="/service/page12.html">전화번호 안내</a></dd>
 								</dl>
 							</div>
 							<img src="/resource/images/gnb-logo.png" alt="믿으니까, 뉴고려병원">

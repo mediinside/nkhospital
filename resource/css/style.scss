@@ -6,6 +6,14 @@
 
 
 /*
+	공통클래스
+*/
+.c-blue {
+	color:#1795d0;
+}
+
+
+/*
 	공통레이아웃
 */
 .inner {
@@ -16,6 +24,98 @@
 
 #container {
 	width: 100%;
+}
+#innerCont {
+	width: 100%;
+	max-width: 1300px;
+	margin:0 auto;
+	padding:60px 0;
+}
+
+.l-pad-box {
+	width: 100%;
+	padding:35px 15px;
+	color:#444;
+	font-size: 1.8rem;
+	font-weight: 500;
+	line-height: 1.6;
+	text-align: center;
+	letter-spacing: -0.9px;
+	box-sizing: border-box;
+	&.gray {
+		background-color: #f3f3f3;
+	}
+	&.blue {
+		color:#fff;
+		background-color: #1795d0;
+	}
+}
+.s-pad-box {
+	width: 100%;
+	padding: 20px 15px;
+	color:#444;
+	font-size: 1.8rem;
+	font-weight: 500;
+	line-height: 1.6;
+	text-align: center;
+	letter-spacing: -0.9px;
+	box-sizing: border-box;
+	&.gray {
+		background-color: #f3f3f3;
+	}
+	&.blue {
+		color:#fff;
+		background-color: #1795d0;
+	}
+	img {
+		margin-right: 7px;
+		vertical-align: middle;
+	}
+}
+
+.middot-list {
+	margin-bottom: 26px;
+	li {
+		position: relative;
+		margin:3px 0;
+		padding-left: 15px;
+		font-size: 1.8rem;
+		font-weight: 300;
+		&:before {
+			position: absolute;
+			top: 12px;
+			left: 0;
+			width: 4px;
+			height: 4px;
+			border-radius: 100%;
+			background-color: #222;
+			content:'';
+		}
+	}
+}
+.dash-list {
+	margin-bottom: 26px;
+	dt {
+		font-size: 1.8rem;
+		font-weight: 500;
+	}
+	dd {
+		position: relative;
+		margin:3px 0;
+		padding-left: 8px;
+		font-size: 1.8rem;
+		font-weight: 300;
+		&:before {
+			position: absolute;
+			top: 14px;
+			left: 0;
+			width: 4px;
+			height: 1px;
+			border-radius: 100%;
+			background-color: #222;
+			content: '';
+		}
+	}
 }
 
 
@@ -656,6 +756,87 @@ nav {
 /*
 	sub
 */
+#sub-bnnr {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	> img {
+		position: relative;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}//end img
+	> h2 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		transform: translate(-50%, -50%);
+		span {
+			display: inline-block;
+			width: 232px;
+			height: 44px;
+			background-image: url(/resource/images/sub-bnnr-text.png);
+			background-repeat: no-repeat;
+			background-position: center;
+		}//end span
+		small {
+			display: inline-block;
+			width: 100%;
+			padding:25px 0 0;
+			color:#fff;
+			font-size: 1.8rem;
+			font-weight: 300;
+		}//end small
+	}//end h2
+}//end #sub-bnnr
+
+.cont-tit {
+	padding:30px 0 40px;
+	color: #333333;
+	font-size: 3rem;
+	font-weight: 500;
+	letter-spacing: -1.5px;
+}//end .cont-tit
+
+.cont-box {
+	position: relative;
+	display: flex;
+	padding:40px 0;
+	box-sizing: border-box;
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: #e3e3e3;
+		content:'';
+	}
+	&:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 170px;
+		height: 2px;
+		background-color: #1795d0;
+		content: '';
+	}
+	.cont-label {
+		flex-shrink: 0;
+		width: 240px;
+		color: #333333;
+		font-size: 2.5rem;
+		font-weight: 500;
+		line-height: 1.4;
+		letter-spacing: -1.25px;
+	}//end .cont-label
+	.cont {
+		width: 100%;
+	}
+}
+
+
 
 
 /*

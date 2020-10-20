@@ -1,0 +1,163 @@
+<?php
+
+$page_title = "예약/발급";
+$page_sub_title = "증명서 발급 안내";
+
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<div id="sub-bnnr">
+				<img src="/resource/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<h3 class="cont-tit">증명서 발급절차</h3>
+				<div class="cont-box">
+					<h4 class="cont-label">입원 시</h4>
+					<div class="cont">
+						<ul class="cont-step">
+							<li>
+								<img src="/resource/images/step01.png" alt="">
+								<p class="step-tit">
+									<span class="c-blue">STEP 1</span> 서류 발급 신청서 수령
+								</p>
+								<p class="step-text">
+									1층 접수창구에서 서류 발급 신청서수령
+								</p>
+							</li>
+							<li>
+								<img src="/resource/images/step02.png" alt="">
+								<p class="step-tit">
+									<span class="c-blue">STEP 2</span> 신청서 작성
+								</p>
+								<p class="step-text">
+									신청서 작성 후 1층 접수창구 제출(퇴원 전)
+								</p>
+							</li>
+							<li>
+								<img src="/resource/images/step03.png" alt="">
+								<p class="step-tit">
+									<span class="c-blue">STEP 3</span> 증명서 발급
+								</p>
+								<p class="step-text">
+									1층 접수창구에서 수령(퇴원 시)
+								</p>
+							</li>
+						</ul>
+						<div class="l-pad-box gray">
+							제증명/의무기록 사본 발급비용은입원진료비(증명료 항목)에 함께 계산됩니다.
+						</div>
+					</div>
+				</div>
+
+				<div class="cont-box">
+					<h4 class="cont-label">외래방문 시</h4>
+					<div class="cont">
+						<ul class="cont-step">
+							<li>
+								<img src="/resource/images/step01.png" alt="">
+								<p class="step-tit">
+									<span class="c-blue">STEP 1</span> 서류 발급 접수
+								</p>
+								<p class="step-text">
+									1층 접수창구에서 해당 진료과 접수
+								</p>
+							</li>
+							<li>
+								<img src="/resource/images/step04.png" alt="">
+								<p class="step-tit">
+									<span class="c-blue">STEP 2</span> 진료과 방문
+								</p>
+								<p class="step-text">
+									해당 진료과 방문
+								</p>
+							</li>
+							<li>
+								<img src="/resource/images/step03.png" alt="">
+								<p class="step-tit">
+									<span class="c-blue">STEP 3</span> 증명서 발급
+								</p>
+								<p class="step-text">
+									1층 접수창구에서 수령
+								</p>
+							</li>
+						</ul>
+						<div class="l-pad-box gray">
+							방사선영상(CD)의 경우 1층 접수창구에서 접수/수납 후 <span class="c-blue">영상의학과에서 수령</span>합니다.
+						</div>
+					</div>
+				</div>
+
+				<div class="cont-box">
+					<h4 class="cont-label">주의사항</h4>
+					<div class="cont">
+						<ul class="middot-list">
+							<li>의무기록 사본 발급/증명서 비용은 신청인이 부담합니다. (요양급여기준 고시 제2000-7호)</li>
+							<li>의료법 시행규칙 제13조의3에 의거하여 구비서류를 준비해야만 의무기록 발급이 가능합니다.(하단참조)</li>
+							<li>진료과별 서류 발급시간은 다음과 같으며 당일발급을 원하시는 분은 담당과장님 진료시 대기발급 가능합니다.</li>
+						</ul>
+						<dl class="dash-list">
+							<dd>정형외과(3일)</dd>
+							<dd>척추센터(2일)</dd>
+							<dd>뇌혈관센터(2일)</dd>
+						</dl>
+						<div class="s-pad-box blue">
+							<img src="/resource/images/small-logo.png" alt=""> 관련문의 031-980-9114
+						</div>
+					</div>
+				</div>
+
+				<h3 class="cont-tit">증명서 발급시 구비서류</h3>
+				<div class="cont-box">
+					<h4 class="cont-label">환자의 동의가<br>있는 경우</h4>
+					<div class="cont">
+						<dl class="dash-list">
+							<dt>공통서류</dt>
+							<dd>신청자 신분증</dd>
+							<dd>가족관계증명서 등 친족관계를 확인할 수 있는 서류</dd>
+						</dl>
+						<dl class="dash-list">
+							<dt>환자 사망 시</dt>
+							<dd>사망사실확인서(사망 진단서)</dd>
+						</dl>
+						<dl class="dash-list">
+							<dt>의식불명</dt>
+							<dd>의식불명, 중증 질환, 부상 등으로 자필 서명을 할 수 없음을 확인할 수 있는 진단서</dd>
+						</dl>
+						<dl class="dash-list">
+							<dt>행방불명</dt>
+							<dd>행방불명 확인 서류</dd>
+						</dl>
+						<dl class="dash-list">
+							<dt>의사무능력자</dt>
+							<dd>의사무능력자 진단서</dd>
+						</dl>
+						<div class="l-pad-box gray">
+							환자의 친족이 없는 경우, 환자의 형제/자매가 친족이 없음을 증명하는 서류를 추가로 제출하셔야 합니다.<br>
+							환자의 친족(부재시 형제/자매) 대리인 선임이 가능하며 대리인 선임 시 진료기록 열람 및 사본발급 위임장과 대리인 신분증이 필요합니다.
+						</div>
+					</div>
+				</div>
+				<!-- //end .cont-box -->
+
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>
