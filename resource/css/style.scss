@@ -752,7 +752,7 @@ nav {
 		}//end li
 	}//end filter
 
-	#tab-1 {
+	#tab1-1 {
 		display: block;
 		.list {
 			li:hover a {
@@ -760,14 +760,14 @@ nav {
 			}//end li
 		}//end .list
 	}//end #tab-1
-	#tab-2 {
+	#tab1-2 {
 		.list {
 			li:hover a {
 				border-color: #1886ba;
 			}//end li
 		}//end .list
 	}//end #tab-1
-	#tab-3 {
+	#tab1-3 {
 		.list {
 			li:hover a {
 				border-color: #eb3447;
@@ -842,7 +842,11 @@ nav {
 			overflow: hidden;
 			text-align: center;
 			.main-clinic {
+				display: none;
 				overflow:visible;
+				&#tab2-1 {
+					display: block;
+				}
 			}
 			ul {
 				display: flex;

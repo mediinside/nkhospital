@@ -43,7 +43,7 @@ $(document).ready(function(){
 		var idx = $tab_li.index();
 
 		$tab_li.addClass("on").siblings().removeClass("on");
-		$("#tab-"+(idx+1)).fadeIn(200).siblings(".tab-cont").hide();
+		$("#tab1-"+(idx+1)).fadeIn(200).siblings(".tab-cont").hide();
 		$("#filter").removeClass().addClass("tab-" + (idx + 1));
 		$("#filter li").eq(0).addClass("on").siblings().removeClass("on");
 	});
@@ -58,6 +58,15 @@ $(document).ready(function(){
 		// var idx = $tab_li.index();
 
 		$tab_li.addClass("on").siblings().removeClass("on");
+	});
+
+	//메인 모아보기,병원소식,건강정보 이벤트
+	$("#main-notice .tab li a").on("click",function(){
+		var $tab_li = $(this).parent("li");
+		var idx = $tab_li.index();
+
+		$tab_li.addClass("on").siblings().removeClass("on");
+		$("#tab2-"+(idx+1)).fadeIn(200).siblings(".tab-cont").hide();
 	});
 
 	//로케이션 드롭

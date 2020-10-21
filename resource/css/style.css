@@ -585,13 +585,13 @@ nav {
         color: #333;
         border-radius: 100%;
         background-color: #fff; }
-  #center-list #tab-1 {
+  #center-list #tab1-1 {
     display: block; }
-    #center-list #tab-1 .list li:hover a {
+    #center-list #tab1-1 .list li:hover a {
       border-color: #26b27c; }
-  #center-list #tab-2 .list li:hover a {
+  #center-list #tab1-2 .list li:hover a {
     border-color: #1886ba; }
-  #center-list #tab-3 .list li:hover a {
+  #center-list #tab1-3 .list li:hover a {
     border-color: #eb3447; }
   #center-list .tab-cont {
     display: none; }
@@ -645,7 +645,10 @@ nav {
     overflow: hidden;
     text-align: center; }
     #main-notice .main-list-menu .inner .main-clinic {
+      display: none;
       overflow: visible; }
+      #main-notice .main-list-menu .inner .main-clinic#tab2-1 {
+        display: block; }
     #main-notice .main-list-menu .inner ul {
       display: flex;
       flex-wrap: wrap;
