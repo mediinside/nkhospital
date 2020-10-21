@@ -1,0 +1,132 @@
+<?php
+
+$title = "서비스 이용안내";
+$page_title = "진료안내";
+$page_sub_title = "응급진료안내";
+
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource/images/subBnnr02.png" alt="">
+				<h2>
+					<span><img src="/resource/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<h3 class="cont-tit">응급진료안내</h3>
+				<div class="cont-box">
+					<h4 class="cont-label">응급진료안내</h4>
+					<div class="cont">
+						<div class="s-pad-box red flex">
+							<span>24시간 응급의학 전문의가 신속하고 전문적인 진료를 합니다.</span>
+							<span>
+								<img src="/resource/images/small-logo.png" alt=""> 응급실 031-980-9119
+							</span>
+						</div>
+						<p>
+							뉴고려병원 응급실은 급성질환이나 외상을 입은 환자들을 신속하게 처치 및 진단을 실시하여 응급처치 후 이뤄지는 치료나 수술의 효과 를 향상시키는 전문
+							응급의료 서비스를 제공합니다. 환자의 상태에 따라 신속하게 필요한 응급처치를 실시하며 진료 및 검사결과에 따라 수술, 입원 또는 퇴원 여부를 결정합니다.<br>
+							경우에 따라선 응급처치 후 다른 의료기관으로 이송할 수 있습니다.
+						</p>
+					</div>
+				</div>
+
+				<div class="cont-box">
+					<h4 class="cont-label">응급진료 절차</h4>
+					<div class="cont">
+						<ul class="cont-step">
+							<li>
+								<span><img src="/resource/images/step06.png" alt=""></span>
+								<p class="step-tit">
+									<span class="c-blue">STEP 1</span> 접수
+								</p>
+								<p class="step-text">
+									진료신청서를 작성한 후 응급실 접수창구에 접수합니다.
+								</p>
+							</li>
+							<li>
+								<span><img src="/resource/images/step07.png" alt=""></span>
+								<p class="step-tit">
+									<span class="c-blue">STEP 2</span> 진찰/검사
+								</p>
+								<p class="step-text">
+									환자의 상태에 따라 필요한 응급처치를 실시합니다.
+									응급실에서는 방문하신 순서가 아닌 환자의 상태에 따라 치료의 우선순위가 결정됩니다.
+								</p>
+							</li>
+							<li>
+								<span><img src="/resource/images/step08.png" alt=""></span>
+								<p class="step-tit">
+									<span class="c-blue">STEP 3</span> 수납
+								</p>
+								<p class="step-text">
+									진료과정에서 담당의사가 진료상 필요한 검사/처치/주사 등을 처방하고 수납창구에서 수납합니다.
+								</p>
+							</li>
+							<li>
+								<span><img src="/resource/images/step10.png" alt=""></span>
+								<p class="step-tit">
+									<span class="c-blue">STEP 4</span> 귀가/입원
+								</p>
+								<p class="step-text">
+									<b>귀가시 :</b> 응급진료 후 귀가가 결정된 분은 진료비를 수납하고 약 또는 처방전을 수령하여 귀가합니다.
+									<b>입원시 :</b> 응급진료 후 입원이 결정되면 보호자는 입원 절차에 따라 입원 수속을 실시합니다.
+								</p>
+							</li>
+						</ul>
+						<br>
+					</div>
+				</div>
+
+				<div class="cont-box">
+					<h4 class="cont-label">당직전문의<br>운영 진료과목</h4>
+					<div class="cont">
+						<p>뉴고려병원 응급실은 응급의료에 관한 법률 시행규칙 제19조(비상진료체계) 3항에 의거 아래의 진료과(11개 진료과)에서 당직전문의를 운영하고 있습니다.</p>
+						<br>
+						<dl class="dash-list inline">
+							<dd>정형외과</dd>
+							<dd>내과</dd>
+							<dd>신경과</dd>
+							<dd>소아청소년과</dd>
+						</dl>
+						<dl class="dash-list inline">
+							<dd>일반외과</dd>
+							<dd>흉부외과</dd>
+							<dd>산부인과</dd>
+							<dd>마취통증의학과</dd>
+						</dl>
+						<dl class="dash-list inline">
+							<dd>영상의학과</dd>
+							<dd>진단검사의학과</dd>
+							<dd>응급의학과</dd>
+						</dl>
+						<br>
+						<div class="l-pad-box gray text-left">
+							[응급의료에 관한 법률] 제 32조제4항에서 ‘응급의료기관의장은 응급실에서 근무하는 의사가 요청하는 경우 당직전문의 등 또는 당직전문의등과
+							동등한 자격을 갖춘 것으로 인정되는 자가 응급환자를 직접 진료하게 하여야 한다’고 규정 되어 있습니다.
+						</div>
+					</div>
+				</div>
+				<!-- //end .cont-box -->
+
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

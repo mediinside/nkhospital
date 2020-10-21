@@ -1,5 +1,6 @@
 <?php
 
+$title = "서비스 이용안내";
 $page_title = "예약/발급";
 $page_sub_title = "증명서 발급 안내";
 
@@ -11,6 +12,7 @@ include_once "../inc/head.php";
 	<div id="wrap">
 		<?php include_once "../inc/header.php" ?>
 		<div id="container">
+			<?php include_once "../inc/location.php" ?>
 			<div id="sub-bnnr">
 				<img src="/resource/images/subBnnr01.png" alt="">
 				<h2>
@@ -120,6 +122,51 @@ include_once "../inc/head.php";
 				<div class="cont-box">
 					<h4 class="cont-label">환자의 동의가<br>있는 경우</h4>
 					<div class="cont">
+						<div class="tableType-01">
+							<table>
+								<colgroup>
+									<col style="width:25%">
+									<col style="width:auto">
+									<col style="width:auto">
+								</colgroup>
+								<thead>
+									<tr>
+										<th>환자 본인</th>
+										<th>환자의 친족</th>
+										<th>대리인</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<dl class="dash-list">
+												<dd>
+													본인 신분증<br>
+													(주민등록증, 여권, 운전면허증,
+													공무원증 등 사진이 있는 것)
+												</dd>
+											</dl>
+										</td>
+										<td>
+											<dl class="dash-list">
+												<dd>발급 요청자 신분증</dd>
+												<dd>가족관계증명서, 주민등록등본 등 관계확인 서류</dd>
+												<dd>환자 동의서(자필 작성 서명, 14세 미만 제외)</dd>
+												<dd>환자 신분증 사본(17세 미만 제외)</dd>
+											</dl>
+										</td>
+										<td>
+											<dl class="dash-list">
+												<dd>환자 동의서 및 위임장(자필 작성 서명)</dd>
+												<dd>환자 신분증 사본(17세 미만 제외)</dd>
+												<dd>14세 미만의 동의서 및 위임장은 법정대리인이 작성<br>(가족관계 증명서류 첨부)</dd>
+											</dl>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
 						<dl class="dash-list">
 							<dt>공통서류</dt>
 							<dd>신청자 신분증</dd>
@@ -144,6 +191,12 @@ include_once "../inc/head.php";
 						<div class="l-pad-box gray">
 							환자의 친족이 없는 경우, 환자의 형제/자매가 친족이 없음을 증명하는 서류를 추가로 제출하셔야 합니다.<br>
 							환자의 친족(부재시 형제/자매) 대리인 선임이 가능하며 대리인 선임 시 진료기록 열람 및 사본발급 위임장과 대리인 신분증이 필요합니다.
+						</div>
+
+						<div id="btn-box">
+							<a href="#none" class="btn bg-deepblue">동의서 양식 내려받기 <img class="right" src="/resource/images/down-01.png" alt=""></a>
+							<a href="#none" class="btn bg-deepblue">위임장 양식 내려받기 <img class="right" src="/resource/images/down-01.png" alt=""></a>
+							<a href="#none" class="btn bg-deepblue">진료기록 열람 및 사본발급을 위한 확인서 <img class="right" src="/resource/images/down-01.png" alt=""></a>
 						</div>
 					</div>
 				</div>

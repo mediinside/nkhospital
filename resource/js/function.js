@@ -59,4 +59,14 @@ $(document).ready(function(){
 
 		$tab_li.addClass("on").siblings().removeClass("on");
 	});
+
+	//로케이션 드롭
+	$(".depth").hover(function(){
+		$(this).find("ul").stop().slideToggle(200);
+	});
+	//로케이션 레이아웃
+	$(window).on("load resize",function(){
+		var ml = $("#logo").width();
+		$("#location").css('margin-left',ml);
+	});
 });
