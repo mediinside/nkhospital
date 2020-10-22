@@ -81,7 +81,7 @@ $(document).ready(function(){
 
 
 	//질환정보, 질환영상 탭
-	$(".no1").hide();
+	$(".no2").hide();
 	$(".tabMenu-2 li").on("click", function () {
 		$(this).addClass("active").siblings().removeClass("active");
 		if ($(".tabMenu-2 li:first-of-type").hasClass("active")) {
@@ -92,4 +92,31 @@ $(document).ready(function(){
 			$(".no2").show();
 		};
 	});
+
+	//서브페이지 드롭다운
+	$(".page-dropdown").on("mouseover", function () {
+		//옵션이 짝수일때
+		if ($(this).find(".dropdown-item").length%2 == 0){
+			$(this).find(".dp-section").css({
+				height: $(".dropdown-item").outerHeight() * $(this).find(".dropdown-item").length / 2
+			});
+		//옵션이 홀수일때
+		}else{
+			$(this).find(".dp-section").css({
+				height: $(".dropdown-item").outerHeight() * $(this).find(".dropdown-item").length / 2 + 24
+			});
+		}
+		$(this).find(".dropdown-toggle").addClass("on");
+	});
+	$(".page-dropdown").on("mouseout", function () {
+		$(this).find(".dp-section").css({
+			height: 0
+		});
+		$(this).find(".dropdown-toggle").removeClass("on");
+	});
+});
+
+$(window).on("load resize",function(){
+	var $iframe_h = $('iframe, video').width() * 0.57;
+	$('iframe').height($iframe_h);
 });
