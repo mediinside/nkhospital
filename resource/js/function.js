@@ -78,4 +78,18 @@ $(document).ready(function(){
 		var ml = $("#logo").width();
 		$("#location").css('margin-left',ml);
 	});
+
+
+	//질환정보, 질환영상 탭
+	$(".no1").hide();
+	$(".tabMenu-2 li").on("click", function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		if ($(".tabMenu-2 li:first-of-type").hasClass("active")) {
+			$(".no1").show();
+			$(".no2").hide();
+		} else {
+			$(".no1").hide();
+			$(".no2").show();
+		};
+	});
 });

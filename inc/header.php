@@ -67,7 +67,7 @@
 							<div class="row">
 								<dl>
 									<dt><a href="#none">전문센터</a></dt>
-									<dd><a href="#">관절센터</a></dd>
+									<dd><a href="/center01/page01.html">관절센터</a></dd>
 									<dd><a href="#">외상센터</a></dd>
 									<dd><a href="#">심혈관센터</a></dd>
 									<dd><a href="#">신장센터</a></dd>

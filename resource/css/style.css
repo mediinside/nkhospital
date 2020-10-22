@@ -5,6 +5,9 @@
 /*
 	공통클래스
 */
+* {
+  word-break: keep-all; }
+
 .c-blue {
   color: #1795d0; }
 
@@ -166,6 +169,12 @@
     color: #fff;
     border-color: #093265;
     background-color: #093265; }
+  .btn.bg-green {
+    color: #fff;
+    border-color: #26b27c;
+    background-color: #26b27c; }
+  .btn.border-green {
+    border-color: #26b27c; }
   .btn img {
     margin-top: -2px; }
     .btn img.left {
@@ -177,6 +186,10 @@
 .tableType-01 {
   margin-bottom: 30px;
   border-top: 1px solid #1795d0; }
+  .tableType-01.green {
+    border-top: 2px solid #26b27c; }
+    .tableType-01.green th {
+      background-color: #fafafa; }
   .tableType-01 .text-center {
     text-align: center !important; }
   .tableType-01 table {
@@ -770,6 +783,13 @@ nav {
   font-size: 3rem;
   font-weight: 500;
   letter-spacing: -1.5px; }
+  .cont-tit.bar {
+    padding-top: 0;
+    padding-left: 30px;
+    padding: 0 0 30px 30px;
+    background-image: url(/resource/images/title-bar.png);
+    background-repeat: no-repeat;
+    background-position: 0 2px; }
 
 .cont-box {
   position: relative;
@@ -829,6 +849,245 @@ nav {
         font-size: 1.7rem;
         font-weight: 300;
         letter-spacing: -0.9px; }
+
+.doctor {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px; }
+  .doctor .doctor-img {
+    width: 408px;
+    text-align: center; }
+    .doctor .doctor-img img {
+      width: 100%;
+      max-width: 408px; }
+  .doctor .doctor-info {
+    width: calc(100% - 608px); }
+    .doctor .doctor-info .talk span {
+      display: block;
+      margin-bottom: 30px;
+      font-family: NanumMyeongjo;
+      font-size: 35px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: -1px; }
+    .doctor .doctor-info .talk small {
+      display: inline-block;
+      margin-bottom: 50px;
+      font-size: 18px; }
+    .doctor .doctor-info .name {
+      margin-bottom: 30px; }
+      .doctor .doctor-info .name small {
+        margin-right: 10px;
+        font-size: 18px; }
+      .doctor .doctor-info .name span {
+        display: block;
+        margin-top: 6px;
+        font-size: 30px;
+        font-weight: 300; }
+        .doctor .doctor-info .name span b {
+          font-weight: 500; }
+    .doctor .doctor-info .clinic {
+      margin-bottom: 15px; }
+      .doctor .doctor-info .clinic span {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 5px 15px;
+        color: #333;
+        border: 1px solid #333; }
+      .doctor .doctor-info .clinic ul {
+        display: inline-block; }
+        .doctor .doctor-info .clinic ul li {
+          display: inline-block;
+          position: relative;
+          padding: 0 10px;
+          font-size: 16px; }
+          .doctor .doctor-info .clinic ul li:after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 2px;
+            height: 12px;
+            margin-top: -5px;
+            background-color: #666;
+            content: ''; }
+          .doctor .doctor-info .clinic ul li:last-of-type:after {
+            display: none; }
+    .doctor .doctor-info [class*=tableType] {
+      margin-bottom: 0; }
+    .doctor .doctor-info > p {
+      margin-top: 6px; }
+    .doctor .doctor-info .btn {
+      width: 215px; }
+      .doctor .doctor-info .btn.border-green {
+        color: #333; }
+
+.tabMenu-2 {
+  margin: 110px 0 55px; }
+  .tabMenu-2.s-margin {
+    margin: 50px 0 20px; }
+  .tabMenu-2 ul {
+    display: flex; }
+    .tabMenu-2 ul li {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      background-color: #f8f8f8; }
+      .tabMenu-2 ul li:before {
+        position: absolute;
+        bottom: 0px;
+        width: calc(100% + 2px);
+        height: 1px;
+        background-color: #111;
+        z-index: 1; }
+      .tabMenu-2 ul li:first-of-type.active:before {
+        left: 100%;
+        content: ''; }
+      .tabMenu-2 ul li:last-of-type.active:before {
+        right: 100%;
+        content: ''; }
+      .tabMenu-2 ul li.active {
+        border: 1px solid #111;
+        border-bottom: 0;
+        background-color: #fff; }
+        .tabMenu-2 ul li.active a {
+          color: #111; }
+      .tabMenu-2 ul li a {
+        display: block;
+        width: 100%;
+        color: #111;
+        font-size: 18px;
+        line-height: 60px; }
+
+.relationList {
+  margin-top: 3rem; }
+  .relationList ul {
+    display: flex;
+    align-content: center;
+    justify-items: flex-start;
+    flex-wrap: wrap;
+    width: calc(100% + 40px);
+    margin-left: -20px; }
+    .relationList ul li {
+      position: relative;
+      width: calc(33.33% - 40px);
+      margin: 0 20px 20px;
+      border: 1px solid #e4e4e4;
+      background: #fdfdfd;
+      box-sizing: border-box; }
+  .relationList .thumb {
+    position: relative;
+    padding-top: 56%; }
+    .relationList .thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+  .relationList .cont {
+    padding: 3rem 4rem;
+    border-top: 0;
+    font-size: 1.3rem;
+    color: #333; }
+    .relationList .cont .tit {
+      display: block;
+      height: auto;
+      padding: 1rem 0 0.75rem;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      color: #111;
+      box-sizing: border-box; }
+    .relationList .cont .txt {
+      display: block;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      height: 112px;
+      font-size: 16px; }
+    .relationList .cont .link {
+      position: absolute;
+      right: 0;
+      bottom: 15px;
+      padding-right: 1.5rem;
+      font-size: 14px;
+      line-height: 1; }
+
+.relationVod {
+  margin-top: 2.5rem; }
+  .relationVod .title {
+    margin: 0 0 1.5rem;
+    padding: 0 0 1rem;
+    border-bottom: 0.05rem solid #222e3e;
+    font-size: 2.4rem;
+    text-align: center; }
+  .relationVod ul {
+    display: flex;
+    align-content: center;
+    justify-items: flex-start;
+    flex-wrap: wrap;
+    width: calc(100% + 40px);
+    margin-left: -20px; }
+    .relationVod ul li {
+      width: calc(33.33% - 40px);
+      margin: 0 20px 20px;
+      border: 0.05rem solid #e4e4e4;
+      box-sizing: border-box; }
+  .relationVod .vod {
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden; }
+    .relationVod .vod .vlayer {
+      bottom: 0; }
+    .relationVod .vod .time {
+      position: absolute;
+      top: 55%;
+      right: 0;
+      left: 0;
+      color: #fff;
+      font-size: 1.4rem;
+      z-index: 1000;
+      text-align: center; }
+    .relationVod .vod iframe {
+      border: none; }
+  .relationVod .cont {
+    position: relative;
+    padding: 3rem 4rem;
+    border-top: 1px solid #ddd; }
+    .relationVod .cont .tit {
+      display: block;
+      height: auto;
+      margin: 0 0 1rem;
+      color: #333;
+      font-size: 22px;
+      box-sizing: border-box; }
+    .relationVod .cont .txt {
+      display: block;
+      color: #333; }
+    .relationVod .cont .name {
+      display: block;
+      margin: 1.5rem 0 0;
+      padding: 0.5rem 0 0;
+      color: #333;
+      font-weight: 400;
+      line-height: 1.2; }
+      .relationVod .cont .name img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        overflow: hidden; }
+    .relationVod .cont .btnSns {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem; }
+      .relationVod .cont .btnSns a {
+        display: inline-block;
+        width: 4rem;
+        height: 4rem;
+        line-height: 4rem;
+        font-size: 0;
+        text-align: center;
+        vertical-align: middle; }
 
 /*
 	footer
