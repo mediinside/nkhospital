@@ -111,10 +111,10 @@
 									<dd><a href="#">재활치료센터</a></dd>
 								</dl>
 								<dl>
-									<dt><a href="#">의료진소개</a></dt>
-									<dd><a href="#">전문센터</a></dd>
-									<dd><a href="#">진료과</a></dd>
-									<dd><a href="#">특수클리닉</a></dd>
+									<dt><a href="#none">의료진소개</a></dt>
+									<dd><a href="/doctor/page01.html">전문센터</a></dd>
+									<dd><a href="/doctor/page02.html">진료과</a></dd>
+									<dd><a href="/doctor/page03.html">특수클리닉</a></dd>
 								</dl>
 							</div>
 						</li>
@@ -131,10 +131,10 @@
 								</dl>
 								<dl>
 									<dt><a href="#">병원소개</a></dt>
-									<dd><a href="#">소개영상</a></dd>
-									<dd><a href="#">인사말</a></dd>
-									<dd><a href="#">연혁</a></dd>
-									<dd><a href="#">미션,비전,가치</a></dd>
+									<dd><a href="/notice/page06.html">소개영상</a></dd>
+									<dd><a href="/notice/page07.html">인사말</a></dd>
+									<dd><a href="/notice/page08.html">연혁</a></dd>
+									<dd><a href="/notice/page09.html">미션,비전,가치</a></dd>
 									<dd><a href="#">채용정보</a></dd>
 									<dd><a href="#">협력병원 및 기관</a></dd>
 								</dl>

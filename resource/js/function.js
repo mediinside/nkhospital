@@ -32,6 +32,43 @@ $(document).ready(function(){
 		},
 	});
 
+	//연혁 슬라이드 첫번째
+	var swiper = new Swiper('.slide1', {
+		loop: true,
+		pagination: {
+			el: '.slide1 .swiper-pagination',
+			clickable: true,
+		},
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false,
+		},
+	});
+	//연혁 슬라이드 두번째
+	var swiper = new Swiper('.slide2', {
+		loop: true,
+		pagination: {
+			el: '.slide2 .swiper-pagination',
+			clickable: true,
+		},
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false,
+		},
+	});
+	//연혁 슬라이드 세번째
+	var swiper = new Swiper('.slide3', {
+		loop: true,
+		pagination: {
+			el: '.slide3 .swiper-pagination',
+			clickable: true,
+		},
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false,
+		},
+	});
+
 	//메뉴 이벤트
 	$("#menu").on("click",function(){
 		$("#gnb").slideToggle(300);
