@@ -155,5 +155,5 @@ $(document).ready(function(){
 
 $(window).on("load resize",function(){
 	var $iframe_h = $('iframe, video').width() * 0.57;
-	$('iframe').height($iframe_h);
+	$('iframe.active').height($iframe_h);
 });
