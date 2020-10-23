@@ -248,6 +248,44 @@
       font-size: 1.6rem;
       letter-spacing: -0.8px; }
 
+/* 페이지네이션 */
+.pagination {
+  margin-top: 40px;
+  font-size: 0;
+  line-height: 0;
+  text-align: center; }
+
+.pagination .btn {
+  display: inline-block;
+  margin: 0 2px;
+  width: 3.3rem;
+  height: 3.3rem;
+  padding: 0 !important;
+  border: 1px solid #dfdfdf;
+  color: #666 !important;
+  font-family: 'area';
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 3.3rem; }
+  .pagination .btn img {
+    width: 100%;
+    margin-top: 0;
+    vertical-align: baseline; }
+
+.pagination .btn.current {
+  color: #fff !important;
+  border-color: #eb3447;
+  background-color: #eb3447;
+  cursor: default; }
+
+.pagination .btn.prev {
+  border-color: #fff;
+  vertical-align: middle !important; }
+
+.pagination .btn.next {
+  border-color: #fff;
+  vertical-align: middle !important; }
+
 /*
 	header
 */
@@ -659,14 +697,17 @@ nav {
           box-sizing: border-box;
           background-color: #fff; }
 
-#main-notice .tab {
+#main-notice .tab,
+#sub-notice .tab {
   display: flex;
   justify-content: center;
   align-items: center; }
-  #main-notice .tab li {
+  #main-notice .tab li,
+  #sub-notice .tab li {
     position: relative;
     padding: 0 20px; }
-    #main-notice .tab li:not(:last-of-type):after {
+    #main-notice .tab li:not(:last-of-type):after,
+    #sub-notice .tab li:not(:last-of-type):after {
       position: absolute;
       top: 50%;
       left: 100%;
@@ -675,62 +716,79 @@ nav {
       margin-top: -7px;
       background-color: #cecece;
       content: ''; }
-    #main-notice .tab li.on a, #main-notice .tab li:hover a, #main-notice .tab li:focus a {
+    #main-notice .tab li.on a, #main-notice .tab li:hover a, #main-notice .tab li:focus a,
+    #sub-notice .tab li.on a,
+    #sub-notice .tab li:hover a,
+    #sub-notice .tab li:focus a {
       color: #333;
       transition: all 0.1s; }
-    #main-notice .tab li a {
+    #main-notice .tab li a,
+    #sub-notice .tab li a {
       color: #bababa;
       font-size: 2rem;
       font-weight: 600;
       letter-spacing: -1.5px; }
-#main-notice .main-list-menu {
+#main-notice .main-list-menu,
+#sub-notice .main-list-menu {
   margin: 110px 0; }
-  #main-notice .main-list-menu .inner {
+  #main-notice .main-list-menu .inner,
+  #sub-notice .main-list-menu .inner {
     overflow: hidden;
     text-align: center; }
-    #main-notice .main-list-menu .inner .main-clinic {
+    #main-notice .main-list-menu .inner .main-clinic,
+    #sub-notice .main-list-menu .inner .main-clinic {
       display: none;
       overflow: visible; }
-      #main-notice .main-list-menu .inner .main-clinic#tab2-1 {
+      #main-notice .main-list-menu .inner .main-clinic#tab2-1,
+      #sub-notice .main-list-menu .inner .main-clinic#tab2-1 {
         display: block; }
-    #main-notice .main-list-menu .inner ul {
+    #main-notice .main-list-menu .inner ul,
+    #sub-notice .main-list-menu .inner ul {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
       padding-top: 13px;
       padding-bottom: 30px; }
-      #main-notice .main-list-menu .inner ul li {
+      #main-notice .main-list-menu .inner ul li,
+      #sub-notice .main-list-menu .inner ul li {
         position: relative;
         width: calc(25% - 15px);
         margin-right: 20px;
         margin-top: 60px;
         height: auto;
         transition: all 0.2s; }
-        #main-notice .main-list-menu .inner ul li:nth-of-type(4n+4) {
+        #main-notice .main-list-menu .inner ul li:nth-of-type(4n+4),
+        #sub-notice .main-list-menu .inner ul li:nth-of-type(4n+4) {
           margin-right: 0; }
-        #main-notice .main-list-menu .inner ul li .dec {
+        #main-notice .main-list-menu .inner ul li .dec,
+        #sub-notice .main-list-menu .inner ul li .dec {
           display: block;
           text-align: left;
           padding-bottom: 30px; }
-          #main-notice .main-list-menu .inner ul li .dec .img img {
+          #main-notice .main-list-menu .inner ul li .dec .img img,
+          #sub-notice .main-list-menu .inner ul li .dec .img img {
             width: 100%; }
-          #main-notice .main-list-menu .inner ul li .dec .txt {
+          #main-notice .main-list-menu .inner ul li .dec .txt,
+          #sub-notice .main-list-menu .inner ul li .dec .txt {
             display: block;
             padding: 20px 0;
             box-sizing: border-box; }
-            #main-notice .main-list-menu .inner ul li .dec .txt b {
+            #main-notice .main-list-menu .inner ul li .dec .txt b,
+            #sub-notice .main-list-menu .inner ul li .dec .txt b {
               color: #202020;
               font-size: 1.8rem;
               font-weight: normal;
               letter-spacing: -0.9px; }
-            #main-notice .main-list-menu .inner ul li .dec .txt p {
+            #main-notice .main-list-menu .inner ul li .dec .txt p,
+            #sub-notice .main-list-menu .inner ul li .dec .txt p {
               margin-top: 1rem;
               color: #999;
               font-size: 1.6rem;
               font-weight: 300;
               line-height: 1.4;
               letter-spacing: -0.9px; }
-        #main-notice .main-list-menu .inner ul li .dec-foot {
+        #main-notice .main-list-menu .inner ul li .dec-foot,
+        #sub-notice .main-list-menu .inner ul li .dec-foot {
           position: absolute;
           bottom: 0;
           left: 0;
@@ -738,13 +796,15 @@ nav {
           font-size: 0.938rem;
           padding: 0 0 0;
           box-sizing: border-box; }
-          #main-notice .main-list-menu .inner ul li .dec-foot span {
+          #main-notice .main-list-menu .inner ul li .dec-foot span,
+          #sub-notice .main-list-menu .inner ul li .dec-foot span {
             padding: 0 10px;
             color: #a6a6a6;
             font-size: 1.4rem;
             font-weight: 300;
             vertical-align: middle; }
-            #main-notice .main-list-menu .inner ul li .dec-foot span.label {
+            #main-notice .main-list-menu .inner ul li .dec-foot span.label,
+            #sub-notice .main-list-menu .inner ul li .dec-foot span.label {
               display: inline-block;
               width: 60px;
               height: 25px;
@@ -754,9 +814,11 @@ nav {
               text-align: center;
               border: 1px solid #333;
               border-radius: 14px; }
-            #main-notice .main-list-menu .inner ul li .dec-foot span.view {
+            #main-notice .main-list-menu .inner ul li .dec-foot span.view,
+            #sub-notice .main-list-menu .inner ul li .dec-foot span.view {
               position: relative; }
-              #main-notice .main-list-menu .inner ul li .dec-foot span.view:after {
+              #main-notice .main-list-menu .inner ul li .dec-foot span.view:after,
+              #sub-notice .main-list-menu .inner ul li .dec-foot span.view:after {
                 position: absolute;
                 top: 50%;
                 right: 100%;

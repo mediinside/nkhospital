@@ -308,6 +308,71 @@
 	}//end td
 }//end .tableType-01
 
+/* 페이지네이션 */
+.pagination {
+	margin-top: 40px;
+	font-size: 0;
+	line-height: 0;
+	text-align: center;
+}
+
+.pagination .btn {
+	display: inline-block;
+	margin: 0 2px;
+	width: 3.3rem;
+	height: 3.3rem;
+	padding: 0 !important;
+	border: 1px solid #dfdfdf;
+	color: #666 !important;
+	font-family: 'area';
+	font-size: 1.6rem;
+	font-weight: 500;
+	line-height: 3.3rem;
+	// vertical-align: top;
+	img {
+		width: 100%;
+		margin-top: 0;
+		vertical-align: baseline;
+	}
+}
+
+.pagination .btn.current {
+	color: #fff !important;
+	border-color: #eb3447;
+	background-color: #eb3447;
+	cursor: default;
+}
+
+.pagination .btn.prev {
+	border-color:#fff;
+	vertical-align: middle !important;
+}
+
+// .pagination .btn.prev span {
+// 	display: inline-block;
+// 	width: 100%;
+// 	height: 100%;
+// 	background-image: url("/resource/images/selec-down.png");
+// 	background-repeat: no-repeat;
+// 	background-position: center;
+// 	background-size: auto;
+// }
+
+.pagination .btn.next {
+	border-color:#fff;
+	vertical-align: middle !important;
+}
+
+// .pagination .btn.next span {
+// 	display: inline-block;
+// 	width: 100%;
+// 	height: 100%;
+// 	background-image: url("/resource/images/selec-down.png");
+// 	background-repeat: no-repeat;
+// 	background-position: center;
+// 	background-size: auto;
+// }
+
 
 
 
@@ -861,7 +926,8 @@ nav {
 }//end #center-list
 
 
-#main-notice {
+#main-notice,
+#sub-notice {
 	.tab {
 		display: flex;
 		justify-content: center;

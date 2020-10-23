@@ -123,7 +123,7 @@
 							<div class="row">
 								<dl>
 									<dt><a href="#">소통/공감</a></dt>
-									<dd><a href="#">병원소식</a></dd>
+									<dd><a href="/notice/page01.html">병원소식</a></dd>
 									<dd><a href="#">건강정보</a></dd>
 									<dd><a href="#">전문의 상담</a></dd>
 									<dd><a href="#">칭찬합니다</a></dd>
@@ -135,7 +135,7 @@
 									<dd><a href="/notice/page07.html">인사말</a></dd>
 									<dd><a href="/notice/page08.html">연혁</a></dd>
 									<dd><a href="/notice/page09.html">미션,비전,가치</a></dd>
-									<dd><a href="#">채용정보</a></dd>
+									<dd><a href="/notice/page10.html">채용정보</a></dd>
 									<dd><a href="#">협력병원 및 기관</a></dd>
 								</dl>
 							</div>
