@@ -1,0 +1,308 @@
+<?
+session_start();
+
+
+if($start_date == ""){
+	$today = date("Y-m-d");
+}
+else{
+	$today = $start_date;
+}
+if($end_date == ""){
+	$endday = date("Y-m-d");
+}
+else{
+	$endday = $end_date;
+}
+
+$chk_query = "select * from reserve_setday where left(day_start,10)='".$today."' and day_type='3'";
+$chk_result = mysql_query($chk_query);
+$chk_cnt = mysql_num_rows($chk_result);
+//echo $chk_cnt;
+
+
+//$today = "2012-10-13";
+
+//echo $this_day;
+
+$num = $chk_cnt;
+$day_type = 3;
+
+$num2 = 7; 
+$time_set = 1349388000;
+$time_plus = 1800;
+$now_date = date("H:i",$time_set+$time_plus);
+
+
+if($start_date == ""){
+	$start_date = $today;
+}
+?>
+<script type="text/javascript">
+
+	$(function() {
+		$('#datepicker').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '2009:2020'
+		});
+		
+	});
+	//		$("#datepicker").datepicker($.datepicker.regional['ko']);
+	</script>
+	<link rel="stylesheet" href="http://kops.co.kr/assets/_css/jquery-ui.css" />
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  	<script type="text/javascript" src="/admin/ui/ui.datepicker-ko.js"></script>
+
+
+
+<div class="contants_01_1440">
+	<div style="padding:10px 0 0 0; margin:0;">
+    <form name='form' method='post' action='/admin/slotset/procSituation.php' enctype='multipart/form-data' onsubmit="return form_check(this)" style="margin:0; padding:0;">
+		<input type='hidden' name='uploadDir' value='<?=$uploadDir?>'>
+		<input type='hidden' name='tbl' value='<?=$tbl?>'>
+		<input type='hidden' name='dir' value='<?=$dir?>'>
+		<input type='hidden' name='menu' value='<?=$menu?>'>
+		<input type='hidden' name='mode' value='<?=$mode?>'>
+		<input type='hidden' name='seq' value='<?=$seq?>'>
+		<input type='hidden' name='num' value='<?=$num?>'>
+		<input type='hidden' name='num2' value='<?=$num2?>'>
+		<input type='hidden' name='start_dates' value='<?=$start_date?>'>
+        <table width='100%' border='0' cellpadding='0' cellspacing='0'>
+			<tr valign="bottom">
+				<td width="80"><div class="btn04_def"><a href="?dir=<?=$dir?>&menu=Situation">평일 일정</a></div></td>
+                <td width="80"><div class="btn04_def"><a href="?dir=<?=$dir?>&menu=Ban">반일 설정</a></div></td>
+                <td width="80"><div class="btn04_def"><a href="?dir=<?=$dir?>&menu=Target">지정일 설정</a></div></td>
+                <td width="80"><div class="btn04_act"><a href="?dir=<?=$dir?>&menu=Holiday">휴무일 설정</a></div></td>
+                <td valign="middle" align="right">
+                <img src="/admin/img/icon_cal.gif" onClick="javascript:calendar(event, 'start_date')" align="absmiddle">
+               
+
+			    <input type="text" name = "start_date" id="datepicker" value="<?=$start_date?>" size="10" style='cursor:pointer;'>	
+
+
+				
+                <input type="text" name="comment" size="20"> <input type="button" style='width:80px; height:20px;' value="휴무일 처리" class="btn03"></td>
+
+			</tr>
+        </table>
+        </form>
+<?
+/******************************
+달력
+******************************/
+
+/********** 사용자 설정값 **********/
+$startYear        = 2012;
+$endYear        = date( "Y" ) + 4;
+
+/********** 입력값 **********/
+$year            = ( $_GET['toYear'] )? $_GET['toYear'] : date( "Y" );
+$month            = ( $_GET['toMonth'] )? $_GET['toMonth'] : date( "m" );
+$doms            = array( "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" );
+
+/********** 계산값 **********/
+$mktime            = mktime( 0, 0, 0, $month, 1, $year );      // 입력된 값으로 년-월-01을 만든다
+$days            = date( "t", $mktime );                        // 현재의 year와 month로 현재 달의 일수 구해오기
+$startDay        = date( "w", $mktime );                        // 시작요일 알아내기
+
+// 지난달 일수 구하기
+$prevDayCount    = date( "t", mktime( 0, 0, 0, $month, 0, $year ) ) - $startDay + 1;
+
+$nowDayCount    = 1;                                            // 이번달 일자 카운팅
+$nextDayCount    = 1;                                          // 다음달 일자 카운팅
+
+// 이전, 다음 만들기
+$prevYear        = ( $month == 1 )? ( $year - 1 ) : $year;
+$prevMonth        = ( $month == 1 )? 12 : ( $month - 1 );
+$nextYear        = ( $month == 12 )? ( $year + 1 ) : $year;
+$nextMonth        = ( $month == 12 )? 1 : ( $month + 1 );
+
+// 출력행 계산
+$setRows = ceil( ( $startDay + $days ) / 7 );
+
+?>
+<script>
+function openWin(page, bar) {
+	if(!bar) bar = "no";
+
+	var win = window.open(page, 'POP', 'left=100, top=100, toolbar=no, location=no, directories=no, status=yes, menuBar=no, scrollBars='+bar+', resizable=no');
+	win.focus();
+}
+</script>
+<table width='100%' border='0' cellpadding='3' cellspacing='0' class="table_style_01">
+	<tr>
+    	<td>
+        	<form method="get" style="margin:0; padding:0;">
+  					<input type="hidden" name="dir" value="<?=$dir?>">
+   					<input type="hidden" name="menu" value="<?=$menu?>">
+        	<table  border='0' cellpadding='3' cellspacing='0' class="non_table" align="center">
+  				
+    			<tr>
+        			<td><input type="button" class='btn1' onclick="location.href='<?=$_SERVER['PHP_SELF']?>?dir=<?=$dir?>&menu=<?=$menu?>&toYear=<?=$prevYear?>&toMonth=<?=$prevMonth?>'" value=" << "></td>    
+        			<td><select name="toYear" onchange="submit();">
+                        <? for( $i = $startYear; $i < $endYear; $i++ ) { ?>
+                        <option value="<?=$i?>" <?=($i==$year)?"selected":""?>><?=$i?></option>
+                        <? } ?>
+                        </select>년
+                        <select name="toMonth" onchange="submit();">
+                        <? for( $i = 1; $i <= 12; $i++ ) { ?>
+                        <option value="<?=$i?>" <?=($i==$month)?"selected":""?>><?=$i?></option>
+                        <? } ?>
+                        </select>월</td>  
+					<td><input type="button" class='btn1' onclick="location.href='<?=$_SERVER['PHP_SELF']?>?dir=<?=$dir?>&menu=<?=$menu?>&toYear=<?=$nextYear?>&toMonth=<?=$nextMonth?>'" value=" >> "></td>
+    			</tr>
+	 		</table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+    	<td style="padding:0;">
+        	<form name='form' method='post' action='/admin/slotset/procSituation.php' enctype='multipart/form-data' onsubmit="return form_check(this)" style="margin:0; padding:0;">
+                <input type='hidden' name='uploadDir' value='<?=$uploadDir?>'>
+                <input type='hidden' name='tbl' value='<?=$tbl?>'>
+                <input type='hidden' name='dir' value='<?=$dir?>'>
+                <input type='hidden' name='menu' value='<?=$menu?>'>
+                <input type='hidden' name='mode' value='<?=$mode?>'>
+                <input type='hidden' name='seq' value='<?=$seq?>'>
+                <input type='hidden' name='num' value='<?=$num?>'>
+                <input type='hidden' name='num2' value='<?=$num2?>'>
+                <input type='hidden' name='start_dates' value='<?=$start_date?>'>
+        	<table width="100%" height="250" cellpadding=0 cellspacing=0 class="calendar_table_02" bgcolor="#ffffff">
+                <tr height="50">
+                    <? for( $i = 0; $i < count( $doms ); $i++ ) { ?>
+                    <th width='14%' align="center"><?=$doms[$i]?></th>
+                    <? } ?>
+                </tr>
+                <? for( $rows = 0; $rows < $setRows; $rows++ ) { ?>
+                <tr>
+                    <?
+                    for( $cols = 0; $cols < 7; $cols++ ) {
+                        // 셀 인덱스 만들자
+                        $cellIndex    = ( 7 * $rows ) + $cols;
+                        // 이번달이라면
+                        if ( $startDay <= $cellIndex && $nowDayCount <= $days ) { 
+                            if($nowDayCount <10){
+                                $realday = "0".$nowDayCount;
+                            }
+                            else{
+                                $realday = $nowDayCount;
+                            }
+                            if($month <10){
+                                $months = $month;
+                            }
+                            else{
+                                $months = $month;
+                            }
+                            $cnt = "";
+                            $sel_date = $year."-".$months."-".$realday;
+                            $chk_query = "select * from reserve_holiday where left(day_start,10)='".$sel_date."' and view_state='Y' and day_type='4'";
+                            //echo $chk_query;
+                            $chk_result = mysql_query($chk_query);
+                            $chk_rows = mysql_fetch_array($chk_result);
+                            //echo $cnt;
+                    ?>
+                        <td align="center">
+                            <table border=0 width="100%" cellpadding="0" cellspacing="0" class="non_table">
+                            <tr align="center">
+                            
+                                <? 
+                                    if ( date( "w", mktime( 0, 0, 0, $month, $nowDayCount, $year ) ) == 6 ) { #토요일
+                                ?>
+                                <td height="60" width='100%' bgcolor="<?if($chk_rows[seq] != ''){echo '#FFD9DA';}?>">
+                                    <strong style="color:blue;"><?=$nowDayCount++?></strong>
+                                    <br>
+                                    <?
+                                    if($chk_rows[seq] != ""){
+                                    ?>
+                                    <table border="0" height="25" width='100%'>
+                                        <tr>
+                                            <td colspan="2" background="/img/common/dot.gif" style="background-repeat:repeat-x" height="1px"></td>
+                                        </tr>
+                                        <tr valign="bottom">
+                                            <td align="left"><?=KstrCut($chk_rows[comment], 12, "...")?></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center"><input type="button" onclick="javascript:location.href='/admin/slotset/procSituation.php?dir=<?=$dir?>&menu=<?=$menu?>&seq=<?=$chk_rows[seq]?>'" style='width:40px; height:20px;' value="취소" class="btn03"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                    <?
+                                    }
+                                    ?>
+                                </td>
+            
+                               
+                                <? } else if ( date( "w", mktime( 0, 0, 0, $month, $nowDayCount, $year ) ) == 0 ) { #일요일
+                                    
+                                ?>
+                                <td height="60" width='100%' bgcolor='#FFD9DA'>
+                                    <strong style="color:#F00;"><?=$nowDayCount++?></strong>
+                                    <br>
+            
+                                    
+                                </td>
+                               
+                                <? } else { ?>
+                                <td height="60" width='100%' bgcolor="<?if($chk_rows[seq] != ''){echo '#ff8000';}?>">
+                                    <strong style="color:#999;"><?=$nowDayCount++?></strong>
+                                    <br>
+                                    <?
+                                    if($chk_rows[seq] != ""){
+                                    ?>
+                                    <table border="0" height="25" width="100%" class="non_table">
+                                        
+                                        <tr valign="bottom">
+                                            <td align="left" title="<?=$chk_rows[comment]?>"><?=KstrCut($chk_rows[comment], 12, "...")?></td>
+                                        </tr>
+                                        <tr align="right">
+                                            <td align="right"> <input type="button" onclick="javascript:location.href='/admin/slotset/procSituation.php?dir=<?=$dir?>&menu=<?=$menu?>&seq=<?=$chk_rows[seq]?>'" style='width:40px; height:20px;' value="취소" class="btn03"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                    <?
+                                    }
+                                    ?>
+                                    
+                                </td>
+                                <? } ?>
+                            </tr>
+                            </table>
+                        </td>
+                       
+                        <?
+                        // 이전달이라면
+                        } else if ( $cellIndex < $startDay ) { ?>
+                        <td align="center">
+                        <strong style="color:#ebebeb"><?=$prevDayCount++?></strong>
+                        </td>
+                       
+                        <?
+                        // 다음달 이라면
+                        } else if ( $cellIndex >= $days ) { ?>
+                        <td align="center">
+                        <strong style="color:#ebebeb"><?=$prevDayCount++?></strong>
+                        </td>
+                        <? }
+                    }
+                    ?>
+                </tr>
+                <? } ?>
+                </table>
+                        
+                    </td>
+                </tr>
+            </table>
+            </form>
+            
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+    
+	</div>
+</div>

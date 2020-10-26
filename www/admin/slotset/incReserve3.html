@@ -1,0 +1,45 @@
+<?
+session_start();
+
+if($start_date == ""){
+	$today = date("Y-m-d");
+}
+else{
+	$today = $start_date;
+}
+if($start_date == ""){
+	$start_date = $today;
+}
+?>
+<link href="/SEditor/css/default.css" rel="stylesheet" type="text/css" />
+<script>
+	function popup(sel_week_end,k,mode,sel_item){
+		window.open("/admin/slotset/popup.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item,"poupu","width=600,height=560,scrollbars=yes");
+	}
+	function popup_view(sel_week_end,k,mode,sel_item){
+		window.open("/admin/slotset/popup_view.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item,"poupu","width=700,height=560,scrollbars=yes");
+	}
+</script>
+<div class="contants_01_1440">
+<div style="padding-top:15px;"></div>
+		<table width='100%' border='0' cellpadding='5' cellspacing='0' class="table_style_01" align="center">
+		
+			<form name='form2' method='post' action='/admin/slotset/sms/actSms.php' enctype='multipart/form-data'>
+
+			<tr id='ALL' style='display:'>
+				<th width='120' rowspan="2">¿¢¼¿ ¿¹¾à</th>
+                <td height="50"><input type='file' name='upFile' style='width:450px;' class='textfield'> <input type='submit' style='width:50px; height:18px;' value='µî ·Ï' class='btn03' onfocus='this.blur();'></td>
+			</tr> 
+            <tr>
+            	<td height="50"><span style="color:blue">¿¢¼¿ÆÄÀÏÀº xlsÆÄÀÏ·Î ÀúÀåÇÏ¼¼¿ä!!</span> <a href="/admin/slotset/phpExcelReader/sample_last.xls" target="_blank"><span style="color:red;">[¿¢¼¿ ÆÄÀÏ »ùÇÃ]</span></a></td>
+            </tr>
+			</form>
+		</table>
+
+		<!--<table>
+			<tr>
+				<td><img src="/admin/slotset/phpExcelReader/sample_img.jpg">
+				</td>
+			</tr>
+		</table>-->
+</div>        

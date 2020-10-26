@@ -1,0 +1,127 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/m.head.php';
+   // $C_Func -> put_msg_and_go('시스템 점검중입니다. 불편을 드려 대단히 죄송합니다.' , '/m/main.html');
+    $process_type = $_GET['ptype'];
+	$process_title = '';
+	if ('s' == $process_type){
+		$process_title = '본인예약';
+	} else if ('g' == $process_type){
+		$process_title = '보호자로 예약';
+	}
+    
+    if (!$C_Func -> is_login()) {
+        $C_Func -> put_msg_and_go ('로그인 해 주세요' , '/m/login.html?reurl=' . urlencode($GP -> NOWPAGE));
+    }
+
+?>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title">보호자로 예약</h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+	</div>
+	<div id="container" class="reserve-guardian">
+		<form action="?" id="r_form" name="r_form" method="post">
+			<div class="public-agreement">
+				<section class="display">
+					<h1>개인정보 수집 이용에 대한 안내</h1>
+					<ul class="dash">
+						<li>수집하는 고유식별정보 항목 : 이름, 전화번호</li>
+						<li>수집 및 이용목적 : 진료예약 및 진료안내</li>
+						<li>보유 및 이용 기간 : 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기하며, 1년 동안 로그인 등 사용 기록이 없는 개인정보는 파기하거나 별도 저장합니다. <br>
+						단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다.</li>
+
+						<li>이용자의 인터넷 등 로그기록/이용자의 접속지 추적자료: 3개월 (통신비밀보호법)</li>
+						<li>신용 정보의 수집/처리 및 이용 등에 관한 기록 : 3년 (신용 정보의 이용 및 보호에 관한 법률)</li>
+						<li>본인확인에 관한 기록 : 6개월 (정보통신망 이용 촉진 및 정보 보호 등에 관한 법률)</li>
+
+						<li>개인정보 수집 이용동의 거부하실 수 있으며, 거부할 경우 서비스 사용이 일부 제한될 수 있습니다. </li>
+					</ul>
+				</section>
+				<label class="i-label">
+					<input type="checkbox" id="agree" value="Y" name="agree" checked />
+					<i class="ip-icon-check"></i>
+					<span class="i-labelholder">동의합니다.</span>
+				</label>
+			</div>
+			<div class="entry-header">
+				<h2 class="title">환자정보입력</h2>
+			</div>
+			<div class="entry-panel">
+				<dl>
+					<dt class="required"><label for="tor_name">이름</label></dt>
+					<dd><input type="text" class="i-text full" name="tor_name" id="tor_name" placeholder="이름을 입력해 주세요." /></dd>
+					<dt class="required"><label for="tor_rs_phone">전화번호</label></dt>
+					<dd>
+						<select name="tor_rs_phone1" id="tor_rs_phone1" class="i-tel">
+							<option value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+						</select>
+						<span class="empty dash"></span>
+						<input type="tel" name="tor_rs_phone2" id="tor_rs_phone2" class="i-tel" maxlength="4" />
+						<span class="empty dash"></span>
+						<input type="tel" name="tor_rs_phone3" id="tor_rs_phone3" class="i-tel" maxlength="4" />
+					</dd>
+				</dl>
+			</div>
+			<button type="submit" id="img_submit" class="next-step">저장하기</button>
+		</form>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2019</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('#img_submit').click(function(){
+		if($('input:checkbox[name="agree"]:checked').val() != "Y" ) {
+			alert("동의인 경우에만 글을 등록할 수 있습니다");
+			return false;
+		}
+
+		if($('#tor_name').val() == '')	{
+			alert('이름을 입력하세요');
+			$('#tor_name').focus();
+			return false;
+		}
+
+		if($('#tor_rs_phone1 option:selected').val() == '')	{
+			alert('핸드폰 번호를 입력해주세요');
+			return false;
+		}
+
+		if($('#tor_rs_phone2').val() == '')	{
+			alert('핸드폰 번호를 입력해주세요');
+			$('#tor_rs_phone2').focus();
+			return false;
+		}
+
+		if($('#tor_rs_phone3').val() == '')	{
+			alert('핸드폰 번호를 입력해주세요');
+			$('#tor_rs_phone3').focus();
+			return false;
+		}
+
+		$('#r_form').attr('action','/m/res.process.01.html?ptype=g');
+		$('#r_form').submit();
+		return false;
+
+	});
+});
+</script>
+</body>
+</html>

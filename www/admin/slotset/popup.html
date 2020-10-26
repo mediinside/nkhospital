@@ -1,0 +1,667 @@
+<?
+session_start();
+
+include "../inc/dbConn.php";
+include "../inc/chkLogin.php";
+include "../inc/func.php";
+
+
+//echo $k;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/styles/popup.css" />
+<link href="/SEditor/css/default.css" rel="stylesheet" type="text/css" />
+<script>
+function selectCondition(val) {
+	
+
+	if(val == "item1" || val == "item2") {
+		POSITION.style.display = "";
+		
+	}
+	else{
+		POSITION.style.display = "none";
+		
+	}
+	
+}
+function add_item(item,start_date){
+	window.open("/admin/slotset/add_item.html?item="+item+"&start_date="+start_date,"additem","width=500,height=700");
+}
+function edit_item(item,start_date){
+	
+	window.open("/admin/slotset/edit_item.html?item="+item+"&start_date="+start_date,"additem","width=500,height=700");
+}
+
+function clear_item(sel_item){
+	if(sel_item == "item5"){
+		document.form.item5.value = "";
+		document.form.item5_timezone.value = "";
+	}
+	else if(sel_item == "item4"){
+		document.form.item4.value = "";
+		document.form.item4_timezone.value = "";
+	}
+	else if(sel_item == "item3"){
+		document.form.item3.value = "";
+		document.form.item3_timezone.value = "";
+	}
+}
+function openWin(page, bar) {
+	if(!bar) bar = "no";
+
+	var win = window.open(page, 'POP', 'left=100, top=100, toolbar=no, location=no, directories=no, status=yes, menuBar=no, scrollBars='+bar+', resizable=no');
+	win.focus();
+}
+
+</script>
+<script language="JavaScript">
+<!--
+function chkForm(frm) {
+	if(!frm.reserve_name2.value) {
+		alert('사업장명을 입력해 주세요.');
+		frm.reserve_name2.focus();
+		return false;
+	}
+	frm.submit();
+}
+
+//-->
+</script>
+</head>
+<?
+
+#슬롯 가져옴
+#휴일인지, 지정일인지, 반일인지, 평일인지 체크해서 해당 슬롯 보여줌
+//echo $start_date;
+
+if($mode == "new"){
+
+	$start_date = $sel_week_end;
+	$sel_item = $item;
+	//echo $start_date;
+	$holiday_query = "select * from reserve_holiday where day_start='".$start_date."' and view_state='Y' and day_type='4'";
+	//echo $holiday_query;
+	$holiday_result = mysql_query($holiday_query);
+	$holiday_cnt = mysql_num_rows($holiday_result);
+
+	if($holiday_cnt > 0){
+		$plus_slots = "0";
+	}
+	else{
+		#지정일인지 체크함
+		$target_query = "select * from reserve_setday where day_start='".$start_date."' and view_state='Y' and day_type='3'";
+		$target_result = mysql_query($target_query);
+		$target_cnt = mysql_num_rows($target_result);
+		//echo $target_cnt;
+		if($target_cnt > 0){#지정일일때
+			$target_query2 = "select * from reserve_setday where day_start='".$start_date."' and view_state='Y' and day_type='3' and timezone='".$k."'";
+			$target_result2 = mysql_query($target_query2);
+			$target_rows2 = mysql_fetch_array($target_result2);
+
+				$reserve_query = "select * from reserve_list where reserve_day='".$start_date."' and reserve_time ='".$k."' and reserve_type='".$sel_item."' and view_state='Y' and state='Y'";
+				$reserve_result = mysql_query($reserve_query);
+				$reserve_cnt = mysql_num_rows($reserve_result);
+
+				$plus_slots = $target_rows2[$sel_item] - $reserve_cnt;
+			
+		}
+		else{#지정일이 아닐때
+			$sel_day = date("w",strtotime($start_date));
+			if($sel_day == "6"){#토요일 반일
+				$ban_query = "select * from reserve_setday where  view_state='Y' and day_type='2' and timezone='".$k."'";
+				//echo $ban_query;
+				$ban_result = mysql_query($ban_query);
+				$ban_rows = mysql_fetch_array($ban_result);
+					$reserve_query = "select * from reserve_list where reserve_day='".$start_date."' and reserve_time ='".$k."' and reserve_type='".$sel_item."' and view_state='Y' and state='Y'";
+					$reserve_result = mysql_query($reserve_query);
+					$reserve_cnt = mysql_num_rows($reserve_result);
+					
+					$plus_slots = $ban_rows[$sel_item] - $reserve_cnt;
+					
+				
+			}
+			else if($sel_day == "0"){#일요일 휴무
+				$plus_slots = "0";
+			}
+			else{#전일
+				$situation_query = "select * from reserve_setday where  view_state='Y' and day_type='1' and timezone='".$k."'";
+				//echo $situation_query;
+				$situation_result = mysql_query($situation_query);
+				//$k=0;
+				
+				$situation_rows = mysql_fetch_array($situation_result);
+					$reserve_query = "select * from reserve_list where reserve_day='".$start_date."' and reserve_time ='".$k."' and reserve_type='".$sel_item."' and view_state='Y' and state='Y'";
+					$reserve_result = mysql_query($reserve_query);
+					$reserve_cnt = mysql_num_rows($reserve_result);
+					
+					$plus_slots = $situation_rows[$sel_item] - $reserve_cnt;
+					
+				
+			}
+		}
+	}
+	if($plus_slots == "0"){
+		echo "<script>alert('예약 가능한 슬롯이 없습니다.');self.close();</script>";
+	}
+}
+
+
+
+?>
+<?
+if($item == "item1"){
+	$items = "종합";
+}
+else if($item == "item2"){
+	$items = "일반";
+}
+else if($item == "item3"){
+	$items = "대내";
+}
+else if($item == "item4"){
+	$items = "유초";
+}
+else if($item == "item5"){
+	$items = "MRI";
+}
+else if($item == "item6"){
+	$items = "심초";
+}
+else if($item == "item7"){
+	$items = "VIP";
+}
+
+
+if($mode == "update"){
+	
+	$query = "select * from reserve_list where seq='".$seq."'";
+	$result = mysql_query($query);
+	$rows = mysql_fetch_array($result);
+	$item = $rows[reserve_type];
+	$jumin_no = explode("-",$rows[jumin_no]);
+	$phone_no = explode("-",$rows['phone_no']);
+	$mobile_no = explode("-",$rows[mobile_no]);
+	$email = explode("@",$rows[email]);
+
+	if($item == "item1"){
+		$items = "종합";
+	}
+	else if($item == "item2"){
+		$items = "일반";
+	}
+	else if($item == "item3"){
+		$items = "대내";
+	}
+	else if($item == "item4"){
+		$items = "유초";
+	}
+	else if($item == "item5"){
+		$items = "MRI";
+	}
+	else if($item == "item6"){
+		$items = "심초";
+	}
+	else if($item == "item7"){
+		$items = "VIP";
+	}
+?>
+<div class="popup"> <!-- 레이어 팝업으로 사용할 경우 삽입코드 : style="position:absolute; left:200px; top:200px;" -->
+		<h1 class="popup_title">예약 수정 </h1>
+		
+		<table cellpadding="5" cellspacing="3" border=0 width="100%">
+		<form name='form' method='post' action='/admin/slotset/procPop.php' enctype='multipart/form-data'>
+		<input type="hidden" name="mode" value="<?=$mode?>">
+		<input type="hidden" name="seq" value="<?=$seq?>">
+
+			<tr>
+				<td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">예약 날짜
+				</td>
+				<td><!--[<?=substr($rows[reserve_day],0,10)?>] <?=sel_time($rows[reserve_time]);?>-->
+					<input type="text" name="reserve_day" value="<?=substr($rows[reserve_day],0,10)?>" size="10" readonly> <input type="text" name="reserve_time" size="12" value="<?=sel_time($rows[reserve_time]);?>" readonly>
+					<input type="button" value="예약 날짜 및 시간 수정" class="btn15" onclick="javascript:edit_item('<?=$items?>','<?=substr($rows[reserve_day],0,10)?>');">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검사유형	
+				</td>
+				<td>
+					<input type="text" name="reserve_type_view" value="<?=$items?>" size="10" readonly>
+					<!--<select name="reserve_type" onchange="selectCondition(this.value)" readonly>
+						<option value="">선택</option>
+						<option value="item1" <?if($item == "item1"){echo "selected";}?>>종합</option>
+						<option value="item2" <?if($item == "item2"){echo "selected";}?>>일반</option>
+						<option value="item3" <?if($item == "item3"){echo "selected";}?>>VIP</option>
+						<option value="item4" <?if($item == "item4"){echo "selected";}?>>MRI</option>
+						<option value="item5" <?if($item == "item5"){echo "selected";}?>>대장내시경</option>
+						<option value="item6" <?if($item == "item6"){echo "selected";}?>>유방초음파</option>
+						<option value="item7" <?if($item == "item7"){echo "selected";}?>>심장초음파</option>
+					</select>-->
+
+				</td>
+			</tr>
+			
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">고객명	
+				</td>
+				<td>
+					<input type="text" name="reserve_name" value="<?=$rows[reserve_name]?>">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">
+					주민등록번호
+				</td>
+				<td>
+					<span class="puts3"><input type="text" name="jumin1" value="<?=$jumin_no[0]?>" style="width:100px;" onkeyup='if(document.form.jumin1.value.length==6) document.form.jumin2.focus();'/></span> - 
+					<span class="puts3"><input type="text" name="jumin2" value="<?=$jumin_no[1]?>" style="width:100px;" onkeyup='if(document.form.jumin2.value.length==7) document.form.home_select.focus();'/></span>
+				</td>
+			</tr>
+			<tr bgcolor='#EEEEEE'>
+			<td width='100' bgcolor='#EEEEEE' style='padding : 5 0 5 5'>집 전화</td>
+			<td colspan="3" bgcolor='#FFFFFF' style='padding : 5 0 5 5'>
+				<select style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; FONT-SIZE: 11px; BORDER-LEFT: 1px inset; WIDTH: 80px; COLOR: #383838; BORDER-BOTTOM: 1px inset; FONT-FAMILY: 돋움; HEIGHT: 19px; BACKGROUND-COLOR: #f7f7f7" name='home_select'  id="phone1" onChange="phonefirst()">
+                     <option value='032' <?if($phone_no[0]=="032"){echo "selected";}?>>032</option>
+                    <option value='02' <?if($phone_no[0]=="02"){echo "selected";}?>>02</option>
+                    <option value='031' <?if($phone_no[0]=="031"){echo "selected";}?>>031</option>
+                   
+                    <option value='033' <?if($phone_no[0]=="033"){echo "selected";}?>>033</option>
+                    <option value='041' <?if($phone_no[0]=="041"){echo "selected";}?>>041</option>
+                    <option value='042' <?if($phone_no[0]=="042"){echo "selected";}?>>042</option>
+                    <option value='043' <?if($phone_no[0]=="043"){echo "selected";}?>>043</option>
+                    <option value='051' <?if($phone_no[0]=="051"){echo "selected";}?>>051</option>
+                    <option value='052' <?if($phone_no[0]=="052"){echo "selected";}?>>052</option>
+                    <option value='053' <?if($phone_no[0]=="053"){echo "selected";}?>>053</option>
+                    <option value='054' <?if($phone_no[0]=="054"){echo "selected";}?>>054</option>
+                    <option value='055' <?if($phone_no[0]=="055"){echo "selected";}?>>055</option>
+                    <option value='061' <?if($phone_no[0]=="061"){echo "selected";}?>>061</option>
+                    <option value='062' <?if($phone_no[0]=="062"){echo "selected";}?>>062</option>
+                    <option value='063' <?if($phone_no[0]=="063"){echo "selected";}?>>063</option>
+                    <option value='064' <?if($phone_no[0]=="064"){echo "selected";}?>>064</option>
+					<option value='070' <?if($phone_no[0]=="070"){echo "selected";}?>>070</option>
+					<option value='0505' <?if($phone_no[0]=="0505"){echo "selected";}?>>0505</option>
+                </select>
+          -
+            <input name="secondphone" type="text" value="<?=$phone_no[1]?>" class="input" size="4"  maxlength="4">
+          -
+            <input name="thirdphone" type="text" value="<?=$phone_no[2]?>" class="input" size="4"  maxlength="4">
+			</td>
+		</tr>
+			<tr>
+                <td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">휴대전화</td>
+                <td align="left"> <select style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; FONT-SIZE: 11px; BORDER-LEFT: 1px inset; WIDTH: 80px; COLOR: #383838; BORDER-BOTTOM: 1px inset; FONT-FAMILY: 돋움; HEIGHT: 19px; BACKGROUND-COLOR: #f7f7f7"  name="mobile_phone1" onChange="cellfirst()" id="mobile1">
+                    
+                    <option value='010' <?if($mobile_no[0] == "010"){echo "selected";}?>>010</option>
+                    <option value='011' <?if($mobile_no[0] == "011"){echo "selected";}?>>011</option>
+                    <option value='016' <?if($mobile_no[0] == "016"){echo "selected";}?>>016</option>
+                    <option value='017' <?if($mobile_no[0] == "017"){echo "selected";}?>>017</option>
+                    <option value='018' <?if($mobile_no[0] == "018"){echo "selected";}?>>018</option>
+                    <option value='019' <?if($mobile_no[0] == "019"){echo "selected";}?>>019</option>
+                    </select>
+              -
+                <input name="mobile_phone2" type="text" class="input" size="6" value="<?=$mobile_no[1]?>" maxlength="4">
+              -
+                <input name="mobile_phone3" type="text" class="input" size="6" value="<?=$mobile_no[2]?>" maxlength="4">
+               
+                </td>
+            </tr>
+			 <tr>
+                <td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">이메일</td>
+                <td align="left"><input name='email_id' type="text" class="input" size="12" value="<?=$email[0]?>">
+                  @
+                    <input name='email_url' readOnly id="email_etc" type="text" class="input" size="16"  value="<?=$email[1]?>">
+                    <select name="sel_url" class="textfield" onChange="selDomain(form.sel_url.value)">
+                            <option value="">메일 선택</option>
+                            <option value="empal.com" <?if($email[1]=="empal.com"){echo "selected";}?>>empal.com</option>
+                               <option value="gmail.com" <?if($email[1]=="gmail.com"){echo "selected";}?>>gmail.com</option>
+                               <option value="hotmail.com" <?if($email[1]=="hotmail.com"){echo "selected";}?>>hotmail.com</option>
+                               <option value="nate.com" <?if($email[1]=="nate.com"){echo "selected";}?>>nate.com</option>
+                               <option value="naver.com" <?if($email[1]=="naver.com"){echo "selected";}?>>naver.com</option>
+                               <option value="paran.com" <?if($email[1]=="gmail.com"){echo "selected";}?>>gmail.com</option>
+                               <option value="yahoo.co.kr" <?if($email[1]=="yahoo.co.kr"){echo "selected";}?>>yahoo.co.kr</option>
+                               <option value="직접입력">직접입력</option>
+                        </select>
+                   
+                </td>
+            </tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">사업장명	
+				</td>
+				<td>
+					<input type="text" name="reserve_name2" value="<?=$rows[reserve_name2]?>"> <input type="button" value="사업장 검색"  onClick="openWin('/admin/log/popBusiness3.html', 'yes');" onfocus='this.blur();'  class="btn8">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">부서명	
+				</td>
+				<td>
+					<input type="text" name="reserve_name3" value="<?=$rows[reserve_name3]?>">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검진장소	
+				</td>
+				<td>
+					<select name="reserve_place">
+						<option value="내원종검(3층)" <?if($rows[reserve_place]=="내원종검(3층)"){echo "selected";}?>>내원종검(3층)</option>
+						<option value="내원공단(3층)" <?if($rows[reserve_place]=="내원공단(3층)"){echo "selected";}?>>내원공단(3층)</option>
+						
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">비고	
+				</td>
+				<td>
+					<textarea name="comment" cols=40% rows=5><?=$rows['comment']?></textarea>
+				</td>
+			</tr>
+			<tr align='center'>
+			<td width='810' colspan="2" align='center' style='padding:5 5 0 0'>
+				<input type='button' style='width:80px; height:30px;' value='등 록' class='btn1' onClick="chkForm(document.form)" onfocus='this.blur();'>
+			</td>
+		</tr>
+
+			</form>
+		</table>
+	</div>
+	<script>
+    function phonefirst()
+    {
+        f= document.form
+        f.secondphone.focus()
+    }
+    function phonesecond()
+    {
+        f= document.form
+        if(f.secondphone.value.length==4)
+        f.thirdphone.focus()
+    }
+    
+    function cellfirst()
+    {
+        f= document.form
+        f.secondcell.focus()
+    }
+    
+    function cellsecond()
+    {
+        f= document.form
+        if(f.secondcell.value.length==4)
+        f.thirdcell.focus()
+    }
+    
+    function selDomain(val) {
+        if (val == "직접입력") {
+            form.email_url.readOnly = false;
+            form.email_url.value='';
+            form.email_url.focus();
+        }
+        else {
+            form.email_url.value = val;
+            form.email_url.readOnly = true;
+        }
+    }
+    </script>
+<?
+				exit;
+}
+?>
+
+	<div class="popup"> <!-- 레이어 팝업으로 사용할 경우 삽입코드 : style="position:absolute; left:200px; top:200px;" -->
+		<h1 class="popup_title">예약 등록 </h1>
+		
+		<table cellpadding="5" cellspacing="3" border=0 width="100%">
+		<form name='form' method='post' action='/admin/slotset/procPop.php' enctype='multipart/form-data'>
+		<input type="hidden" name="reserve_day" value="<?=$sel_week_end?>">
+		<input type="hidden" name="reserve_time" value="<?=$k?>">
+		<input type="hidden" name="mode" value="<?=$mode?>">
+		<input type="hidden" name="reserve_type" value="<?=$item?>">
+
+		
+
+			<tr>
+				<td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">예약 날짜
+				</td>
+				<td>[<?=$sel_week_end?>] <?=sel_time($k);?>
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검사유형	
+				</td>
+				<td>
+					<input type="text" name="reserve_type_view" value="<?=$items?>" size="10" readonly>
+					<!--<select name="reserve_type" onchange="selectCondition(this.value)" readonly>
+						<option value="">선택</option>
+						<option value="item1" <?if($item == "item1"){echo "selected";}?>>종합</option>
+						<option value="item2" <?if($item == "item2"){echo "selected";}?>>일반</option>
+						<option value="item3" <?if($item == "item3"){echo "selected";}?>>VIP</option>
+						<option value="item4" <?if($item == "item4"){echo "selected";}?>>MRI</option>
+						<option value="item5" <?if($item == "item5"){echo "selected";}?>>대장내시경</option>
+						<option value="item6" <?if($item == "item6"){echo "selected";}?>>유방초음파</option>
+						<option value="item7" <?if($item == "item7"){echo "selected";}?>>심장초음파</option>
+					</select>-->
+
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">예약 가능 슬롯
+				</td>
+				<td><font color='red'><b><?=$plus_slots?></b></font></td>
+			</tr>
+			
+				<tr>
+					<td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">선등록 예약 슬롯
+					</td>
+					<td><input type="text" name="reserve_multi" size="3"> <font color='blue'>종합,일반 선등록 예약시 [대내,유초,MRI] 추가 불가능함</font></td>
+				</tr>
+			<?
+				
+			if($item == "item1" || $item == "item2"){
+			?>
+			<tr bgcolor='#EEEEEE'>
+					<td width='100' bgcolor='#EEEEEE' style='padding : 5 0 5 5'>추가선택</td>
+					<td colspan="3" bgcolor='#FFFFFF' style='padding : 5 0 5 5'>
+						<table border="0" cellpadding="5" cellspacing="3" width="70%">
+							
+							<tr> 
+								<td><input type="text" name="item3" size="10" readonly> <input type="text" name="item3_timezone" size="12" readonly>
+								</td>
+								<td><input type="button" value="대내추가" class="btn15" onclick="javascript:add_item('대내','<?=$sel_week_end?>');">
+								</td>
+								<td><a href="#" onclick="javascript:clear_item('item3')">[삭제]</a>
+								</td>
+							</tr>
+							<tr> 
+								<td><input type="text" name="item4" size="10" readonly> <input type="text" name="item4_timezone" size="12" readonly>
+								</td>
+								<td><input type="button" value="유초추가" class="btn15" onclick="javascript:add_item('유초','<?=$sel_week_end?>');">
+								</td>
+								<td><a href="#" onclick="javascript:clear_item('item4')">[삭제]</a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="text" name="item5" size="10" readonly> <input type="text" name="item5_timezone" size="12" readonly>
+								</td>
+								<td><input type="button" value="MRI추가" class="btn15" onclick="javascript:add_item('MRI','<?=$sel_week_end?>');">
+								</td>
+								<td><a href="#" onclick="javascript:clear_item('item5')">[삭제]</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+			</tr>
+
+			<?
+				}
+				
+			?>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">고객명	
+				</td>
+				<td>
+					<input type="text" name="reserve_name" value="<?=$rows[reserve_name]?>">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">
+					<strong class="space">주민등록번호</strong>
+				</td>
+				<td>
+					<span class="puts3"><input type="text" name="jumin1" maxlength="6" style="width:100px;" onkeyup='if(document.form.jumin1.value.length==6) document.form.jumin2.focus();'/></span> - 
+					<span class="puts3"><input type="text" name="jumin2" maxlength="7" style="width:100px;" onkeyup='if(document.form.jumin2.value.length==7) document.form.home_select.focus();'/></span>
+				</td>
+			</tr>
+			<tr bgcolor='#EEEEEE'>
+			<td width='100' bgcolor='#EEEEEE' style='padding : 5 0 5 5'>집 전화</td>
+			<td colspan="3" bgcolor='#FFFFFF' style='padding : 5 0 5 5'>
+				<select style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; FONT-SIZE: 11px; BORDER-LEFT: 1px inset; WIDTH: 80px; COLOR: #383838; BORDER-BOTTOM: 1px inset; FONT-FAMILY: 돋움; HEIGHT: 19px; BACKGROUND-COLOR: #f7f7f7" name='home_select'  id="phone1" onChange="phonefirst()">
+                     <option value='032' <?if($phone_no[0]=="032"){echo "selected";}?>>032</option>
+                    <option value='02' <?if($phone_no[0]=="02"){echo "selected";}?>>02</option>
+                    <option value='031' <?if($phone_no[0]=="031"){echo "selected";}?>>031</option>
+                    <option value='033' <?if($phone_no[0]=="033"){echo "selected";}?>>033</option>
+                    <option value='041' <?if($phone_no[0]=="041"){echo "selected";}?>>041</option>
+                    <option value='042' <?if($phone_no[0]=="042"){echo "selected";}?>>042</option>
+                    <option value='043' <?if($phone_no[0]=="043"){echo "selected";}?>>043</option>
+                    <option value='051' <?if($phone_no[0]=="051"){echo "selected";}?>>051</option>
+                    <option value='052' <?if($phone_no[0]=="052"){echo "selected";}?>>052</option>
+                    <option value='053' <?if($phone_no[0]=="053"){echo "selected";}?>>053</option>
+                    <option value='054' <?if($phone_no[0]=="054"){echo "selected";}?>>054</option>
+                    <option value='055' <?if($phone_no[0]=="055"){echo "selected";}?>>055</option>
+                    <option value='061' <?if($phone_no[0]=="061"){echo "selected";}?>>061</option>
+                    <option value='062' <?if($phone_no[0]=="062"){echo "selected";}?>>062</option>
+                    <option value='063' <?if($phone_no[0]=="063"){echo "selected";}?>>063</option>
+                    <option value='064' <?if($phone_no[0]=="064"){echo "selected";}?>>064</option>
+					<option value='070' <?if($phone_no[0]=="070"){echo "selected";}?>>070</option>
+					<option value='0505' <?if($phone_no[0]=="0505"){echo "selected";}?>>0505</option>
+                </select>
+          -
+            <input name="secondphone" type="text" value="<?=$phone_no[1]?>" class="input" size="4"  maxlength="4">
+          -
+            <input name="thirdphone" type="text" value="<?=$phone_no[2]?>" class="input" size="4"  maxlength="4" onkeyup='if(document.form.thirdphone.value.length==4) document.form.mobile_phone1.focus();'>
+			</td>
+		</tr>
+			<tr>
+                <td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">휴대전화</td>
+                <td align="left"> <select style="BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; FONT-SIZE: 11px; BORDER-LEFT: 1px inset; WIDTH: 80px; COLOR: #383838; BORDER-BOTTOM: 1px inset; FONT-FAMILY: 돋움; HEIGHT: 19px; BACKGROUND-COLOR: #f7f7f7"  name="mobile_phone1" onChange="cellfirst()" id="mobile1">
+                    <option value='010'>010</option>
+                    <option value='011'>011</option>
+                    <option value='016'>016</option>
+                    <option value='017'>017</option>
+                    <option value='018'>018</option>
+                    <option value='019'>019</option>
+                    </select>
+              -
+                <input name="mobile_phone2" type="text" class="input" size="6" value="<?=$user_mobile2?>" maxlength="4">
+              -
+                <input name="mobile_phone3" type="text" class="input" size="6" value="<?=$user_mobile3?>" maxlength="4" onkeyup='if(document.form.mobile_phone3.value.length==4) document.form.email_id.focus();'>
+               
+                </td>
+            </tr>
+			 <tr>
+                <td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">이메일</td>
+                <td align="left"><input name='email_id' type="text" class="input" size="12" >
+                  @
+                    <input name='email_url' readOnly id="email_etc" type="text" class="input" size="16"  >
+                    <select name="sel_url" class="textfield" onChange="selDomain(form.sel_url.value)">
+                            <option value="">메일 선택</option>
+                            <option value="empal.com">empal.com</option>
+                               <option value="gmail.com">gmail.com</option>
+                               <option value="hotmail.com">hotmail.com</option>
+                               <option value="nate.com">nate.com</option>
+                               <option value="naver.com">naver.com</option>
+                               <option value="직접입력">직접입력</option>
+                        </select>
+                   
+                </td>
+            </tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2"><font color='red'>＊</font>사업장명
+				</td>
+				<td>
+					<input type="text" name="reserve_name2" value="<?=$rows[reserve_name2]?>"> <input type="button" value="사업장 검색"  onClick="openWin('/admin/log/popBusiness3.html', 'yes');" onfocus='this.blur();'  class="btn8">
+				</td>
+			</tr>
+
+			
+
+
+
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">부서명	
+				</td>
+				<td>
+					<input type="text" name="reserve_name3" value="<?=$rows[reserve_name3]?>">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검진장소	
+				</td>
+				<td>
+					<select name="reserve_place">
+						<option value="내원종검(3층)">내원종검(3층)</option>
+						<option value="내원공단(3층)">내원공단(3층)</option>
+						
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">비고	
+				</td>
+				<td>
+					<textarea name="comment" cols=40% rows=5><?=$rows['comment']?></textarea>
+				</td>
+			</tr>
+			<tr align='center'>
+			<td width='810' colspan="2" align='center' style='padding:5 5 0 0'>
+				<input type='button' style='width:80px; height:30px;' value='등 록' class='btn1' onClick="chkForm(document.form)" onfocus='this.blur();'>
+			</td>
+		</tr>
+
+			</form>
+		</table>
+	</div>
+		
+<script>
+    function phonefirst()
+    {
+        f= document.form
+        f.secondphone.focus()
+    }
+    function phonesecond()
+    {
+        f= document.form
+        if(f.secondphone.value.length==4)
+        f.thirdphone.focus()
+    }
+    
+    function cellfirst()
+    {
+        f= document.form
+        f.secondcell.focus()
+    }
+    
+    function cellsecond()
+    {
+        f= document.form
+        if(f.secondcell.value.length==4)
+        f.thirdcell.focus()
+    }
+    
+    function selDomain(val) {
+        if (val == "직접입력") {
+            form.email_url.readOnly = false;
+            form.email_url.value='';
+            form.email_url.focus();
+        }
+        else {
+            form.email_url.value = val;
+            form.email_url.readOnly = true;
+        }
+    }
+    </script>

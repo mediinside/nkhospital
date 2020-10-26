@@ -83,10 +83,20 @@ $(document).ready(function(){
 		$("#tab1-"+(idx+1)).fadeIn(200).siblings(".tab-cont").hide();
 		$("#filter").removeClass().addClass("tab-" + (idx + 1));
 		$("#filter li").eq(0).addClass("on").siblings().removeClass("on");
+		$('.tab-cont li').show();
 	});
 	$("#filter li a").on("click",function(){
 		var $filter_li = $(this).parent("li");
 		$filter_li.addClass("on").siblings().removeClass("on");
+
+		var group = $(this).data('target');
+		if(group == 'all') {
+			$('.tab-cont li').show();
+		}
+		else {
+			$('.tab-cont li').hide();
+			$('.tab-cont li[data-group='+group+']').show();
+		}
 	});
 
 	//메인 커뮤니티 이벤트
@@ -150,6 +160,13 @@ $(document).ready(function(){
 			height: 0
 		});
 		$(this).find(".dropdown-toggle").removeClass("on");
+	});
+	//전체검색
+	$(document).on("click","#schbtn",function(){
+		var schtxt = $("#schtxt").val();
+		console.log("aa");
+		$('html').removeClass('searchOn');
+		location.href = "/v3/search.php?stext="+schtxt;
 	});
 });
 

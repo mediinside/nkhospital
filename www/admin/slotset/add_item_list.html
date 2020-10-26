@@ -1,0 +1,418 @@
+<?
+session_start();
+$nowtoday = date("Y-m-d");
+if($start_date == ""){
+	$today = date("Y-m-d");
+}
+else{
+	$today = $start_date;
+}
+if($start_date == ""){
+	$start_date = $today;
+}
+
+//echo $start_date;
+include "../inc/dbConn.php";
+include "../inc/chkLogin.php";
+include "../inc/func.php";
+
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="euc-kr">
+<title>Untitled Document</title>
+<script>
+function selectCondition(val) {
+	
+	if(val == "종합") {
+		POSITION.style.display = "";
+		
+	}
+	else{
+		POSITION.style.display = "none";	
+	}
+	
+}
+function add_item(item){
+	window.open("/admin/slotset/add_item.html","additem","width=500,height=500");
+}
+function  send(sel_item, start_date, timezone){
+	
+	if(sel_item == "item15" || sel_item == "item16" || sel_item == "item17" || sel_item == "item18" || sel_item == "item19" || sel_item == "item20" || sel_item == "item21"){
+		opener.form.item15.value = "";
+		opener.form.item16.value = "";
+		opener.form.item17.value = "";
+		opener.form.item18.value = "";
+		opener.form.item19.value = "";
+		opener.form.item20.value = "";
+		opener.form.item21.value = "";
+	}
+	else if(sel_item == "item22" || sel_item == "item23" || sel_item == "item24"){
+		opener.form.item22.value = "";
+		opener.form.item23.value = "";
+		opener.form.item24.value = "";
+	}
+	eval('opener.form.'+sel_item).value = timezone;
+	
+	
+//opener.form.String(sel_item).value = timezone;
+//	var form = eval("opener.form."+sel_item+".value");
+//	form = timezone;
+	
+	self.close();
+}
+</script>
+<script src="/admin/inc/calendar.js" language=javascript></script>
+<link href="../_css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background-color:transparent;">
+<div class="wrap_res_layer_500">
+<div class="top_res_layer_500">
+	<div style="position:absolute; right:15px; top:12px;"><a onclick="javascript:self.close();" style="cursor:pointer;"><img src="../_img/button/IMG905219.png"></a></div>
+</div>
+<div class="contants_res_layer_500">
+	<div class="popup">
+	<table cellpadding="5" cellspacing="3" border=0 width="100%">
+		<form name='formSearch' method='get'>
+            <input type='hidden' name='dir' value='<?=$dir?>'>
+            <input type='hidden' name='menu' value='<?=$menu?>'>
+            <input type='hidden' name='item' value='<?=$item?>'>
+		</form>
+	</table>
+    <table cellpadding="0" cellspacing="3" border=0 width="100%">
+<?
+$chk_item = $item;
+if($item == "item0"){
+	$item = "item1";
+	$sel_item = "item1";
+	$where = "and reserve_type0='Y'";
+
+}
+else if($item == "item5"){
+	$item = "item2";
+	$sel_item = "item2";
+	$where = "and reserve_type5='Y'";
+
+}
+else if($item == "item15" || $item == "item16" || $item == "item17"|| $item == "item18" || $item == "item19" || $item == "item20" || $item == "item21"){
+	$item = "item3";
+	$sel_item = "item3";
+	$where = " and (reserve_type15='Y' || reserve_type16='Y' || reserve_type17='Y' || reserve_type18='Y' || reserve_type19='Y' || reserve_type20='Y' || reserve_type21='Y')";
+}
+else if($item == "item22" || $item == "item23" || $item == "item24"){
+	$item = "item4";
+	$sel_item = "item4";
+	$where = " and (reserve_type22='Y' || reserve_type23='Y' || reserve_type24='Y')";
+}
+else if($item == "item25"){
+	$item = "item5";
+	$sel_item = "item5";
+	$where = "and reserve_type25='Y'";
+}
+else if($item == "item26"){
+	$item = "item6";
+	$sel_item = "item6";
+	$where = "and reserve_type26='Y'";
+}
+
+
+	
+#휴일인지, 지정일인지, 반일인지, 평일인지 체크해서 해당 슬롯 보여줌
+//echo $start_date;
+
+$holiday_query = "select * from reserve_holiday where day_start='".$start_date."' and view_state='Y' and day_type='4'";
+//echo $holiday_query;
+$holiday_result = mysql_query($holiday_query);
+$holiday_cnt = mysql_num_rows($holiday_result);
+
+if($holiday_cnt > 0){
+?>
+	<tr>
+		<td>휴일입니다.</td>
+	</tr>
+<?
+}
+else{
+	#지정일인지 체크함
+	$target_query = "select * from reserve_setday where day_start='".$start_date."' and view_state='Y' and day_type='3'";
+	$target_result = mysql_query($target_query);
+	$target_cnt = mysql_num_rows($target_result);
+	//echo $target_cnt;
+	if($target_cnt > 0){#지정일일때
+		$target_query2 = "select * from reserve_setday where day_start='".$start_date."' and view_state='Y' and day_type='3'";
+		//echo $target_query2;
+		$target_result2 = mysql_query($target_query2);
+		while($target_rows2 = mysql_fetch_array($target_result2)){
+
+			if($chk_item == "item0"){
+				$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time0 ='".$target_rows2[timezone]."' $where and view_state='Y' and state='Y'";
+
+			}
+			else if($chk_item == "item5"){
+				$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time5 ='".$target_rows2[timezone]."' $where and view_state='Y' and state='Y'";
+
+			}
+			else if($chk_item == "item15" || $chk_item == "item16" || $chk_item == "item17"|| $chk_item == "item18" || $chk_item == "item19" || $chk_item == "item20" || $chk_item == "item21"){
+				$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and (reserve_time15 ='".$target_rows2[timezone]."' || reserve_time16 ='".$target_rows2[timezone]."' || reserve_time17 ='".$target_rows2[timezone]."'|| reserve_time18 ='".$target_rows2[timezone]."'||reserve_time19 ='".$target_rows2[timezone]."'||reserve_time20 ='".$target_rows2[timezone]."'||reserve_time21 ='".$target_rows2[timezone]."') $where and view_state='Y' and state='Y'";
+			}
+			else if($chk_item == "item22" || $chk_item == "item23" || $chk_item == "item24"){
+				$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and (reserve_time22 ='".$target_rows2[timezone]."' || reserve_time23 ='".$target_rows2[timezone]."' || reserve_time24 ='".$target_rows2[timezone]."') $where and view_state='Y' and state='Y'";
+			}
+			else if($chk_item == "item25"){
+				$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time25 ='".$target_rows2[timezone]."' $where and view_state='Y' and state='Y'";
+			}
+			else if($chk_item == "item26"){
+				$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time25 ='".$target_rows2[timezone]."' $where and view_state='Y' and state='Y'";
+			}
+
+		
+			
+			$reserve_result = mysql_query($reserve_query);
+			$reserve_cnt = mysql_num_rows($reserve_result);
+			if($k%3 == 0){
+				echo "<tr width='33%'>";
+			}
+			//echo $situation_rows[$item];
+			$check_slot = $target_rows2[$item] - $reserve_cnt;
+			if($check_slot<=0 || $target_rows2[$item] == 0){
+				$bgcolor="bgcolor='#ffffff'";
+			}
+			else{
+				$bgcolor="bgcolor='#ffffff'";
+			}
+			$sel_timezone = sel_time($target_rows2[timezone]);
+
+?>
+			<td width='33%' >
+				<table cellpadding="3" cellspacing="0" border="0" width="100%">
+					<tr height="25" bgcolor="#666666">
+						<td ><font color='#ffffff'><b><?=sel_time($target_rows2['timezone']);?></b></font>
+						<?
+							if($target_rows2[$item] > $reserve_cnt && $nowtoday<=$start_date){
+								
+						?>
+							<input type="button" value="선택" class="btn03" onclick="javascript:send('<?=$chk_item?>','<?=$start_date?>','<?=$sel_timezone?>');">
+							
+						<?
+							
+							}
+						?>
+						</td>
+					</tr>
+					<tr>
+						<td style="border:1px solid #666;" height="25" <?=$bgcolor?>>설정: <?=$target_rows2[$item]?>  / 예약: <?=$reserve_cnt?> 
+						
+						</td>
+					</tr>
+				</table>
+
+
+				
+
+				
+<?
+			if($k%3 == 1 ){
+				echo "</tr>";
+			}
+			//echo $situation_rows[timezone];
+			//echo $situation_rows[$item]."<br>";
+			$k++;
+		}
+		//echo "지정일";
+	}
+	else{#지정일이 아닐때
+
+		$sel_day = date("w",strtotime($start_date));
+		if($sel_day == "6"){#토요일 반일
+			$ban_query = "select * from reserve_setday where  view_state='Y' and day_type='2' ";
+			//echo $ban_query;
+			$ban_result = mysql_query($ban_query);
+			while($ban_rows = mysql_fetch_array($ban_result)){
+				
+				
+				if($chk_item == "item0"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time0 ='".$ban_rows[timezone]."' $where and view_state='Y' and state='Y'";
+
+				}
+				else if($chk_item == "item5"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time5 ='".$ban_rows[timezone]."' $where and view_state='Y' and state='Y'";
+
+				}
+				else if($chk_item == "item15" || $chk_item == "item16" || $chk_item == "item17"|| $chk_item == "item18" || $chk_item == "item19" || $chk_item == "item20" || $chk_item == "item21"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and (reserve_time15 ='".$ban_rows[timezone]."' || reserve_time16 ='".$ban_rows[timezone]."' || reserve_time17 ='".$ban_rows[timezone]."'|| reserve_time18 ='".$ban_rows[timezone]."'||reserve_time19 ='".$ban_rows[timezone]."'||reserve_time20 ='".$ban_rows[timezone]."'||reserve_time21 ='".$ban_rows[timezone]."') $where and view_state='Y' and state='Y'";
+				}
+				else if($chk_item == "item22" || $chk_item == "item23" || $chk_item == "item24"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and (reserve_time22 ='".$ban_rows[timezone]."' || reserve_time23 ='".$ban_rows[timezone]."' || reserve_time24 ='".$ban_rows[timezone]."') $where and view_state='Y' and state='Y'";
+				}
+				else if($chk_item == "item25"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time25 ='".$ban_rows[timezone]."' $where and view_state='Y' and state='Y'";
+				}
+				else if($chk_item == "item26"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time25 ='".$ban_rows[timezone]."' $where and view_state='Y' and state='Y'";
+				}
+
+
+				$reserve_result = mysql_query($reserve_query);
+				$reserve_cnt = mysql_num_rows($reserve_result);
+				if($k%3 == 0){
+					echo "<tr width='33%'>";
+				}
+				//echo $situation_rows[$chk_item];
+				$check_slot = $ban_rows[$item] - $reserve_cnt;
+				if($check_slot<=0 || $ban_rows[$item] == 0){
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				else{
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				$sel_timezone = sel_time($ban_rows[timezone]);
+
+	?>
+				<td width='33%' >
+					
+					<table cellpadding="3" cellspacing="0" border="0" width="100%">
+						<tr height="25" bgcolor="#666666">
+							<td ><font color='#ffffff'><b><?=sel_time($situation_rows['timezone']);?></b></font>
+							<?
+								if($situation_rows[$item] > $reserve_cnt && $nowtoday<=$start_date){
+									
+							?>
+								<input type="button" value="선택" class="btn03" onclick="javascript:send('<?=$chk_item?>','<?=$start_date?>','<?=$sel_timezone?>');">
+								
+							<?
+								
+								}
+							?>
+							</td>
+						</tr>
+						<tr bgcolor='#000000'>
+							<td style="border:1px solid #666;" height="25" <?=$bgcolor?>>설정: <?=$situation_rows[$item]?>  / 예약: <?=$reserve_cnt?> 
+							
+							</td>
+						</tr>
+					</table>
+
+					
+
+					
+	<?
+				if($k%3 == 1 ){
+					echo "</tr>";
+				}
+				//echo $situation_rows[timezone];
+				//echo $situation_rows[$chk_item]."<br>";
+				$k++;
+			}
+			//echo  "반일";
+		}
+		else if($sel_day == "0"){#일요일 휴무
+		?>
+		<tr>
+			<td>일요일입니다.</td>
+		</tr>
+		<?
+		}
+		else{#전일
+
+			$situation_query = "select * from reserve_setday where  view_state='Y' and day_type='1'";
+			//echo $situation_query;
+			$situation_result = mysql_query($situation_query);
+			$k=0;
+			?>
+			<table cellpadding="5" cellspacing="0" border=0 width="100%">
+			<?
+			while($situation_rows = mysql_fetch_array($situation_result)){
+				
+				
+				
+				if($chk_item == "item0"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time0 ='".$situation_rows[timezone]."' $where and view_state='Y' and state='Y'";
+
+				}
+				else if($chk_item == "item5"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time5 ='".$situation_rows[timezone]."' $where and view_state='Y' and state='Y'";
+
+				}
+				else if($chk_item == "item15" || $chk_item == "item16" || $chk_item == "item17"|| $chk_item == "item18" || $chk_item == "item19" || $chk_item == "item20" || $chk_item == "item21"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and (reserve_time15 ='".$situation_rows[timezone]."' || reserve_time16 ='".$situation_rows[timezone]."' || reserve_time17 ='".$situation_rows[timezone]."'|| reserve_time18 ='".$situation_rows[timezone]."'||reserve_time19 ='".$situation_rows[timezone]."'||reserve_time20 ='".$situation_rows[timezone]."'||reserve_time21 ='".$situation_rows[timezone]."') $where and view_state='Y' and state='Y'";
+				}
+				else if($chk_item == "item22" || $chk_item == "item23" || $chk_item == "item24"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and (reserve_time22 ='".$situation_rows[timezone]."' || reserve_time23 ='".$situation_rows[timezone]."' || reserve_time24 ='".$situation_rows[timezone]."') $where and view_state='Y' and state='Y'";
+				}
+				else if($chk_item == "item25"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time25 ='".$situation_rows[timezone]."' $where and view_state='Y' and state='Y'";
+				}
+				else if($chk_item == "item26"){
+					$reserve_query = "select * from reserve_list_new where reserve_day='".$start_date."' and reserve_time25 ='".$situation_rows[timezone]."' $where and view_state='Y' and state='Y'";
+				}
+
+
+
+
+				
+				
+				
+				
+				//echo $reserve_query;
+				$reserve_result = mysql_query($reserve_query);
+				$reserve_cnt = mysql_num_rows($reserve_result);
+				if($k%3 == 0){
+					echo "<tr width='33%'>";
+				}
+				//echo $situation_rows[$chk_item];
+				$check_slot = $situation_rows[$item] - $reserve_cnt;
+				if($check_slot<=0 || $situation_rows[$item] == 0){
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				else{
+					$bgcolor="bgcolor='#EEFFD7'";
+				}
+				$sel_timezone = sel_time($situation_rows[timezone]);
+
+	?>
+				<td width='33%' >
+					<table cellpadding="3" cellspacing="0" border="0" width="100%">
+						<tr height="25" bgcolor="#666666">
+							<td ><font color='#ffffff'><b><?=sel_time($situation_rows['timezone']);?></b></font>
+							<?
+								if($situation_rows[$item] > $reserve_cnt && $nowtoday<=$start_date){
+									
+							?>
+								<input type="button" value="선택" class="btn03" onclick="javascript:send('<?=$chk_item?>','<?=$start_date?>','<?=$sel_timezone?>');">
+								
+							<?
+								
+								}
+							?>
+							</td>
+						</tr>
+						<tr>
+							<td style="border:1px solid #666;" height="25" <?=$bgcolor?>>설정: <?=$situation_rows[$item]?>  / 예약: <?=$reserve_cnt?> 
+							
+							</td>
+						</tr>
+					</table>
+	<?
+				if($k%3 == 1 ){
+					echo "</tr>";
+				}
+				//echo $situation_rows[timezone];
+				//echo $situation_rows[$chk_item]."<br>";
+				$k++;
+			}
+			//echo "전일";
+		}
+
+	}
+}
+?>
+</td>
+</table>
+	</div>
+</div>
+<div class="footer_res_layer_500"></div>
+</div>
+</body>
+</html>	

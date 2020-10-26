@@ -1,0 +1,350 @@
+<?
+session_start();
+include $DOCUMENT_ROOT."/admin/inc/func.php"
+?>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script>
+		!window.jQuery && document.write('<script src="http://korea70.com/fancybox/jquery-1.4.3.min.js"><\/script>');
+	</script>
+<script src="/admin/inc/calendar.js" language=javascript></script>
+<link type="text/css" href="/admin/ui/themes/base/ui.all.css" rel="stylesheet" />
+	<script type="text/javascript" src="/admin/ui/ui.core.js"></script>
+	<script type="text/javascript" src="/admin/ui/ui.datepicker.js"></script>
+	<script type="text/javascript" src="/admin/ui/ui.datepicker-ko.js"></script>
+	<link type="text/css" href="/admin/ui/demos.css" rel="stylesheet" />
+
+
+<script>
+$(function(){
+	$(".ico_help").mousemove(function(e) {
+		$('.ly_help').css({"top": e.pageY+"px","left": e.pageX+20+"px","display":"block"});
+		$('.ly_help b').html($(this).attr("alt"));
+		$('.ly_help span').text($(this).text());		
+	});
+	$(".ico_help").mouseout(function() {
+		$('.ly_help').css({"display":"none"});
+	});
+});
+</script>
+<script>
+	function popup(sel_week_end,k,mode,sel_item){
+		window.open("/admin/slotset/popup.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item,"poupu","width=600,height=560,scrollbars=yes");
+	}
+	function popup_view(sel_week_end,k,mode,sel_item){
+		window.open("/admin/slotset/popup_view.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item,"poupu","width=700,height=560,scrollbars=yes");
+	}
+	function selectCondition3(val) {
+		//formSearch.sel_condition.value = val;
+		if(val == "reserve_type") {
+			//alert("a");
+			menu1.style.display = "none";
+			menu2.style.display = "";
+			menu3.style.display = "none";
+			menu4.style.display = "none";
+		}
+		else if(val == "reserve_place") {
+			menu1.style.display = "none";
+			menu2.style.display = "none";
+			menu3.style.display = "";
+			menu4.style.display = "none";
+		}
+		else if(val == "jumin_no") {
+			menu1.style.display = "none";
+			menu2.style.display = "none";
+			menu3.style.display = "none";
+			menu4.style.display = "";
+		}
+		else{
+			menu1.style.display = "";
+			menu2.style.display = "none";
+			menu3.style.display = "none";
+			menu4.style.display = "none";
+		}
+		
+	}
+</script>
+<script type="text/javascript">
+
+	$(function() {
+		$('#datepicker').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '2009:2020'
+		});
+		$('#datepicker1').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '2009:2020'
+		});	
+		$('#datepicker2').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '2009:2020'
+		});
+	});
+</script>
+<?
+	
+	#예약 체크
+	$numPerPage		=	$listNum ? $listNum : 50;				// 게시판 리스트 출력수
+	$pagePerList	=	$pagePerList ? $pagePerList : 10;	// 게시판 페이징 노출수
+	$pageNum		=	$pageNum ? $pageNum : 1;
+	$start			=	($pageNum - 1) * $numPerPage;
+	$searchQuery	=	"dir=".$dir."&menu=".$menu."&tbl=".$tbl."&field=".$field."&keyword=".$keyword."&listNum=".$listNum."&column=".$column."&order=".$order.$QUERY_STRING;	// 페이지 이동시 디폴트 변수값
+
+	if($search_name2 == "" && $search_name3==""){
+		$search_name2 = date("Y-m-d");
+		$search_name3 = date("Y-m-d");
+	}
+	//echo $search_name2;
+	$where = "";
+	if($search_name_1 != "" && $search_name_2 != ""){#주민번호 검색시
+		$search_name = $search_name_1."-".$search_name_2;
+	}
+	//echo $search_date;
+	if($search_name2 != "" && $search_date != "all"){
+		$where  = "and left(reserve_day,10) between '$search_name2' and '$search_name3'";
+	}
+	if($search_name != ""){
+		$where  .= " and $search_field like '%$search_name%'";
+	}
+	if($search_name4 != ""){
+		if($search_name4 == "item1"){
+			$where  .= " and reserve_type0 = 'Y'";
+			
+		}
+		else if($search_name4 == "item2"){
+			$where  .= " and reserve_type5 = 'Y'";
+			
+		}
+		else if($search_name4 == "item3"){
+			$where  .= " and (reserve_type16 = 'Y' || reserve_type17 = 'Y' || reserve_type18 = 'Y' || reserve_type19 = 'Y' || reserve_type20 = 'Y' || reserve_type21 = 'Y')";
+			
+		}
+		else if($search_name4 == "item4"){
+			$where  .= " and (reserve_type23 = 'Y' || reserve_type24 = 'Y')";
+			
+		}
+		else if($search_name4 == "item5"){
+			$where  .= " and reserve_type25 = 'Y'";
+			
+		}
+		else if($search_name4 == "item6"){
+			$where  .= " and reserve_type26 = 'Y'";
+			
+		}
+		else if($search_name4 == "item7"){
+			$where  .= " and reserve_type15 = 'Y'";
+			
+		}
+		else if($search_name4 == "item8"){
+			$where  .= " and reserve_type13 = 'Y'";
+			
+		}
+		else if($search_name4 == "item9"){
+			$where  .= " and reserve_type27 = 'Y'";
+			
+		}
+	}
+	if($search_field == "jumin_no"){
+		$jumin_nos = $jumin1."-".$jumin2;
+		$where .= " and jumin_no='".$jumin_nos."' ";
+	}
+
+	if($search_field == "reserve_place"){
+		
+		$where .= " and place='".$place."' ";
+	}
+	//echo $where;
+	//echo $search_name;
+	$chk_query = "select * from reserve_list_new where view_state='Y' $where order by seq desc LIMIT ".$start.", ".$numPerPage;
+	//echo $chk_query;
+	$chk_result = mysql_query($chk_query);
+
+	$chk_query2 = "select * from reserve_list_new where view_state='Y' $where ";
+
+	//echo $search_field;
+	//echo $jumin1;
+	$chk_result2 = mysql_query($chk_query2);
+
+	$totalCount = mysql_num_rows($chk_result2);
+
+	
+
+	if($totalCount == 0){
+
+	}
+	?>
+	<script language="JavaScript">
+	<!--
+	//엑셀파일다운로드
+	function memberExcelDown(type,search_field,search_name,search_name2,search_name3,search_name4,place,jumin1,jumin2,search_date) {
+		//alert(search_date);
+		var url="/admin/slotset/procExceldown.php?type="+type+"&search_field="+search_field+"&search_name="+search_name+"&search_name2="+search_name2+"&search_name3="+search_name3+"&search_name4="+search_name4+"&place="+place+"&jumin1="+jumin1+"&jumin2="+jumin2+"&search_date="+search_date;
+		location.href(url);
+	}
+	//-->
+	</script>
+
+<div class="contants_01_1440">
+	<div style="padding:10px 0 0 0; margin:0;">
+    <form name='formSearch' method='get' style="margin:0; padding:0;">
+				<input type='hidden' name='dir' value='<?=$dir?>'>
+				<input type='hidden' name='menu' value='<?=$menu?>'>
+		<table height='' border='0' cellpadding='3' cellspacing='0' width="100%">
+			
+			<tr height="30">
+					
+					<td width="200">
+                    <input type="text" name="search_name2" id="datepicker1" value="<?if($search_name2 == ""){echo date("Y-m-d");}else{echo $search_name2;}?>" size="10" class="textfield" onClick="javascript:calendar(event, 'search_name2')" style='cursor:pointer;'> ~ 
+                   
+                    <input type="text" name="search_name3" id="datepicker2" value="<?if($search_name3 == ""){echo date("Y-m-d");}else{echo $search_name3;}?>" size="10" class="textfield" onClick="javascript:calendar(event, 'search_name3')" style='cursor:pointer;'>
+					</td>
+					<td><input type="checkbox" name="search_date" value="all" <?if($search_date == "all"){echo "checked";}?>>날짜 전체
+					</td>
+					<td  width="115">
+					<select name="search_field" onchange="selectCondition3(this.value)">
+						<option value="reserve_name2" <?if($search_field == "reserve_name2"){echo "selected";}?>>사업장</option>
+						<option value="reserve_name" <?if($search_field == "reserve_name"){echo "selected";}?>>고객명</option>
+						<option value="mobile_no" <?if($search_field == "mobile_no"){echo "selected";}?>>휴대전화</option>
+						<option value="jumin_no" <?if($search_field == "jumin_no"){echo "selected";}?>>주민등록번호</option>
+						<option value="reserve_type" <?if($search_field == "reserve_type"){echo "selected";}?>>검진대상</option>
+						<option value="reserve_place" <?if($search_field == "reserve_place"){echo "selected";}?>>위치</option>
+						<option value="reg_name" <?if($search_field == "reg_name"){echo "selected";}?>>등록자 이름</option>
+						<option value="reg_id" <?if($search_field == "reg_id"){echo "selected";}?>>등록자 아이디</option>	
+					</select>
+					</td>
+                    
+					<td id="menu1" style="<?if($search_field == '' || ($search_field !='reserve_type' && $search_field !='jumin_no' && $search_field !='reserve_place')){echo 'display: ;';}else{echo 'display:none;';};?>" width="150">
+					<input type="text" name="search_name" style="width:140px;"  class="textfield">
+					</td>
+
+					<td id='menu2' style="<?if($search_field == 'reserve_type'){echo 'display: ;';}else{echo 'display:none;';};?>">
+						<select name="search_name4">
+						<option value="">선택</option>
+						<option value="item1" <?if($search_name4 == "item1"){echo "selected";}?>>기본</option>
+						<option value="item2" <?if($search_name4 == "item2"){echo "selected";}?>>수면대장</option>
+						<option value="item3" <?if($search_name4 == "item3"){echo "selected";}?>>MR 검사</option>
+						<option value="item4" <?if($search_name4 == "item4"){echo "selected";}?>>PET-CT</option>
+						<option value="item5" <?if($search_name4 == "item5"){echo "selected";}?>>심장초음파</option>
+						<option value="item6" <?if($search_name4 == "item6"){echo "selected";}?>>유방초음파</option>
+						<option value="item7" <?if($search_name4 == "item7"){echo "selected";}?>>스케일링</option>
+						<option value="item8" <?if($search_name4 == "item8"){echo "selected";}?>>VIP</option>
+						<option value="item9" <?if($search_name4 == "item9"){echo "selected";}?>>일반</option>
+					</select>
+					</td>
+				
+					
+
+					<td id='menu3' <?if($search_field == "reserve_place"){echo "style='display:'";}else{echo "style='display:none'";};?>>
+					<select name="place">
+						<option value="">선택</option>
+						<option value="3층" <?if($place == "3층"){echo "selected";}?>>3층</option>
+						<option value="1층" <?if($place == "1층"){echo "selected";}?>>1층</option>
+					</select>
+					</td>
+
+					<td id='menu4' <?if($search_field == "jumin_no"){echo "style='display:'";}else{echo "style='display:none'";};?>>
+					<input type="text" name="jumin1" value="<?=$jumin1?>" style="width:70px;"  class="textfield"> - <input type="text" name="jumin2" value="<?=$jumin2?>" style="width:70px;"  class="textfield">
+					</td>
+
+
+
+					<td><input type="submit" style='width:40px; height:20px;' class="btn" value="조회"></td>
+                    
+                    
+                    <td align="right"><a href="javascript:void(0)" onclick="javascript:memberExcelDown('3','<?=$search_field?>','<?=$search_name?>','<?=$search_name2?>','<?=$search_name3?>','<?=$search_name4?>','<?=$place?>','<?=$jumin1?>','<?=$jumin2?>','<?=$search_date?>')"><img src='/admin/img/btn_excel.gif' border="0"></a>
+					</td>
+			</tr>
+			
+			<!--<tr height="30" bgcolor="#ffffff">
+				<td colspan="11"><input type="text" name="start_date" size="10" class="textfield" value='<?=$start_date?>' onClick="Calendar(start_date);" style='cursor:pointer;'><img src="/admin/img/icon_cal.gif"> ~ <input type="text" name="end_date" size="10" class="textfield" value='<?=$endday?>' onClick="Calendar(end_date);" style='cursor:pointer;'><img src="/admin/img/icon_cal.gif"> <input type="text" name="comment" size="30"> <input type="image" src="/admin/img/btn_off.gif"> 
+				</td>
+			</tr>-->
+			
+
+		</table>
+  		</form>
+
+
+	<div class="popup"> <!-- 레이어 팝업으로 사용할 경우 삽입코드 : style="position:absolute; left:200px; top:200px;" --></div>
+			
+			
+			<table cellpadding="3" cellspacing="0" border=0 width="100%" class="table_style_01">
+				
+				<tr height="30">
+					<th width="5%">번호</th>
+					<th width="10%">예약날짜</th>
+					<th width="10%">예약종류</th>
+					<th width="10%">고객명</th>
+					<th width="10%">주민번호</th>
+					<th width="10%">휴대번호</th>
+					<th width="20%">사업장</th>
+					<!--<th width="15%">추가검진항목</td>-->
+					<th width="10%">등록일</th>
+					<!--<td>등록일</td>-->
+					<th width="5%">수정</th>
+					<th width="5%">삭제</th>
+				</tr>
+	<?
+	
+	
+	$k=0;
+	while($chk_rows = mysql_fetch_array($chk_result)){
+		$no = $totalCount - $start - $k;
+		$update_query = "select * from reserve_list_update where group_code='".$chk_rows[seq]."' and view_state='Y'";
+		$update_result = mysql_query($update_query);
+		$update_list = "";
+		while($update_rows = mysql_fetch_array($update_result)){
+			$update_list .= "[".$update_rows[name]." / ".$update_rows[id]." / ".$update_rows[reg_date]."]\n\n";
+		}
+		
+	?>
+				<tr align="center">
+					<td><?=$no?></td>
+					<td><?=substr($chk_rows[reserve_day],0,10)?></td>
+					<td><?if($chk_rows[reserve_type0] == "Y"){echo "기본예약";}else{ echo "일반예약";}?></td>
+                    <td><?=$chk_rows[reserve_name]?></td>
+					
+					<td><?=$chk_rows[jumin_no]?></td>
+					<td><?=$chk_rows[mobile_no]?></td>
+					
+					<td><?=$chk_rows[reserve_place]?></td>
+					<!--<td><a href="javascript:void(0)" onclick="javascript:OpenManageFrame('/admin/reservation/pop_res_view.html?input_date=<?=substr($chk_rows[reserve_day],0,10)?>&seq=<?=$chk_rows[seq]?>',1310,550);">검진항목 보기</a></td>-->
+					<!--<td><?=$chk_rows[reg_name]?></td>-->
+					<td><?=substr($chk_rows[reg_date],0,10)?>
+					</td>
+					<td>
+					<!--<a href="javascript:void(0)" onclick="javascript:OpenManageFrame('/admin/reservation/pop_res_write.html?input_date=<?=substr($chk_rows[reserve_day],0,10)?>&re_seq=<?=$chk_rows[seq]?>',1310,550);">수정</a>-->
+					
+					
+					<a href="javascript:void(0)" onclick="javascript:window.open('/admin/reservation/<?if($chk_rows[reserve_type0] == "Y"){echo "pop_res_write";}else{ echo "pop_res_write2";}?>.html?input_date=<?=substr($chk_rows[reserve_day],0,10)?>&re_seq=<?=$chk_rows[seq]?>','','width=1110,height=600');">수정</a>
+					</td>
+					<td><input type="button" value="삭제" class="btn3" onclick="javascript:location.href='/admin/slotset/procList.php?seq=<?=$chk_rows[seq]?>&mode=del&search_field=<?=$search_field?>&search_name=<?=$search_name?>'">
+					</td>
+				</tr>
+	<?
+		
+		$k++;
+	}
+	if($k==0){
+	?>
+	<?
+	}
+	
+	?>
+			
+			</table>
+			<table cellpadding="5" cellspacing="0" bgcolor="#ffffff"  border=0 width="100%">
+				<tr>
+				<td height='25' colspan='13' bgcolor='#ffffff' align='center'><?=funcPaging($totalCount, $numPerPage, $pagePerList, $pageNum, $searchQuery);?></td>
+			</tr>
+			</table>
+	
+
+	</table> 
+
+
+
+		</div>
+	</div>

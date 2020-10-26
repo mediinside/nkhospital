@@ -1,0 +1,276 @@
+<?php
+	include_once  '../_init.php';
+    
+/*$myServer = "119.197.19.46:14444";
+$myUser = "sms_base";
+$myPass = "sms_!jj1m";
+$myDB = "mediplus";
+$db = mssql_connect($myServer, $myUser, $myPass) or die ("서버 연결 실패");
+mssql_select_db($myDB,$db) or die ("DB 연결 실패");
+    
+$sql="select * from MIS_DOCT";
+$result=mssql_query($sql, $db);
+while($row = mssql_fetch_array($result)){
+	print_r($row);
+};
+*/
+
+   	include_once($GP -> CLS."/class.doctor.php");	
+   	include_once($GP -> CLS."/class.mcc.php");	    
+	$C_Doctor 	= new Doctor;
+	$C_Mcc	 	= new Mcc;    
+	$args['dr_idx'] = $_GET['dr_idx'];
+	$data = "";
+	$data = $C_Doctor->Doctor_Info($args);    
+	include_once $GP -> INC_WWW . '/m.head.php';
+    extract($data);
+    $dr_ps 			= $GP -> DOCTOR_POSITION[$dr_position];	
+    $dr_cn 			= $GP -> CLINIC_TYPE1[$dr_clinic1];	
+    $moning_arr 	= explode(',', $dr_m_sd);	
+    $after_arr 		= explode(',', $dr_a_sd);
+    $c_type			= $GP->CLINIC_TYPE_NEW[$dr_clinic2];
+    
+    $year = ($_GET["year"]) ? $_GET["year"] : date("Y");
+    $pYear = $year - 1;
+    $nYear = $year + 1;    
+    
+    $r_date 		= date("Y-n-d",strtotime("+2 days"));
+    $date_arr		= explode("-",$r_date);
+    $n_year			= $year;
+    $n_month		= $date_arr[1];
+    $n_day			= $date_arr[2];
+    $s_month 		= ($n_year == $date_arr[0]) ? $date_arr[1] : 1;
+    
+    $process_type = $_GET['ptype'];
+	$process_title = '';
+	if ('s' == $process_type){
+		$process_title = '본인예약';
+	} else if ('g' == $process_type){
+		$process_title = '보호자로 예약';
+	}
+    
+    $data2 = $C_Mcc->test($args);    
+    print_r($data2);
+?>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title"><?php echo $process_title;?></h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+    </div>
+	<div id="container" class="reserve-entry">
+		<form id="r_form" name="r_form" class="body" action="?" method="post">
+        	<input type="hidden" value="ONLINE_RESERVE_REG" id="mode" name="mode">
+            <input type="hidden" value="<?=$c_type?>" id="c_type" name="c_type">
+            <input type="hidden" value="<?=$ptype?>" id="ptype" name="ptype">
+            <input type="hidden" value="<?=$dr_name?>" id="dr_name" name="dr_name">
+            <input type="hidden" value="<?=$dr_ps?>" id="dr_ps" name="dr_ps">
+            <input type="hidden" value="<?=$_SESSION['suserphone']?>" id="tor_rs_phone" name="tor_rs_phone">
+            <input type="hidden" value="<?=$tor_name?>" id="tor_name" name="tor_name">
+            <input type="hidden" name="mb_code" id="mb_code" value="<?=$_SESSION['susercode']?>" />
+            <input type="hidden" name="tor_rs_name" id="tor_rs_name" value="<?=$_SESSION['susername']?>" />
+			<div class="doctor-selection-info">
+				<dl class="header">
+					<dt>예약선택</dt>
+					<dd class="depart"><?=$c_type?></dd>
+					<dd class="name"><?=$dr_name?> <?=$dr_ps?></dd>
+				</dl>
+				<div class="doctor-schedule">
+					<table>
+						<thead>
+							<tr>
+								<th scope=""></th>
+								<th scope="row">월</th>
+								<th scope="row">화</th>
+								<th scope="row">수</th>
+								<th scope="row">목</th>
+								<th scope="row">금</th>
+								<th scope="row">토</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="col">오전</th>
+								<td><? if (in_array("월", $moning_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("화", $moning_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("수", $moning_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("목", $moning_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("금", $moning_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("토", $moning_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+							</tr>
+							<tr>
+								<th scope="col">오후</th>
+								<td><? if (in_array("월", $after_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("화", $after_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("수", $after_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("목", $after_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("금", $after_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+                                <td><? if (in_array("토", $after_arr)) { echo '<span class="open">진료</span>'; }else{ echo '<span class="void">-</span>'; }?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="schedule-selection">
+				<div class="date-selection">
+					<div class="year-section">
+						<input type="text" name="year" id="year" class="i-year" readonly value="<?=$n_year?>" />
+						<a href="?dr_idx=<?=$dr_idx?>&ptype=<?=$ptype?>&year=<?=$pYear?>" class="prev-year"><i class="ip-icon-prev"></i><span class="text-ir">이전 해</span></a>
+						<a href="?dr_idx=<?=$dr_idx?>&ptype=<?=$ptype?>&year=<?=$nYear?>" class="next-year"><i class="ip-icon-next"></i><span class="text-ir">다음 해</span></a>
+					</div>
+					<div class="detail-section">
+						<select name="month" id="month" class="i-text">
+							<option value="">월 선택</option>
+                            <?
+                             for($i=$s_month;$i<=12;$i++){
+                                echo "<option value='".$i."'>".$i."월";
+                            }
+                            ?>
+						</select>
+						<select name="day" id="day" class="i-text">
+							<option value="">일 선택</option>
+						</select>
+					</div>
+				</div>
+				<div class="date-schedule" id="day_result">
+					<!-- 예약날짜 선택 안 한 경우 -->
+					<p>예약날짜를 선택하세요.</p>
+					<!--
+					<dl>
+						<dt class="text-ir">진료시간</dt><dd>09:30 ~ 05:30</dd>
+						<dt class="text-ir">예약가능 여부</dt><dd>
+							<span class="enable">예약가능</span>
+							<span class="disable">예약불가</span>
+							<span class="closed">휴진</span>
+						</dd>
+					</dl>
+                    -->
+				</div>
+				<dl class="time-selection">
+					<dt>희망 진료시간 선택</dt>
+					<dd><select name="time" id="time" class="i-text">
+						<option value="">진료시간 선택</option>
+					</select></dd>
+				</dl>
+				<button type="submit" id="img_submit" class="next-step">진료 예약하기</button>
+			</div>
+		</form>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2017</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+</body>
+</html>
+
+<script>
+	$("#month").change(function(){		
+		var year = $('#year').val();
+		var month = $(this).val();
+		var html = "";
+		$.ajax({
+			type: "POST",
+			url: "day_ajax_change.php",
+			data:{
+			"year"	: year,
+			"month" : month
+			},
+			dataType: "text",
+			beforeSend: function() {
+				//$('#ajax_load').html('<img src="/images/ajax-loader.gif">');
+			},
+			success: function(data) {
+				console.log(data);
+				html += '<option value="">일 선택</option>';
+				html += data;				
+				$("#day").empty().append(html);
+
+			},
+			error: function(xhr, status, error) { alert(error); }
+		});		
+	});
+	$("#day").change(function(){		
+		var year = $('#year').val();
+		var month = $('#month').val();
+		var day = $(this).val();
+		var html = "";
+		if(month.length < 2) month = "0"+month;
+		if(day.length < 2) day = "0"+day;		
+		
+		var dr_idx = "<?=$dr_idx?>";
+		var html = "";
+		$.ajax({
+			type: "POST",
+			url: "day_ajax_change.php",
+			data:{
+			"nday"	: year+"-"+month+"-"+day,
+			"dr_idx": dr_idx
+			},
+			dataType: "text",
+			beforeSend: function() {
+				//$('#ajax_load').html('<img src="/images/ajax-loader.gif">');
+			},
+			success: function(data) {
+				console.log(data);
+				$("#day_result").empty().append(data)
+				$.ajax({
+					type: "POST",
+					url: "day_ajax_change.php",
+					data:{
+					"nday"	: year+"-"+month+"-"+day,
+					"dr_idx": dr_idx,
+					"mode"	: "T"
+					},
+					dataType: "text",
+					beforeSend: function() {
+						//$('#ajax_load').html('<img src="/images/ajax-loader.gif">');
+					},
+					success: function(data) {
+						console.log(data);
+						html += '<option value="">진료시간 선택</option>';
+						html += data;
+						$("#time").empty().append(html);
+					},
+					error: function(xhr, status, error) { alert(error); }
+				});		
+
+			},
+			error: function(xhr, status, error) { alert(error); }
+		});		
+	});
+	
+	
+	$('#img_submit').click(function(){
+		
+
+		if($('#month option:selected').val() == '')	{
+			alert('월 선택을 해주세요.');
+			return false;
+		}
+		
+		if($('#day option:selected').val() == '')	{
+			alert('일 선택을 해주세요.');
+			return false;
+		}
+		
+		
+		if($('#time option:selected').val() == '')	{
+			alert('진료시간을 선택을 해주세요.');
+			return false;
+		}
+
+
+		$('#r_form').attr('action','/admin/online/proc/online_proc.php');
+		$('#r_form').submit();
+		return false;
+
+	});
+</script>

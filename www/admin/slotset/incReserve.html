@@ -1,0 +1,1249 @@
+<?
+session_start();
+$today = date("Y-m-d");
+if($start_date == ""){
+	$today = date("Y-m-d");
+}
+else{
+	$today = $start_date;
+}
+if($start_date == ""){
+	$start_date = $today;
+}
+if($reset == "" ){
+	$view_item1 = "Y";
+	$view_item2 = "Y";
+	$view_item3 = "Y";
+	$view_item4 = "Y";
+
+	$view_item5 = "N";
+	$view_item6 = "N";
+	$view_item7 = "N";
+}
+?>
+<link href="/SEditor/css/default.css" rel="stylesheet" type="text/css" />
+<script>
+	function popup(sel_week_end,k,mode,sel_item,plus_slot, fRoomno, fRstno, fTimes) {
+		popupLayer("/admin/slotset/popup.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item+"&plus_slot="+plus_slot+ "&roomno=" + fRoomno + "&rstno=" + fRstno + "&times=" + fTimes, 600, 630);
+	}
+	//function popup_view(sel_week_end,k,mode,sel_item){
+	//	window.open("/admin/slotset/popup_view.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item,"poupu","width=900,height=600,scrollbars=yes");
+	//}
+	function send(){
+		document.chk_form.submit();
+	}
+	function view_notice(seq){
+		window.open("/admin/log/pop_notice_view.html?seq="+seq,"view","width=600,height=500,scrollbars=yes");
+	}
+
+
+
+	function popup_view(sel_week_end,k,mode,sel_item, fRoomno, fRstno, fTimes) {
+		popupLayer("/admin/slotset/popup_view.html?sel_week_end="+sel_week_end+"&k="+k+"&mode="+mode+"&item="+sel_item + "&roomno=" + fRoomno + "&rstno=" + fRstno + "&times=" + fTimes, 1000, 520);
+    }
+	function view_notice(seq, fRoomno, fRstno, fTimes){
+		popupLayer("/admin/log/pop_notice_view.html?seq="+seq + "&roomno=" + fRoomno + "&rstno=" + fRstno + "&times=" + fTimes, 600, 520);
+	}
+	
+
+</script>
+
+<div style="margin : 0px 0px 0px 0px; width: 835px;">
+	<div class="rt7"></div>
+	<div class="rt6"></div>
+	<div class="rt5"></div>
+	<div class="rt4"></div>
+	<div class="rt3"></div>
+	<div class="rt2"></div>
+	<div class="common">
+		
+	</div>
+
+	<div class="rt21">
+		<div class="rt2in51"></div>
+		<div class="rt2in41"></div>
+	</div>
+	<div class="rt1">
+		<div class="rt1in31"></div>
+		<div class="rt1in21"></div>
+		<div class="rt1in11"></div>
+	</div>
+
+	<div class="rtoutLRline">
+		<div class="rtinLRline">
+		<table cellpadding="0" cellspacing="0" width='100%'>
+	<tr align="center">
+		
+		<td width='60%' valign="top">[TM 공지]
+			<table cellpadding="0" cellspacing="0" border=0 width='90%'>
+				<tr>
+					<td background="/img/common/dot.gif" style="background-repeat:repeat-x" height="1px"></td>
+				</tr>
+			<?
+			$query2 = "select * from admin_member where id='".$sess_AID."' and view_state='Y'";
+			$result2 = mysql_query($query2);
+			$rows2 = mysql_fetch_array($result2);
+			$seq = $rows2[seq];
+			$name2 = $rows2[name2];
+			$id = $rows2[id];
+
+		//	echo $seq;
+		//	echo $name2;
+
+
+			$query = "select * from admin_notice where view_state='Y' and sort='TM팀' order by seq desc limit 0,5";
+			//echo $query;
+			$result = mysql_query($query);
+			
+			while($rows = mysql_fetch_array($result)){
+				$target = $rows[target];
+				$target_list = explode("|",$rows[target_list]);
+				//echo sizeof($target_list);
+				$list_chk = "";
+				if($target == "position"){
+					for($i=0;$i<sizeof($target_list);$i++){
+						$chk_query = "select * from admin_team where name='".$target_list[$i]."'";
+					//	echo $chk_query;
+						$chk_result = mysql_query($chk_query);
+						$chk_rows = mysql_fetch_array($chk_result);
+						if($chk_rows[name] == $name2){
+							$list_chk = "Y";
+						}
+					}
+				}
+				else if($target == "private"){
+					for($i=0;$i<sizeof($target_list);$i++){
+						$chk_query = "select * from admin_member where name='".$target_list[$i]."'";
+						$chk_result = mysql_query($chk_query);
+						$chk_rows = mysql_fetch_array($chk_result);
+						if($chk_rows[id] == $id){
+							$list_chk = "Y";
+						}
+					}
+				}
+				else if($target == "total"){	
+					$list_chk = "Y";	
+				}
+				if($list_chk == "Y"){
+			?>
+				<tr>
+					<td><b><?=substr($rows[reg_date],0,10)?>] <a href="javascript:void(0)" onclick="javascript:view_notice('<?=$rows[seq]?>');"><?=KstrCut($rows[subject], 50, "...")?></b></a>
+					</td>
+				</tr>
+				<tr>
+					<td background="/img/common/dot.gif" style="background-repeat:repeat-x" height="1px"></td>
+				</tr>
+			<?
+				}
+				else{
+
+				}
+			}
+			?>
+				
+			</table>
+		</td>
+		<td width='40%'></td>
+
+	</tr>
+</table>
+<br>
+		<table width="500" border="0" cellpadding="0" cellspacing="0" bgcolor="#c1c1c1">
+		<form name="chk_form" method="post" action="<?=$PHP_SELF?>">
+		<input type="hidden" name="dir" value="<?=$dir?>">
+		<input type="hidden" name="menu" value="<?=$menu?>">
+		<input type="hidden" name="Date" value="<?=$Date?>">
+		<input type="hidden" name="reset" value="Y">
+			<tr align="center" bgcolor="#ffffdf">
+				<td>종합 <input type="checkbox" name="view_item1" onclick="javascript:send();" <?if($view_item1=="Y" || $view_item1 == "on"){echo "checked";}else{}?>></td>
+				<td>일반 <input type="checkbox" name="view_item2" onclick="javascript:send();" <?if($view_item2=="Y" || $view_item2  == "on"){echo "checked";}else{}?>></td>
+				<td>대내 <input type="checkbox" name="view_item3" onclick="javascript:send();" <?if($view_item3=="Y" || $view_item3 == "on"){echo "checked";}else{}?>></td>
+				<td>유초 <input type="checkbox" name="view_item4" onclick="javascript:send();" <?if($view_item4=="Y" || $view_item4 == "on"){echo "checked";}else{}?>></td>
+				<td>MRI <input type="checkbox" name="view_item5"  onclick="javascript:send();" <?if($view_item5=="Y" || $view_item5 == "on"){echo "checked";}else{}?>></td>
+				<td>심초 <input type="checkbox" name="view_item6" onclick="javascript:send();" <?if($view_item6=="Y" || $view_item6 == "on"){echo "checked";}else{}?>></td>
+				<td>VIP <input type="checkbox" name="view_item7"  onclick="javascript:send();" <?if($view_item7=="Y" || $view_item7 == "on"){echo "checked";}else{}?>></td>
+				<!--<td><input type="button" value="확인" class="btn3" onclick="javascript:send();"></td>-->
+			</tr>
+		</form>
+		</table>
+		<?
+		//echo $view_item5;
+		?>
+		<table width='810' height='' border='0' cellpadding='0' cellspacing='0' bgcolor='#CCCCCC'>
+		
+			
+			
+			<form name='formSearch' method='get'>
+		<input type='hidden' name='dir' value='<?=$dir?>'>
+		<input type='hidden' name='menu' value='<?=$menu?>'>
+		<input type='hidden' name='reset' value='<?=$reset?>'>
+		<input type='hidden' name='view_item1' value='<?=$view_item1?>'>
+		<input type='hidden' name='view_item2' value='<?=$view_item2?>'>
+		<input type='hidden' name='view_item3' value='<?=$view_item3?>'>
+		<input type='hidden' name='view_item4' value='<?=$view_item4?>'>
+		<input type='hidden' name='view_item5' value='<?=$view_item5?>'>
+		<input type='hidden' name='view_item6' value='<?=$view_item6?>'>
+		<input type='hidden' name='view_item7' value='<?=$view_item7?>'>
+
+			<tr align="right" height="30" bgcolor="#ffffff">
+				
+				<td colspan="11"><input type="text" name="start_date" size="10" class="textfield" value='<?=$start_date?>' onClick="javascript:calendar(event, 'start_date')" style='cursor:pointer;'>&nbsp;&nbsp;<img src="/admin/img/icon_cal.gif" onClick="javascript:calendar(event, 'start_date')"> &nbsp;&nbsp; <input type="image" src="/admin/img/btn_inquiry_b.gif"> 
+				</td>
+			</tr>
+			<!--<tr height="30" bgcolor="#ffffff">
+				<td colspan="11"><input type="text" name="start_date" size="10" class="textfield" value='<?=$start_date?>' onClick="Calendar(start_date);" style='cursor:pointer;'><img src="/admin/img/icon_cal.gif"> ~ <input type="text" name="end_date" size="10" class="textfield" value='<?=$endday?>' onClick="Calendar(end_date);" style='cursor:pointer;'><img src="/admin/img/icon_cal.gif"> <input type="text" name="comment" size="30"> <input type="image" src="/admin/img/btn_off.gif"> 
+				</td>
+			</tr>-->
+			
+		
+		</table>
+
+
+<br>
+
+
+<?
+
+$query_string = "&reset=$reset&view_item1=$view_item1&view_item2=$view_item2&view_item3=$view_item3&view_item4=$view_item4&view_item5=$view_item5&view_item6=$view_item6&view_item7=$view_item7";
+//echo $query_string;
+/******************************
+달력
+******************************/
+
+/********** 사용자 설정값 **********/
+$startYear        = 2012;
+$endYear        = date( "Y" ) + 4;
+
+/********** 입력값 **********/
+$year            = ( $_GET['toYear'] )? $_GET['toYear'] : date( "Y" );
+$month            = ( $_GET['toMonth'] )? $_GET['toMonth'] : date( "m" );
+$doms            = array( "일", "월", "화", "수", "목", "금", "토" );
+
+/********** 계산값 **********/
+$mktime            = mktime( 0, 0, 0, $month, 1, $year );      // 입력된 값으로 년-월-01을 만든다
+$days            = date( "t", $mktime );                        // 현재의 year와 month로 현재 달의 일수 구해오기
+$startDay        = date( "w", $mktime );                        // 시작요일 알아내기
+
+// 지난달 일수 구하기
+$prevDayCount    = date( "t", mktime( 0, 0, 0, $month, 0, $year ) ) - $startDay + 1;
+
+$nowDayCount    = 1;                                            // 이번달 일자 카운팅
+$nextDayCount    = 1;                                          // 다음달 일자 카운팅
+
+// 이전, 다음 만들기
+$prevYear        = ( $month == 1 )? ( $year - 1 ) : $year;
+$prevMonth        = ( $month == 1 )? 12 : ( $month - 1 );
+$nextYear        = ( $month == 12 )? ( $year + 1 ) : $year;
+$nextMonth        = ( $month == 12 )? 1 : ( $month + 1 );
+
+// 출력행 계산
+$setRows = ceil( ( $startDay + $days ) / 7 );
+
+?>
+<script>
+function openWin(page, bar) {
+	if(!bar) bar = "no";
+
+	var win = window.open(page, 'POP', 'left=100, top=100, toolbar=no, location=no, directories=no, status=yes, menuBar=no, scrollBars='+bar+', resizable=no');
+	win.focus();
+}
+</script>
+
+<center>
+<?
+	if($start_date == ""){
+		$today = date("Y-m-d");
+	}
+	else{
+		$today = $start_date;
+	}
+	if($start_date == ""){
+		$start_date = $today;
+	}
+
+	//$Date = $start_date;
+
+
+
+
+	if($Date == ""){
+		
+		$Date = $start_date; 
+	}
+
+	$YY = date("Y",strtotime($Date)); 
+	$MM = date("m",strtotime($Date)); 
+	$DD = date("d",strtotime($Date)); 
+	$Day = date("w",strtotime($Date)); 
+
+	$this_week_start = date("Y-m-d",strtotime($YY."-".$MM."-".$DD." -".$Day." day"));
+	 $this_week_end = date("Y-m-d",strtotime($this_week_start." +6 day")); 
+
+	$ago_week_start = date("Y-m-d",strtotime($this_week_start." -1 week")); 
+	$ago_week_end = date("Y-m-d",strtotime($this_week_end." -1 week")); 
+
+	$next_week_start = date("Y-m-d",strtotime($this_week_start." +1 week")); 
+	$next_week_end = date("Y-m-d",strtotime($this_week_end." +1 week"));
+?>
+
+	<table style="border-collapse:collapse;" width="250">
+  <form method="get">
+  <input type="hidden" name="dir" value=<?=$dir?>>
+   <input type="hidden" name="menu" value=<?=$menu?>>
+    <tr>
+        <td >
+       <a href="javascript:void(0)" onClick="parent.location.href='/admin/index_reserve.html?dir=<?=$dir?>&menu=<?=$menu?>&Date=<?=$ago_week_start?><?=$query_string?>'" onfocus='this.blur();'><img src="/admin/img/btn_before_w_o.gif" border="0"></a>
+        <td >
+        <a href="javascript:void(0)" onClick="parent.location.href='/admin/index_reserve.html?dir=<?=$dir?>&menu=<?=$menu?><?=$query_string?>'" onfocus='this.blur();'> <img src="/admin/img/btn_this_w.gif" border="0"> </a>
+        </td>
+		<td>
+      <a href="javascript:void(0)" onClick="parent.location.href='/admin/index_reserve.html?dir=<?=$dir?>&menu=<?=$menu?>&Date=<?=$next_week_start?><?=$query_string?>'" onfocus='this.blur();'><img src="/admin/img/btn_next_w_o.gif" border="0"> </a>
+        </td>
+    </tr>
+	 </form>
+</table>
+
+<br>
+
+<!--<table width="100%" border=0 cellpadding=0 cellspacing=1 bgcolor="#0080c0">
+
+    <tr height="30">
+        <? 
+		for( $i = 0; $i < count( $doms ); $i++ ){
+			if($i == 0){
+				?>
+				<td  bgcolor="#0080c0" width='15%' align="center" ></td>
+				<?
+			}
+			else{
+		?>
+        <td bgcolor="#0080c0" width='120' align="center" ><font style="color:#ffffff"><?=$doms[$i]?>요일</font></td>
+        <?
+			}
+		} 
+		?>
+    </tr>
+</table>-->
+<table width="100%" border="0" height="250" cellpadding=0 cellspacing=1 bgcolor="#0080ff">
+	<?
+	
+	$time_set = 1349388000;
+	$time_plus = 1800;
+	?>
+
+    <tr height="40" bgcolor="#ffffd9">
+       
+            <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b>날짜 / 시간</b></font>
+            </td>
+			 <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b><?=$doms[1]?>요일<br> (<?=$this_week_end1 = date("Y-m-d",strtotime($this_week_start." +1 day"))?>) </b></font>
+            </td>
+			 <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b><?=$doms[2]?>요일<br> (<?=$this_week_end2 = date("Y-m-d",strtotime($this_week_start." +2 day"))?>)</b></font>
+            </td>
+			 <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b><?=$doms[3]?>요일<br> (<?=$this_week_end3 = date("Y-m-d",strtotime($this_week_start." +3 day"))?>)</b></font>
+            </td>
+			 <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b><?=$doms[4]?>요일<br> (<?=$this_week_end4 = date("Y-m-d",strtotime($this_week_start." +4 day"))?>)</b></font>
+            </td>
+			 <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b><?=$doms[5]?>요일<br> (<?=$this_week_end5 = date("Y-m-d",strtotime($this_week_start." +5 day"))?>)</b></font>
+            </td>
+			 <td width="120" bgcolor="#0080c0" align="center" >
+				<font color="#ffffff"><b><?=$doms[6]?>요일<br> (<?=$this_week_end6 = date("Y-m-d",strtotime($this_week_start." +6 day"))?>)</b></font>
+            </td> 
+    </tr>
+	 <tr height="40" bgcolor="#ffffd9">
+		<td width="120" align="center" >
+				<font color="blue"><b>대기자</b></font>
+            </td>
+			 <td width="120" align="center" >
+				<table cellpadding="0" cellspacing="3" border="0" width="80%"> 
+					
+						
+			 <?
+				list($wait_reserve_item1, $wait_reserve_item2, $wait_reserve_item3, $wait_reserve_item4, $wait_reserve_item5, $wait_reserve_item6, $wait_reserve_item7, $wait_item1, $wait_item2, $wait_item3, $wait_item4, $wait_item5, $wait_item6, $wait_item7) = wait_list($this_week_end1);
+				
+				echo "<tr ><td align='center' width='35%'><b>종합</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item1."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item1."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>일반</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item2."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item2."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>대내</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item3."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item3."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>유초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item4."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item4."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>MRI</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item5."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item5."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>심초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item6."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item6."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>VIP</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item7."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item7."</b></font></td></tr>";
+			 ?>
+			 </table>
+
+				<!--<b>종합 20 / </b><br>
+				<b>일반 20 / 10</b><br>
+				<b>대내 20 / 10</b><br>
+				<b>유초 20 / 10</b><br>
+				<b>MRI 20 / 10</b><br>
+				<b>심초 20 / 10</b><br>
+				<b>VIP 20 / 10</b><br>-->
+            </td>
+			 <td width="120" align="center" >
+				<table cellpadding="0" cellspacing="3" border="0" width="80%"> 
+			 <?
+				list($wait_reserve_item1, $wait_reserve_item2, $wait_reserve_item3, $wait_reserve_item4, $wait_reserve_item5, $wait_reserve_item6, $wait_reserve_item7, $wait_item1, $wait_item2, $wait_item3, $wait_item4, $wait_item5, $wait_item6, $wait_item7) = wait_list($this_week_end2);
+				
+				echo "<tr ><td align='center' width='35%'><b>종합</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item1."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item1."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>일반</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item2."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item2."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>대내</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item3."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item3."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>유초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item4."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item4."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>MRI</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item5."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item5."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>심초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item6."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item6."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>VIP</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item7."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item7."</b></font></td></tr>";
+			 ?>
+				</table>
+            </td>
+			 <td width="120" align="center" >
+			 <table cellpadding="0" cellspacing="3" border="0" width="80%"> 
+            <?
+				list($wait_reserve_item1, $wait_reserve_item2, $wait_reserve_item3, $wait_reserve_item4, $wait_reserve_item5, $wait_reserve_item6, $wait_reserve_item7, $wait_item1, $wait_item2, $wait_item3, $wait_item4, $wait_item5, $wait_item6, $wait_item7) = wait_list($this_week_end3);
+				
+				echo "<tr ><td align='center' width='35%'><b>종합</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item1."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item1."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>일반</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item2."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item2."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>대내</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item3."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item3."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>유초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item4."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item4."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>MRI</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item5."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item5."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>심초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item6."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item6."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>VIP</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item7."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item7."</b></font></td></tr>";
+			 ?>
+			 </table>
+			</td>
+			 <td width="120" align="center" >
+			 <table cellpadding="0" cellspacing="3" border="0" width="80%"> 
+            <?
+				list($wait_reserve_item1, $wait_reserve_item2, $wait_reserve_item3, $wait_reserve_item4, $wait_reserve_item5, $wait_reserve_item6, $wait_reserve_item7, $wait_item1, $wait_item2, $wait_item3, $wait_item4, $wait_item5, $wait_item6, $wait_item7) = wait_list($this_week_end4);
+				
+				echo "<tr ><td align='center' width='35%'><b>종합</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item1."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item1."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>일반</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item2."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item2."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>대내</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item3."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item3."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>유초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item4."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item4."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>MRI</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item5."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item5."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>심초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item6."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item6."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>VIP</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item7."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item7."</b></font></td></tr>";
+			 ?>
+			 </table>
+			</td>
+			 <td width="120" align="center" >
+			 <table cellpadding="0" cellspacing="3" border="0" width="80%"> 
+            <?
+				list($wait_reserve_item1, $wait_reserve_item2, $wait_reserve_item3, $wait_reserve_item4, $wait_reserve_item5, $wait_reserve_item6, $wait_reserve_item7, $wait_item1, $wait_item2, $wait_item3, $wait_item4, $wait_item5, $wait_item6, $wait_item7) = wait_list($this_week_end5);
+				
+				echo "<tr ><td align='center' width='35%'><b>종합</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item1."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item1."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>일반</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item2."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item2."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>대내</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item3."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item3."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>유초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item4."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item4."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>MRI</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item5."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item5."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>심초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item6."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item6."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>VIP</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item7."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item7."</b></font></td></tr>";
+			 ?>
+			 </table>
+			</td>
+			 <td width="120" align="center" >
+			 <table cellpadding="0" cellspacing="3" border="0" width="80%"> 
+            <?
+				list($wait_reserve_item1, $wait_reserve_item2, $wait_reserve_item3, $wait_reserve_item4, $wait_reserve_item5, $wait_reserve_item6, $wait_reserve_item7, $wait_item1, $wait_item2, $wait_item3, $wait_item4, $wait_item5, $wait_item6, $wait_item7) = wait_list($this_week_end6);
+				
+				echo "<tr ><td align='center' width='35%'><b>종합</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item1."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item1."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>일반</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item2."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item2."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>대내</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item3."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item3."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>유초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item4."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item4."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>MRI</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item5."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item5."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>심초</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item6."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item6."</b></font></td></tr>";
+				echo "<tr ><td align='center' width='35%'><b>VIP</b></td><td align='right' width='25%'><font color='red'><b>".$wait_reserve_item7."</b></font></td><td align='center' width='15%'> / </td><td align='right' width='25%'><font color='blue'><b>".$wait_item7."</b></font></td></tr>";
+			 ?>
+			 </table>
+			</td> 
+	</tr>
+	<?
+	for($k=0;$k<17;$k++){
+				
+			?>
+			<tr align="center" bgcolor="#ffffff" height="80">
+			<?
+				for($j=0;$j<7;$j++){
+					if($j==0){
+						$now_date1 = date("H:i",$time_set);
+						$now_date2 = date("H:i",$time_set+$time_plus);
+						$time_set += $time_plus;
+						//echo $now_date;
+			?>
+						 <td bgcolor="#ffffd9" align="center" style="padding:0;border-width:1;border-style:solid;"><font color="blue"><b><?=$now_date1?> ~ <?=$now_date2?></b></font></td>
+			<?
+					}
+					else{
+						//echo $j;
+						//echo $rows['item'.$j];
+						//echo $this_week_end1;
+			?>
+				 <td  align="center" bgcolor="#f7f7f7">
+				<?
+						$sel_week_end = date("Y-m-d",strtotime($this_week_start." +$j day"));
+						#휴일인지 체크함
+
+						$holiday_query = "select * from reserve_holiday where day_start='".$sel_week_end."' and view_state='Y' and day_type='4'";
+						$holiday_result = mysql_query($holiday_query);
+						$holiday_cnt = mysql_num_rows($holiday_result);
+						
+						if($holiday_cnt > 0){
+						?>
+							<!--<img src="/admin/img/btn_unreserve.gif"><br><br>
+							<img src="/admin/img/btn_unreserve_detail_search.gif">-->
+						<?
+						}
+						else{#휴일이 아닐때
+							//echo $j;
+
+							#지정일인지 체크함
+							$target_query = "select * from reserve_setday where day_start='".$sel_week_end."' and view_state='Y' and day_type='3'";
+							$target_result = mysql_query($target_query);
+							$target_cnt = mysql_num_rows($target_result);
+							//echo $target_cnt;
+							if($target_cnt > 0){
+								$target_query2 = "select * from reserve_setday where day_start='".$sel_week_end."' and view_state='Y' and day_type='3' and timezone='".$k."'";
+								$target_result2 = mysql_query($target_query2);
+								$target_rows2 = mysql_fetch_array($target_result2);
+							
+								#예약 체크
+								$chk_query = "select * from reserve_list where left(reserve_day,10)='".$sel_week_end."' and reserve_time='".$k."' and view_state='Y'";
+								$chk_result = mysql_query($chk_query);
+								$reserve_item1=0;$reserve_item2=0;$reserve_item3=0;$reserve_item4=0;$reserve_item5=0;$reserve_item6=0;$reserve_item7=0;
+								while($chk_rows = mysql_fetch_array($chk_result)){
+									if($chk_rows[reserve_type] == "item1"){
+										$reserve_item1++;
+									}
+									else if($chk_rows[reserve_type] == "item2"){
+										$reserve_item2++;
+									}
+									else if($chk_rows[reserve_type] == "item3"){
+										$reserve_item3++;
+									}
+									else if($chk_rows[reserve_type] == "item4"){
+										$reserve_item4++;
+									}
+									else if($chk_rows[reserve_type] == "item5"){
+										$reserve_item5++;
+									}
+									else if($chk_rows[reserve_type] == "item6"){
+										$reserve_item6++;
+									}
+									else if($chk_rows[reserve_type] == "item7"){
+										$reserve_item7++;
+									}
+								}
+								?>
+								<!--<table cellpadding="0" cellspacing="0" border="0" width="98%" >
+										<tr align="center">
+											<td bgcolor="#f7f7f7" width="50%"> 
+												<table cellpadding="0" cellspacing="0" width="100%" >
+													<tr align="center" height="40">
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new');"><img src="/admin/img/btn_reserve2.gif" border="0"></a></td>
+														<td><img src="/admin/img/btn_reserve2_detail_search.gif" width="42"></td>
+													</tr>
+												</table>
+												<br>
+												<table cellpadding="2" cellspacing="0" width="70%" >
+													<tr bgcolor="#ffffff"><td >종합 : </td><td align="right"> <?=$reserve_item1?> / <?=$target_rows2[item1]?></td></tr>
+													<tr bgcolor="#ffffff"><td>일반 : </td><td align="right"> <?=$reserve_item2?> / <?=$target_rows2[item2]?></td></tr>
+													<tr bgcolor="#ffffff"><td>VIP : </td><td align="right">  <?=$reserve_item3?> / <?=$target_rows2[item3]?></td></tr>
+													<tr bgcolor="#ffffff"><td>MRI : </td><td align="right">  <?=$reserve_item4?> / <?=$target_rows2[item4]?></td></tr>
+													<tr bgcolor="#ffffff"><td>대내 : </td><td align="right"> <?=$reserve_item5?> / <?=$target_rows2[item5]?></td></tr>
+													<tr bgcolor="#ffffff"><td>유초 : </td><td align="right"> <?=$reserve_item6?> / <?=$target_rows2[item6]?></td></tr>
+													<tr bgcolor="#ffffff"><td>심초 : </td><td align="right"> <?=$reserve_item7?> / <?=$target_rows2[item7]?></td></tr>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>-->
+									<?
+										
+									?>
+									<table cellpadding="0" cellspacing="0" border="0" width="120" bgcolor="#c6c6c6">
+													<?
+														
+														if($view_item1 == "Y" || $view_item1 == "on"){
+															
+													?>
+													<tr align="center"  <?if($reserve_item1 >= $target_rows2[item1]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td ><b>종합</b> </td>
+														<td> <?=$reserve_item1?> / <?=$target_rows2[item1]?></td>
+													<?
+														$plus_slot = $target_rows2[item1] - $reserve_item1;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item1','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" 
+														onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item1','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25" height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item1','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25" height="23" border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item2 == "Y" || $view_item2 == "on"){
+													?>
+													<tr  align="center"  bgcolor="#ffffff">
+														<td><b>일반</b> </td>
+														<td > <?=$reserve_item2?> / <?=$target_rows2[item2]?></td>
+													<?
+														$plus_slot = $target_rows2[item3] - $reserve_item3;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item2','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item2','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item2','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item3 == "Y" || $view_item3 == "on"){
+													?>
+													<tr align="center"  bgcolor="#ffffff">
+														<td><b>대내</b> </td>
+														<td >  <?=$reserve_item3?> / <?=$target_rows2[item3]?></td>
+														<?
+														$plus_slot = $target_rows2[item3] - $reserve_item3;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item3','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item3','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item3','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item4 == "Y" || $view_item4 == "on"){
+													?>
+													<tr align="center"  bgcolor="#ffffff">
+														<td><b>유초</b> </td>
+														<td >  <?=$reserve_item4?> / <?=$target_rows2[item4]?></td>
+														<?
+														$plus_slot = $target_rows2[item4] - $reserve_item4;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item4','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item4','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item4','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item5 == "Y" || $view_item5 == "on"){
+													?>
+													<tr align="center"  bgcolor="#ffffff">
+														<td><b>MRI</b> </td>
+														<td > <?=$reserve_item5?> / <?=$target_rows2[item5]?></td>
+														<?
+														$plus_slot = $target_rows2[item5] - $reserve_item5;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item5','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item5','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item5','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item6 == "Y" || $view_item6 == "on"){
+													?>
+													<tr align="center"  bgcolor="#ffffff">
+														<td><b>심초</b> </td>
+														<td > <?=$reserve_item6?> / <?=$target_rows2[item6]?></td>
+														<?
+														$plus_slot = $target_rows2[item6] - $reserve_item6;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item6','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"> </a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item6','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item6','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item7 == "Y" || $view_item7 == "on"){
+													?>
+													<tr align="center"  bgcolor="#ffffff">
+														<td><b>VIP</b> </td>
+														<td > <?=$reserve_item7?> / <?=$target_rows2[item7]?></td>
+														<?
+														$plus_slot = $target_rows2[item7] - $reserve_item7;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item7','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" width="25"  height="23" border="0"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item7','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item7','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<?
+														}
+													?>
+													</tr>
+												</table>
+								<?
+
+							}
+							else{#지정일도 아닐때
+								$sel_day = date("w",strtotime($sel_week_end));
+								
+								if($sel_day == "6"){#토요일 반일
+									$ban_query = "select * from reserve_setday where  view_state='Y' and day_type='2' and timezone='".$k."'";
+									//echo $ban_query;
+									
+									$ban_result = mysql_query($ban_query);
+									$ban_rows = mysql_fetch_array($ban_result);
+
+									#예약 체크
+									$chk_query = "select * from reserve_list where left(reserve_day,10)='".$sel_week_end."' and reserve_time='".$k."' and view_state='Y'";
+									$chk_result = mysql_query($chk_query);
+									$reserve_item1=0;$reserve_item2=0;$reserve_item3=0;$reserve_item4=0;$reserve_item5=0;$reserve_item6=0;$reserve_item7=0;
+									while($chk_rows = mysql_fetch_array($chk_result)){
+										if($chk_rows[reserve_type] == "item1"){
+											$reserve_item1++;
+										}
+										else if($chk_rows[reserve_type] == "item2"){
+											$reserve_item2++;
+										}
+										else if($chk_rows[reserve_type] == "item3"){
+											$reserve_item3++;
+										}
+										else if($chk_rows[reserve_type] == "item4"){
+											$reserve_item4++;
+										}
+										else if($chk_rows[reserve_type] == "item5"){
+											$reserve_item5++;
+										}
+										else if($chk_rows[reserve_type] == "item6"){
+											$reserve_item6++;
+										}
+										else if($chk_rows[reserve_type] == "item7"){
+											$reserve_item7++;
+										}
+									}
+									
+									?>
+									<table cellpadding="0" cellspacing="0" border="0" width="100%" >
+										<tr align="center">
+											<td bgcolor="#f7f7f7" width="50%"> 
+												<!--<table cellpadding="0" cellspacing="0" width="100%" >
+
+													<?
+													if($ban_rows[item1] == ""){
+													?>
+													<tr align="center" height="40">
+														<td><img src="/admin/img/btn_unreserve.gif" border="0"></td>
+													
+														<td><img src="/admin/img/btn_unreserve_detail_search.gif" width="42"></td>
+													</tr>
+													<?
+													}
+													else{
+													?>
+													<tr align="center" height="40">
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new');"><img src="/admin/img/btn_reserve2.gif" border="0"></a></td>
+													
+														<td><img src="/admin/img/btn_reserve2_detail_search.gif" width="42"></td>
+													</tr>
+													<?
+													}
+													?>
+												</table>-->
+												
+												<table cellpadding="0" cellspacing="0" border="0" width="120" bgcolor="#c6c6c6">
+													<?
+														if($view_item1 == "Y" || $view_item1 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item1 >= $ban_rows[item1]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td ><b>종합</b> </td>
+														<td> <?=$reserve_item1?> / <?=$ban_rows[item1]?></td>
+													<?
+														$plus_slot = $ban_rows[item1] - $reserve_item1;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item1','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item1','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25" height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item1','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25" height="23" border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item2 == "Y" || $view_item2 == "on"){
+													?>
+
+													<tr  align="center"  <?if($reserve_item2 >= $ban_rows[item2]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>일반</b> </td>
+														<td > <?=$reserve_item2?> / <?=$ban_rows[item2]?></td>
+													<?
+														$plus_slot = $ban_rows[item2] - $reserve_item2;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item2','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item2','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item2','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item3 == "Y" || $view_item3 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item3 >= $ban_rows[item3]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>대내</b> </td>
+														<td >  <?=$reserve_item3?> / <?=$ban_rows[item3]?></td>
+														<?
+														$plus_slot = $ban_rows[item3] - $reserve_item3;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item3','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item3','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item3','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item4 == "Y" || $view_item4 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item4 >= $ban_rows[item4]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>유초</b> </td>
+														<td >  <?=$reserve_item4?> / <?=$ban_rows[item4]?></td>
+														<?
+														$plus_slot = $ban_rows[item4] - $reserve_item4;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item4','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item4','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item4','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item5 == "Y" || $view_item5 == "on"){
+													?>
+													<tr align="center" <?if($reserve_item5 >= $ban_rows[item5]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>MRI</b> </td>
+														<td > <?=$reserve_item5?> / <?=$ban_rows[item5]?></td>
+														<?
+														$plus_slot = $ban_rows[item5] - $reserve_item5;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item5','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item5','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item5','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item6 == "Y" || $view_item6 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item6 >= $ban_rows[item6]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>심초</b> </td>
+														<td > <?=$reserve_item6?> / <?=$ban_rows[item6]?></td>
+														<?
+														$plus_slot = $ban_rows[item6] - $reserve_item6;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item6','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"> </a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item6','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item6','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+														if($view_item7 == "Y" || $view_item7 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item7 >= $ban_rows[item7]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>VIP</b> </td>
+														<td > <?=$reserve_item7?> / <?=$ban_rows[item7]?></td>
+														<?
+														$plus_slot = $ban_rows[item7] - $reserve_item7;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item7','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" width="25"  height="23" border="0"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item7','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item7','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<?
+														}
+														
+													?>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<?
+								}
+								else if($sel_day == "0"){#일요일 휴무
+								}
+								else{#전일
+									$situation_query = "select * from reserve_setday where  view_state='Y' and day_type='1' and timezone='".$k."'";
+									//echo $target_query;
+									$situation_result = mysql_query($situation_query);
+									$situation_rows = mysql_fetch_array($situation_result);
+
+									#예약 체크
+									$chk_query = "select * from reserve_list where left(reserve_day,10)='".$sel_week_end."' and reserve_time='".$k."' and view_state='Y'";
+									$chk_result = mysql_query($chk_query);
+									$reserve_item1=0;$reserve_item2=0;$reserve_item3=0;$reserve_item4=0;$reserve_item5=0;$reserve_item6=0;$reserve_item7=0;
+									while($chk_rows = mysql_fetch_array($chk_result)){
+										if($chk_rows[reserve_type] == "item1"){
+											$reserve_item1++;
+										}
+										else if($chk_rows[reserve_type] == "item2"){
+											$reserve_item2++;
+										}
+										else if($chk_rows[reserve_type] == "item3"){
+											$reserve_item3++;
+										}
+										else if($chk_rows[reserve_type] == "item4"){
+											$reserve_item4++;
+										}
+										else if($chk_rows[reserve_type] == "item5"){
+											$reserve_item5++;
+										}
+										else if($chk_rows[reserve_type] == "item6"){
+											$reserve_item6++;
+										}
+										else if($chk_rows[reserve_type] == "item7"){
+											$reserve_item7++;
+										}
+									}
+									?>
+
+									<!--<table cellpadding="0" cellspacing="0" border="0" width="100%" >
+										<tr align="center">
+											<td bgcolor="#f7f7f7" width="50%"> 
+												<table cellpadding="0" cellspacing="0" width="100%" >
+													<tr align="center" height="40">
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new');"><img src="/admin/img/btn_reserve2.gif" border="0"></a></td>
+													
+														<td><img src="/admin/img/btn_reserve2_detail_search.gif" width="42"></td>
+													</tr>
+												</table>
+												<br>
+												<table cellpadding="2" cellspacing="0" width="70%" >
+													<tr bgcolor="#ffffff"><td >종합 : </td><td align="right"> <?=$reserve_item1?> / <?=$situation_rows[item1]?></td></tr>
+													<tr bgcolor="#ffffff"><td>일반 : </td><td align="right"> <?=$reserve_item2?> / <?=$situation_rows[item2]?></td></tr>
+													<tr bgcolor="#ffffff"><td>VIP : </td><td align="right">  <?=$reserve_item3?> / <?=$situation_rows[item3]?></td></tr>
+													<tr bgcolor="#ffffff"><td>MRI : </td><td align="right">  <?=$reserve_item4?> / <?=$situation_rows[item4]?></td></tr>
+													<tr bgcolor="#ffffff"><td>대내 : </td><td align="right"> <?=$reserve_item5?> / <?=$situation_rows[item5]?></td></tr>
+													<tr bgcolor="#ffffff"><td>유초 : </td><td align="right"> <?=$reserve_item6?> / <?=$situation_rows[item6]?></td></tr>
+													<tr bgcolor="#ffffff"><td>심초 : </td><td align="right"> <?=$reserve_item7?> / <?=$situation_rows[item7]?></td></tr>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>-->
+									
+									<table cellpadding="0" cellspacing="0" border="0" width="120" bgcolor="#c6c6c6">
+													<?
+														if($view_item1 == "Y" || $view_item1 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item1 >= $situation_rows[item1]){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td ><b>종합</b> </td>
+														<td> <?=$reserve_item1?> / <?=$situation_rows[item1]?></td>
+													<?
+														$plus_slot = $situation_rows[item1] - $reserve_item1;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item1','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <img src="/admin/img/btn_inquiry.gif" width="25" height="23" border="0" onclick="popup_view('<?=$sel_week_end?>','<?=$k?>','new','item1','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <img src="/admin/img/btn_inquiry.gif" width="25" height="23" border="0" onclick="popup_view('<?=$sel_week_end?>','<?=$k?>','new','item1','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?
+														}
+													?>
+													<?
+														if($view_item2 == "Y" || $view_item2 == "on"){
+													?>
+													<tr  align="center"  <?if($reserve_item2 >= $situation_rows[item2] ){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>일반</b> </td>
+														<td > <?=$reserve_item2?> / <?=$situation_rows[item2]?></td>
+													<?
+														$plus_slot = $situation_rows[item2] - $reserve_item2;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item2','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item2','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item2','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?}?>
+													<?
+														if($view_item3 == "Y" || $view_item3 == "on"){
+													?>
+													<tr align="center" <?if($reserve_item3 >= $situation_rows[item3] ){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>대내</b> </td>
+														<td >  <?=$reserve_item3?> / <?=$situation_rows[item3]?></td>
+														<?
+														$plus_slot = $situation_rows[item3] - $reserve_item3;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item3','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item3','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23" border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item3','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?}?>
+													<?
+														if($view_item4 == "Y" || $view_item4 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item4 >= $situation_rows[item4] ){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>유초</b> </td>
+														<td >  <?=$reserve_item4?> / <?=$situation_rows[item4]?></td>
+														<?
+														$plus_slot = $situation_rows[item4] - $reserve_item4;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item4','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item4','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item4','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?}?>
+													<?
+														if($view_item5 == "Y" || $view_item5 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item5 >= $situation_rows[item5] ){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>MRI</b> </td>
+														<td > <?=$reserve_item5?> / <?=$situation_rows[item5]?></td>
+														<?
+														$plus_slot = $situation_rows[item5] - $reserve_item5;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item5','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item5','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item5','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?}?>
+													<?
+														if($view_item6 == "Y" || $view_item6 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item6 >= $situation_rows[item6] ){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>심초</b> </td>
+														<td > <?=$reserve_item6?> / <?=$situation_rows[item6]?></td>
+														<?
+														$plus_slot = $situation_rows[item6] - $reserve_item6;
+														if($situation_rows[item6] - $reserve_item6 > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item6','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" border="0" width="25"  height="23"> </a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item6','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item6','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<tr>
+														<td height="1px" colspan="4" background="/img/dot.gif" style="background-repeat:repeat-x"></td>
+													</tr>
+													<?}?>
+													<?
+														if($view_item7 == "Y" || $view_item7 == "on"){
+													?>
+													<tr align="center"  <?if($reserve_item7 >= $situation_rows[item7] ){echo "bgcolor='#d0d0d0'";}else{ echo "bgcolor='#ffffff'";}?>>
+														<td><b>VIP</b> </td>
+														<td > <?=$reserve_item7?> / <?=$situation_rows[item7]?></td>
+														<?
+														$plus_slot = $situation_rows[item7] - $reserve_item7;
+														if($plus_slot > 0 && $today<=$sel_week_end){
+													?>
+														<td><a href="javascript:void(0)" onclick="javascript:popup('<?=$sel_week_end?>','<?=$k?>','new','item7','<?=$plus_slot?>','2','2','07%3A00+%7E+07%3A30');" ><img src="/admin/img/btn_reserve2.gif" width="25"  height="23" border="0"></a> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item7','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+														else{
+													?>
+														<td><img src="/admin/img/btn_unreserve.gif" border="0" width="25"  height="23"> <a href="javascript:void(0)" onclick="javascript:popup_view('<?=$sel_week_end?>','<?=$k?>','new','item7','2','2','07%3A00+%7E+07%3A30');" style='cursor:pointer;'><img src="/admin/img/btn_inquiry.gif" width="25"  height="23"  border="0"></a></td>
+													<?
+														}
+													?>
+													</tr>
+													<?}?>
+													</tr>
+												</table>
+
+									<?
+								}
+							}
+						}
+
+
+						//echo $sel_week_end.",".$k;
+				?>
+				</td>
+			<?
+					}
+				}
+			?>
+			</tr>
+			<?
+			}
+			?>
+
+</center>
+
+</table> 
+
+
+
+	</div>
+	<div class="rt2"></div>
+	<div class="rt3"></div>
+	<div class="rt4"></div>
+	<div class="rt5"></div>
+	<div class="rt6"></div>
+	<div class="rt7"></div>
+</div>

@@ -1,0 +1,289 @@
+<?
+/******************************
+달력
+******************************/
+
+/********** 사용자 설정값 **********/
+$startYear        = 2012;
+$endYear        = date( "Y" ) + 4;
+
+/********** 입력값 **********/
+$year            = ( $_GET['toYear'] )? $_GET['toYear'] : date( "Y" );
+$month            = ( $_GET['toMonth'] )? $_GET['toMonth'] : date( "m" );
+$doms            = array("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT");
+
+/********** 계산값 **********/
+$mktime            = mktime( 0, 0, 0, $month, 1, $year );      // 입력된 값으로 년-월-01을 만든다
+$days            = date( "t", $mktime );                        // 현재의 year와 month로 현재 달의 일수 구해오기
+$startDay        = date( "w", $mktime );                        // 시작요일 알아내기
+
+// 지난달 일수 구하기
+$prevDayCount    = date( "t", mktime( 0, 0, 0, $month, 0, $year ) ) - $startDay + 1;
+
+$nowDayCount    = 1;                                            // 이번달 일자 카운팅
+$nextDayCount    = 1;                                          // 다음달 일자 카운팅
+
+// 이전, 다음 만들기
+$prevYear        = ( $month == 1 )? ( $year - 1 ) : $year;
+$prevMonth        = ( $month == 1 )? 12 : ( $month - 1 );
+$nextYear        = ( $month == 12 )? ( $year + 1 ) : $year;
+$nextMonth        = ( $month == 12 )? 1 : ( $month + 1 );
+
+// 출력행 계산
+$setRows = ceil( ( $startDay + $days ) / 7 );
+
+?>
+<script>
+function openWin(page, bar) {
+	if(!bar) bar = "no";
+
+	var win = window.open(page, 'POP', 'left=100, top=100, toolbar=no, location=no, directories=no, status=yes, menuBar=no, scrollBars='+bar+', resizable=no');
+	win.focus();
+}
+</script>
+<script>
+	function popup(sel_week_end,mode, fRoomno, fRstno, fTimes) {
+		popupLayer("/admin/slotset/popup2.html?sel_week_end="+sel_week_end+"&mode="+mode+ "&roomno=" + fRoomno + "&rstno=" + fRstno + "&times=" + fTimes, 600, 410);
+	}
+	function popup_view(sel_week_end,mode, fRoomno, fRstno, fTimes) {
+		popupLayer("/admin/slotset/popup_view2.html?sel_week_end="+sel_week_end+"&mode="+mode+ "&roomno=" + fRoomno + "&rstno=" + fRstno + "&times=" + fTimes, 1000, 520);
+	}
+
+//http://mediroad.net/admin/slotset/popup2.html?sel_week_end=2013-07-26&mode=new&roomno=2&rstno=2&times=07:00+~+07:30
+	
+
+</script>
+<script language="JavaScript">
+	<!--
+	//엑셀파일다운로드
+	function memberExcelDown(table,year,month) {
+		var url="/admin/slotset/procExceldown2.php?table="+table+"&year="+year+"&month="+month;
+		location.href(url);
+	}
+	//-->
+	</script>
+    
+    
+<div class="contants_01_1440">
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center">
+
+
+<form method="get" style="margin:0; padding:0;">
+	<input type="hidden" name="dir" value="<?=$dir?>">
+	<input type="hidden" name="menu" value="<?=$menu?>">
+<table width="100%" cellpadding="0" cellspacing="0">
+
+    <tr>
+        <td height="30">
+        	<ul class="outchkupHtml_ul">
+            	<li><input type="button" class='btn1' onclick="location.href='<?=$_SERVER['PHP_SELF']?>?dir=<?=$dir?>&menu=<?=$menu?>&toYear=<?=$prevYear?>&toMonth=<?=$prevMonth?>'" value=" << "></li>
+                <li>
+                	<select name="toYear" onchange="submit();">
+                        <? for( $i = $startYear; $i < $endYear; $i++ ) { ?>
+                        <option value="<?=$i?>" <?=($i==$year)?"selected":""?>><?=$i?></option>
+                        <? } ?>
+                    </select>년
+                </li>
+                <li>
+                	<select name="toMonth" onchange="submit();">
+                        <? for( $i = 1; $i <= 12; $i++ ) { ?>
+                        <option value="<?=$i?>" <?=($i==$month)?"selected":""?>><?=$i?></option>
+                        <? } ?>
+        			</select>월
+                </li>
+                <li><input type="button" class='btn1' onclick="location.href='<?=$_SERVER['PHP_SELF']?>?dir=<?=$dir?>&menu=<?=$menu?>&toYear=<?=$nextYear?>&toMonth=<?=$nextMonth?>'" value=" >> "></li>
+            </ul>        
+    	</td>
+		<td align="right">
+     		<a href="#" onclick="javascript:memberExcelDown('reserve_outchecklist','<?=$year?>','<?=$month?>')">
+            	<img src='/admin/img/btn_excel.gif' border="0">
+            </a>
+		</td>
+    </tr>
+</table>
+</form>
+<table width="100%" cellpadding=0 cellspacing=0 class="calendar_table_02">
+
+    <tr>
+    		<? 
+			for( $i = 0; $i < count( $doms ); $i++ ) {
+				if($i==0){
+		?>
+				<th height="35"><span class="redText"><?=$doms[$i]?></span></th>
+		<?
+				}
+				else if($i == "6"){
+		?>
+				<th width="160"><span class="blueText"><?=$doms[$i]?></span></th>
+		<?
+				}
+				else{
+		?>
+				<th width="160" ><?=$doms[$i]?></th>
+        <? 
+				}
+			}
+		?>
+    </tr>
+
+    <? for( $rows = 0; $rows < $setRows; $rows++ ) { ?>
+    <tr>
+        <?
+        for( $cols = 0; $cols < 7; $cols++ )
+        {
+            // 셀 인덱스 만들자
+            $cellIndex    = ( 7 * $rows ) + $cols;
+            ?>
+
+            <?
+            // 이번달이라면
+            if ( $startDay <= $cellIndex && $nowDayCount <= $days ) { 
+				if($nowDayCount <10){
+					$realday = "0".$nowDayCount;
+				}
+				else{
+					$realday = $nowDayCount;
+				}
+				if($month <10){
+					$months = $month;
+				}
+				else{
+					$months = $month;
+				}
+				$cnt = "";
+				$sel_date = $year."-".$months."-".$realday;
+
+				//echo $sel_date;
+
+				if(date("Y-m-d") > $sel_date){
+					$img = "<img src='/admin/_img/button/IMG905220.gif'>";
+				}
+				else{
+					//$img = "<a href=\"javascript:popup('$sel_date','new','2','2','07%3A00+%7E+07%3A30');\" ><img src='/admin/_img/button/IMG905221.gif' border='0'></a>";
+					$img = "<a href=\"javascript:void(0)\" onclick=\"javascript:OpenManageFrame('/admin/slotset/popup2.html?sel_week_end=$sel_date&mode=new',1310,550);\"><img src='/admin/_img/button/IMG905221.gif' border='0'></a>";
+
+				}
+
+				$query = "select * from reserve_outchecklist where  left(start_day,10)='".$sel_date."' and view_state='Y'";
+				//echo $query;
+				$result = mysql_query($query);
+				$cnt = mysql_num_rows($result);
+				$view_list = "";
+				while($outcheck_rows = mysql_fetch_array($result)){
+					$business_query= "select * from admin_business where name='".$outcheck_rows[business_name]."'";
+					$business_result = mysql_query($business_query);
+					$business_rows = mysql_fetch_array($business_result);
+					
+					$view_list .= "▶ ".$outcheck_rows[business_name]." / ".$outcheck_rows[number_limit]."명 <br>[".$outcheck_rows[start_time]."~".$outcheck_rows[end_time]."]<br>";
+				}
+				//echo $view_list;
+				if($cnt == 0){
+					$img2 = "<img src='/admin/_img/button/IMG905222.gif'>";
+				}
+				else{
+					//http://mediroad.net/admin/slotset/popup_view3.html?sel_week_end=2013-07-30&mode=new&roomno=2&rstno=2&times=07:00+~+07:30
+
+
+					$img2 = "<a href=\"javascript:void(0)\" onclick=\"javascript:OpenManageFrame('/admin/slotset/popup_view2.html?sel_week_end=$sel_date&mode=new',1310,550);\"><img src='/admin/_img/button/IMG905223.gif' border='0'></a>";
+
+					//popupLayer("/admin/slotset/popup_view2.html?sel_week_end="+sel_week_end+"&mode="+mode+ "&roomno=" + fRoomno + "&rstno=" + fRstno + "&times=" + fTimes, 1000, 520);
+					//$img2 = "<a href=\"javascript:popup_view('$sel_date','new','2','2','07%3A00+%7E+07%3A30');\" ><img src='/admin/_img/button/IMG905223.gif' border='0'></a>";
+				}
+				//echo $cnt;
+			?>
+            <td align="center" class="dayBox">
+				<table border=0 width="100%">
+				<tr>
+				
+					<? 
+						if ( date( "w", mktime( 0, 0, 0, $month, $nowDayCount, $year ) ) == 6 ) { 
+
+							//echo $sel_date;
+					?>
+					<td valign="top"  align="left" height="130">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="day" align="left"><?=$nowDayCount++?></td>
+							</tr>
+							<tr align="center">
+								<td height="35"><?=$img?></td>
+							</tr>
+							<tr align="center">
+								<td><?=$img2?></td>
+							</tr>
+							<tr>
+								<td><?=$view_list?></td>
+							</tr>
+						</table>
+					</td>
+
+				   
+					<? } else if ( date( "w", mktime( 0, 0, 0, $month, $nowDayCount, $year ) ) == 0 ) {#일요일 ?>
+					<td valign="top"  align="left"  height="130">
+						<table cellpadding="0" cellspacing="0" border="0" >
+							<tr>
+								<td class="day" align="left"><?=$nowDayCount++?></td>
+							</tr>
+						</table>
+						
+					</td>
+				   
+					<? } else { ?>
+					<td  valign="top"  align="left"  height="130">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="day" align="left"><?=$nowDayCount++?></td>
+							</tr>
+							<tr align="center">
+								<td height="35"><?=$img?></td>
+							</tr>
+							<tr align="center">
+								<td><?=$img2?></td>
+							</tr>
+							<tr>
+								<td><?=$view_list?></td>
+							</tr>
+						</table>
+
+					
+					</td>
+					<? } ?>
+				</tr>
+				</table>
+            </td>
+           
+            <?
+            // 이전달이라면
+            } else if ( $cellIndex < $startDay ) { ?>
+            <td class="nodayBox" valign="top" align="left">
+            		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="left" class="offday"><?=$prevDayCount++?></td>
+					</tr>
+				</table>
+            </td>
+         
+            <?
+            // 다음달 이라면
+            } else if ( $cellIndex >= $days ) { ?>
+            <td class="nodayBox" valign="top" align="left">
+            		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="left" class="offday"><?=$nextDayCount++?></td>
+					</tr>
+				</table>
+            </td>
+            <? }
+        }
+        ?>
+    </tr>
+    <? } ?>
+
+</table> 
+
+				</td>
+			</tr>
+		</table>
+</div>

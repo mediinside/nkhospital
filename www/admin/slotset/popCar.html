@@ -1,0 +1,185 @@
+<?
+session_start();
+include  $DOCUMENT_ROOT."/inc/lib.php";
+
+$db	= new IPOLICE;
+
+include "../inc/chkPopLogin.php";
+//include "../inc/func.php";
+?>
+<Link rel="stylesheet" type="text/css" href="../inc/style.css">
+<Link rel="stylesheet" type="text/css" href="../inc/menu.css">
+
+<script language="JavaScript">
+<!--
+resizeTo(755, 600);
+
+function selectBook(seq,name) {
+	val = opener.form.car_sort.value;
+
+	tmp = val.split("|");
+
+	for(var i = 0; i < tmp.length; i++) {
+		if(tmp[i] == seq) {
+			alert('이미 추가된 차량입니다.');
+			return false;
+		}
+	}
+
+	if(confirm('차량을 등록하시겠습니까?')) {
+
+		
+		val = name;
+
+		opener.form.car_sort.value = val
+		self.close();
+	}
+}
+
+function onStyle(obj) {
+	obj.style.color = "#696A6B";
+	obj.style.position = "relative";
+	obj.style.top = 1;
+	obj.style.left = +1;
+}
+
+function offStyle(obj) {
+	obj.style.color = "#696A6B";
+	obj.style.position = "relative";
+	obj.style.top = 0;
+	obj.style.left = 0;
+}
+//-->
+</script>
+
+
+<div style="margin : 0px 0px 0px 0px; width: 710px;">
+	<div class="rt7"></div>
+	<div class="rt6"></div>
+	<div class="rt5"></div>
+	<div class="rt4"></div>
+	<div class="rt3"></div>
+	<div class="rt2"></div>
+	
+	<div class="rtoutLRline">
+		<table width='700' height='' border='0' cellpadding='0' cellspacing='0' align='center'>
+		<form name='formSearch' method='get'>
+		<tr>
+			<td align='center'>
+				<select name='field' class='font_small'>
+					<option value='' <?if($field == "") echo "selected";?>>전체</option>
+					<option value='product_name' <?if($field == "product_name") echo "selected";?>>담당자명</option>
+					<option value='author_name' <?if($field == "author_name") echo "selected";?>>부서명</option>
+				</select>
+				<input type='text' name='keyword' class='textfield' value='<?=$keyword?>'>
+				<input type='submit' style='width:50px; height:18px;' value='검 색' class='btn'>
+			</td>
+		</tr>
+		</form>
+		</table>
+		<br>
+		<?
+			$numPerPage		=	$listNum ? $listNum : 50;				// 게시판 리스트 출력수
+			$pagePerList	=	$pagePerList ? $pagePerList : 10;	// 게시판 페이징 노출수
+			$pageNum		=	$pageNum ? $pageNum : 1;
+			$column			=	$column ? $column : "seq";
+			$order			=	$order ? $order :  "desc";
+
+			$searchQuery	=	"dir=".$dir."&menu=".$menu."&tbl=".$tbl."&field=".$field."&keyword=".$keyword."&listNum=".$listNum."&column=".$column."&order=".$order;
+
+			$sel_q = "SELECT count(*) total FROM reserve_car WHERE  view_state='Y'";
+
+			//$sel_q = "select count(T1.PRODUCT_INFO_NUM) as total from igosiin.TB_PRODUCT_INFO as T1 left join igosiin.TB_PRODUCTIMG_INFO as T2 on T1.PRODUCT_INFO_NUM=T2.PRODUCT_INFO_NUM 
+//left join igosiin.TB_PRODUCT_PRICE as T3 on igosiin.T1.PRODUCT_INFO_NUM=T3.PRODUCT_INFO_NUM left join igosiin.TB_PRODUCT_COUNT as T4 on T1.PRODUCT_INFO_NUM=T4.PRODUCT_INFO_NUM 
+//left join igosiin.TB_PRODUCT_FAVOR as T5 on igosiin.T1.PRODUCT_INFO_NUM=T5.PRODUCT_INFO_NUM where T1.STATE_CD='Y' and substring(T1.PRODUCT_CD, 5, 1)='A' and substring(T1.PRODUCT_CD, 7, 2)='06' 
+//and substring(T1.PRODUCT_CD, 9, 2)='01' 
+//and substring(PRODUCT_CD, 5, 1)!='Z' order by T1.PRODUCT_INFO_NUM desc";
+//echo $sel_q;
+			$db->query($sel_q);
+			$db->next_record();
+			$totalCount					=	$db->f("total");
+			$start						=	($pageNum - 1) * $numPerPage;
+			$end						=	$start + $numPerPage;
+			if($end > $totalCount) $end	=	$totalCount;
+			$nowData					=	$end - $start;
+
+
+			// 해당 페이지 셀렉트
+			$sel_q = "SELECT * FROM reserve_car WHERE view_state='Y'";
+			$sel_q .= $where;
+			if($field && $keyword) $sel_q .= " AND ".$field." LIKE '%".$keyword."%'";
+			$sel_q .= " ORDER BY ".$column." ".$order." LIMIT ".$start.", ".$numPerPage;
+
+			//echo $sel_q;
+			
+			//$sel_q = "select * from igosiin.TB_PRODUCT_INFO as T1 left join igosiin.TB_PRODUCTIMG_INFO as T2 on T1.PRODUCT_INFO_NUM=T2.PRODUCT_INFO_NUM 
+//left join igosiin.TB_PRODUCT_PRICE as T3 on igosiin.T1.PRODUCT_INFO_NUM=T3.PRODUCT_INFO_NUM left join igosiin.TB_PRODUCT_COUNT as T4 on T1.PRODUCT_INFO_NUM=T4.PRODUCT_INFO_NUM 
+//left join igosiin.TB_PRODUCT_FAVOR as T5 on igosiin.T1.PRODUCT_INFO_NUM=T5.PRODUCT_INFO_NUM where T1.STATE_CD='Y' and substring(T1.PRODUCT_CD, 5, 1)='A' and substring(T1.PRODUCT_CD, 7, 2)='06' 
+//and substring(T1.PRODUCT_CD, 9, 2)='01' 
+//and substring(PRODUCT_CD, 5, 1)!='Z' order by T1.PRODUCT_INFO_NUM desc";
+
+//echo $sel_q;
+			$db->query($sel_q);
+		?>
+		<table width='700' height='' border='0' cellpadding='0' cellspacing='1' align='center' bgcolor='#CCCCCC'>
+		<tr height='2'>
+			<td bgcolor='#CCCCCC' colspan='5'></td>
+		</tr>
+		<tr height='25' bgcolor='#eeeeee' align='center'>
+			<td width='50'><b>번호</b></td>
+			<td><b>차량명</b></td>
+			<td width='100'><b>책임자</b></td>
+			<td width='100'><b>차량번호</b></td>
+			<td width='100'><b>차종</b></td>
+			<td width='100'><b>수송인원</b></td>
+			
+		</tr>
+		<?
+		if($nowData == 0) {
+		?>
+		<tr height="30" bgcolor='#FFFFFF'>
+			<td class="font_small" colspan='5' align='center'>등록된 담당자가 없습니다.</td>
+		</tr>
+		<?}
+		else {
+			for($i = 0; $i < $nowData; $i++) {
+				$db->next_record();
+				$no = $totalCount - $start - $i;
+		?>
+		<tr height="30" bgcolor='#FFFFFF' align='center'>
+			<td width='50' style='padding : 5 0 5 0' class="font_small"><?=$no?></td>
+			<td style='padding : 5 0 5 5' class="font_small" align='left'><span onMouseOver="onStyle(this)" onMouseOut="offStyle(this)" onClick="return selectBook('<?=$db->f("seq")?>','<?=$db->f("car_name")?>')" style="cursor:hand"><?=$db->f("car_name")?></span></td>
+			<td width='100' style='padding : 5 0 5 0' class="font_small"><?=$db->f("car_name2")?></td>
+			<td width='100' style='padding : 5 0 5 0' class="font_small"><?=$db->f("car_number")?></td>
+			<td width='100' style='padding : 5 0 5 0' class="font_small"><?=$db->f("car_sort")?></td>
+			<td width='100' style='padding : 5 0 5 0' class="font_small"><?=$db->f("car_limit")?></td>
+		</tr>
+		<?
+			}
+		}
+		?>
+		<tr>
+			<td height='25' colspan='8' bgcolor='#EEEEEE' align='center'><?=@funcPaging($totalCount, $numPerPage, $pagePerList, $pageNum, $searchQuery);?></td>
+		</tr>
+		</table>
+	</div>
+	<div class="common1">
+		<table width='700' height='' border='0' cellpadding='0' cellspacing='0'>
+		<tr align='right'>
+			<td width="700" align='right' style='padding:5 5 0 0'>
+				<input type='button' style='width:50px; height:18px;' value='닫 기' class='btn' onClick="self.close();">
+			</td>
+		</tr>
+		</table>
+	</div>
+	<div class="rt2"></div>
+	<div class="rt3"></div>
+	<div class="rt4"></div>
+	<div class="rt5"></div>
+	<div class="rt6"></div>
+	<div class="rt7"></div>
+</div>
+<?
+if($db)
+	$db->disconnect();
+?>

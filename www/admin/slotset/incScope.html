@@ -1,0 +1,57 @@
+<?
+session_start();
+$query = "select * from reserve_scope order by seq desc limit 0,1";
+$result = mysql_query($query);
+$rows = mysql_fetch_array($result);
+?>
+
+<div class="contants_01_1440">
+	<div style="padding:10px 0 0 0; margin:0;">
+		<table width='100%' border='0' cellpadding='0' cellspacing='0' class="table_style_01">
+		<form name='form' method='post' action='/admin/slotset/procScope.php' enctype='multipart/form-data' onsubmit="return form_check(this)">
+		<input type='hidden' name='uploadDir' value='<?=$uploadDir?>'>
+		<input type='hidden' name='tbl' value='<?=$tbl?>'>
+		<input type='hidden' name='dir' value='<?=$dir?>'>
+		<input type='hidden' name='menu' value='<?=$menu?>'>
+		<input type='hidden' name='mode' value='<?=$mode?>'>
+		<input type='hidden' name='seq' value='<?=$rows[seq]?>'>
+		
+			
+<?
+				
+?>
+			<tr>
+				<th width="30%" height="30">시간대</th>
+				<th width="10%">VIP</th>
+				<th width="10%">일반</th>
+				<th width="10%">종합</th>
+				<th width="10%">MRI</th>
+				<th width="10%">대장내시경</th>
+				<th width="10%">유방초음파</th>
+				<th width="10%">심장초음파</th>
+			</tr>
+			<tr height="30" align="center">
+				<th>예약불가범위</th>
+				<td><input type="text" name="item1" value="<?=$rows[item1]?>" size="2"></td>
+				<td><input type="text" name="item2" value="<?=$rows[item2]?>" size="2"></td>
+				<td><input type="text" name="item3" value="<?=$rows[item3]?>" size="2"></td>
+				<td><input type="text" name="item4" value="<?=$rows[item4]?>" size="2"></td>
+				<td><input type="text" name="item5" value="<?=$rows[item5]?>" size="2"></td>
+				<td><input type="text" name="item6" value="<?=$rows[item6]?>" size="2"></td>
+				<td><input type="text" name="item7" value="<?=$rows[item7]?>" size="2"></td>
+			</tr>
+			<tr height="50" align="center">
+				<td colspan="8">0 = 오늘 부터 예약가능, 1 = 오늘 + 1일 부터 예약가능 ...., n = 오늘 + n일 부터 예약가능 </td>
+			</tr>
+			
+			</table>
+		</table>
+        
+		<table width='100%' height='' border='0' cellpadding='0' cellspacing='0'>
+		<tr>
+			<td align="right" height="30"><input type="submit" style='width:100px; height:18px;' class="btn" value="저장"></td>
+		</tr>
+		</form>
+		</table>
+	</div>
+</div>

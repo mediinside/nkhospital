@@ -1,0 +1,315 @@
+<?
+session_start();
+$nowtoday = date("Y-m-d");
+if($start_date == ""){
+	$today = date("Y-m-d");
+}
+else{
+	$today = $start_date;
+}
+if($start_date == ""){
+	$start_date = $today;
+}
+echo $form;
+//echo $start_date;
+include "../inc/dbConn.php";
+include "../inc/chkLogin.php";
+include "../inc/func.php";
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/styles/popup.css" />
+<link href="/SEditor/css/default.css" rel="stylesheet" type="text/css" />
+<script>
+function selectCondition(val) {
+	
+	if(val == "종합") {
+		POSITION.style.display = "";
+		
+	}
+	else{
+		POSITION.style.display = "none";	
+	}
+	
+}
+function add_item(item){
+	window.open("/admin/slotset/add_item.html","additem","width=500,height=500");
+}
+function  send(sel_item, start_date, timezone,sel_form){
+	//var sel_form = sel_form;
+	//alert(sel_form);
+//	var sel_form = eval("opener.form"+sel_form+".reserve_day"+sel_form);
+	var sel_form2 = eval("opener.form"+sel_form+".reserve_time"+sel_form);
+	alert(sel_form2);
+
+	//sel_form.value = start_date;
+	//sel_form2.value = timezone;
+	//sel_form.reserve_time.value = timezone;
+	//opener.sel_form.reserve_time.value = timezone;
+	
+//	self.close();
+}
+</script>
+</head>
+<script src="/admin/inc/calendar.js" language=javascript></script>
+
+	<div class="popup"> <!-- 레이어 팝업으로 사용할 경우 삽입코드 : style="position:absolute; left:200px; top:200px;" -->
+		<h1 class="popup_title">종합검진 추가선택 <a href="#" onclick="javascript:self.close();" class="close"><img src="/admin/img/popup_close.gif" alt="닫기" /></a></h1>
+		
+		<table cellpadding="5" cellspacing="3" border=0 width="100%">
+		<form name='formSearch' method='get'>
+		<input type='hidden' name='dir' value='<?=$dir?>'>
+		<input type='hidden' name='menu' value='<?=$menu?>'>
+		<input type='hidden' name='item' value='<?=$item?>'>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검사유형	
+				</td>
+				<td>
+					<input type="button" name="item" value="<?=$item?>" class="btn15" readonly>
+					
+				</td>
+			</tr>
+			<tr height="30" bgcolor="#ffffff">
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">일자선택	
+				</td>
+				<td colspan="11"><input type="text" name="start_date" size="10" class="textfield" value='<?=$start_date?>' onClick="Calendar(start_date);" style='cursor:pointer;'><img src="/admin/img/icon_cal.gif" onClick="Calendar(start_date);" >  <input type="image" src="/admin/img/btn_inquiry.gif"> 
+				</td>
+			</tr>
+			</form>
+		</table>
+		
+		<table cellpadding="5" cellspacing="3" border=0 width="100%">
+<?
+if($item == "종합"){
+	$sel_item = "item1";
+}
+else if($item == "일반"){
+	$sel_item = "item2";
+}
+else if($item == "대내경"){
+	$sel_item = "item3";
+}
+else if($item == "유초파"){
+	$sel_item = "item4";
+}
+else if($item == "MRI"){
+	$sel_item = "item5";
+}
+else if($item == "심초파"){
+	$sel_item = "item6";
+}
+else if($item == "VIP"){
+	$sel_item = "item7";
+}
+
+
+
+
+#휴일인지, 지정일인지, 반일인지, 평일인지 체크해서 해당 슬롯 보여줌
+//echo $start_date;
+
+$holiday_query = "select * from reserve_holiday where day_start='".$start_date."' and view_state='Y' and day_type='4'";
+//echo $holiday_query;
+$holiday_result = mysql_query($holiday_query);
+$holiday_cnt = mysql_num_rows($holiday_result);
+
+if($holiday_cnt > 0){
+?>
+	<tr>
+		<td>휴일입니다.
+		</td>
+	</tr>
+<?
+}
+else{
+	#지정일인지 체크함
+	$target_query = "select * from reserve_setday where day_start='".$start_date."' and view_state='Y' and day_type='3'";
+	$target_result = mysql_query($target_query);
+	$target_cnt = mysql_num_rows($target_result);
+	//echo $target_cnt;
+	if($target_cnt > 0){#지정일일때
+		$target_query2 = "select * from reserve_setday where day_start='".$start_date."' and view_state='Y' and day_type='3'";
+		$target_result2 = mysql_query($target_query2);
+		while($target_rows2 = mysql_fetch_array($target_result2)){
+			$reserve_query = "select * from reserve_list where reserve_day='".$start_date."' and reserve_time ='".$target_rows2[timezone]."' and reserve_type='".$sel_item."' and view_state='Y' and state='Y'";
+			$reserve_result = mysql_query($reserve_query);
+			$reserve_cnt = mysql_num_rows($reserve_result);
+			if($k%2 == 0){
+				echo "<tr width='50%'>";
+			}
+			//echo $situation_rows[$sel_item];
+			$check_slot = $target_rows2[$sel_item] - $reserve_cnt;
+			if($check_slot<=0 || $target_rows2[$sel_item] == 0){
+				$bgcolor="bgcolor='#ffffff'";
+			}
+			else{
+				$bgcolor="bgcolor='#ffffff'";
+			}
+			$sel_timezone = sel_time($target_rows2[timezone]);
+
+?>
+			<td width='50%' >
+				<table cellpadding="3" cellspacing="0" border="0" width="100%">
+					<tr height="25" bgcolor="#c2c2c2">
+						<td ><font color='#ffffff'><b><?=sel_time($target_rows2['timezone']);?></b></font></td>
+					</tr>
+					<tr bgcolor='#000000'>
+						<td height="25" <?=$bgcolor?>>슬롯 설정: <?=$target_rows2[$sel_item]?>  / 슬롯 예약: <?=$reserve_cnt?> 
+						<?
+							if($target_rows2[$sel_item] > $reserve_cnt && $nowtoday<=$start_date){
+								
+						?>
+							<input type="button" value="선택" class="btn15" onclick="javascript:send('<?=$sel_item?>','<?=$start_date?>','<?=$sel_timezone?>','<?=$form?>');">
+							
+						<?
+							
+							}
+						?>
+						</td>
+					</tr>
+				</table>
+<?
+			if($k%2 == 1 ){
+				echo "</tr>";
+			}
+			//echo $situation_rows[timezone];
+			//echo $situation_rows[$sel_item]."<br>";
+			$k++;
+		}
+		//echo "지정일";
+	}
+	else{#지정일이 아닐때
+		$sel_day = date("w",strtotime($start_date));
+		if($sel_day == "6"){#토요일 반일
+			$ban_query = "select * from reserve_setday where  view_state='Y' and day_type='2' ";
+			//echo $ban_query;
+			$ban_result = mysql_query($ban_query);
+			while($ban_rows = mysql_fetch_array($ban_result)){
+				$reserve_query = "select * from reserve_list where reserve_day='".$start_date."' and reserve_time ='".$ban_rows[timezone]."' and reserve_type='".$sel_item."' and view_state='Y' and state='Y'";
+				$reserve_result = mysql_query($reserve_query);
+				$reserve_cnt = mysql_num_rows($reserve_result);
+				if($k%2 == 0){
+					echo "<tr width='50%'>";
+				}
+				//echo $situation_rows[$sel_item];
+				$check_slot = $ban_rows[$sel_item] - $reserve_cnt;
+				if($check_slot<=0 || $ban_rows[$sel_item] == 0){
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				else{
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				$sel_timezone = sel_time($ban_rows[timezone]);
+
+	?>
+				<td width='50%' >
+					<table cellpadding="3" cellspacing="0" border="0" width="100%">
+						<tr height="25" bgcolor="#c2c2c2">
+							<td ><font color='#ffffff'><b><?=sel_time($ban_rows['timezone']);?></b></font></td>
+						</tr>
+						<tr bgcolor='#000000'>
+							<td height="25" <?=$bgcolor?>>슬롯 설정: <?=$ban_rows[$sel_item]?>  / 슬롯 예약: <?=$reserve_cnt?> 
+							<?
+								if($ban_rows[$sel_item] > $reserve_cnt && $nowtoday<=$start_date){
+									
+							?>
+								<input type="button" value="선택" class="btn15" onclick="javascript:send('<?=$sel_item?>','<?=$start_date?>','<?=$sel_timezone?>','<?=$form?>');">
+								
+							<?
+								
+								}
+							?>
+							</td>
+						</tr>
+					</table>
+	<?
+				if($k%2 == 1 ){
+					echo "</tr>";
+				}
+				//echo $situation_rows[timezone];
+				//echo $situation_rows[$sel_item]."<br>";
+				$k++;
+			}
+			//echo  "반일";
+		}
+		else if($sel_day == "0"){#일요일 휴무
+		?>
+		<tr>
+		<td>일요일입니다.
+		</td>
+	</tr>
+		<?
+		}
+		else{#전일
+			$situation_query = "select * from reserve_setday where  view_state='Y' and day_type='1'";
+			//echo $situation_query;
+			$situation_result = mysql_query($situation_query);
+			$k=0;
+			?>
+			<table cellpadding="5" cellspacing="1" border=0 width="100%" bgcolor="#dfdfdf">
+			<?
+			while($situation_rows = mysql_fetch_array($situation_result)){
+				$reserve_query = "select * from reserve_list where reserve_day='".$start_date."' and reserve_time ='".$situation_rows[timezone]."' and reserve_type='".$sel_item."' and view_state='Y' and state='Y'";
+				$reserve_result = mysql_query($reserve_query);
+				$reserve_cnt = mysql_num_rows($reserve_result);
+				if($k%2 == 0){
+					echo "<tr width='50%'>";
+				}
+				//echo $situation_rows[$sel_item];
+				$check_slot = $situation_rows[$sel_item] - $reserve_cnt;
+				if($check_slot<=0 || $situation_rows[$sel_item] == 0){
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				else{
+					$bgcolor="bgcolor='#ffffff'";
+				}
+				$sel_timezone = sel_time($situation_rows[timezone]);
+
+	?>
+				<td width='50%' >
+					<table cellpadding="3" cellspacing="0" border="0" width="100%">
+						<tr height="25" bgcolor="#c2c2c2">
+							<td ><font color='#ffffff'><b><?=sel_time($situation_rows['timezone']);?></b></font></td>
+						</tr>
+						<tr bgcolor='#000000'>
+							<td height="25" <?=$bgcolor?>>슬롯 설정: <?=$situation_rows[$sel_item]?>  / 슬롯 예약: <?=$reserve_cnt?> 
+							<?
+								if($situation_rows[$sel_item] > $reserve_cnt && $nowtoday<=$start_date){
+									
+							?>
+								<input type="button" value="선택" class="btn15" onclick="javascript:send('<?=$sel_item?>','<?=$start_date?>','<?=$sel_timezone?>','<?=$form?>');">
+								
+							<?
+								
+								}
+							?>
+							</td>
+						</tr>
+					</table>
+	<?
+				if($k%2 == 1 ){
+					echo "</tr>";
+				}
+				//echo $situation_rows[timezone];
+				//echo $situation_rows[$sel_item]."<br>";
+				$k++;
+			}
+			//echo "전일";
+		}
+
+	}
+}
+?>
+		
+			<tr>
+				<td>
+				</td>
+			</tr>
+
+
+		</table>
+	</div>
+		

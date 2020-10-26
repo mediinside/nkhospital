@@ -1,0 +1,78 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/m.head.php';
+?>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title">오시는 길</h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+	</div>
+	<div id="container" class="map">
+		<form class="body">
+			<div class="map-box">
+				<div id="daumRoughmapContainer1503884434737" class="root_daum_roughmap root_daum_roughmap_landing directions"></div>
+				<script charset="UTF-8" class="daum_roughmap_loader_script" src="http://dmaps.daum.net/map_js_init/roughmapLoader.js"></script>
+				<script type="text/javascript">
+					fn.rtime;
+					fn.timeout = false;
+					fn.delta = 200;
+					fn.locationMap = new daum.roughmap.Lander({
+						"timestamp" : "1503884434737",
+						"key" : "jcba"
+					});
+					fn.locationMapReload = function(){
+						if (new Date() - fn.rtime < fn.delta) {
+							setTimeout(fn.locationMapReload, fn.delta);
+						} else {
+							$('.directions').find('.map').empty();
+							fn.timeout = false;
+							fn.locationMap.renderMap();
+							fn.locationMap.setMarker();
+						}
+					};
+					fn.locationMap.render();
+					fn.resize = function(){
+						fn.rtime = new Date();
+						if (fn.timeout === false) {
+							fn.timeout = true;
+							setTimeout(fn.locationMapReload, fn.delta);
+						}
+					};
+				</script>
+			</div>
+			<div class="guide-grid">
+				<h2 class="title">주소</h2>
+				<table class="grid">
+					<tbody>
+						<tr>
+							<th scope="row" align="center">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</th>
+							<td align="left">경기도 김포시 김포한강3로 283</td>
+						</tr>
+						<tr>
+							<th scope="row" align="center">전화번호</th>
+							<td align="left">031-980-9114</td>
+						</tr>
+						<tr>
+							<th scope="row" align="center">네비게이션</th>
+							<td align="left">뉴고려병원</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2019</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<?
+$jumin = explode("-", $row_data['jumin_no']);
+$zipCode = explode("-", $row_data['zip_code']);
+//echo $uploadDir.$row_data['file'];
+if(is_file($uploadDir.$row_data['file'])) $upImg = "/admin/member/upFiles/professor/".$row_data['file'];
+else $upImg = "imgs/noImg.gif";
+
+
+$query = "select * from reserve_car where seq='".$seq."'";
+$result = mysql_query($query);
+$row_data = mysql_fetch_array($result);
+//echo $upImg;
+?>
+
+<script language="JavaScript">
+<!--
+function chkForm(frm) {
+	if(!frm.car_name.value) {
+		alert('차량명을 입력해 주세요.');
+		frm.car_name.focus();
+		return false;
+	}
+	frm.submit();
+}
+
+//-->
+</script>
+<script src="/admin/inc/calendar.js" language=javascript></script>
+
+<div class="contants_01_1440">
+	<div style="padding:10px 0 0 0; margin:0;">
+		<table width='100%' height='' border='0' cellpadding='0' cellspacing='0'>
+		<tr align='right'>
+			<td height="30"><?=$dirName?> > <b><?=$menuName?></b></td>
+		</tr>
+		</table>
+        
+        <form name='form' method='post' action='/admin/slotset/procCar.php' enctype='multipart/form-data'>
+		<input type='hidden' name='uploadDir' value='<?=$uploadDir?>'>
+		<input type='hidden' name='tbl' value='<?=$tbl?>'>
+		<input type='hidden' name='dir' value='<?=$dir?>'>
+		<input type='hidden' name='menu' value='<?=$menu?>'>
+		<input type='hidden' name='mode' value='<?=$mode?>'>
+		<input type='hidden' name='seq' value='<?=$seq?>'>
+		<table width='100%'border='0' cellpadding='3' cellspacing='0' class="table_style_01">
+		
+		<tr>
+			<!--<td width='100' bgcolor='#EEEEEE' style='padding : 5 0 5 5'>카테고리</td>
+			<td bgcolor='#FFFFFF' style='padding : 5 0 5 5'>
+				<?
+				$queSubject = MYSQL_QUERY("SELECT course_code, course_name FROM lecture_course where view_state='Y' ORDER BY course_name");
+				$numSubject = MYSQL_NUM_ROWS($queSubject);
+				?>
+				<select name='subject_code' class='textfield'>
+					<option value=''>선택</option>
+					<?
+					for($i = 0; $i < $numSubject; $i++) {
+						$rowSubject = MYSQL_FETCH_ARRAY($queSubject);
+					?>
+					<option value='<?=$rowSubject['course_code']?>' <?if($rowSubject['course_code'] == $row_data['subject_code']) echo "selected";?>><?=$rowSubject['course_name']?></option>
+					<?}?>
+				</select>
+			</td>-->
+			<th width='100'>차량명</th>
+			<td><input type='text' name='car_name' class='textfield' style='width:20%' value='<?=$row_data['car_name']?>'></td>
+		</tr>
+		
+		
+				
+		
+		<tr>
+			<th>책임자</th>
+			<td><input type='text' name='car_name2' class='textfield' style='width:20%' value='<?=$row_data['car_name2']?>'></td>
+		</tr>
+
+		<tr>
+			<th>차량번호</th>
+			<td><input type='text' name='car_number' class='textfield' style='width:20%' value='<?=$row_data['car_number']?>'></td>
+		</tr>
+
+		<tr>
+			<th>차종</th>
+			<td><input type='text' name='car_sort' class='textfield' style='width:20%' value='<?=$row_data['car_sort']?>'></td>
+		</tr>
+
+		<tr>
+			<th>수용인원</th>
+			<td><input type='text' name='car_limit' class='textfield' style='width:10%' value='<?=$row_data['car_limit']?>'></td>
+		</tr>
+
+
+		<tr>
+			<th>내용</th>
+			<td><textarea name="comment" style="width:97%;"  rows='5'><?=$row_data['comment']?></textarea></td>
+		</tr>
+
+		</table>
+	</form>
+        
+		<table width='100%' height='' border='0' cellpadding='0' cellspacing='0'>
+		<tr>
+			<td align='right' height="30">
+				<input type='button' style='width:50px; height:23px;' value='삭 제' class='btn03' onClick="chkDel('<?=$row_data['seq']?>');">
+				<input type='button' style='width:50px; height:23px;' value='취 소' class='btn03' onClick="history.go(-1);" onfocus='this.blur();'>
+				<input type='button' style='width:50px; height:23px;' value='등 록' class='btn03' onClick="chkForm(document.form)" onfocus='this.blur();'>
+			</td>
+		</tr>
+		</table>
+	</div>
+</div>

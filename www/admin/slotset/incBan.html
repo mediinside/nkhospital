@@ -1,0 +1,120 @@
+<?
+session_start();
+if($num == ""){
+	$num=16;
+}
+
+$num2 = 9; 
+$time_set = 1349388000;
+$time_plus = 1800;
+$now_date = date("H:i",$time_set+$time_plus);
+?>
+<link href="/SEditor/css/default.css" rel="stylesheet" type="text/css" />
+ <script language="JavaScript">
+  function Move_Focus(n,n2)
+  {
+	   //alert("aa");
+	  var KEY=window.event.keyCode;
+	 //  var nums = n+1;
+		  
+
+	  if(KEY == 38){
+		  form.time[1][1].focus();
+	  }
+	  else if(KEY == 40){
+		   form.time[1][1].focus();
+	  }
+  }
+
+  </script>
+  
+  
+<div class="contants_01_1440">
+	<div style="padding:10px 0 0 0; margin:0;">
+  
+<form name='form' method='post' action='/admin/slotset/procSituation.php' enctype='multipart/form-data' onsubmit="return form_check(this)">
+    <input type='hidden' name='uploadDir' value='<?=$uploadDir?>'>
+    <input type='hidden' name='tbl' value='<?=$tbl?>'>
+    <input type='hidden' name='dir' value='<?=$dir?>'>
+    <input type='hidden' name='menu' value='<?=$menu?>'>
+    <input type='hidden' name='mode' value='<?=$mode?>'>
+    <input type='hidden' name='seq' value='<?=$seq?>'>
+    <input type='hidden' name='num' value='<?=$num?>'>
+    <input type='hidden' name='num2' value='<?=$num2?>'>  
+
+		<table width='100%' border='0' cellpadding='0' cellspacing='0'>
+			<tr valign="bottom">
+				<td width="80"><div class="btn04_def"><a href="?dir=<?=$dir?>&menu=Situation">평일 일정</a></div></td>
+                <td width="80"><div class="btn04_act"><a href="?dir=<?=$dir?>&menu=Ban">반일 설정</a></div></td>
+                <td width="80"><div class="btn04_def"><a href="?dir=<?=$dir?>&menu=Target">지정일 설정</a></div></td>
+                <td width="80"><div class="btn04_def"><a href="?dir=<?=$dir?>&menu=Holiday">휴무일 설정</a></div></td>
+                <td>&nbsp;</td>
+			</tr>
+		</table>
+		<table width='100%' border='0' cellpadding='3' cellspacing='0' class="table_style_01">
+			<tr align="center" height="30">
+				<th>시간대</th>
+				<th>기본</th>
+				<th>수면대장</th>
+				<th>MR검사</th>
+				<th>PET-CT</th>
+				<th>심장초음파</th>
+				<th>유방초음파</th>
+
+				<th>스케일링</th>
+				<th>VIP</th>
+				<th>일반</th>
+
+
+
+
+			</tr>
+			<?
+			
+			$kk = 1;
+			$jj = 0;
+			for($k=0;$k<$num;$k++){
+				$query = "select * from reserve_setday where day_type='2' and timezone='$k'";
+				$result = mysql_query($query);
+				$rows = mysql_fetch_array($result);
+				//echo $query."<br>";
+			//	item1
+				//echo $rows[item1];
+			?>
+			<tr align="center">
+			<?
+				for($j=0;$j<=$num2;$j++){
+
+					if($j==0){
+						$now_date1 = date("H:i",$time_set);
+						$now_date2 = date("H:i",$time_set+$time_plus);
+						$time_set += $time_plus;
+						//echo $now_date;
+			?>
+						<td><?=$now_date1?> ~ <?=$now_date2?></td>
+			<?
+					}
+					else{
+			?>
+				<td><input type="text" name="time[<?=$k?>][<?=$j?>]" size="3" value="<?=$rows['item'.$j]?>" style="text-align:right;" ></td>
+			<?
+					}
+					$jj++;
+				}
+			?>
+			</tr>
+			<?
+				$kk++;
+			}
+			?>
+			
+		</table>
+        
+		<table width='100%'border='0' cellpadding='0' cellspacing='0'>
+            <tr>
+                <td align='right' height="30"><input type="submit" style='width:80px; height:23px;' class="btn" value="저장"></td>
+            </tr>
+		</table>
+</form>
+</div>
+</div>

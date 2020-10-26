@@ -1,0 +1,82 @@
+<?
+if($user_id !== "D001")
+{
+	echo "<script>
+			alert('정상적인 접근이 아닙니다') ;
+			self.location='/template/';
+			</script>" ;
+}
+?>
+
+
+<link rel="stylesheet" href="http://211.206.125.177/emeetplus4/empl4/empcm.css" type="text/css">
+<!-- 만약 홈페이지에 jquery를 사용 중 이라면 아래는 생략 하고 해당 버전을 사용해도 됨  -->
+<script type="text/javascript" src="http://211.206.125.177/emeetplus4/empl4/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="http://211.206.125.177/emeetplus4/empl4/empcm.js"></script>
+<script type="text/javascript" src="http://211.206.125.177/emeetplus4/empl4/MISSEN.js"></script> 
+
+
+<table width="705" border="1" cellspacing="0" cellpadding="0" bordercolor=EBEBEB>
+<tr>
+
+	<td style="padding:10px 10px 10px 10px" valign=middle align=center>
+<!-- ======================= 본문 시작 	-->                                                
+                                                
+        <table width="100%" border="0">
+			<tr> 
+				<td>
+				<img src="/img/template/top_logo.jpg">
+				</td>
+			</tr>
+			<tr>
+				<td height=2 bgcolor=D5D5D5></td>
+			</tr>
+		</table>
+		<!--contents-->
+		
+		<table width="100%" border="0">
+			<tr> 
+				<td>
+					<img src="/img/template/community.gif" onclick="alert('준비중입니다')" style="cursor=hand">&nbsp;&nbsp;
+					<img src="/img/template/coun_room.gif">&nbsp;&nbsp;
+					<a href="./myroom_sms.html"><img src="/img/template/sms.gif" border="0" style="cursor=hand"></a>&nbsp;&nbsp;
+					<img src="/img/template/coun.gif" onclick="alert('준비중입니다')" style="cursor=hand">
+				</td>
+			</tr>
+		</table>
+
+
+		
+		<table width="100%" border="0" cellspacing="30px" cellpadding="0" style="border:1px #dbdbdb solid">
+			<tr>
+				<td align="center" height=300 valign=middle>
+				
+                                          
+					<?
+					include $DOCUMENT_ROOT."/template/sms/sms.php";
+					?>
+				</td>
+			</tr>
+
+		</table>
+
+
+        <table width="100%" border="0">
+			<tr>
+				<td height=2 bgcolor=D5D5D5></td>
+			</tr>
+			<tr> 
+				<td bgcolor=f8f8f8>
+				<img src="/img/template/bottom_logo.jpg">
+				</td>
+			</tr>
+		</table>
+		<!--//contents-->
+	
+
+
+
+<!-- ======================= 본문 끝 	-->
+	</td>
+</tr>
+</table> 

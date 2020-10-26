@@ -1,0 +1,418 @@
+<?
+session_start();
+
+include "../inc/dbConn.php";
+include "../inc/chkLogin.php";
+include "../inc/func.php";
+
+
+//echo $k;
+?>
+<!doctype html>
+<html>
+	<head>
+	<meta charset="euc-kr">
+	<title>Untitled Document</title>
+	<link href="../_css/style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="../_js/tabmenu.js"></script>
+	<script type="text/javascript" src="../_js/contant_box_01.js"></script>
+	<script src="/admin/test/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/admin/_js/chkBoxtoImg.js"></script>
+	<script src="/admin/test/jquery.filestyle.js" type="text/javascript"></script>
+	<script src="/admin/_js/Calendar.js" type="text/javascript"></script>
+	
+	<link type="text/css" href="/admin/ui/themes/base/ui.all.css" rel="stylesheet" />
+	<script type="text/javascript" src="/admin/ui/ui.core.js"></script>
+	<script type="text/javascript" src="/admin/ui/ui.datepicker.js"></script>
+	<script type="text/javascript" src="/admin/ui/ui.datepicker-ko.js"></script>
+	<link type="text/css" href="/admin/ui/demos.css" rel="stylesheet" />
+
+
+	
+	<link rel="stylesheet" href="http://kops.co.kr/assets/_css/jquery-ui.css" />
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  
+<script language="javascript" type="text/javascript">
+<!--
+function chkForm(frm) {
+	
+	frm.submit();
+}
+function openWin(page, bar) {
+	if(!bar) bar = "no";
+
+	var win = window.open(page, 'POP', 'left=100, top=100, toolbar=no, location=no, directories=no, status=yes, menuBar=no, scrollBars='+bar+', resizable=no');
+	win.focus();
+}
+//-->
+</script>
+<script type="text/javascript">
+			function closeiFrame() {
+			window.parent.location.reload();
+			window.parent.CloseManageFrame();
+			}
+			function send(){
+				document.form.submit();
+			}
+			function add_item(item,start_date){
+				window.open("/admin/slotset/add_item.html?item="+item+"&start_date="+start_date,"additem","width=540,height=600");
+			}
+			function clear_item(sel_item){
+				
+
+				eval('document.form.'+sel_item).value = "";
+				
+				
+			}
+
+			function openWin(page, bar) {
+				if(!bar) bar = "no";
+
+				var win = window.open(page, 'POP', 'left=100, top=100, toolbar=no, location=no, directories=no, status=yes, menuBar=no, scrollBars='+bar+', resizable=no');
+				win.focus();
+			}
+
+</script>
+</head>
+
+<div id="contant_box_01"><span class="hiddenText">-팝업표시레이어-</span></div>
+<body style="background-color:transparent;">
+<div class="wrap_res_manage_layer_1070">
+<div class="top_manage_layer_1070">
+        <div style="position:absolute; right:20px; top:20px;"><a onclick="closeiFrame();" style="cursor:pointer;"><img src="../_img/button/IMG905218.gif"></a></div> 
+</div>
+
+
+<?
+
+
+if($mode == "update"){
+	
+	$query = "select * from reserve_transport where seq='".$seq."'";
+	$result = mysql_query($query);
+	$rows = mysql_fetch_array($result);
+	
+	$car_query= "select * from reserve_car where seq='".$rows[car_sort]."'";
+	$car_result = mysql_query($car_query);
+	$car_rows = mysql_fetch_array($car_result);
+
+	$business_query= "select * from admin_business where seq='".$rows[business_name]."'";
+	$business_result = mysql_query($business_query);
+	$business_rows = mysql_fetch_array($business_result);
+	
+	$start_time = explode(":",$rows[start_time]);
+	$end_time = explode(":",$rows[end_time]);
+
+	
+?>
+<div class="contants_res_manage_layer_1070">
+		
+<table cellpadding="5" cellspacing="0" border="1" width="100%" class="write_table_02">
+		<form name='form' method='post' action='/admin/slotset/procPop3.php' enctype='multipart/form-data'>
+		<input type="hidden" name="mode" value="<?=$mode?>">
+		<input type="hidden" name="seq" value="<?=$seq?>">
+		<input type="hidden" name="start_day" value="<?=$rows[start_day]?>">
+
+			<tr>
+				<td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">수송 날짜
+				</td>
+				<td>
+					<table cellpadding="0" cellspacing="0" border="0" class="non_table">
+						<tr>
+							<td>[<?=substr($rows[start_day],0,10)?>]&nbsp;&nbsp;</td>
+							<td>
+								&nbsp;<select name="start_time1" readonly>
+							<?
+								for($k=0;$k<=23;$k++){
+							?>
+									<option value="<?=$k?>" <?if($k==$start_time[0]){echo "selected";}?>><?=$k?></option>
+							<?
+								}
+							?>
+								</select>:
+							</td>
+							<td>
+								<select name="start_time2">
+									<option value="00" <?if($start_time[1]=="00"){echo "selected";}?>>00</option>
+									<option value="30" <?if($start_time[1]=="30"){echo "selected";}?>>30</option>
+								</select> ~ 
+							</td>
+							<td>
+								<select name="start_time3">
+							<?
+								for($k=0;$k<=23;$k++){
+							?>
+									<option value="<?=$k?>" <?if($k==$end_time[0]){echo "selected";}?>><?=$k?></option>
+							<?
+								}
+							?>
+								</select>:
+							</td>
+							<td>
+								<select name="start_time4">
+									<option value="00" <?if($end_time[1]=="00"){echo "selected";}?>>00</option>
+									<option value="30" <?if($end_time[1]=="30"){echo "selected";}?>>30</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검진대상자 수	
+				</td>
+				<td>
+					<input type="text" name="number_limit" value="<?=$rows[number_limit]?>" size="5"> 명
+					
+
+				</td>
+			</tr>
+			
+
+
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">담당자명	
+				</td>
+				<td>
+					<input type="text" name="driver_name" value="<?=$rows[driver_name]?>" size="10">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">차량	
+				</td>
+				<td>
+					<?=$car_rows[car_name]?><br>
+					<input type='text' name='car_sort' value='<?=$rows[car_sort]?>' class='' readonly > <input type="button" value="차량 검색"  onClick="openWin('/admin/slotset/popCar.html', 'yes');" onfocus='this.blur();'  class="btn8">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">사업장명	
+				</td>
+				<td>
+					<?=$business_rows[name]?><br>
+					<input type='text' name='name' value='<?=$rows[business_name]?>'  class='' readonly > <input type="button" value="사업장 검색"  onClick="openWin('/admin/log/popBusiness.html', 'yes');" onfocus='this.blur();'  class="btn8">
+				</td>
+			</tr>
+
+			
+
+
+			
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">비고	
+				</td>
+				<td>
+					<textarea name="comment" cols=40% rows=5><?=$rows['comment']?></textarea>
+				</td>
+			</tr>
+
+
+			<tr align='center'>
+			<td width='810' colspan="2" align='center' style='padding:5 5 0 0'>
+				<input type='button' style='width:80px; height:30px;' value='등 록' class='btn1' onClick="chkForm(document.form)" onfocus='this.blur();'>
+			</td>
+		</tr>
+
+			</form>
+		</table>
+	</div>
+	<script>
+    function phonefirst()
+    {
+        f= document.form
+        f.secondphone.focus()
+    }
+    function phonesecond()
+    {
+        f= document.form
+        if(f.secondphone.value.length==4)
+        f.thirdphone.focus()
+    }
+    
+    function cellfirst()
+    {
+        f= document.form
+        f.secondcell.focus()
+    }
+    
+    function cellsecond()
+    {
+        f= document.form
+        if(f.secondcell.value.length==4)
+        f.thirdcell.focus()
+    }
+    
+    function selDomain(val) {
+        if (val == "직접입력") {
+            form.email_url.readOnly = false;
+            form.email_url.value='';
+            form.email_url.focus();
+        }
+        else {
+            form.email_url.value = val;
+            form.email_url.readOnly = true;
+        }
+    }
+    </script>
+<?
+				exit;
+}
+?>
+
+		
+<div class="contants_res_manage_layer_1070">
+		
+<table cellpadding="5" cellspacing="0" border="1" width="100%" class="write_table_02">
+
+
+		<form name='form' method='post' action='/admin/slotset/procPop3.php' enctype='multipart/form-data'>
+		<input type="hidden" name="start_day" value="<?=$sel_week_end?>">	
+		<input type="hidden" name="mode" value="<?=$mode?>">
+	
+
+			<tr>
+				<td width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">수송 날짜
+				</td>
+				<td>
+					<table cellpadding="0" cellspacing="0" border="0" class="non_table">
+						<tr>
+							<td>[<?=$sel_week_end?>]</td>
+							<td>
+								<select name="start_time1">
+							<?
+								$sel_time = date("H"); 
+								for($k=0;$k<=23;$k++){
+							?>
+									<option value="<?=$k?>" <?if($k == $sel_time){echo "selected";}?>><?=$k?></option>
+							<?
+								}
+							?>
+								</select>:
+							</td>
+							<td>
+								<select name="start_time2">
+									<option value="00">00</option>
+									<option value="30">30</option>
+								</select> ~ 
+							</td>
+							<td>
+								<select name="start_time3">
+							<?
+								for($k=0;$k<=23;$k++){
+							?>
+									<option value="<?=$k?>" <?if($k == $sel_time+1){echo "selected";}?>><?=$k?></option>
+							<?
+								}
+							?>
+								</select>:
+							</td>
+							<td>
+								<select name="start_time4">
+									<option value="00">00</option>
+									<option value="30">30</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">검진대상자 수	
+				</td>
+				<td>
+					<input type="text" name="number_limit" value="<?=$items?>" size="5"> 명
+					
+
+				</td>
+			</tr>
+			
+
+
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">운전자명	
+				</td>
+				<td>
+					<input type="text" name="driver_name" value="<?=$rows[driver_name]?>" size="10">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">차량	
+				</td>
+				<td>
+					<input type='text' name='car_sort'  class='' readonly > <input type="button" value="차량 검색"  onClick="openWin('/admin/slotset/popCar.html', 'yes');" onfocus='this.blur();'  class="btn8">
+				</td>
+			</tr>
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">사업장명	
+				</td>
+				<td>
+					<input type='text' name='name'  class='' readonly > <input type="button" value="사업장 검색"  onClick="openWin('/admin/log/popBusiness.html', 'yes');" onfocus='this.blur();'  class="btn8">
+				</td>
+			</tr>
+
+			
+
+
+			
+			<tr>
+				<td  width="20%" height="30px" class="title_bold" bgcolor="#f2f2f2">비고	
+				</td>
+				<td>
+					<textarea name="comment" cols=40% rows=5><?=$rows['comment']?></textarea>
+				</td>
+			</tr>
+			<tr align='center'>
+			<td width='810' colspan="2" align='center' style='padding:5 5 0 0'>
+				<input type='button' style='width:80px; height:30px;' value='등 록' class='btn1' onClick="chkForm(document.form)" onfocus='this.blur();'>
+			</td>
+		</tr>
+
+			</form>
+		</table>
+	</div>
+</div>
+</body>
+</html>
+		
+<script>
+    function phonefirst()
+    {
+        f= document.form
+        f.secondphone.focus()
+    }
+    function phonesecond()
+    {
+        f= document.form
+        if(f.secondphone.value.length==4)
+        f.thirdphone.focus()
+    }
+    
+    function cellfirst()
+    {
+        f= document.form
+        f.secondcell.focus()
+    }
+    
+    function cellsecond()
+    {
+        f= document.form
+        if(f.secondcell.value.length==4)
+        f.thirdcell.focus()
+    }
+    
+    function selDomain(val) {
+        if (val == "직접입력") {
+            form.email_url.readOnly = false;
+            form.email_url.value='';
+            form.email_url.focus();
+        }
+        else {
+            form.email_url.value = val;
+            form.email_url.readOnly = true;
+        }
+    }
+    </script>

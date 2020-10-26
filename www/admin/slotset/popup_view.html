@@ -1,0 +1,147 @@
+<?
+session_start();
+
+include "../inc/dbConn.php";
+include "../inc/chkLogin.php";
+include "../inc/func.php";
+
+#예약 체크
+$chk_query = "select * from reserve_list where left(reserve_day,10)='".$sel_week_end."' and reserve_time='".$k."' and reserve_type='".$item."' and view_state='Y'";
+$chk_result = mysql_query($chk_query);
+$chk_cnt = mysql_num_rows($chk_result);
+
+if($chk_cnt == 0){
+?>
+
+<?
+}
+
+//echo $k;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/styles/popup.css" />
+<link href="/SEditor/css/default.css" rel="stylesheet" type="text/css" />
+<Link rel="stylesheet" type="text/css" href="/admin/inc/style.css">
+<Link rel="stylesheet" type="text/css" href="/admin/inc/menu.css">
+<script>
+function selectCondition(val) {
+	
+
+	if(val == "item1" || val == "item2") {
+		POSITION.style.display = "";
+		
+	}
+	else{
+		POSITION.style.display = "none";
+		
+	}
+	
+}
+function add_item(item){
+	window.open("/admin/slotset/add_item.html?item="+item,"additem","width=500,height=700");
+}
+function clear_item(sel_item){
+	if(sel_item == "item5"){
+		document.form.item5.value = "";
+		document.form.item5_timezone.value = "";
+	}
+	else if(sel_item == "item4"){
+		document.form.item4.value = "";
+		document.form.item4_timezone.value = "";
+	}
+	else if(sel_item == "item3"){
+		document.form.item3.value = "";
+		document.form.item3_timezone.value = "";
+	}
+}
+</script>
+
+</head>
+
+<?
+
+
+?>
+	<div class="popup"> <!-- 레이어 팝업으로 사용할 경우 삽입코드 : style="position:absolute; left:200px; top:200px;" -->
+		<h1 class="popup_title">[<?=$sel_week_end?>] [<?=sel_time($k);?>] [<?=sel_item($item)?>] 예약 리스트</h1>
+		
+		
+		<table cellpadding="5" cellspacing="1" bgcolor="#c1c1c1"  border=0 width="100%">
+
+			<tr align="center" bgcolor="#eeeeee" height="40">
+				<td>고객명</td>
+				<td>주민번호</td>
+				<td>집번호</td>
+				<td>휴대번호</td>
+				<td>사업장</td>
+				<td>부서명</td>
+				<td>검진장소</td>
+				<td>등록자</td>
+				<td>등록일</td>
+				<td>수정</td>
+				<td>삭제</td>
+			</tr>
+<?
+$k=0;
+while($chk_rows = mysql_fetch_array($chk_result)){
+	$business_query= "select * from admin_business where seq='".$chk_rows[reserve_name2]."'";
+	//echo $business_query;
+	$business_result = mysql_query($business_query);
+	$business_rows = mysql_fetch_array($business_result);
+	
+?>
+			<tr bgcolor="#ffffff" align="center" height="30">
+				<td><font color='blue'><?=$chk_rows[reserve_name]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[jumin_no]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[phone_no]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[mobile_no]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[reserve_name2]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[reserve_name3]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[reserve_place]?></font>
+				</td>
+				<td><font color='blue'><?=$chk_rows[reg_id]?></font>
+				</td>
+				<td><font color='blue'><?=substr($chk_rows[reg_date],0,10)?>
+				</td>
+				<td><input type="button" value="수정" class="btn1" onclick="javascript:location.href='/admin/slotset/popup.html?seq=<?=$chk_rows[seq]?>&mode=update'">
+				</td>
+				<td><input type="button" value="삭제" class="btn3" onclick="javascript:location.href='/admin/slotset/procPop.php?seq=<?=$chk_rows[seq]?>&mode=del'"> 
+				</td>
+			</tr>
+<?
+	if($item == "item1" || $item == "item2"){
+		$query = "select * from reserve_list where code='".$chk_rows[code]."' and view_state='Y' and state='Y' and (reserve_type!='item1' && reserve_type!='item2') and view_state='Y'";
+		$result = mysql_query($query);
+		while($rows = mysql_fetch_array($result)){
+			?>
+			<tr bgcolor="#ffffff" align="left" height="30">
+					<td colspan="9">추가 항목 : [<?=substr($rows[reserve_day],0,10)?>] [<?=sel_time($rows[reserve_time])?>] [<?=sel_item($rows[reserve_type])?>]
+					</td>
+					<td align="center"><input type="button" value="수정" class="btn1" onclick="javascript:location.href='/admin/slotset/popup.html?seq=<?=$rows[seq]?>&mode=update'">
+					</td>
+					<td align="center"><input type="button" value="삭제" class="btn3" onclick="javascript:location.href='/admin/slotset/procPop.php?seq=<?=$rows[seq]?>&mode=del'">
+					</td>
+				</tr>
+			<?
+		}
+	}
+	$k++;
+}
+if($k==0){
+?>
+<?
+	exit;
+}
+?>
+		</table>
+	</div>
+		

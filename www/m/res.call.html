@@ -1,0 +1,44 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/m.head.php';
+?>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title">전화예약</h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+	</div>
+	<div id="container" class="reserve-call">
+		<div class="body">
+			<div class="guide-grid">
+				<h2 class="title">통화가능시간 안내</h2>
+				<table class="grid">
+					<tbody>
+						<tr>
+							<th scope="row" align="center">평&nbsp;&nbsp;&nbsp;일</th>
+							<td align="center">08&nbsp;:&nbsp;30&nbsp;&nbsp;~&nbsp;&nbsp;17&nbsp;:&nbsp;30</td>
+						</tr>
+						<tr>
+							<th scope="row" align="center">토요일</th>
+							<td align="center">08&nbsp;:&nbsp;30&nbsp;&nbsp;~&nbsp;&nbsp;13&nbsp;:&nbsp;00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="tel:16617779" class="btn-tel"><span>통화하기</span></a>
+		</div>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2019</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+</body>
+</html>

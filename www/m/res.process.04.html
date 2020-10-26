@@ -1,0 +1,67 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/m.head.php';
+?>
+<script type="text/javascript">
+fn.init = function(){
+	$('form').on('submit',function(e){
+		co.alert('reserved',function(){
+			alert(1);
+		});
+		return false;
+	});
+}
+</script>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title"><?php echo $process_title;?></h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+    </div>
+	<div id="container" class="reserve-result">
+		<div class="header">선택하신 희망 진료예약정보를 확인하시기 바랍니다.</div>
+		<form class="body">
+			<div class="entry-panel">
+				<dl>
+					<dt><span>환자 이름</span></dt>
+					<dd><input type="text" class="i-disabled full" disabled value="가나다" /></dd>
+					<dt><label for="station-number">환자 전화번호</label></dt>
+				  <dd>
+						<select name="station-number" id="station-number" class="i-tel">
+							<option value="010">010</option>
+						</select>
+						<span class="empty dash"></span>
+						<input type="tel" name="first-tel-number" id="first-tel-number" class="i-tel" maxlength="4" />
+						<span class="empty dash"></span>
+						<input type="tel" name="second-tel-number" id="second-tel-number" class="i-tel" maxlength="4" />
+					</dd>
+					<dt><span>진료과</span></dt>
+					<dd><input type="text" class="i-disabled full" disabled value="관절센터" /></dd>
+					<dt><span>의료진</span></dt>
+					<dd><input type="text" class="i-disabled full" disabled value="가나다 병원장" /></dd>
+					<dt><span>진료일시</span></dt>
+					<dd><input type="text" class="i-disabled full" disabled value="2017.08.30 15:30" /></dd>
+				</dl>
+			</div>
+			<ul class="disc-purple">
+				<li>입력된 휴대전화를 통해 예약확정 전화를 드리고 있습니다.</li>
+				<li>각 진료과 사정에 따라 진료접수 시간이 변경되거나 조기에 마감될 수 있습니다.</li>
+				<li>예약 변경/취소는 <a href="tel:16617779" class="text-purple">1661-7779</a>번으로 연락 주시기 바랍니다.</li>
+			</ul>
+			<button type="submit" class="next-step">진료 예약하기</button>
+		</form>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2017</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+</body>
+</html>

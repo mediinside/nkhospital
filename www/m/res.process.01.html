@@ -1,0 +1,112 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/m.head.php';
+   // $C_Func -> put_msg_and_go('시스템 점검중입니다. 불편을 드려 대단히 죄송합니다.' , '/m/main.html');
+
+	$process_type = $_GET['ptype'];
+	$process_title = '';
+	if ('s' == $process_type){
+		$process_title = '본인예약';
+	} else if ('g' == $process_type){
+		$process_title = '보호자로 예약';
+	}
+    
+    if (!$C_Func -> is_login()) {
+        $C_Func -> put_msg_and_go ('로그인 해 주세요' , '/m/login.html?reurl=' . urlencode($GP -> NOWPAGE));
+    }
+
+    if ($_SESSION['suserphone'] == '' || $_SESSION['susername'] == '') {
+        $C_Func -> put_msg_and_go('이름이나 휴대폰 정보가 없습니다. 정보를 기입한 후에 이용해 주세요.' , '/m/user.info.html');
+    }
+?>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title"><?php echo $process_title;?></h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+    </div>
+	<div id="container" class="reserve-process selection">
+		<div class="body">
+			<form class="search-area" name="sForm" method="get" action="res.process.02.html">
+            	<input type="hidden" name="ptype" value="<?=$_GET["ptype"]?>">
+            	<input type="hidden" name="tor_name" value="<?=$_GET["tor_name"]?>"> 
+            	<input type="hidden" name="tor_rs_phone" value="<?=$_GET["tor_rs_phone"]?>">                                
+				<input type="search" class="i-text" placeholder="의료진명을 입력하세요." name="dr_name"/>
+				<button type="submit" class="ip-icon-search"></button>
+			</form>
+			<div class="tab-header">
+				<ul class="list">
+					<li class="on"><a href="javascript:void(0);">센터구분</a></li>
+					<li><a href="javascript:void(0);">진료과 구분</a></li>
+				</ul>
+			</div>
+			<div class="tab-contain reserve-selection">
+				<div class="panel on">
+					<div class="header"><h2 class="title">센터구분</h2></div>
+					<div class="section">
+						<ul class="list center">
+                        	<? foreach($GP->NEW_MOBILE_CENTER as $val=>$key){ 
+                                echo '<li><a href="res.process.02.html?ct_type='.$val.'&ptype='.$_GET['ptype'].'&tor_name='.$_POST['tor_name'].'&tor_rs_phone='.$_POST['tor_rs_phone1'].'-'.$_POST['tor_rs_phone2'].'-'.$_POST['tor_rs_phone3'].'"><i class="ip-icon-list-arrow"></i><span>'.$key.'</span></a></li>';
+                               }
+                            ?>
+                            <!--
+							<li><a href="res.process.02.html?ct_type=A&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>관절센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=B&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>척추센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=C&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>외상센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=D&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>뇌혈관센테</span></a></li>
+							<li><a href="res.process.02.html?ct_type=E&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>소화기센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=F&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>심혈관센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=G&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>소아청소년센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=H&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>신경통증의학센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=I&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>응급의학센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=J&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>평생건강증진센터</span></a></li>
+							<li><a href="res.process.02.html?ct_type=S&ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>신장센터</span></a></li>
+                            -->
+						</ul>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="header"><h2 class="title">진료과 구분</h2></div>
+					<div class="section">
+						<ul class="list">
+                      	    <? foreach($GP->NEW_MOBILE_CLINIC as $val=>$key){ 
+                                echo '<li><a href="res.process.02.html?ct_type='.$val.'&ptype='.$_GET['ptype'].'&tor_name='.$_POST['tor_name'].'&tor_rs_phone='.$_POST['tor_rs_phone1'].'-'.$_POST['tor_rs_phone2'].'-'.$_POST['tor_rs_phone3'].'"><i class="ip-icon-list-arrow"></i><span>'.$key.'</span></a></li>';
+                               }
+                            ?>
+                            <!--
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>일반외과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>신경과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>산부인과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>치과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>영상의학과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>진단검사의학과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>내분비내과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>호흡기내과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>이비인후과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>피부비뇨기과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>재활의학과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>가정의학과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>감염내과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>정신건강의학과</span></a></li>
+							<li><a href="res.process.02.html?ptype=<?=$_GET['ptype'];?>"><i class="ip-icon-list-arrow"></i><span>직업환경의학과</span></a></li>
+                            -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2019</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+</body>
+</html>

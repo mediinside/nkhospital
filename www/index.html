@@ -1,11 +1,20 @@
 <?php
+include_once  './_init.php';
+include_once $GP -> INC_WWW . '/count_inc.php';
+include_once $GP -> INC_WWW . '/head.php';
 $page_title = "main";
-
-include_once "/inc/head.php"
 ?>
 <body>
 	<div id="wrap">
-		<?php include_once "/inc/header.php" ?>
+		<?php 
+		include_once "/inc/header.php";
+		
+			$Main_all = Main_Notice("news");//모아보기
+			$Main_notice = Main_Notice("10");//병원소식
+			$Main_ch = Main_Notice("140");//CH NK
+			$Main_health = Main_Notice("50"); //건강정보
+		
+		?>
 		<div id="container">
 			<div id="main-bnnr" class="swiper-container">
 				<ul class="swiper-wrapper">
@@ -72,68 +81,70 @@ include_once "/inc/head.php"
 					</ul>
 					<p>찾으시는 전문센터 또는 진료과, 특수클리닉 초성검색을 이용하시면 편리하게 찾으실 수 있습니다.</p>
 					<ul id="filter" class="tab-1">
-						<li class="on"><a href="#none">ALL</a></li>
-						<li><a href="#none">ㄱ</a></li>
-						<li><a href="#none">ㄴ</a></li>
-						<li><a href="#none">ㄷ</a></li>
-						<li><a href="#none">ㄹ</a></li>
-						<li><a href="#none">ㅁ</a></li>
-						<li><a href="#none">ㅅ</a></li>
-						<li><a href="#none">ㅇ</a></li>
-						<li><a href="#none">ㅈ</a></li>
-						<li><a href="#none">ㅊ</a></li>
-						<li><a href="#none">ㅋ</a></li>
-						<li><a href="#none">ㅌ</a></li>
-						<li><a href="#none">ㅍ</a></li>
-						<li><a href="#none">ㅎ</a></li>
+					<li class="on"><a href="#none" data-target="all">ALL</a></li>						
+						<li><a href="#none" data-target="ㄱ">ㄱ</a></li>
+						<li><a href="#none" data-target="ㄴ">ㄴ</a></li>
+						<li><a href="#none" data-target="ㄷ">ㄷ</a></li>
+						<li><a href="#none" data-target="ㄹ">ㄹ</a></li>
+						<li><a href="#none" data-target="ㅁ">ㅁ</a></li>
+						<li><a href="#none" data-target="ㅂ">ㅂ</a></li>
+						<li><a href="#none" data-target="ㅅ">ㅅ</a></li>
+						<li><a href="#none" data-target="ㅇ">ㅇ</a></li>
+						<li><a href="#none" data-target="ㅈ">ㅈ</a></li>
+						<li><a href="#none" data-target="ㅊ">ㅊ</a></li>
+						<li><a href="#none" data-target="ㅋ">ㅋ</a></li>
+						<li><a href="#none" data-target="ㅌ">ㅌ</a></li>
+						<li><a href="#none" data-target="ㅍ">ㅍ</a></li>
+						<li><a href="#none" data-target="ㅎ">ㅎ</a></li>
 					</ul>
 					<div id="tab1-1" class="tab-cont">
 						<ul class="list">
-							<li><a href=""><img src="/resource/images/main-center-01.png" alt="">관절센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-19.png" alt="">외상센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-03.png" alt="">심혈관센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-12.png" alt="">신장센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-20.png" alt="">통증센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-21.png" alt="">평생건강증진센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-22.png" alt="">척추센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-05.png" alt="">뇌신경센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-11.png" alt="">소화기센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-14.png" alt="">소아청소년센터</a></li>
-							<li><a href=""><img src="/resource/images/main-center-18.png" alt="">응급의료센터</a></li>
+						<li data-group="ㄱ"><a href=""><img src="/resource/images/main-center-01.png" alt="">관절센터</a></li>
+							<li data-group="ㅇ"><a href=""><img src="/resource/images/main-center-19.png" alt="">외상센터</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-03.png" alt="">심혈관센터</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-12.png" alt="">신장센터</a></li>
+							<li data-group="ㅌ"><a href=""><img src="/resource/images/main-center-20.png" alt="">통증센터</a></li>
+							<li data-group="ㅍ"><a href=""><img src="/resource/images/main-center-21.png" alt="">평생건강증진센터</a></li>
+							<li data-group="ㅊ"><a href=""><img src="/resource/images/main-center-22.png" alt="">척추센터</a></li>
+							<li data-group="ㄴ"><a href=""><img src="/resource/images/main-center-05.png" alt="">뇌신경센터</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-11.png" alt="">소화기센터</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-14.png" alt="">소아청소년센터</a></li>
+							<li data-group="ㅇ"><a href=""><img src="/resource/images/main-center-18.png" alt="">응급의료센터</a></li>
 						</ul>
 					</div>
 					<div id="tab1-2" class="tab-cont">
 						<ul class="list">
-							<li><a href=""><img src="/resource/images/main-center-01.png" alt="">정형외과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-02.png" alt="">일반외과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-03.png" alt="">순환기내과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-04.png" alt="">호흡기내과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-05.png" alt="">신경과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-06.png" alt="">산부인과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-07.png" alt="">재활의학과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-08.png" alt="">마취통증의학과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-09.png" alt="">직업환경의학과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-10.png" alt="">신경외과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-11.png" alt="">소화기내과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-12.png" alt="">신장내과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-13.png" alt="">내분비내과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-14.png" alt="">소아청소년과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-15.png" alt="">피부비뇨의학과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-16.png" alt="">영상의학과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-17.png" alt="">진단검사의학과</a></li>
-							<li><a href=""><img src="/resource/images/main-center-18.png" alt="">응급의학과</a></li>
+						<li data-group="ㅈ"><a href=""><img src="/resource/images/main-center-01.png" alt="">정형외과</a></li>
+							<li data-group="ㅇ"><a href=""><img src="/resource/images/main-center-02.png" alt="">일반외과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-03.png" alt="">순환기내과</a></li>
+							<li data-group="ㅎ"><a href=""><img src="/resource/images/main-center-04.png" alt="">호흡기내과</a></li>
+							<li data-group="ㅊ"><a href=""><img src="/resource/images/main-center-17.png" alt="">치과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-05.png" alt="">신경과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-06.png" alt="">산부인과</a></li>
+							<li data-group="ㅈ"><a href=""><img src="/resource/images/main-center-07.png" alt="">재활의학과</a></li>
+							<li data-group="ㅁ"><a href=""><img src="/resource/images/main-center-08.png" alt="">마취통증의학과</a></li>
+							<li data-group="ㅈ"><a href=""><img src="/resource/images/main-center-09.png" alt="">직업환경의학과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-10.png" alt="">신경외과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-11.png" alt="">소화기내과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-12.png" alt="">신장내과</a></li>
+							<li data-group="ㄴ"><a href=""><img src="/resource/images/main-center-13.png" alt="">내분비내과</a></li>
+							<li data-group="ㅅ"><a href=""><img src="/resource/images/main-center-14.png" alt="">소아청소년과</a></li>
+							<li data-group="ㅍ"><a href=""><img src="/resource/images/main-center-15.png" alt="">피부비뇨의학과</a></li>
+							<li data-group="ㅇ"><a href=""><img src="/resource/images/main-center-16.png" alt="">영상의학과</a></li>
+							<li data-group="ㅈ"><a href=""><img src="/resource/images/main-center-17.png" alt="">진단검사의학과</a></li>
+							<li data-group="ㅇ"><a href=""><img src="/resource/images/main-center-18.png" alt="">응급의학과</a></li>
 						</ul>
 					</div>
 					<div id="tab1-3" class="tab-cont">
 						<ul class="list">
-							<li><a href=""><img src="/resource/images/main-center-23.png" alt="">하지정맥류 클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-24.png" alt="">요실금클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-25.png" alt="">비만클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-26.png" alt="">갑상선클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-27.png" alt="">복강경클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-28.png" alt="">당뇨클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-29.png" alt="">맘모톰클리닉</a></li>
-							<li><a href=""><img src="/resource/images/main-center-07.png" alt="">재활치료센터</a></li>
+						<li data-group="ㅎ"><a href=""><img src="/resource/images/main-center-23.png" alt="">하지정맥류 클리닉</a></li>
+							<li data-group="ㅇ"><a href=""><img src="/resource/images/main-center-24.png" alt="">요실금클리닉</a></li>
+							<li data-group="ㅂ"><a href=""><img src="/resource/images/main-center-25.png" alt="">비만클리닉</a></li>
+							<li data-group="ㄱ"><a href=""><img src="/resource/images/main-center-26.png" alt="">갑상선클리닉</a></li>
+							<li data-group="ㅂ"><a href=""><img src="/resource/images/main-center-27.png" alt="">복강경클리닉</a></li>
+							<li data-group="ㄷ"><a href=""><img src="/resource/images/main-center-28.png" alt="">당뇨클리닉</a></li>
+							<li data-group="ㅁ"><a href=""><img src="/resource/images/main-center-29.png" alt="">맘모톰클리닉</a></li>
+							<li data-group="ㅈ"><a href=""><img src="/resource/images/main-center-07.png" alt="">재활치료센터</a></li>
 						</ul>
 					</div>
 				</div>
@@ -150,354 +161,22 @@ include_once "/inc/head.php"
 					<div class="inner">
 						<div id="tab2-1" class="main-clinic tab-cont">
 							<ul>
-								<li>
-									<a href="/clinic-1/page01.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">포토뉴스</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page03.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료!!!
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">CH NK</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">건강정보</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">병원소식</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
+								<?=$Main_all?>								
 							</ul>
 						</div>
 						<div id="tab2-2" class="main-clinic tab-cont">
 							<ul>
-								<li>
-									<a href="/clinic-1/page01.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">포토뉴스</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page03.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">CH NK</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료!!!
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">건강정보</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">병원소식</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
+								<?=$Main_notice?>		
 							</ul>
 						</div>
 						<div id="tab2-3" class="main-clinic tab-cont">
 							<ul>
-								<li>
-									<a href="/clinic-1/page01.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">포토뉴스</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page03.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">CH NK</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">건강정보</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료!!!
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">병원소식</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
+								<?=$Main_ch?>		
 							</ul>
 						</div>
 						<div id="tab2-4" class="main-clinic tab-cont">
 							<ul>
-								<li>
-									<a href="/clinic-1/page01.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료!!!
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">포토뉴스</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page03.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">CH NK</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">건강정보</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="/clinic-1/page02.html" class="dec">
-										<div class="img">
-											<img src="http://placehold.it/361x209">
-										</div>
-										<span class="txt">
-											<b>
-												뉴고려병원 개원 10주년 기념식 성황리 종료
-											</b>
-											<p>
-												6월 13일(금), 뉴고려병원 앞 김포시장장애인복지관 공영
-												주차장 행사장에서 뉴고려병원 개원 10주년...
-											</p>
-										</span>
-										<div class="dec-foot">
-											<span class="label">병원소식</span>
-											<span>2019.07.26</span>
-											<span class="view">12</span>
-										</div>
-									</a>
-								</li>
+								<?=$Main_health?>		
 							</ul>
 						</div>
 					</div>

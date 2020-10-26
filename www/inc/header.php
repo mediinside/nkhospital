@@ -1,3 +1,7 @@
+<?php
+include_once $GP -> HOME."main_lib/main_proc.php";
+$Main_Slide = Main_Slide("PC");//슬라이드
+?>
 <header>
 			<div id="login-bar">
 				<ul class="left">
@@ -12,10 +16,10 @@
 				</ul>
 				<ul class="right">
 					<li>
-						<input type="text">
-						<button><img src="/resource/images/search-gray.png" alt="검색"></button>
+						<input type="text" id="schtxt">
+						<button><img src="/resource/images/search-gray.png" alt="검색" id="schbtn"></button>
 					</li>
-					<li><a href="#">LOGIN</a></li>
+					<li><a href="#" id="schbtn">LOGIN</a></li>
 				</ul>
 			</div>
 			<nav>
@@ -63,58 +67,60 @@
 							<img src="/resource/images/gnb-logo.png" alt="믿으니까, 뉴고려병원">
 						</li>
 						<li class="center">
-							<a href="#none" data-idx="2" class="gnb-tit bc2">진료과/의료진</a>
+							<a href="/center01/page.php?depart=A&gubun=A" data-idx="2" class="gnb-tit bc2">진료과/의료진</a>
 							<div class="row">
 								<dl>
-									<dt><a href="#none">전문센터</a></dt>
-									<dd><a href="/center01/page01.html">관절센터</a></dd>
-									<dd><a href="#">외상센터</a></dd>
-									<dd><a href="#">심혈관센터</a></dd>
-									<dd><a href="#">신장센터</a></dd>
-									<dd><a href="#">통증센터</a></dd>
-									<dd><a href="#">평생건강증진센터</a></dd>
-									<dd><a href="#">척추센터</a></dd>
-									<dd><a href="#">뇌신경센터</a></dd>
-									<dd><a href="#">소아청소년센터</a></dd>
-									<dd><a href="#">응급의료센터</a></dd>
+									<dt><a href="/center01/page.php?depart=A&gubun=A">전문센터</a></dt>
+									<dd><a href="/center01/page.php?depart=A&gubun=A">관절센터</a></dd>
+									<dd><a href="/center01/page.php?depart=C&gubun=A">외상센터</a></dd>
+									<dd><a href="/center01/page.php?depart=F&gubun=A">심혈관센터</a></dd>
+									<dd><a href="/center01/page.php?depart=S&gubun=A">신장센터</a></dd>
+									<dd><a href="/center01/page.php?depart=H&gubun=A">통증센터</a></dd>
+									<dd><a href="/center01/page.php?depart=J&gubun=A">평생건강증진센터</a></dd>
+									<dd><a href="/center01/page.php?depart=B&gubun=A">척추센터</a></dd>
+									<dd><a href="/center01/page.php?depart=D&gubun=A">뇌신경센터</a></dd>
+									<dd><a href="/center01/page.php?depart=E&gubun=A">소화기센터</a></dd>
+									<dd><a href="/center01/page.php?depart=G&gubun=A">소아청소년센터</a></dd>
+									<dd><a href="/center01/page.php?depart=I&gubun=A">응급의료센터</a></dd>
+								</dl>				
+								<dl>
+									<dt><a href="/center01/page.php?depart=AB&gubun=B">진료과</a></dt>
+									<dd><a href="/center01/page.php?depart=AB&gubun=B">정형외과</a></dd>
+									<dd><a href="/center01/page.php?depart=K&gubun=B">일반외과</a></dd>
+									<dd><a href="/center01/page.php?depart=AE&gubun=B">순환기내과</a></dd>
+									<dd><a href="/center01/page.php?depart=T&gubun=B">호흡기내과</a></dd>
+									<dd><a href="/center01/page.php?depart=M&gubun=B">신경과</a></dd>
+									<dd><a href="/center01/page.php?depart=N&gubun=B">산부인과</a></dd>		
+									<dd><a href="/center01/page.php?depart=W&gubun=B">재활의학과</a></dd>		
+									<dd><a href="/center01/page.php?depart=AH&gubun=B">마취통증의학과</a></dd>		
+									<dd><a href="/center01/page.php?depart=AA&gubun=B">직업환경의학과</a></dd>			
+									<dd><a href="/center01/page.php?depart=AC&gubun=B">신경외과</a></dd>																										
+									<dd><a href="/center01/page.php?depart=AD&gubun=B">소화기내과</a></dd>	
+									<dd><a href="/center01/page.php?depart=AF&gubun=B">신장내과</a></dd>																
+									<dd><a href="/center01/page.php?depart=R&gubun=B">내분비내과</a></dd>										
+									<dd><a href="/center01/page.php?depart=AG&gubun=B">소아청소년과</a></dd>										
+									<dd><a href="/center01/page.php?depart=V&gubun=B">피부비뇨의학과</a></dd>	
+									<dd><a href="/center01/page.php?depart=O&gubun=B">치과</a></dd>										
+									<dd><a href="/center01/page.php?depart=P&gubun=B">영상의학과</a></dd>										
+									<dd><a href="/center01/page.php?depart=Q&gubun=B">진단검사의학과</a></dd>										
+									<dd><a href="/center01/page.php?depart=AI&gubun=B">응급의학과</a></dd>			
 								</dl>
 								<dl>
-									<dt><a href="#">진료과</a></dt>
-									<dd><a href="#">정형외과</a></dd>
-									<dd><a href="#">일반외과</a></dd>
-									<dd><a href="#">순환기내과</a></dd>
-									<dd><a href="#">호흡기내과</a></dd>
-									<dd><a href="#">신경과</a></dd>
-									<dd><a href="#">산부인과</a></dd>
-									<dd><a href="#">재활의학과</a></dd>
-									<dd><a href="#">마취통증의학과</a></dd>
-									<dd><a href="#">직업환경의학과</a></dd>
-									<dd><a href="#">신경외과</a></dd>
-									<dd><a href="#">소화기내과</a></dd>
-									<dd><a href="#">신장내과</a></dd>
-									<dd><a href="#">내분비내과</a></dd>
-									<dd><a href="#">소아청소년과</a></dd>
-									<dd><a href="#">피부비뇨의학과</a></dd>
-									<dd><a href="#">영상의학과</a></dd>
-									<dd><a href="#">진단검사의학과</a></dd>
-									<dd><a href="#">응급의학과</a></dd>
-								</dl>
-								<dl>
-									<dt><a href="#">특수클리닉</a></dt>
-									<dd><a href="#">하지정맥류클리닉</a></dd>
-									<dd><a href="#">요실금클리닉</a></dd>
-									<dd><a href="#">비만클리닉</a></dd>
-									<dd><a href="#">갑상선클리닉</a></dd>
-									<dd><a href="#">복강경클리닉</a></dd>
-									<dd><a href="#">당뇨클리닉</a></dd>
-									<dd><a href="#">맘모톰클리닉</a></dd>
-									<dd><a href="#">재활치료센터</a></dd>
+									<dt><a href="/center01/page.php?depart=A&gubun=C">특수클리닉</a></dt>
+									<dd><a href="/center01/page.php?depart=A&gubun=C">하지정맥류클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=C&gubun=C">요실금클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=G&gubun=C">비만클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=I&gubun=C">갑상선클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=J&gubun=C">복강경클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=H&gubun=C">당뇨클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=E&gubun=C">맘모톰클리닉</a></dd>
+									<dd><a href="/center01/page.php?depart=F&gubun=C">재활치료센터</a></dd>
 								</dl>
 								<dl>
 									<dt><a href="#none">의료진소개</a></dt>
-									<dd><a href="/doctor/page01.html">전문센터</a></dd>
-									<dd><a href="/doctor/page02.html">진료과</a></dd>
-									<dd><a href="/doctor/page03.html">특수클리닉</a></dd>
+									<dd><a href="/doctor/page.php?depart=A&gubun=A">전문센터</a></dd>
+									<dd><a href="/doctor/page.php?depart=AB&gubun=B">진료과</a></dd>
+									<dd><a href="/doctor/page.php?depart=A&gubun=C">특수클리닉</a></dd>
 								</dl>
 							</div>
 						</li>
@@ -159,21 +165,7 @@
 				 -->
 				 <div id="top-bnnr" class="swiper-container">
 					<ul class="swiper-wrapper">
-						<li class="swiper-slide">
-							<a href="#"><img src="/resource/images/top-bnnr-01.jpg" alt=""></a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#"><img src="/resource/images/top-bnnr-02.jpg" alt=""></a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#"><img src="/resource/images/top-bnnr-03.jpg" alt=""></a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#"><img src="/resource/images/top-bnnr-04.jpg" alt=""></a>
-						</li>
-						<li class="swiper-slide">
-							<a href="#"><img src="/resource/images/top-bnnr-05.jpg" alt=""></a>
-						</li>
+						<?=$Main_Slide?>	
 					</ul>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>

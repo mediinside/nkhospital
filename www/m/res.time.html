@@ -1,0 +1,51 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/m.head.php';
+?>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div class="hgroup">
+			<h1 class="page-title">진료시간</h1>
+			<a href="javascript:history.back(-1);" class="history-back"><i class="ip-icon-arrow-back"></i><span class="text-ir">이전 화면</span></a>
+		</div>
+		<? include_once $GP -> INC_WWW . '/m.header.php'; ?>
+    </div>
+	<div id="container" class="time-guide">
+		<form class="body">
+			<div class="guide-grid">
+				<h2 class="title">진료시간안내</h2>
+				<table class="grid">
+					<tbody>
+						<tr>
+							<th scope="row" align="center">평&nbsp;&nbsp;&nbsp;일</th>
+							<td align="center">08&nbsp;:&nbsp;30&nbsp;&nbsp;~&nbsp;&nbsp;17&nbsp;:&nbsp;30</td>
+						</tr>
+						<tr>
+							<th scope="row" align="center">토요일</th>
+							<td align="center">08&nbsp;:&nbsp;30&nbsp;&nbsp;~&nbsp;&nbsp;13&nbsp;:&nbsp;00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="body">
+				<ul class="disc-purple">
+					<li>예약확정 전화를 받으셔야 예약이 확정됩니다.</li>
+					<li>각 진료과 사정에 따라 진료접수 시간이 변경되거나 조기에 마감될 수 있습니다.</li>
+					<li>예약 변경/취소는 <span class="text-purple">1661-7779</span>번으로 연락 주시기 바랍니다.</li>	
+				</ul>
+			</div>
+			<a href="tel:16617779" class="btn-tel"><small>예약 및 문의</small><i class="ip-icon-tel"></i><span>1661-7779</span></a>
+		</form>
+	</div>
+	<div id="footer">
+		<p class="copyright">
+			<span>Copyright(c) 2019</span>
+			<em>NEW Korea Hospital</em>
+		</p>
+		<hr class="v-line" />
+		<a href="https://www.nkhospital.net/" target="_blank">홈페이지 바로가기</a>
+	</div>
+</div>
+</body>
+</html>

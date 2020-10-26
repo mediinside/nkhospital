@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Title</title>
+	<!-- 나눔 폰트 로딩 -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+	<!-- 최초 설정 스타일 시트 -->
+	<link rel="stylesheet" type="text/css" href="css/Normalize-custom.css">
+	<!-- 공통 사용 스타일 시트 -->
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<!-- 표현을 위한 스타일 시트 -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- jQuery Script 로딩 -->
+	<script type="text/javascript" charset="UTF-8" src="js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="js/jquery-ui-1.10.3.js"></script>
+	<!-- 공통 사용 스크립트 라이브러리 -->
+	<script type="text/javascript" charset="UTF-8" src="js/style.js"></script>
+	<!--[if lt IE 9]>
+	<script src="/js/IE9.js"></script>
+	<script src="/js/ie7-squish.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="Wrap"><!--// 전체를 감싸는 Wrap -->
+	<div class="boxLeft">
+		<div class="boxTitleArea">
+			<h1>RENOVO<br><span>예약관리시스템</span></h1>
+		</div>
+		<ul class="boxLeftMenu">
+			<li><a href="">메뉴이동</a></li>
+			<li><a href="">예약관리</a></li>
+			<li><a href="">고객관리</a></li>
+			<li><a href="">수납관리</a></li>
+			<li><a href="">SMS관리</a></li>
+			<li><a href="">부도관리</a></li>
+			<li><a href="">통계관리</a></li>
+			<li><a href="">관리자설정</a></li>
+		</ul>
+	</div
+	><div class="boxContent">
+		<div class="boxContentHeader">
+			<span class="boxTopNav">HOME&nbsp;&nbsp;>&nbsp;&nbsp;<strong>메뉴이동</strong></span><span class="boxTopBtns"><a href="../index.html">HOME</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">LOGOUT</a></span>
+		</div>
+		<div class="boxContentBody">
+			<div class="boxSearch">
+				<form method="post" action="">
+					고객검색 <input type="text" name="" id="" class="inputSearch"><button type="submit" value="" name="" class="btnSearch">조 회</button>
+					<span class="boxModifyBtn"><button type="submit" value="" name="" class="btnModify">수 정</button></span>
+				</form>
+			</div>
+			<div class="boxMemberBasic">
+				<span><span class="listDot"></span>고객명 : <span id="" class="valNum">김가람</span></span>
+				<span><span class="listDot"></span>차트번호 : <span id="" class="valNum">3345</span></span>
+				<span><span class="listDot"></span><span id="" class="valNum">초 진</span></span>
+			</div>
+			<div class="boxMemberInfoTable">
+				<table class="table table-bordered">
+					<tr>
+						<th>생년월일</th>
+						<td class="inputTd">
+							<ul class="tableInput birthInput">
+								<li><input type="text" name="" id="" maxlength="6"></li
+								><li class="Split">-</li
+								><li><input type="password" name="" id="" maxlength="7"></li>
+							</ul>
+						</td>
+						<th>성별</th>
+						<td><input type="radio" name="selectSex" id="">남자&nbsp;&nbsp;<input type="radio" name="selectSex" id="">여자</td>
+						<th>양/음력</th>
+						<td><input type="radio" name="selectSex" id="">양력&nbsp;&nbsp;<input type="radio" name="selectSex" id="">음력</td>
+					</tr>
+					<tr>
+						<td colspan="6" class="singleRow">* 생일 이벤트 문자 발송 동의&nbsp;<input type="checkbox" name="" id=""></td>
+					</tr>
+					<tr>
+						<th>연락처 1</th>
+						<td class="firstTd inputTd">
+							<span>
+								<select name="" id="">
+									<option value="02" selected>02</option>
+								</select>
+							</span>
+							<ul class="tableInput phoneInput">
+								<li><input type="text" name="" id="" maxlength="4"></li
+								><li class="Split">-</li
+								><li><input type="password" name="" id="" maxlength="4"></li>
+							</ul>
+						</td>
+						<th>연락처 2</th>
+						<td colspan="3" class="inputTd">
+							<span>
+								<select name="" id="">
+									<option value="" selected>직장</option>
+								</select>
+							</span>
+							<span>
+								<select name="" id="">
+									<option value="010" selected>010</option>
+								</select>
+							</span>
+							<ul class="tableInput phoneInput">
+								<li><input type="text" name="" id="" maxlength="4"></li
+								><li class="Split">-</li
+								><li><input type="password" name="" id="" maxlength="4"></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" class="singleRow">* SNS 수신거부&nbsp;<input type="checkbox" name="" id="">&nbsp;&nbsp;&nbsp;&nbsp;* SNS 정보 활용 동의서&nbsp;<input type="checkbox" name="" id=""></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td colspan="5" class="inputTd emailTd">
+							<span><input type="text" name="" id=""></span>
+							<span>@</span>
+							<span>
+								<input type="text" name="" id="" class="inputHandText">
+								<select name="" id="">
+									<option value="">직접입력</option>
+								</select>
+							</span
+							><span class="inputCheck">* 메일수신거부&nbsp;<input type="checkbox" name="" id=""></span>
+						</td>
+					</tr>
+					<tr>
+						<th rowspan="2">주소</th>
+						<td colspan="5" class="inputTd addressTd">
+							<ul class="tableInput addressInput">
+								<li><input type="text" name="" id="" maxlength="3"></li
+								><li class="Split">-</li
+								><li><input type="text" name="" id="" maxlength="3"></li>
+							</ul>
+							<span><button class="address">우편번호 검색</button></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" class="inputTd addressTd">
+							<input type="text" name="" id="" class="address1">
+							<input type="text" name="" id="" class="address2">
+						</td>
+					</tr>
+					<tr>
+						<th>고객등급</th>
+						<td class="inputTd gradeTd">
+							<select name="" id="">
+								<option value="" selected>등급을 선택하세요.</option>
+							</select>
+						</td>
+						<th>내원경로</th>
+						<td colspan="3" class="inputTd knowTd">
+							<span>
+								<select name="" id="">
+									<option value="" selected>선택하세요.</option>
+								</select>
+							</span>
+							<span class="inputKnowDesc"><input type="text" name="" id="" value="직접입력" onFocus="this.value='';" onBlur="if(this.value==''){this.value='직접입력'};"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>연관고객</th>
+						<td class="inputTd inviteTd">
+							<input type="text" name="" id="">
+						</td>
+						<th>관계</th>
+						<td colspan="3" class="inputTd inviteTd">
+							<span>
+								<select name="" id="">
+									<option value="" selected>선택하세요.</option>
+								</select>
+							</span>
+							<span class="inputInviteDesc"><input type="text" name="" id="" value="직접입력" onFocus="this.value='';" onBlur="if(this.value==''){this.value='직접입력'};"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>소개자</th>
+						<td class="inputTd inviteTd">
+							<input type="text" name="" id="">
+						</td>
+						<th>관계</th>
+						<td colspan="3" class="inputTd inviteTd">
+							<span>
+								<select name="" id="">
+									<option value="" selected>선택하세요.</option>
+								</select>
+							</span>
+							<span class="inputInviteDesc"><input type="text" name="" id="" value="직접입력" onFocus="this.value='';" onBlur="if(this.value==''){this.value='직접입력'};"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>추천인</th>
+						<td class="inputTd inviteTd">
+							<input type="text" name="" id="">
+						</td>
+						<th>관계</th>
+						<td colspan="3" class="inputTd inviteTd">
+							<span>
+								<select name="" id="">
+									<option value="" selected>선택하세요.</option>
+								</select>
+							</span>
+							<span class="inputInviteDesc"><input type="text" name="" id="" value="직접입력" onFocus="this.value='';" onBlur="if(this.value==''){this.value='직접입력'};"></span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="BoardHead" class="boxBoardHead">
+				<ul>
+					<li><a href="#MemberBoard1">고객이력관리</a></li
+					><li><a href="#MemberBoard2">수납이력</a></li
+					><li><a href="#MemberBoard3">예약이력</a></li
+					><li><a href="#MemberBoard4">상담이력</a></li
+					><li><a href="#MemberBoard5">진료이력</a></li
+					><li><a href="#MemberBoard6">관심항목</a></li
+					><li><a href="#MemberBoard7">고객메모</a></li
+					><li><a href="#MemberBoard8">SMS이력</a></li>
+				</ul>
+				<div id="MemberBoard1" class="boxMemberBoard">
+					<table>
+						<thead>
+							<tr>
+								<th width="5.47%"><input type="checkbox" name="" id=""></th>
+								<td width="1">|</td>
+								<th width="9.73%">상담일자</th>
+								<td width="1">|</td>
+								<th width="9.73%">상담시간</th>
+								<td width="1">|</td>
+								<th width="9.73%">상담자</th>
+								<td width="1">|</td>
+								<th>상담내역</th>
+								<td width="1">|</td>
+								<th width="10.94%">상담결과</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2</td>
+								<td></td>
+								<td>2014.01.12</td>
+								<td></td>
+								<td>13:30</td>
+								<td></td>
+								<td>리노보</td>
+								<td></td>
+								<td class="txtDesc"><a href="">상담내역이 나옵니다.</a></td>
+								<td></td>
+								<td>완료</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td></td>
+								<td>2014.01.12</td>
+								<td></td>
+								<td>13:30</td>
+								<td></td>
+								<td>리노보</td>
+								<td></td>
+								<td class="txtDesc"><a href="">상담내역이 나옵니다.</a></td>
+								<td></td>
+								<td>완료</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="MemberBoard2" class="boxMemberBoard">
+				</div>
+				<div id="MemberBoard3" class="boxMemberBoard">
+				</div>
+				<div id="MemberBoard4" class="boxMemberBoard">
+				</div>
+				<div id="MemberBoard5" class="boxMemberBoard">
+				</div>
+				<div id="MemberBoard6" class="boxMemberBoard">
+				</div>
+				<div id="MemberBoard7" class="boxMemberBoard">
+				</div>
+				<div id="MemberBoard8" class="boxMemberBoard">
+				</div>
+			</div>
+			<ul class="boxBoardPaging">
+				<li class="boxPagingPrev"><span><a href="">&lt;<strong>&lt;</strong></a></span><span><a href=""><strong>&lt;</strong></a></span></li>
+				<li class="boxPagingNum">
+					<a href="" id="Paging1">1</a>
+					<a href="" id="Paging2">2</a>
+					<a href="" id="Paging3">3</a>
+					<a href="" id="Paging4">4</a>
+					<a href="" id="Paging5">5</a>
+					<a href="" id="Paging6">6</a>
+					<a href="" id="Paging7">7</a>
+					<a href="" id="Paging8">8</a>
+					<a href="" id="Paging9">9</a>
+					<a href="" id="Paging10">10</a>
+				</li>
+				<li class="boxPagingNext"><span><a href=""><strong>&gt;</strong></a></span><span><a href=""><strong>&gt;</strong>&gt;</span></a></li>
+			</ul>
+		</div>
+		<div class="boxContentFooter"></div>
+	</div>
+</div><!-- 전체를 감싸는 Wrap //-->
+</body>
+</html>
