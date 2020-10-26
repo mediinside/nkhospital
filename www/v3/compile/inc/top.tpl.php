@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\inc\top.tpl 000008976 */
+<?php /* Template_ 2.2.8 2020/10/26 07:56:40 C:\xampp\htdocs\newkorea\www\v3\view\inc\top.tpl 000008985 */ 
 $TPL_gpa_1=empty($TPL_VAR["gpa"])||!is_array($TPL_VAR["gpa"])?0:count($TPL_VAR["gpa"]);
 $TPL_gpb_1=empty($TPL_VAR["gpb"])||!is_array($TPL_VAR["gpb"])?0:count($TPL_VAR["gpb"]);
 $TPL_gpc_1=empty($TPL_VAR["gpc"])||!is_array($TPL_VAR["gpc"])?0:count($TPL_VAR["gpc"]);?>

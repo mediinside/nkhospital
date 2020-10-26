@@ -1,0 +1,134 @@
+<?php
+
+$title = "서비스 이용안내";
+$page_title = "병원안내";
+$page_sub_title = "전화번호 안내";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<table width="100%" class="writeType">
+					<caption>공지사항 상세</caption>
+					<colgroup>
+						<col width="15%" />
+						<col width="*" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th scope="row">제 목</th>
+							<td><input type="text" class="txtInput" style="width:578px;" id="jb_title" name="jb_title" /></td>
+						</tr>
+						<tr>
+							<th scope="row">구분</th>
+							<td><select name='jb_treat' id='jb_treat' style="border:1px solide #ddd; height:27px; line-height:27px;">
+									<option value=''>::선택::</option>
+									<option value='A'>관절센터</option>
+									<option value='B'>척추센터</option>
+									<option value='C'>외상센터</option>
+									<option value='D'>뇌신경센터</option>
+									<option value='E'>소화기센터</option>
+									<option value='F'>심혈관센터</option>
+									<option value='G'>소아청소년센터</option>
+									<option value='H'>통증센터</option>
+									<option value='I'>응급의료센터</option>
+									<option value='J'>평생건강증진센터</option>
+									<option value='K'>일반외과</option>
+									<option value='M'>신경과</option>
+									<option value='N'>산부인과</option>
+									<option value='O'>치과</option>
+									<option value='P'>영상의학과</option>
+									<option value='Q'>진단검사의학과</option>
+									<option value='R'>내분비내과</option>
+									<option value='S'>신장센터</option>
+									<option value='T'>호흡기내과</option>
+									<option value='U'>이비인후과</option>
+									<option value='V'>피부비뇨의학과</option>
+									<option value='W'>재활의학과</option>
+									<option value='X'>가정의학과</option>
+									<option value='Y'>감염내과</option>
+									<option value='Z'>정신건강의학과</option>
+									<option value='AA'>직업환경의학과</option>
+								</select></td>
+						</tr>
+						<tr>
+							<th scope="row">작성자</th>
+							<td><input type="text" class="txtInput" style="width:228px;" id="jb_name" value="관리자" name="jb_name" /></td>
+						</tr>
+						<input type="hidden" name="jb_password" value="095fe6e6c5ca188aac11f665af92cd5f1603706232">
+						<tr>
+							<th scope="row">이메일</th>
+							<td><input type="text" class="txtInput" id="jb_email" name="jb_email" value="info@mediinside.co.kr"
+									style="width:578px;" /></td>
+						</tr>
+
+						<tr>
+							<th scope="row">공개여부</th>
+							<td>
+								<span class="chkBox">
+									<input type="checkbox" value="Y" id="jb_notice_check" name="jb_notice_check">공지 </span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" class="viewLink"><span class="icon">링크</span></th>
+							<td><input type="text" class="txtInput" style="width:578px;" id="jb_homepage" name="jb_homepage" /></td>
+						</tr>
+						<tr>
+							<th scope="row" class="viewFile"><span class="icon">첨부파일</span></th>
+							<td>
+								<ul>
+									<li>
+										<input type="file" name="jb_file[]" class="fileInput">
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" class="alignTop">본문</th>
+							<td>
+								<!-- Text Editor 영역 -->
+								<textarea name="jb_content" id="jb_content" style="display:none"></textarea>
+								<textarea name="ir1" id="ir1"
+									style="width:100%; height:300px; min-width:280px; display:none;"></textarea>
+								<!-- // Text Editor 영역 끝 -->
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">자동입력방지</th>
+							<td><img src="http://nkhospital.net/bbs/zmSpamFree/zmSpamFree.php?zsfimg=1603706232" id="zsfImg"
+									alt="아래 새로고침을 클릭해 주세요." />
+								<input type="text" id="zsfCode" name="zsfCode" maxlength="10" size="8">
+								<a title="새로고침" href="#"
+									onclick="document.getElementById('zsfImg').src='http://nkhospital.net/bbs/zmSpamFree/zmSpamFree.php?re&zsfimg=' + new Date().getTime(); return false;">새로고침</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

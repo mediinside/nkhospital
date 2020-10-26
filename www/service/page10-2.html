@@ -1,0 +1,103 @@
+<?php
+
+$title = "서비스 이용안내";
+$page_title = "병원안내";
+$page_sub_title = "오시는길/주차안내";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tabMenu">
+					<ul>
+						<li><a href="page10-1.html">오시는길</a></li>
+						<li class="active"><a href="page10-2.html">주차안내</a></li>
+					</ul>
+				</div>
+				<br>
+				<div class="cont-box">
+					<h4 class="cont-label">주차요금 안내</h4>
+					<div class="cont">
+						<div class="tableType-01">
+							<table>
+								<thead>
+									<tr>
+										<th>기본요금</th>
+										<th>초과요금</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr>
+										<td>30분 무료주차</td>
+										<td>30분마다 1000원씩 부과</td>
+									</tr>
+								</tbody>
+							</table>
+							<p>*장애인,보훈대상자 50% 할인</p>
+						</div>
+					</div>
+				</div>
+				<div class="cont-box">
+					<h4 class="cont-label">무료주차 안내</h4>
+					<div class="cont">
+						<div class="tableType-01">
+							<table>
+								<thead>
+									<tr>
+										<th>외래진료</th>
+										<th>입/퇴원</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr>
+										<td>
+											3시간 무료 주차<br>
+											진료비 영수증 제시
+										</td>
+										<td>
+											입/퇴원 5시간 무료<br>
+											입원시: 주차확인증(원무과 발급)
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<p>*장애인,보훈대상자 50% 할인</p>
+						</div>
+						<br>
+						<div class="s-pad-box orange flex">
+							<span>
+								<img src="/resource-pc/images/small-logo.png" alt=""> 관련문의
+							</span>
+							<span>031-980-9114</span>
+						</div>
+					</div>
+				</div>
+				<!-- //end .cont-box -->
+
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<?php
+
+$title = "서비스 이용안내";
+$page_title = "병원안내";
+$page_sub_title = "오시는길/주차안내";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tableType-01 red">
+					<table width="100%" class="viewType">
+						<caption style="display:none;">공지사항 상세</caption>
+						<colgroup>
+							<col width="33.33%" />
+							<col width="33.33%" />
+							<col width="33.33%" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row" colspan="3">뉴고려병원에 오신것을 환영합니다.</th>
+							</tr>
+							<tr>
+								<td style="text-align:left;">작성자 : <strong class="mg-l10">공보*</strong></td>
+								<td style="text-align:left;">조회수 : <strong class="mg-l10">61</strong></td>
+								<td style="text-align:left;">작성일 : <strong class="mg-l10">2020-08-27 15:46:17</strong></td>
+							</tr>
+							<tr>
+								<td style="text-align:left;" colspan="3">
+									<div class="viewCont">
+										<!--
+
+											여기에!!!! 게시물 내용!!! 들어갑니다!!!!
+
+										 -->
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:left;" colspan="3">
+									<div class="viewLink">
+										<img src="https://nkhospital.net/resource/images/icon_link.png" height="17" alt="">&nbsp;
+										<a href="https://www.hsj.co.kr/news/articleView.html?idxno=11537">https://www.hsj.co.kr/news/articleView.html?idxno=11537</a>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:left;" colspan="3">
+									<div class="viewFile">
+										<p>
+											<img src="/resource-pc/images/down-02.png" alt="">&nbsp;<a href="#none">홈페이지_언론보도_홍보대사 썸네일_301x167.png</a>
+										</p>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="btn-box" class="right">
+						<a href="#" class="btn bg-green">이전글</a>
+						<a href="#" class="btn bg-green">다음글</a>
+						<a href="#" class="btn bg-orange">목록</a>
+					</div>
+					<div class="viewComment">
+						<ul>
+							<script type="text/javascript" src="http://nkhospital.net/js/jquery.base64.js"></script>
+							<form name="frm_comment" id="frm_comment" action=""	method="post">
+								<input type="hidden" name="jbc_name" id="jbc_name" value="관리자">
+								<input type="hidden" name="jbc_password" id="jbc_password" value="">
+								<li>
+									<p class="name">
+										<strong>관리자</strong>
+										<span>183.102.91.158</span>
+									</p>
+									<div class="replyinput">
+										<textarea maxlength="6000" name="jbc_content" id="jbc_content" cols="30" rows="10"></textarea>
+									</div>
+									<div class="btnReply">
+										<button id="comment_submit">남기기</button>
+									</div>
+								</li>
+							</form>
+							<li>
+								<p class="name">
+									<strong>뉴고*</strong>
+									<span>59.86.248.3*</span>
+								</p>
+								<p class="replyTxt">
+									안녕하세요, 뉴고려병원 이비인후과 이종익입니다. 귀에 발생하는 켈로이드는 굉장히 재발이 흔한 경우가 많으며, 상태 확인 후 수술을 포함한 여러가지 치료 방법을 고려할 수 있습니다.
+									내원하시면 진료해 드리겠습니다. 감사합니다. <span class="date">2020/01/29 15:23</span>
+								</p>
+								<div class="btns">
+									<a href="#" title="덧글 수정">수정</a>
+									<a href="#"	title="덧글 삭제">삭제</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>
+

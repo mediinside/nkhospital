@@ -1,0 +1,154 @@
+<?php
+
+$title = "서비스 이용안내";
+$page_title = "병원안내";
+$page_sub_title = "오시는길/주차안내";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tabMenu">
+					<ul>
+						<li class="active"><a href="page10-1.html">오시는길</a></li>
+						<li><a href="page10-2.html">주차안내</a></li>
+					</ul>
+				</div>
+				<!-- * 카카오맵 - 지도퍼가기 -->
+				<!-- 1. 지도 노드 -->
+				<div id="daumRoughmapContainer1603697495835" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%"></div>
+
+				<!--
+					2. 설치 스크립트
+					* 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+				-->
+				<script charset="UTF-8" class="daum_roughmap_loader_script"
+					src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+				<!-- 3. 실행 스크립트 -->
+				<script charset="UTF-8">
+					new daum.roughmap.Lander({
+						"timestamp": "1603697495835",
+						"key": "22nn7",
+						"mapWidth": "100%",
+						"mapHeight": "400"
+					}).render();
+				</script>
+
+				<div id="map-text">
+					<p>경기도김포시 김포한강3로 283 뉴고려병원</p>
+					<div id="btn-box">
+						<a href="#" class="btn naver"><img src="https://nkhospital.net/resource/images/naver.png" alt=""> 네이버 길찾기</a>
+						<a href="#" class="btn kakao"><img src="https://nkhospital.net/resource/images/kakao.png" alt=""> 카카오 길찾기</a>
+					</div>
+				</div>
+
+				<div class="cont-box">
+					<h4 class="cont-label">버스 이용시</h4>
+					<div class="cont">
+						<dl class="take">
+							<dt>뉴고려병원 정류장 하차</dt>
+							<dd>
+								<span class="label green">일반</span>
+								3, 4-1, 33, 60-3, 81
+							</dd>
+							<dd>
+								<span class="label red">직행</span>
+								6427, 7100, 9000, 9008
+							</dd>
+							<dd>
+								<span class="label red">급행</span>
+								8600
+							</dd>
+							<dd>
+								<span class="label red">광역</span>
+								M6117, M6427
+							</dd>
+							<dd>
+								<span class="label blue">좌석</span>
+								21
+							</dd>
+							<dd>
+								<span class="label green">마을</span>
+								30, 57, 59
+							</dd>
+						</dl>
+						<div class="map-img">
+							<img src="/resource-pc/images/come01.png" alt="">
+							<p>서울, 운양/장기/사우동(김포)방향에서 오실경우 이니스아파트에서 하차 후 횡단보도를 건너시면 됩니다. (사진참고)</p>
+						</div>
+					</div>
+				</div>
+				<div class="cont-box">
+					<h4 class="cont-label">자가용 이용시</h4>
+					<div class="cont">
+						<dl class="take">
+							<dt>김포방면에서 오시는 경우</dt>
+							<dd>김포 방향(48번국도) → 장기지구(이정표)입구 우회전 → 사거리 직진(주공아파트) → 사거리 직진(장기초등학교) → 사거리 우회전(유보라 아파트 앞) → 뉴고려병원</dd>
+						</dl>
+						<div class="map-img">
+							<img src="/resource-pc/images/come02.png" alt="">
+							<p>김포방면에서 오실경우 병원지나 지하차도 옆도로 이용하여 유턴 후 우회전합니다. (사진참고)</p>
+						</div>
+						<dl class="take">
+							<dt>강화방면에서 오시는 경우</dt>
+							<dd>
+								- 고속도로<br>
+								외곽순환도로 김포IC(강화방향) → 48번 국도 강화방향 직진(10.6km) → 장기지구 좌회전 → 장기사거리 직진 → 유보라 아파트 앞에서 우회전 → 뉴고려병원<br>
+							</dd>
+							<dd>
+								- 국도<br>
+								강화 방향(48번국도) → 장기지구(이정표)입구 좌회전 → 사거리 직진(주공아파트) → 사거리 직진(장기초등학교) → 사거리 우회전(유보라 아파트 앞) → 뉴고려병원
+							</dd>
+						</dl>
+						<div class="map-img">
+							<img src="/resource-pc/images/come03.png" alt="">
+						</div>
+						<dl class="take flex">
+							<dt>주차장 진입경로(김포/강화방면 동일)</dt>
+							<dd>
+								01. 교회앞에서 좌회전하여 주차장 입구<br>
+								<img src="/resource-pc/images/come04.png" alt="">
+							</dd>
+							<dd>
+								02. 뉴고려병원 주차장 진입<br>
+								<img src="/resource-pc/images/come05.png" alt="">
+							</dd>
+							<dd>
+								03. 진입 후 우측의 뉴고려병원 전용 주차장 이용<br>
+								<img src="/resource-pc/images/come06.png" alt="">
+							</dd>
+						</dl>
+
+						<a href="page10-2.html" class="s-pad-box blue">주차장 이용안내 바로가기&nbsp;&nbsp;&nbsp;<b>P</b></a>
+					</div>
+				</div>
+				<!-- //end .cont-box -->
+
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

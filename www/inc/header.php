@@ -58,8 +58,8 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 								</dl>
 								<dl>
 									<dt><a data-idx="1-4" href="#none">병원안내</a></dt>
-									<dd><a data-idx="1-4" href="/service/page09.html">병원둘러보기</a></dd>
-									<dd><a data-idx="1-4" href="/service/page10.html">오시는길/주차안내</a></dd>
+									<dd><a data-idx="1-4" href="/service/page09-1.html">병원둘러보기</a></dd>
+									<dd><a data-idx="1-4" href="/service/page10-1.html">오시는길/주차안내</a></dd>
 									<dd><a data-idx="1-4" href="/service/page11.html">장례식장</a></dd>
 									<dd><a data-idx="1-4" href="/service/page12.html">전화번호 안내</a></dd>
 								</dl>

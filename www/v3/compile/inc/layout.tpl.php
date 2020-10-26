@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\inc\layout.tpl 000000493 */ ?>
+<?php /* Template_ 2.2.8 2020/10/26 06:02:56 C:\xampp\htdocs\newkorea\www\v3\view\inc\layout.tpl 000000499 */ ?>
 </head>
 <body>
 <?php $this->print_("top",$TPL_SCP,1);?>
