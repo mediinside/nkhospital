@@ -2,7 +2,7 @@
 
 $title = "뉴고려커뮤니티";
 $page_title = "뉴고려소개";
-$page_sub_title = "채용정보";
+$page_sub_title = "전문의 상담";
 
 include_once "../inc/head.php";
 
@@ -23,47 +23,43 @@ include_once "../inc/head.php";
 			<!-- //end #sub-bnnr -->
 
 			<div id="innerCont">
-				<!-- 게시판 검색 -->
 				<div class="search">
 					<input type="text" placeholder="검색어를 입력하세요.">
 					<button><img src="/resource/images/search-gray.png" alt="검색"></button>
 				</div>
-				<!-- 게시판 목록 -->
-				<ul class="cardList typeRecruit">
-					<li>
-						<a href="#">
-							<span class="subject">2021년도 신규 및 경력 간호사 채용 공고</span>
-							<span class="txt">2021년도 신규 및 경력간호사 채용공고뉴고려병원은 김포한강신도시에 위치하고 있으며 2009년도 5월에 ...</span>
-							<span class="opt">
-								<span class="date">2020.10.12</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span class="subject">2021년도 신규 및 경력 간호사 채용 공고</span>
-							<span class="txt">2021년도 신규 및 경력간호사 채용공고뉴고려병원은 김포한강신도시에 위치하고 있으며 2009년도 5월에 ...</span>
-							<span class="opt">
-								<span class="date">2020.10.12</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<span class="subject">2021년도 신규 및 경력 간호사 채용 공고</span>
-							<span class="txt">2021년도 신규 및 경력간호사 채용공고뉴고려병원은 김포한강신도시에 위치하고 있으며 2009년도 5월에 ...</span>
-							<span class="opt">
-								<span class="date">2020.10.12</span>
-							</span>
-						</a>
-					</li>
-				</ul>
-				<!-- 글스기 수정 삭제 등등.. 버튼 -->
-				<div id="btn-box" class="right">
-					<a href="#" class="btn bg-red">글쓰기</a>
-					<a href="#" class="btn bg-deepblue">수정</a>
+				<div class="tableType-01 red">
+					<table>
+						<colgroup>
+							<col>
+							<col style="width:180px">
+							<col style="width:180px">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="#">[통증센터] 대상포진 후 통증</a></td>
+								<td>박미*</td>
+								<td>2020.09.25</td>
+							</tr>
+							<tr>
+								<td><a href="#"><img src="/resource/images/reply.gif" alt=""> [통증센터] 대상포진 후 통증</a></td>
+								<td>뉴고려병원</td>
+								<td>2020.09.25</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="btn-box" class="right">
+						<a href="#" class="btn bg-red">글쓰기</a>
+						<a href="#" class="btn bg-deepblue">수정</a>
+					</div>
 				</div>
-				<!-- 페이지네이션 -->
+
 				<div class="pagination">
 					<a href="#none" title="처음으로 이동하기" class="btn prev">
 						<img src="/resource/images/page-all-left.png" width="100%" alt="">

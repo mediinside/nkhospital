@@ -35,6 +35,7 @@
 #innerCont {
   width: 100%;
   max-width: 1360px;
+  min-height: 600px;
   margin: 0 auto;
   padding: 60px 30px;
   box-sizing: border-box; }
@@ -160,6 +161,10 @@
     margin-right: 8px; }
     #btn-box .btn:last-child {
       margin-right: 0; }
+  #btn-box.center {
+    justify-content: center; }
+  #btn-box.right {
+    justify-content: flex-end; }
 
 .btn {
   display: inline-block;
@@ -215,6 +220,27 @@
       background-color: #fafafa; }
     .tableType-01.green td {
       padding: 15px; }
+  .tableType-01.red {
+    border-top: 2px solid #eb3447; }
+    .tableType-01.red th {
+      font-size: 1.6rem;
+      border: none !important;
+      background-color: #fafafa; }
+      .tableType-01.red th:first-of-type {
+        border: none !important; }
+    .tableType-01.red td {
+      border: none;
+      text-align: center; }
+      .tableType-01.red td:first-of-type {
+        text-align: left; }
+      .tableType-01.red td > a {
+        color: #333; }
+      .tableType-01.red td .state {
+        padding: 0 1.5rem; }
+        .tableType-01.red td .state.on {
+          background: url(https://nkhospital.net/resource/images/icon_chk2.png) no-repeat 0 50%;
+          background-size: 1.2rem;
+          color: #f0141e; }
   .tableType-01 .text-center {
     text-align: center !important; }
   .tableType-01 table {
@@ -247,6 +273,41 @@
     .tableType-01 td .middot-list li {
       font-size: 1.6rem;
       letter-spacing: -0.8px; }
+
+/* 게시판 검색 */
+.search {
+  position: relative;
+  width: 400px;
+  margin: 40px auto; }
+  .search input {
+    width: 100%;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    vertical-align: bottom; }
+    .search input::placeholder {
+      color: #aaa;
+      font-weight: 400; }
+  .search button {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    transform: translateY(-50%);
+    cursor: pointer; }
+    .search button:active {
+      right: 19px;
+      transform: translateY(-48%); }
 
 /* 페이지네이션 */
 .pagination {
@@ -1461,7 +1522,8 @@ nav {
   display: flex;
   align-content: flex-start;
   justify-items: flex-start;
-  margin: 2rem 0 0; }
+  width: calc(100% + 3rem);
+  margin: 2rem 0 0 -1.5rem; }
   .cardList.typeRecruit li {
     background-image: url("http://nkhospital.net/resource/images/contents/icon_recruit.png"); }
   .cardList li {

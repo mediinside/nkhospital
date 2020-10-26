@@ -125,9 +125,8 @@
 									<dt><a href="#">소통/공감</a></dt>
 									<dd><a href="/notice/page01.html">병원소식</a></dd>
 									<dd><a href="#">건강정보</a></dd>
-									<dd><a href="#">전문의 상담</a></dd>
-									<dd><a href="#">칭찬합니다</a></dd>
-									<dd><a href="#">고객의 소리함</a></dd>
+									<dd><a href="/notice/page03.html">전문의 상담</a></dd>
+									<dd><a href="/notice/page04.html">칭찬합니다</a></dd>
 								</dl>
 								<dl>
 									<dt><a href="#">병원소개</a></dt>
