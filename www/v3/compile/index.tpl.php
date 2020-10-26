@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\index.tpl 000004447 */ 
+<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\index.tpl 000004447 */
 $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($TPL_VAR["tsdata"]);?>
 <div class="mainSlide">
         <div class="slide">
@@ -9,7 +9,7 @@ $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($
                 </li>
 <?php }}?>
                 <!--<li class="swiper-slide">
-                    <a href="#"><img src="/resource/images/main/img_top_banner01.jpg" alt=""></a>
+                    <a href="#"><img src="/resource-pc/images/main/img_top_banner01.jpg" alt=""></a>
                 </li>-->
             </ul>
         </div>
@@ -32,17 +32,17 @@ $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($
             <ul class="swiper-wrapper" id="main_slide">
                 <li class="swiper-slide" data-vid="CuaKAJZLxZ8">
                     <a href="javascript:void(0);" data-vid="CuaKAJZLxZ8">
-                        <img src="/resource/images/main/img_mid_banner01.jpg" alt="" data-vid="CuaKAJZLxZ8">
+                        <img src="/resource-pc/images/main/img_mid_banner01.jpg" alt="" data-vid="CuaKAJZLxZ8">
                     </a>
                 </li>
                 <li class="swiper-slide" data-vid="mCawo_WsjvM">
                     <a href="http://naver.com" data-vid="mCawo_WsjvM">
-                        <img src="/resource/images/main/img_mid_banner02.jpg" alt="">
+                        <img src="/resource-pc/images/main/img_mid_banner02.jpg" alt="">
                     </a>
                 </li>
                 <li class="swiper-slide">
                     <a href="http://www.nkhospital.net/v3/board.php?code=news&bidx=2363">
-                        <img src="/resource/images/main/img_mid_banner03.png" alt="">
+                        <img src="/resource-pc/images/main/img_mid_banner03.png" alt="">
                     </a>
                 </li>
             </ul>

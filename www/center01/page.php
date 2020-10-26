@@ -67,7 +67,7 @@ $dep1 = "1";
 if($gubun == "A"){
     $dep2 = "1-0";
     if($depart=="A"){ $dep3 = "1-0-0";}
-    elseif($depart=="C"){ $dep3 = "1-0-1";}   
+    elseif($depart=="C"){ $dep3 = "1-0-1";}
     elseif($depart=="F"){ $dep3 = "1-0-2";}
     elseif($depart=="S"){ $dep3 = "1-0-3";}
     elseif($depart=="H"){ $dep3 = "1-0-4";}
@@ -85,19 +85,19 @@ elseif($gubun == "B"){
 	elseif($depart=="AE"){ $dep3 = "1-1-1";}
 	elseif($depart=="T"){ $dep3 = "1-1-2";}
 	elseif($depart=="M"){ $dep3 = "1-1-3";}
-	elseif($depart=="N"){ $dep3 = "1-1-4";}		
-	elseif($depart=="W"){ $dep3 = "1-1-5";}		
-	elseif($depart=="AH"){ $dep3 = "1-1-6";}		
-	elseif($depart=="AA"){ $dep3 = "1-1-7";}			
-	elseif($depart=="AC"){ $dep3 = "1-1-8";}																										
-	elseif($depart=="AD"){ $dep3 = "1-1-9";}	
-	elseif($depart=="AF"){ $dep3 = "1-1-10";}																
-	elseif($depart=="R"){ $dep3 = "1-1-11";}										
-	elseif($depart=="AG"){ $dep3 = "1-1-12";}										
-	elseif($depart=="V"){ $dep3 = "1-1-13";}	
-	elseif($depart=="O"){ $dep3 = "1-1-14";}										
-	elseif($depart=="P"){ $dep3 = "1-1-15";}										
-	elseif($depart=="Q"){ $dep3 = "1-1-16";}										
+	elseif($depart=="N"){ $dep3 = "1-1-4";}
+	elseif($depart=="W"){ $dep3 = "1-1-5";}
+	elseif($depart=="AH"){ $dep3 = "1-1-6";}
+	elseif($depart=="AA"){ $dep3 = "1-1-7";}
+	elseif($depart=="AC"){ $dep3 = "1-1-8";}
+	elseif($depart=="AD"){ $dep3 = "1-1-9";}
+	elseif($depart=="AF"){ $dep3 = "1-1-10";}
+	elseif($depart=="R"){ $dep3 = "1-1-11";}
+	elseif($depart=="AG"){ $dep3 = "1-1-12";}
+	elseif($depart=="V"){ $dep3 = "1-1-13";}
+	elseif($depart=="O"){ $dep3 = "1-1-14";}
+	elseif($depart=="P"){ $dep3 = "1-1-15";}
+	elseif($depart=="Q"){ $dep3 = "1-1-16";}
 	elseif($depart=="AI"){ $dep3 = "1-1-17";}
 }
 elseif($gubun == "C"){
@@ -107,9 +107,9 @@ elseif($gubun == "C"){
 	elseif($depart=="G"){ $dep3 = "1-2-1";}
 	elseif($depart=="I"){ $dep3 = "1-2-2";}
 	elseif($depart=="J"){ $dep3 = "1-2-3";}
-	elseif($depart=="H"){ $dep3 = "1-2-4";}		
-	elseif($depart=="E"){ $dep3 = "1-2-5";}		
-	elseif($depart=="F"){ $dep3 = "1-2-6";}				
+	elseif($depart=="H"){ $dep3 = "1-2-4";}
+	elseif($depart=="E"){ $dep3 = "1-2-5";}
+	elseif($depart=="F"){ $dep3 = "1-2-6";}
 }
 
 ?>
@@ -120,16 +120,16 @@ elseif($gubun == "C"){
 		<div id="container">
 			<?php include_once "../inc/location.php" ?>
 			<div id="sub-bnnr">
-				<img src="/resource/images/subBnnr03.png" alt="">
+				<img src="/resource-pc/images/subBnnr03.png" alt="">
 				<h2>
-					<span><img src="/resource/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
 					<small><?=$ctxt?></small>
 				</h2>
 			</div>
 			<!-- //end #sub-bnnr -->
 			<div id="innerCont">
 				<div class="l-pad-box gray">
-					<iframe width="800" src="<?=$vd_link2?>" frameborder="0"	allowfullscreen=""></iframe>
+					<iframe class="active" width="800" src="<?=$vd_link2?>" frameborder="0"	allowfullscreen=""></iframe>
 				</div>
 				<br>
 				<h3 class="cont-tit bar">뉴고려병원 <span><?=$ctxt?></span><?=$josa?></h3>
@@ -166,11 +166,11 @@ elseif($gubun == "C"){
 					}
 					//echo "asd" . $data_list[$i]["dr_clinic2"];
 					$drclinic2Arry = explode(',',$data_list[$i]["dr_clinic2"]);
-					$val["dr_clinic2"] = $drclinic2Arry["0"];                    
+					$val["dr_clinic2"] = $drclinic2Arry["0"];
 
 					$treat = ($GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic2"]]) ? $GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic2"]] : $GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic3"]];
 					//$treat = ($GP->NEW_MOBILE_CENTER_ALL[$dr_clinic2]) ? $GP->NEW_MOBILE_CENTER_ALL[$dr_clinic2] : $GP->NEW_MOBILE_SPECIAL[$dr_clinic3];
-					$dr_treat  = str_replace(",", "</li><li>", $dr_treat); 
+					$dr_treat  = str_replace(",", "</li><li>", $dr_treat);
 
 
 				?>
@@ -234,7 +234,7 @@ elseif($gubun == "C"){
 						</div>
 					</div>
 				</div>
-				<? }  ?>				
+				<? }  ?>
 				<!-- //end .doctor -->
 
 				<div class="tabMenu-2">
@@ -346,7 +346,7 @@ elseif($gubun == "C"){
 						</div>
 					</a>
 				</li>
-				<? }  ?>			
+				<? }  ?>
 
 					</ul>
 				</div>
@@ -390,7 +390,7 @@ elseif($gubun == "C"){
 							}else if($vd_link2) {
 								$vimeo_id = explode("vimeo.com/",$vd_link2);
 							}else{
-								$you_link = '<img src="/resource/images/sample2.jpg" alt="" style="width:100%;">';
+								$you_link = '<img src="/resource-pc/images/sample2.jpg" alt="" style="width:100%;">';
 							}
 
 							if($vimeo_id){

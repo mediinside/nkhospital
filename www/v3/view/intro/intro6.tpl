@@ -5,7 +5,7 @@
     </div>
     <ul class="hospList">
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo01.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo01.gif" alt=""></span>
             <div class="cont">
                 <b class="name">세브란스병원</b>
                 <span class="address">서울시 서대문구 연세로 50-1(신촌동134)</span>
@@ -14,7 +14,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo02.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo02.gif" alt=""></span>
             <div class="cont">
                 <b class="name">고려대학교 구로병원</b>
                 <span class="address">서울시 구로구 구로동로 148(구로동)</span>
@@ -23,7 +23,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo03.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo03.gif" alt=""></span>
             <div class="cont">
                 <b class="name">순천향대학교 부천병원</b>
                 <span class="address">경기도 부천시 원미구 중동 1174</span>
@@ -32,7 +32,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo04.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo04.gif" alt=""></span>
             <div class="cont">
                 <b class="name">삼성서울병원</b>
                 <span class="address">서울특별시 강남구 일원로 81</span>
@@ -41,7 +41,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo05.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo05.gif" alt=""></span>
             <div class="cont">
                 <b class="name">가톨릭대학교 서울성모병원</b>
                 <span class="address">서울시 서초구 반포대로 222</span>
@@ -50,7 +50,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo06.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo06.gif" alt=""></span>
             <div class="cont">
                 <b class="name">서울대학교병원</b>
                 <span class="address">서울특별시 종로구 대학로 101(연건동 28)</span>
@@ -59,7 +59,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo07.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo07.gif" alt=""></span>
             <div class="cont">
                 <b class="name">동국대학교일산병원</b>
                 <span class="address">경기도 고양시 일산동구 동국로 27</span>
@@ -68,7 +68,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo08.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo08.gif" alt=""></span>
             <div class="cont">
                 <b class="name">서울아산병원</b>
                 <span class="address">서울특별시 송파구 올림픽로43길 88</span>
@@ -77,7 +77,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo09.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo09.gif" alt=""></span>
             <div class="cont">
                 <b class="name">명지병원</b>
                 <span class="address">경기도 고양시 덕양구 화수로 14번길 55</span>
@@ -86,7 +86,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo10.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo10.gif" alt=""></span>
             <div class="cont">
                 <b class="name">인제대학교 일산백병원</b>
                 <span class="address">경기도 고양시 일산서구 주화로 170</span>
@@ -95,7 +95,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo11.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo11.gif" alt=""></span>
             <div class="cont">
                 <b class="name">분당 서울대학교병원</b>
                 <span class="address">경기도 성남시 분당구 구미로 173번길 82</span>
@@ -104,7 +104,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo12.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo12.gif" alt=""></span>
             <div class="cont">
                 <b class="name">세종병원</b>
                 <span class="address">경기도 부천시 소사구 호현로 489번길 28</span>
@@ -113,7 +113,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo13.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo13.gif" alt=""></span>
             <div class="cont">
                 <b class="name">순천향대학교 서울병원</b>
                 <span class="address">서울시 용산구 대사관로 59</span>
@@ -122,7 +122,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo14.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo14.gif" alt=""></span>
             <div class="cont">
                 <b class="name">국립암센터</b>
                 <span class="address">경기도 고양시 일산동구 일산로 323 (마두1동 809번지)</span>
@@ -131,7 +131,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo15.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo15.gif" alt=""></span>
             <div class="cont">
                 <b class="name">인하대학교의과대학부속병원</b>
                 <span class="address">인천광역시 중구 인항로 27 (신흥동 3가 7-206)</span>
@@ -140,7 +140,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo16.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo16.gif" alt=""></span>
             <div class="cont">
                 <b class="name">의료법인길의료재단 길병원</b>
                 <span class="address">인천광역시 남동구 남동대로 774번길 21 (구월동)</span>
@@ -149,7 +149,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo17.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo17.gif" alt=""></span>
             <div class="cont">
                 <b class="name">가톨릭관동대학교 국제성모병원</b>
                 <span class="address">인천광역시 서구 심곡로 100번길 25</span>
@@ -158,7 +158,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo18.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo18.gif" alt=""></span>
             <div class="cont">
                 <b class="name">이화여대부속 목동병원</b>
                 <span class="address">서울특별시 양천구 안양천로 1071</span>
@@ -167,7 +167,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo19.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo19.gif" alt=""></span>
             <div class="cont">
                 <b class="name">일산병원</b>
                 <span class="address">경기도 고양시 일산동구 일산로 100</span>
@@ -176,7 +176,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo20.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo20.gif" alt=""></span>
             <div class="cont">
                 <b class="name">건국대학교병원</b>
                 <span class="address">서울특별시 광진구 능동로 120-1 (화양동)</span>
@@ -185,7 +185,7 @@
             </div>
         </li>
         <li>
-            <span class="logo"><img src="/resource/images/contents/img_logo21.gif" alt=""></span>
+            <span class="logo"><img src="/resource-pc/images/contents/img_logo21.gif" alt=""></span>
             <div class="cont">
                 <b class="name">중앙대학교병원</b>
                 <span class="address">서울특별시 동작구 흑석로 102</span>

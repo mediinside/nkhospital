@@ -1,5 +1,5 @@
 <div id="location">
-	<a href="/" class="home"><img src="/resource/images/home.png" alt="처음으로"></a>
+	<a href="/" class="home"><img src="/resource-pc/images/home.png" alt="처음으로"></a>
 	<div class="depth dep-1">
 		<p><?=$title?></p>
 		<ul></ul>

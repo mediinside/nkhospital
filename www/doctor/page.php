@@ -41,9 +41,9 @@ else if($gubun == "C") {
 $dep1 = "1";
 $dep2 = "1-3";
 	if($gubun=="A"){ $dep3 = "1-3-0";}
-    elseif($gubun=="B"){ $dep3 = "1-3-1";}   
+    elseif($gubun=="B"){ $dep3 = "1-3-1";}
     elseif($gubun=="C"){ $dep3 = "1-3-2";}
-  
+
 
 ?>
 <script>
@@ -59,9 +59,9 @@ $dep2 = "1-3";
 		<div id="container">
 			<?php include_once "../inc/location.php" ?>
 			<div id="sub-bnnr">
-				<img src="/resource/images/subBnnr04.png" alt="">
+				<img src="/resource-pc/images/subBnnr04.png" alt="">
 				<h2>
-					<span><img src="/resource/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
 					<small><?=$page_sub_title?></small>
 				</h2>
 			</div>
@@ -86,7 +86,7 @@ $dep2 = "1-3";
                         <li class="dropdown-item"><a href="#none" onclick="fnMove('<?=$j?>')"><?=$arr[$k]?></a></li>
                         <?}?>
 					</ul>
-				</div>                
+				</div>
                     <?
                         $i = "0" ;
                         foreach($arr as $k=>$v){
@@ -94,7 +94,7 @@ $dep2 = "1-3";
                             $i++;
                             $args["ct_type"] = $k;
 
-                    ?>                
+                    ?>
                     <div class="docList">
 					<h3 class="cont-tit bar" id="h<?=$i?>"><?=$arr[$k]?></h3>
 					<ul class="list">
@@ -131,8 +131,8 @@ $dep2 = "1-3";
 					</ul>
                     </div>
                     <? } ?>
-				
-               
+
+
 				<!-- //end .docList -->
 			</div>
 			<!-- //end #innerCont -->

@@ -17,7 +17,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 				<ul class="right">
 					<li>
 						<input type="text" id="schtxt">
-						<button><img src="/resource/images/search-gray.png" alt="검색" id="schbtn"></button>
+						<button><img src="/resource-pc/images/search-gray.png" alt="검색" id="schbtn"></button>
 					</li>
 					<li><a href="#" >LOGIN</a></li>
 				</ul>
@@ -25,11 +25,11 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 			<nav>
 				<h1 id="logo">
 					<a href="/">
-						<img src="/resource/images/logo.png" alt="인봉의료재단 뉴고려병원">
+						<img src="/resource-pc/images/logo.png" alt="인봉의료재단 뉴고려병원">
 					</a>
 				</h1>
 				<a id="menu" href="#">
-					<img src="/resource/images/menu.png" alt="">
+					<img src="/resource-pc/images/menu.png" alt="">
 					<span>MENU</span>
 				</a>
 				<div id="gnb">
@@ -64,7 +64,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 									<dd><a data-idx="1-4" href="/service/page12.html">전화번호 안내</a></dd>
 								</dl>
 							</div>
-							<img src="/resource/images/gnb-logo.png" alt="믿으니까, 뉴고려병원">
+							<img src="/resource-pc/images/gnb-logo.png" alt="믿으니까, 뉴고려병원">
 						</li>
 						<li class="center">
 							<a href="/center01/page.php?depart=A&gubun=A" data-idx="2" class="gnb-tit bc2">진료과/의료진</a>
@@ -82,7 +82,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 									<dd><a href="/center01/page.php?depart=E&gubun=A">소화기센터</a></dd>
 									<dd><a href="/center01/page.php?depart=G&gubun=A">소아청소년센터</a></dd>
 									<dd><a href="/center01/page.php?depart=I&gubun=A">응급의료센터</a></dd>
-								</dl>				
+								</dl>
 								<dl>
 									<dt><a href="/center01/page.php?depart=AB&gubun=B">진료과</a></dt>
 									<dd><a href="/center01/page.php?depart=AB&gubun=B">정형외과</a></dd>
@@ -90,20 +90,20 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 									<dd><a href="/center01/page.php?depart=AE&gubun=B">순환기내과</a></dd>
 									<dd><a href="/center01/page.php?depart=T&gubun=B">호흡기내과</a></dd>
 									<dd><a href="/center01/page.php?depart=M&gubun=B">신경과</a></dd>
-									<dd><a href="/center01/page.php?depart=N&gubun=B">산부인과</a></dd>		
-									<dd><a href="/center01/page.php?depart=W&gubun=B">재활의학과</a></dd>		
-									<dd><a href="/center01/page.php?depart=AH&gubun=B">마취통증의학과</a></dd>		
-									<dd><a href="/center01/page.php?depart=AA&gubun=B">직업환경의학과</a></dd>			
-									<dd><a href="/center01/page.php?depart=AC&gubun=B">신경외과</a></dd>																										
-									<dd><a href="/center01/page.php?depart=AD&gubun=B">소화기내과</a></dd>	
-									<dd><a href="/center01/page.php?depart=AF&gubun=B">신장내과</a></dd>																
-									<dd><a href="/center01/page.php?depart=R&gubun=B">내분비내과</a></dd>										
-									<dd><a href="/center01/page.php?depart=AG&gubun=B">소아청소년과</a></dd>										
-									<dd><a href="/center01/page.php?depart=V&gubun=B">피부비뇨의학과</a></dd>	
-									<dd><a href="/center01/page.php?depart=O&gubun=B">치과</a></dd>										
-									<dd><a href="/center01/page.php?depart=P&gubun=B">영상의학과</a></dd>										
-									<dd><a href="/center01/page.php?depart=Q&gubun=B">진단검사의학과</a></dd>										
-									<dd><a href="/center01/page.php?depart=AI&gubun=B">응급의학과</a></dd>			
+									<dd><a href="/center01/page.php?depart=N&gubun=B">산부인과</a></dd>
+									<dd><a href="/center01/page.php?depart=W&gubun=B">재활의학과</a></dd>
+									<dd><a href="/center01/page.php?depart=AH&gubun=B">마취통증의학과</a></dd>
+									<dd><a href="/center01/page.php?depart=AA&gubun=B">직업환경의학과</a></dd>
+									<dd><a href="/center01/page.php?depart=AC&gubun=B">신경외과</a></dd>
+									<dd><a href="/center01/page.php?depart=AD&gubun=B">소화기내과</a></dd>
+									<dd><a href="/center01/page.php?depart=AF&gubun=B">신장내과</a></dd>
+									<dd><a href="/center01/page.php?depart=R&gubun=B">내분비내과</a></dd>
+									<dd><a href="/center01/page.php?depart=AG&gubun=B">소아청소년과</a></dd>
+									<dd><a href="/center01/page.php?depart=V&gubun=B">피부비뇨의학과</a></dd>
+									<dd><a href="/center01/page.php?depart=O&gubun=B">치과</a></dd>
+									<dd><a href="/center01/page.php?depart=P&gubun=B">영상의학과</a></dd>
+									<dd><a href="/center01/page.php?depart=Q&gubun=B">진단검사의학과</a></dd>
+									<dd><a href="/center01/page.php?depart=AI&gubun=B">응급의학과</a></dd>
 								</dl>
 								<dl>
 									<dt><a href="/center01/page.php?depart=A&gubun=C">특수클리닉</a></dt>
@@ -144,18 +144,18 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 									<dd><a href="#">협력병원 및 기관</a></dd>
 								</dl>
 							</div>
-							<img src="/resource/images/gnb-call.png" alt="응급환자 365일 24시간 진료. 응급실:031-980-9114. 콜센터:1661-7779.">
+							<img src="/resource-pc/images/gnb-call.png" alt="응급환자 365일 24시간 진료. 응급실:031-980-9114. 콜센터:1661-7779.">
 						</li>
 					</ul>
 				</div>
 				<!-- //end #gnb -->
 				<div id="reserve-btn-group">
 					<a href="#">
-						<img src="/resource/images/tel.png" alt="">
+						<img src="/resource-pc/images/tel.png" alt="">
 						<span>전화예약<br>하러가기</span>
 					</a>
 					<a href="#">
-						<img src="/resource/images/reserve.png" alt="">
+						<img src="/resource-pc/images/reserve.png" alt="">
 						<span>간편예약<br>하러가기</span>
 					</a>
 				</div>
@@ -165,7 +165,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 				 -->
 				 <div id="top-bnnr" class="swiper-container">
 					<ul class="swiper-wrapper">
-						<?=$Main_Slide?>	
+						<?=$Main_Slide?>
 					</ul>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>

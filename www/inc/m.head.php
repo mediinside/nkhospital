@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="./public/css/default.css">
 <link rel="stylesheet" href="./public/css/common.css">
 <!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-<script type="text/javascript" src="/resource/js/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="/resource-pc/js/jquery-1.12.2.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="./public/js/jquery.browser.min.js"></script>
 <script type="text/javascript" src="./public/js/jquery.easing.min.js"></script>

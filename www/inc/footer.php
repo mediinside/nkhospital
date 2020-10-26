@@ -10,7 +10,7 @@
 			<div class="inner">
 				<h1 class="foot-logo">
 					<a href="/">
-						<img src="/resource/images/logo.png" alt="">
+						<img src="/resource-pc/images/logo.png" alt="">
 					</a>
 				</h1>
 				<div class="f-l">
@@ -47,7 +47,7 @@
 				</div>
 				<div class="f-r">
 					<div class="f time">
-						<img src="/resource/images/foot-time.png" alt="">
+						<img src="/resource-pc/images/foot-time.png" alt="">
 						<dl>
 							<dt>평일</dt>
 							<dd>접수시간 08:10-17:00</dd>
@@ -62,14 +62,14 @@
 						</dl>
 					</div>
 					<div class="f tel">
-						<img src="/resource/images/foot-tel.png" alt="">
+						<img src="/resource-pc/images/foot-tel.png" alt="">
 						<dl>
 							<dt>응급환자 365일 24시간 진료</dt>
 							<dd>031-980-9119</dd>
 						</dl>
 					</div>
 					<div class="f call">
-						<img src="/resource/images/foot-call.png" alt="">
+						<img src="/resource-pc/images/foot-call.png" alt="">
 						<dl>
 							<dt>콜센터</dt>
 							<dd>1661-7779</dd>
