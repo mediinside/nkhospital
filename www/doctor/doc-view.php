@@ -59,9 +59,9 @@ if($data) {
 	if($dr_bg_img !=  '') {
 		$dr_bg_img = $GP -> UP_DOCTOR_URL . $dr_bg_img;
 	}else{
-		$dr_bg_img = "/resource/images/contents/bg_doc1.jpg";
+		$dr_bg_img = "/resource-pc/images/contents/bg_doc1.jpg";
 	}
-	$th_img = ($dr_thumb_img) ? $GP -> UP_DOCTOR_URL.$dr_thumb_img : "/resource/images/sample2.jpg";
+	$th_img = ($dr_thumb_img) ? $GP -> UP_DOCTOR_URL.$dr_thumb_img : "/resource-pc/images/sample2.jpg";
 	$th_img = '<img src="'.$th_img.'" alt="" style="width:100%; position:absolute; ">';
 	$treat = ($GP->NEW_MOBILE_CENTER_ALL[$dr_clinic2]) ? $GP->NEW_MOBILE_CENTER_ALL[$dr_clinic2] : $GP->NEW_MOBILE_SPECIAL[$dr_clinic3];
 
@@ -102,9 +102,9 @@ $dep3 = "1-3-0";
 		<div id="container">
 			<?php include_once "../inc/location.php" ?>
 			<div id="sub-bnnr">
-				<img src="/resource/images/subBnnr04.png" alt="">
+				<img src="/resource-pc/images/subBnnr04.png" alt="">
 				<h2>
-					<span><img src="/resource/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
 					<small><?=$page_sub_title?></small>
 				</h2>
 			</div>

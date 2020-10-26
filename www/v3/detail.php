@@ -62,9 +62,9 @@ if($data) {
 	if($dr_bg_img !=  '') {
 		$dr_bg_img = $GP -> UP_DOCTOR_URL . $dr_bg_img;
 	}else{
-		$dr_bg_img = "/resource/images/contents/bg_doc1.jpg";
+		$dr_bg_img = "/resource-pc/images/contents/bg_doc1.jpg";
 	}
-	$th_img = ($dr_thumb_img) ? $GP -> UP_DOCTOR_URL.$dr_thumb_img : "/resource/images/sample2.jpg";
+	$th_img = ($dr_thumb_img) ? $GP -> UP_DOCTOR_URL.$dr_thumb_img : "/resource-pc/images/sample2.jpg";
 	$th_img = '<img src="'.$th_img.'" alt="" style="width:100%; position:absolute; ">';
 	$treat = ($GP->NEW_MOBILE_CENTER_ALL[$dr_clinic2]) ? $GP->NEW_MOBILE_CENTER_ALL[$dr_clinic2] : $GP->NEW_MOBILE_SPECIAL[$dr_clinic3];
 

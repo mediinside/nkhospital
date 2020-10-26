@@ -120,9 +120,9 @@ elseif($gubun == "C"){
 		<div id="container">
 			<?php include_once "../inc/location.php" ?>
 			<div id="sub-bnnr">
-				<img src="/resource/images/subBnnr03.png" alt="">
+				<img src="/resource-pc/images/subBnnr03.png" alt="">
 				<h2>
-					<span><img src="/resource/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
 					<small><?=$ctxt?></small>
 				</h2>
 			</div>
@@ -390,7 +390,7 @@ elseif($gubun == "C"){
 							}else if($vd_link2) {
 								$vimeo_id = explode("vimeo.com/",$vd_link2);
 							}else{
-								$you_link = '<img src="/resource/images/sample2.jpg" alt="" style="width:100%;">';
+								$you_link = '<img src="/resource-pc/images/sample2.jpg" alt="" style="width:100%;">';
 							}
 
 							if($vimeo_id){

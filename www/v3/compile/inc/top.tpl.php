@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\inc\top.tpl 000008976 */ 
+<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\inc\top.tpl 000008976 */
 $TPL_gpa_1=empty($TPL_VAR["gpa"])||!is_array($TPL_VAR["gpa"])?0:count($TPL_VAR["gpa"]);
 $TPL_gpb_1=empty($TPL_VAR["gpb"])||!is_array($TPL_VAR["gpb"])?0:count($TPL_VAR["gpb"]);
 $TPL_gpc_1=empty($TPL_VAR["gpc"])||!is_array($TPL_VAR["gpc"])?0:count($TPL_VAR["gpc"]);?>
@@ -7,7 +7,7 @@ $TPL_gpc_1=empty($TPL_VAR["gpc"])||!is_array($TPL_VAR["gpc"])?0:count($TPL_VAR["
 <![endif]-->
 <div id="wrap">
 		<header id="header">
-			<h1><a href="/v3/"><img src="/resource/images/img_logo.png" alt="인봉의료재단 뉴고려 병원"></a></h1>
+			<h1><a href="/v3/"><img src="/resource-pc/images/img_logo.png" alt="인봉의료재단 뉴고려 병원"></a></h1>
 			<button type="button" class="btnMenu" onclick="$('html').toggleClass('menuOn');"><span>메뉴</span></button>
 			<button type="button" class="btnSearch" onclick="$('html').addClass('searchOn');">검색</button>
 

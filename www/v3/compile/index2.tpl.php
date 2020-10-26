@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2019/10/15 19:10:16 /nkmed/www/v3/view/index2.tpl 000004548 */ 
+<?php /* Template_ 2.2.8 2019/10/15 19:10:16 /nkmed/www/v3/view/index2.tpl 000004548 */
 $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($TPL_VAR["tsdata"]);?>
 <div class="mainSlide">
         <div class="slide">
@@ -9,7 +9,7 @@ $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($
                 </li>
 <?php }}?>
                 <!--<li class="swiper-slide">
-                    <a href="#"><img src="/resource/images/main/img_top_banner01.jpg" alt=""></a>
+                    <a href="#"><img src="/resource-pc/images/main/img_top_banner01.jpg" alt=""></a>
                 </li>-->
             </ul>
         </div>
@@ -32,18 +32,18 @@ $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($
             <ul class="swiper-wrapper" id="main_slide">
                 <li class="swiper-slide" data-vid="rAi4wNFMEdU">
                    <a href="javascript:void(0);" data-vid="rAi4wNFMEdU">
-                        <img src="/resource/images/main/img_mid_banner01.jpg" alt="">
+                        <img src="/resource-pc/images/main/img_mid_banner01.jpg" alt="">
 
                     </a>
                 </li>
                 <li class="swiper-slide" data-vid="CuaKAJZLxZ8">
                     <a href="javascript:void(0);" data-vid="CuaKAJZLxZ8">
-                        <img src="/resource/images/main/img_mid_banner02.jpg" alt="" data-vid="CuaKAJZLxZ8">
+                        <img src="/resource-pc/images/main/img_mid_banner02.jpg" alt="" data-vid="CuaKAJZLxZ8">
                     </a>
                 </li>
                 <li class="swiper-slide" data-vid="mCawo_WsjvM">
                     <a href="http://naver.com" data-vid="mCawo_WsjvM">
-                        <img src="/resource/images/main/img_mid_banner03.jpg" alt="">
+                        <img src="/resource-pc/images/main/img_mid_banner03.jpg" alt="">
                     </a>
                 </li>
             </ul>
