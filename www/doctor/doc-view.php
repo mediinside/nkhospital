@@ -75,8 +75,8 @@ if($data) {
 		$you_id = explode("&",$you_id[1]);
 		$you_id = $you_id[0];
     }
-    $dr_treat  = str_replace(",", "</li><li>", $dr_treat); 
-    
+    $dr_treat  = str_replace(",", "</li><li>", $dr_treat);
+
 }
 
 if($gubun == "A") {
@@ -109,10 +109,10 @@ $dep3 = "1-3-0";
 				</h2>
 			</div>
 			<!-- //end #sub-bnnr -->
-			<div id="innerCont">				
+			<div id="innerCont">
 
 				<div class="l-pad-box gray">
-					<iframe width="800" src="https://www.youtube.com/embed/<?=$you_id?>" frameborder="0"
+					<iframe class="active" width="800" src="https://www.youtube.com/embed/<?=$you_id?>" frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
 				</div>
@@ -189,7 +189,7 @@ $dep3 = "1-3-0";
 				</div>
 				<div class="no1">
 					<div class="doc-history">
-                        <?=$dr_history?>    
+                        <?=$dr_history?>
 					</div>
 				</div>
 				<div class="no2">

@@ -773,7 +773,7 @@ $GP -> NEW_MOBILE_SPECIAL= array(
 $GP -> Navi_Dep1 = array(
 				'0' =>  array('서비스 이용안내','/guide/page01.html'),
 				'1' =>  array('진료과/의료진','/center01/page.php?depart=A&gubun=A'),
-				'2' =>  array('뉴고려커뮤니티','/health/page01.html'),				
+				'2' =>  array('뉴고려커뮤니티','/health/page01.html'),
 			);
 $GP -> Navi_Dep2 = array(
 			'0' => array(
@@ -789,10 +789,10 @@ $GP -> Navi_Dep2 = array(
 					'1-3' => array('의료진 소개', '/doctor/page.php?depart=A&gubun=A'),
 				),
 			'2' => array(
-					'2-0' => array('소통/공감', '/health/page01.html'),
-					'2-1' => array('병원소개', '/health/page07.html'),
+					'2-0' => array('소통/공감', '/notice/page01.html'),
+					'2-1' => array('병원소개', '/notice/page07.html'),
 				)
-		);	
+		);
 $GP -> Navi_Dep3 = array(
 			'0-0' => array(
 					'0-0-0' => array('진료예약', '/guide/page01.html'),
@@ -801,7 +801,7 @@ $GP -> Navi_Dep3 = array(
 				),
 			'0-1' => array(
 					'0-1-0' => array('외래진료안내', '/guide/page03.html'),
-					'0-1-1' => array('응급진료안내', '/guide/page04.html'),				
+					'0-1-1' => array('응급진료안내', '/guide/page04.html'),
 				),
 			'0-2' => array(
 					'0-2-0' => array('입/퇴원 안내', '/guide/page06.html'),
@@ -833,19 +833,19 @@ $GP -> Navi_Dep3 = array(
 					'1-1-2' => array('순환기내과', '/center01/page.php?depart=AE&gubun=B'),
 					'1-1-3' => array('호흡기내과', '/center01/page.php?depart=T&gubun=B'),
 					'1-1-4' => array('신경과', '/center01/page.php?depart=M&gubun=B'),
-					'1-1-5' => array('산부인과', '/center01/page.php?depart=N&gubun=B'),		
-					'1-1-6' => array('재활의학과', '/center01/page.php?depart=W&gubun=B'),		
-					'1-1-7' => array('마취통증의학과', '/center01/page.php?depart=AH&gubun=B'),		
-					'1-1-8' => array('직업환경의학과', '/center01/page.php?depart=AA&gubun=B'),			
-					'1-1-9' => array('신경외과', '/center01/page.php?depart=AC&gubun=B'),																										
-					'1-1-10' => array('소화기내과', '/center01/page.php?depart=AD&gubun=B'),	
-					'1-1-11' => array('신장내과', '/center01/page.php?depart=AF&gubun=B'),																
-					'1-1-12' => array('내분비내과', '/center01/page.php?depart=R&gubun=B'),										
-					'1-1-13' => array('소아청소년과', '/center01/page.php?depart=AG&gubun=B'),										
-					'1-1-14' => array('피부비뇨의학과', '/center01/page.php?depart=V&gubun=B'),	
-					'1-1-15' => array('치과', '/center01/page.php?depart=O&gubun=B'),										
-					'1-1-16' => array('영상의학과', '/center01/page.php?depart=P&gubun=B'),										
-					'1-1-17' => array('진단검사의학과', '/center01/page.php?depart=Q&gubun=B'),										
+					'1-1-5' => array('산부인과', '/center01/page.php?depart=N&gubun=B'),
+					'1-1-6' => array('재활의학과', '/center01/page.php?depart=W&gubun=B'),
+					'1-1-7' => array('마취통증의학과', '/center01/page.php?depart=AH&gubun=B'),
+					'1-1-8' => array('직업환경의학과', '/center01/page.php?depart=AA&gubun=B'),
+					'1-1-9' => array('신경외과', '/center01/page.php?depart=AC&gubun=B'),
+					'1-1-10' => array('소화기내과', '/center01/page.php?depart=AD&gubun=B'),
+					'1-1-11' => array('신장내과', '/center01/page.php?depart=AF&gubun=B'),
+					'1-1-12' => array('내분비내과', '/center01/page.php?depart=R&gubun=B'),
+					'1-1-13' => array('소아청소년과', '/center01/page.php?depart=AG&gubun=B'),
+					'1-1-14' => array('피부비뇨의학과', '/center01/page.php?depart=V&gubun=B'),
+					'1-1-15' => array('치과', '/center01/page.php?depart=O&gubun=B'),
+					'1-1-16' => array('영상의학과', '/center01/page.php?depart=P&gubun=B'),
+					'1-1-17' => array('진단검사의학과', '/center01/page.php?depart=Q&gubun=B'),
 					'1-1-18' => array('응급의학과', '/center01/page.php?depart=AI&gubun=B'),
 				),
 			'1-2' => array(
@@ -874,7 +874,7 @@ $GP -> Navi_Dep3 = array(
 			//'2-1' => array(
 			//		'2-1-0' => array('이용안내', '/health/page07.html'),
 			//	)
-		);		
+		);
 $GP-> WEB_TITLE = "뉴고려병원";
 $GP-> ADM_TITLE = "뉴고려병원 관리자 페이지";
 ?>

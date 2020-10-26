@@ -1407,7 +1407,7 @@ nav {
 		}
 		li {
 			float: left;
-			width: 33.33%;
+			width: 25%;
 			margin: 2.5rem 0;
 			a {
 				display: block;
@@ -1417,6 +1417,7 @@ nav {
 				position: relative;
 				display: block;
 				margin: 0 0 0.5rem;
+				border:1px solid #ddd;
 				&:before,
 				&:after {
 					content: "";
@@ -1472,15 +1473,16 @@ nav {
 	justify-content: space-between;
 	margin-top: 80px;
 	.doctor-img {
-		width: 408px;
+		width: 400px;
 		text-align: center;
 		img {
 			width: 100%;
-			max-width: 408px;
+			max-width: 398px;
+			border:1px solid #ddd;
 		}//end img
 	}//end .doctor-img
 	.doctor-info {
-		width: calc(100% - 608px);
+		width: calc(100% - 508px);
 		// padding: 30px 0;
 		.talk {
 			span {
@@ -2014,11 +2016,69 @@ nav {
 	}//end .opt
 }//end .cardList
 
+
+
+/** 뉴고려병원 - 협력병원 **/
+.joinHospital {
+	display: flex;
+	align-content: flex-start;
+	justify-items: flex-start;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top: 17px;
+	>li {
+		border:1px solid #ddd;
+		width: calc(33.33% - 20px);
+		margin:20px 10px;
+		box-sizing: border-box;
+		min-height: 116px;
+		background-color: #fdfdfd;
+		>p {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-bottom:1px solid #ddd;
+			background-color: #fff;
+			img {
+				height:90px;
+			}
+		}
+	}
+	.joinHList {
+		list-style: none;
+		padding:30px 15px;
+		>li {
+			font-size: 1.6rem;
+			color: #333;
+			margin: 0;
+			letter-spacing: -0.5px;
+			>a {
+				display: inline-block;
+				margin-top: 15px;
+				text-decoration: none;
+				font-size: 1.3rem;
+				color: #333;
+				line-height: 1.4;
+				&:hover {
+					color:#eb3447;
+				}
+			}
+		}//end li
+		.joinHName {
+			color: #6666cc;
+			font-size: 2rem;
+			font-weight: 600;
+			padding-bottom: 15px;
+		}//end .joinHName
+	}//end .joinHList
+}//end .joinHospital
+
+
+
 /* 로그인 */
 .btnTypeNaver {
 	background: #1dc800;
 	color: #fff;
-
 	&:before {
 		content: "";
 		display: inline-block;
