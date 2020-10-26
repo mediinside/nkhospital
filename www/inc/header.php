@@ -19,7 +19,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 						<input type="text" id="schtxt">
 						<button><img src="/resource/images/search-gray.png" alt="검색" id="schbtn"></button>
 					</li>
-					<li><a href="#" id="schbtn">LOGIN</a></li>
+					<li><a href="#" >LOGIN</a></li>
 				</ul>
 			</div>
 			<nav>
