@@ -172,7 +172,7 @@
   padding: 0 30px;
   color: #333;
   font-size: 1.6rem;
-  font-weight: 300;
+  font-weight: 400;
   border: 1px solid #ddd;
   box-sizing: border-box;
   outline: none;
@@ -189,6 +189,8 @@
   transition: all 0.2s; }
   .btn:hover {
     opacity: 0.85; }
+  .btn.block {
+    width: 100%; }
   .btn.bg-deepblue {
     color: #fff;
     border-color: #093265;
@@ -201,6 +203,10 @@
     color: #fff;
     border-color: #eb3447;
     background-color: #eb3447; }
+  .btn.bg-orange {
+    color: #fff;
+    border-color: #ffa200;
+    background-color: #ffa200; }
   .btn.border-green {
     border-color: #26b27c; }
   .btn img {
@@ -1583,6 +1589,143 @@ nav {
         height: 0.8rem;
         background: #ddd; }
 
+/* 로그인 */
+.btnTypeNaver {
+  background: #1dc800;
+  color: #fff; }
+  .btnTypeNaver:before {
+    content: "";
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.5rem 0 -1rem;
+    background: url("/nkhospital.net/resource/images/naver.png") no-repeat;
+    background-size: 3rem;
+    vertical-align: middle; }
+
+.btnTypeKakao {
+  background: #ffe400;
+  color: #412e34; }
+  .btnTypeKakao:before {
+    content: "";
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.5rem 0 -1rem;
+    background: url("/nkhospital.net/resource/images/kakao.png") no-repeat;
+    background-size: 3rem;
+    vertical-align: middle; }
+
+.pageTitle {
+  height: 7rem;
+  text-align: center;
+  background-size: auto 7rem;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  font-size: 0; }
+  .pageTitle + .btnWrap {
+    margin-top: 0; }
+  .pageTitle span {
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: #1d366d;
+    font-size: 1.4rem;
+    font-weight: 400;
+    vertical-align: middle; }
+    .pageTitle span:before {
+      content: "";
+      display: inline-block;
+      margin-right: 0.5rem;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      vertical-align: bottom; }
+  .pageTitle.login {
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_login.png"); }
+  .pageTitle.join span:before {
+    width: 3.15rem;
+    height: 3.3rem;
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_join.png"); }
+  .pageTitle.find span:before {
+    width: 2.6rem;
+    height: 2.6rem;
+    background-image: url("/resource/images/contents/icon_sub_find.png"); }
+  .pageTitle.joinCom {
+    background-image: url("/resource/images/contents/icon_sub_join_com.png"); }
+  .pageTitle.mypage {
+    background-image: url("/resource/images/contents/icon_sub_mp.png"); }
+  .pageTitle.write {
+    background-image: url("/resource/images/contents/icon_sub_write.png"); }
+  .pageTitle.letter {
+    background-image: url("/resource/images/contents/icon_sub_letter.png"); }
+  .pageTitle.recruit {
+    background-image: url("/resource/images/contents/icon_sub_recruit.png"); }
+  .pageTitle.collabo {
+    background-image: url("/resource/images/contents/icon_sub_collabo.png"); }
+  .pageTitle.tel {
+    background-image: url("/resource/images/contents/icon_sub_tel.png"); }
+  .pageTitle.terms {
+    background-image: url("/resource/images/contents/icon_sub_terms.png"); }
+  .pageTitle.privacy {
+    background-image: url("/resource/images/contents/icon_sub_privacy.png"); }
+  .pageTitle.signature {
+    background-image: url("/resource/images/contents/icon_sub_signature.png"); }
+  .pageTitle.infomation {
+    background-image: url("/resource/images/contents/icon_sub_infomation.png"); }
+  .pageTitle.right {
+    background-image: url("/resource/images/contents/icon_sub_right.png"); }
+
+.pageTxt {
+  font-size: r(44);
+  line-height: 1.4; }
+
+.loginWrap {
+  background-size: 2.6rem; }
+  .loginWrap .inputTxt {
+    display: block;
+    width: 100%;
+    line-height: 3.3rem;
+    margin: 0 0 1.75rem;
+    border: 0;
+    border-bottom: 0.2rem solid #c0c8d6;
+    font-size: 1.4rem; }
+  .loginWrap .loginOption {
+    position: relative;
+    margin: 1.5rem 0 0; }
+    .loginWrap .loginOption .link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #333; }
+  .loginWrap .btnSns {
+    margin: 3rem 0 3rem;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid #c0c8d6;
+    text-align: center; }
+    .loginWrap .btnSns a ~ a {
+      margin-left: 4.5rem; }
+    .loginWrap .btnSns [class*="btn"] {
+      display: inline-block; }
+      .loginWrap .btnSns [class*="btn"]:before {
+        content: "";
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.8rem;
+        background-size: cover;
+        background-repeat: no-repeat;
+        vertical-align: -10px; }
+      .loginWrap .btnSns [class*="btn"].btnNaver {
+        color: #1cbf00; }
+        .loginWrap .btnSns [class*="btn"].btnNaver:before {
+          background-image: url("https://nkhospital.net/resource/images/naver.png"); }
+      .loginWrap .btnSns [class*="btn"].btnKakao {
+        color: #412e34; }
+        .loginWrap .btnSns [class*="btn"].btnKakao:before {
+          background-image: url("https://nkhospital.net/resource/images/kakao.png"); }
+  .loginWrap .helpTxt {
+    margin: 1rem 1rem 0;
+    text-align: left; }
+
 /*
 	footer
 */
@@ -1667,6 +1810,40 @@ footer {
       opacity: 0.35; }
       #fnb li a:hover {
         opacity: 1; }
+
+/*
+	modal
+*/
+.modal-box {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000000; }
+  .modal-box .modal {
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 50%;
+    width: 800px;
+    padding: 30px;
+    background-color: #fff;
+    transform: translateX(-50%); }
+    .modal-box .modal.small {
+      width: 500px; }
+    .modal-box .modal .close {
+      display: block;
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      font-size: 6rem;
+      font-weight: 300; }
 
 @media screen and (max-width: 1670px) {
   #menu {

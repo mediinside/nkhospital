@@ -209,7 +209,7 @@
 	padding: 0 30px;
 	color: #333;
 	font-size: 1.6rem;
-	font-weight: 300;
+	font-weight: 400;
 	border: 1px solid #ddd;
 	box-sizing: border-box;
 	outline: none;
@@ -227,6 +227,9 @@
 	&:hover {
 		opacity: 0.85;
 	}
+	&.block {
+		width: 100%;
+	}
 	&.bg-deepblue {
 		color:#fff;
 		border-color:#093265;
@@ -242,6 +245,11 @@
 		border-color:#eb3447;
 		background-color: #eb3447;
 	}//end .bg-green
+	&.bg-orange {
+		color:#fff;
+		border-color:#ffa200;
+		background-color: #ffa200;
+	}
 
 	&.border-green {
 		border-color:#26b27c;
@@ -2006,7 +2014,207 @@ nav {
 	}//end .opt
 }//end .cardList
 
+/* 로그인 */
+.btnTypeNaver {
+	background: #1dc800;
+	color: #fff;
 
+	&:before {
+		content: "";
+		display: inline-block;
+		width: 3rem;
+		height: 3rem;
+		margin: 0 0.5rem 0 -1rem;
+		background: url('/nkhospital.net/resource/images/naver.png') no-repeat;
+		background-size: 3rem;
+		vertical-align: middle;
+	}
+}
+
+.btnTypeKakao {
+	background: #ffe400;
+	color: #412e34;
+
+	&:before {
+		content: "";
+		display: inline-block;
+		width: 3rem;
+		height: 3rem;
+		margin: 0 0.5rem 0 -1rem;
+		background: url('/nkhospital.net/resource/images/kakao.png') no-repeat;
+		background-size: 3rem;
+		vertical-align: middle;
+	}
+}
+
+.pageTitle {
+	height: 7rem;
+	text-align: center;
+
+	background: {
+		size: auto 7rem;
+		repeat: no-repeat;
+		position: 50%;
+	}
+
+	font-size: 0;
+
+	+.btnWrap {
+		margin-top: 0;
+	}
+
+	span {
+		display: inline-block;
+		margin-right: 0.5rem;
+		color: #1d366d;
+		font-size: 1.4rem;
+		font-weight: 400;
+		vertical-align: middle;
+
+		&:before {
+			content: "";
+			display: inline-block;
+			margin-right: 0.5rem;
+
+			background: {
+				size: 100%;
+				repeat: no-repeat;
+			}
+
+			vertical-align: bottom;
+		}
+	}
+
+	&.login {
+		background-image: url('https://nkhospital.net/resource/images/contents/icon_sub_login.png');
+	}
+
+	&.join span:before {
+		width: 3.15rem;
+		height: 3.3rem;
+		background-image: url('https://nkhospital.net/resource/images/contents/icon_sub_join.png');
+	}
+
+	&.find span:before {
+		width: 2.6rem;
+		height: 2.6rem;
+		background-image: url('/resource/images/contents/icon_sub_find.png');
+	}
+
+	&.joinCom {
+		background-image: url('/resource/images/contents/icon_sub_join_com.png');
+	}
+
+	&.mypage {
+		background-image: url('/resource/images/contents/icon_sub_mp.png');
+	}
+
+	&.write {
+		background-image: url('/resource/images/contents/icon_sub_write.png');
+	}
+
+	&.letter {
+		background-image: url('/resource/images/contents/icon_sub_letter.png');
+	}
+
+	&.recruit {
+		background-image: url('/resource/images/contents/icon_sub_recruit.png');
+	}
+
+	&.collabo {
+		background-image: url('/resource/images/contents/icon_sub_collabo.png');
+	}
+
+	&.tel {
+		background-image: url('/resource/images/contents/icon_sub_tel.png');
+	}
+
+	&.terms {
+		background-image: url('/resource/images/contents/icon_sub_terms.png');
+	}
+
+	&.privacy {
+		background-image: url('/resource/images/contents/icon_sub_privacy.png');
+	}
+
+	&.signature {
+		background-image: url('/resource/images/contents/icon_sub_signature.png');
+	}
+
+	&.infomation {
+		background-image: url('/resource/images/contents/icon_sub_infomation.png');
+	}
+
+	&.right {
+		background-image: url('/resource/images/contents/icon_sub_right.png');
+	}
+}
+
+.pageTxt {
+	font-size: r(44);
+	line-height: 1.4;
+}
+
+.loginWrap {
+	background-size: 2.6rem;
+	.inputTxt {
+		display: block;
+		width: 100%;
+		line-height: 3.3rem;
+		margin: 0 0 1.75rem;
+		border: 0;
+		border-bottom: 0.2rem solid #c0c8d6;
+		font-size: 1.4rem;
+	}
+	.loginOption {
+		position: relative;
+		margin: 1.5rem 0 0;
+		.link {
+			position: absolute;
+			top: 0;
+			right: 0;
+			color:#333;
+		}
+	}
+	.btnSns {
+		margin: 3rem 0 3rem;
+		padding: 1.5rem 0 0;
+		border-top: 1px solid #c0c8d6;
+		text-align: center;
+		a ~ a {margin-left: 4.5rem;}
+		[class*="btn"] {
+			display: inline-block;
+			&:before {
+				content: "";
+				display: inline-block;
+				width: 3rem;
+				height: 3rem;
+				margin-right: 0.8rem;
+				background: {
+					size: cover;
+					repeat: no-repeat;
+				}
+				vertical-align: -10px;
+			}
+			&.btnNaver {
+				color: #1cbf00;
+				&:before {
+					background-image: url('https://nkhospital.net/resource/images/naver.png');
+				}
+			}
+			&.btnKakao {
+				color: #412e34;
+				&:before {
+					background-image: url('https://nkhospital.net/resource/images/kakao.png');
+				}
+			}
+		}
+	}
+	.helpTxt {
+		margin: 1rem 1rem 0;
+		text-align: left;
+	}
+}
 
 
 
@@ -2124,6 +2332,45 @@ footer {
 	}//end li
 }//end .fnb
 
+
+
+/*
+	modal
+*/
+.modal-box {
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 10000000;
+	.modal {
+		position: absolute;
+		top: 10%;
+		bottom: 10%;
+		left: 50%;
+		width: 800px;
+		padding:30px;
+		background-color: #fff;
+		transform: translateX(-50%);
+		&.small {
+			width: 500px;
+		}
+		.close {
+			display: block;
+			position: absolute;
+			top: -40px;
+			right: -40px;
+			width: 40px;
+			height: 40px;
+			color:#fff;
+			font-size: 6rem;
+			font-weight: 300;
+		}
+	}
+}
 
 
 @media screen and (max-width:1670px) {
