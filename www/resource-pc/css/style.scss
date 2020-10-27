@@ -2135,13 +2135,14 @@ nav {
 	display: flex;
 	align-content: flex-start;
 	justify-items: flex-start;
-	width:calc(100% + 3rem);
-	margin: 2rem 0 0 -1.5rem;
+	flex-wrap: wrap;
+	width:100%;
+	margin: 2rem 0 0 0;
 	&.typeRecruit li {
 		background-image: url("http://nkhospital.net/resource/images/contents/icon_recruit.png");
 	}
 	li {
-		width: 33.33%;
+		width: calc(33.33% - 3.2rem);
 		margin: 1.5rem;
 		background: #fdfdfd url("http://nkhospital.net/resource/images/contents/icon_heart.png") no-repeat right 1.4rem bottom 1.4rem;
 		background-size: 2rem;
