@@ -1,11 +1,11 @@
 <footer>
 			<ul id="fnb">
-				<li><a href="#">이용약관</a></li>
-				<li><a href="#">개인정보취급방침</a></li>
-				<li><a href="#">비급여안내</a></li>
-				<li><a href="#">고유식별번호</a></li>
-				<li><a href="#">영상정보처리방침</a></li>
-				<li><a href="#">환자권리장전</a></li>
+				<li><a href="/member/agree-page01.html">이용약관</a></li>
+				<li><a href="/member/agree-page02.html">개인정보처리방침</a></li>
+				<li><a href="/member/nopay.html">비급여안내</a></li>
+				<li><a href="/member/agree-page03.html">고유식별번호</a></li>
+				<li><a href="/member/agree-page04.html">영상정보처리방침</a></li>
+				<li><a href="/member/agree-page05.html">환자권리장전</a></li>
 			</ul>
 			<div class="inner">
 				<h1 class="foot-logo">

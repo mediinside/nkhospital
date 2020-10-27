@@ -38,30 +38,30 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 							<a href="#none" class="gnb-tit bc1" data-idx="1">서비스 이용안내</a>
 							<div class="row">
 								<dl>
-									<dt><a data-idx="1-1" href="#none">예약/발급</a></dt>
-									<dd><a data-idx="1-1" href="/service/page01.html">진료예약</a></dd>
-									<dd><a data-idx="1-1" href="/service/page02.html">검진예약</a></dd>
-									<dd><a data-idx="1-1" href="/service/page03.html">증명서발급안내</a></dd>
+									<dt><a href="#none">예약/발급</a></dt>
+									<dd><a href="/service/page01.html">진료예약</a></dd>
+									<dd><a href="/service/page02.html">검진예약</a></dd>
+									<dd><a href="/service/page03.html">증명서발급안내</a></dd>
 								</dl>
 								<dl>
-									<dt><a data-idx="1-2" href="#none">입/퇴원 안내</a></dt>
-									<dd><a data-idx="1-2" href="/service/page06.html">입/퇴원 안내</a></dd>
-									<dd><a data-idx="1-2" href="/service/page07.html">입원생활안내</a></dd>
-									<dd><a data-idx="1-2" href="/service/page08.html">면회안내</a></dd>
+									<dt><a href="#none">입/퇴원 안내</a></dt>
+									<dd><a href="/service/page06.html">입/퇴원 안내</a></dd>
+									<dd><a href="/service/page07.html">입원생활안내</a></dd>
+									<dd><a href="/service/page08.html">면회안내</a></dd>
 								</dl>
 							</div>
 							<div class="row">
 								<dl>
-									<dt><a data-idx="1-3" href="#none">진료안내</a></dt>
-									<dd><a data-idx="1-3" href="/service/page04.html">외래진료안내</a></dd>
-									<dd><a data-idx="1-3" href="/service/page05.html">응급진료안내</a></dd>
+									<dt><a href="#none">진료안내</a></dt>
+									<dd><a href="/service/page04.html">외래진료안내</a></dd>
+									<dd><a href="/service/page05.html">응급진료안내</a></dd>
 								</dl>
 								<dl>
-									<dt><a data-idx="1-4" href="#none">병원안내</a></dt>
-									<dd><a data-idx="1-4" href="/service/page09-1.html">병원둘러보기</a></dd>
-									<dd><a data-idx="1-4" href="/service/page10-1.html">오시는길/주차안내</a></dd>
-									<dd><a data-idx="1-4" href="/service/page11.html">장례식장</a></dd>
-									<dd><a data-idx="1-4" href="/service/page12.html">전화번호 안내</a></dd>
+									<dt><a href="#none">병원안내</a></dt>
+									<dd><a href="/service/page09-1.html">병원둘러보기</a></dd>
+									<dd><a href="/service/page10-1.html">오시는길/주차안내</a></dd>
+									<dd><a href="/service/page11.html">장례식장</a></dd>
+									<dd><a href="/service/page12.html">전화번호 안내</a></dd>
 								</dl>
 							</div>
 							<img src="/resource-pc/images/gnb-logo.png" alt="믿으니까, 뉴고려병원">
@@ -144,7 +144,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 									<dd><a href="/notice/page08.html">연혁</a></dd>
 									<dd><a href="/notice/page09.html">미션,비전,가치</a></dd>
 									<dd><a href="/notice/page10.html">채용정보</a></dd>
-									<dd><a href="#">협력병원 및 기관</a></dd>
+									<dd><a href="/notice/page11.html">협력병원 및 기관</a></dd>
 								</dl>
 							</div>
 							<img src="/resource-pc/images/gnb-call.png" alt="응급환자 365일 24시간 진료. 응급실:031-980-9114. 콜센터:1661-7779.">

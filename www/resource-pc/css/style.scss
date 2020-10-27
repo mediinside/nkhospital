@@ -777,7 +777,7 @@ nav {
 	top: 100%;
 	left: 0;
 	width: 100%;
-	height: 636px;
+	height: 656px;
 	padding:38px 0;
 	box-sizing: border-box;
 	background-color: #fbfbfb;
@@ -2337,7 +2337,7 @@ nav {
 			margin-right: 0.5rem;
 
 			background: {
-				size: 100%;
+				size: 93% auto;
 				repeat: no-repeat;
 			}
 
@@ -2356,8 +2356,8 @@ nav {
 	}
 
 	&.find span:before {
-		width: 2.6rem;
-		height: 2.6rem;
+		width: 2.7rem;
+		height: 2.7rem;
 		background-image: url('https://nkhospital.net/resource/images/contents/icon_sub_find.png');
 	}
 
@@ -2422,9 +2422,11 @@ nav {
 		width: 100%;
 		line-height: 3.3rem;
 		margin: 0 0 1.75rem;
+		padding:0 10px;
 		border: 0;
 		border-bottom: 0.2rem solid #c0c8d6;
 		font-size: 1.4rem;
+		box-sizing: border-box;
 	}
 	.loginOption {
 		position: relative;

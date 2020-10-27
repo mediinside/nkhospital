@@ -1,14 +1,25 @@
-
 <?php
 
 $title = "MEMBER";
-$page_title = "회원가입";
-$page_sub_title = "회원가입";
+$page_title = "영상정보처리방침";
+$page_sub_title = "영상정보처리방침";
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
 include_once "../inc/head.php";
 
 ?>
+<style>
+	.agreeSection .agreeTxtWrap {height: auto;}
+	pre {padding:20px;box-sizing: border-box;font-weight: 400;font-family: 'Noto Sans KR';}
+	caption {display: none;}
+	table {width: 100%;margin-top: 15px;}
+	th,td {border:1px solid #ddd;padding:6px 10px;}
+</style>
+<script>
+	$(function () {
+		$("h2.title").text('영상정보처리방침');
+	});
+</script>
 
 <body>
 	<div id="wrap">
@@ -23,22 +34,12 @@ include_once "../inc/head.php";
 				</h2>
 			</div>
 			<!-- //end #sub-bnnr -->
-			<div id="innerCont" style="max-width:800px">
-				<h2 class="pageTitle join">회원가입<span>1/2</span></h2>
+			<div id="innerCont">
+				<h2 class="pageTitle privacy">영상정보처리방침</h2>
 				<div class="section">
-					<form id="jForm" method="post" action="?">
-						<?php
-							include_once "agree1.php";
-							include_once "agree2.php";
-							include_once "agree3.php";
-						?>
-					</form>
-					<p class="agreeChk">
-						<label><input type="checkbox" class="inputChk" id="chkall"> 모든 약관 및 취급 방침에 동의</label>
-					</p>
-					<div id="btn-box">
-						<a href="join02.html" class="btn bg-deepblue block" id="join_next">다음 단계</a>
-					</div>
+					<?php
+						include_once "agree4.php";
+					?>
 				</div>
 				<!-- //Content -->
 			</div>

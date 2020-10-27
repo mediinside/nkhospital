@@ -1,0 +1,194 @@
+<?php
+
+$title = "MEMBER";
+$page_title = "비급여진료안내";
+$page_sub_title = "비급여진료안내";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+include_once $GP -> INC_WWW . '/count_inc.php';
+
+include_once($GP->CLS."class.list.php");
+include_once($GP->CLS."class.nonpay.php");
+include_once($GP->CLS."class.button.php");
+$C_ListClass 	= new ListClass;
+$C_Nonpay 	= new Nonpay;
+$C_Button 		= new Button;
+
+$args = array();
+$args['show_row'] = 15;
+$args['pagetype'] = "nonpay";
+$args['masc'] = "asc";
+$data = "";
+$data = $C_Nonpay->NonPay_List_New(array_merge($_GET,$_POST,$args));
+
+$data_list 		= $data['data'];
+$page_link 		= $data['page_info']['link'];
+$page_search 	= $data['page_info']['search'];
+$totalcount 	= $data['page_info']['total'];
+
+$totalpages 	= $data['page_info']['totalpages'];
+$nowPage 		= $data['page_info']['page'];
+$totalcount_l 	= number_format($totalcount,0);
+
+$data_list_cnt 	= count($data_list);
+
+$args = "";
+$arr_cate = $C_Nonpay->NonPay_Cate_ALL($args);
+
+?>
+<style>
+	th {
+		font-size: 1.6rem !important;
+	}
+</style>
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<h3 class="cont-tit center">비급여진료안내</h3>
+				<div class="tabMenu">
+					<ul>
+						<li <? if($_GET['cate1']==''){ echo "class='active'";}?>>
+							<a href="javascript:;" onClick="nonpay_list('');" <? if($_GET['cate1']=='' ){ echo "class='on'" ; }?> >전체보기</a>
+						</li>
+						<?
+							foreach($GP -> CATE_TYPE1 as $key => $val) {
+						?>
+						<li <? if($_GET['cate1']==$key){ echo "class='active'";}?>>
+							<a href="javascript:;" onClick="nonpay_list('<?=$key?>');"><?=$val?></a>
+						</li>
+						<? } ?>
+					</ul>
+				</div>
+				<div class="tableType-01 green">
+					<table>
+						<thead>
+							<tr>
+								<th rowspan="2" class="imgCalign" scope="col">분류</th>
+								<th style="width:350px" colspan="2" class="imgCalign" scope="col">항       목</th>
+								<th colspan="7" class="imgCalign" scope="col">가격정보(단위: 원)</th>
+								<th rowspan="2" class="imgCalign" scope="col">특이사항</th>
+							</tr>
+							<tr>
+								<th>명칭</th>
+								<th>코드</th>
+								<th>구분</th>
+								<th >비용</th>
+								<th>최저 비용</th>
+								<th>최고 비용</th>
+								<th>부과비율(%)</th>
+								<th>
+									치료재료대<br />
+									포함여부
+								</th>
+								<th>
+									약제비<br />
+									포함여부
+								</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+							<?
+												$dummy = 1;
+												for ($i = 0 ; $i < $data_list_cnt ; $i++) {
+													$np_idx 			= $data_list[$i]['np_idx'];
+													$np_item 			= $data_list[$i]['np_item'];
+													$cate1 				= $data_list[$i]['cate1'];
+													$cate2 				= $data_list[$i]['cate2'];
+													$np_bunru 			= $data_list[$i]['np_bunru'];
+													$np_code			= $data_list[$i]['np_code'];
+													$np_price 			= $data_list[$i]['np_price'];
+				                                    $np_gubun			= $data_list[$i]['np_gubun'];
+													$np_row_price 		= $data_list[$i]['np_row_price'];
+													$np_high_price 		= $data_list[$i]['np_high_price'];
+													$np_ck1 			= $data_list[$i]['np_ck1'];
+													$np_ck2 			= $data_list[$i]['np_ck2'];
+													$np_percent 		= $data_list[$i]['np_percent'];
+													$np_gita  			= $data_list[$i]['np_gita'];
+													$np_regdate 		= $data_list[$i]['np_regdate'];
+
+													if($np_price != '') {
+														// $np_price = number_format($np_price);
+													}
+
+													if($np_row_price != '') {
+														$np_row_price = number_format($np_row_price);
+													}
+
+													if($np_high_price != '') {
+														$np_high_price = number_format($np_high_price);
+													}
+												?>
+							<tr>
+								<td><?=$GP -> CATE_TYPE2[$cate2]?></td>
+								<td><?=$np_item?></td>
+								<td><?=$np_code?></td>
+								<td><?=$np_gubun?></td>
+								<td><?=$np_price?></td>
+								<td><?=$np_row_price?></td>
+								<td><?=$np_high_price?></td>
+								<td><?=$np_percent?></td>
+								<td><?=$np_ck1?></td>
+								<td><?=$np_ck2?></td>
+								<td><?=$np_gita?></td>
+							</tr>
+							<?
+													$dummy++;
+												}
+												?>
+						</tbody>
+					</table>
+				</div>
+				<div class="search">
+					<input type="text" placeholder="검색어를 입력하세요.">
+					<button><img src="/resource-pc/images/search-gray.png" alt="검색"></button>
+				</div>
+				<div class="pagination">
+					<a href="#none" title="처음으로 이동하기" class="btn prev">
+						<img src="/resource-pc/images/page-all-left.png" width="100%" alt="">
+					</a>
+					<a href="#none" title="이전으로 이동하기" class="btn prev">
+						<img src="/resource-pc/images/page-left.png" width="100%" alt="">
+					</a>
+
+					<strong class="btn current" title="현재 페이지">1</strong>
+					<a href="#none" class="btn">2</a>
+
+					<a href="#none" title="다음 페이지 이동하기" class="btn next">
+						<img src="/resource-pc/images/page-right.png" width="100%" alt="">
+					</a>
+					<a href="#none" title="마지막 페이지 이동하기" class="btn next">
+						<img src="/resource-pc/images/page-all-right.png" width="100%" alt="">
+					</a>
+				</div>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+
+	<script>
+		var nonpay_list = function (cate1) {
+			location.href = "?cate1=" + cate1;
+			return false;
+		}
+	</script>
+</body>
+
+</html>

@@ -11,7 +11,7 @@
 					<label>
 						<input type="checkbox" class="inputChk" name="saveid" id="saveid" onclick="confirmSave()"> 아이디 저장
 					</label>
-					<a href="/v3/find.php" class="link">아이디/비밀번호 찾기</a>
+					<a href="/member/idPwSearch.html" class="link">아이디/비밀번호 찾기</a>
 				</div>
 				<div class="btnSns">
 					<a href="javascript:loginNaver();" class="btnNaver">네이버 로그인</a>
