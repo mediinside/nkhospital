@@ -168,6 +168,9 @@ $(document).ready(function(){
 		$('html').removeClass('searchOn');
 		location.href = "/v3/search.php?stext="+schtxt;
 	});
+
+
+
 });
 
 $(window).on("load resize",function(){

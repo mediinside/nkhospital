@@ -1,0 +1,170 @@
+<?php
+
+$title = "서비스 이용안내";
+$page_title = "병원안내";
+$page_sub_title = "전화번호 안내";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<h3 class="cont-tit" style="line-height: 1.4;">
+					<small class="c-blue">뉴고려병원의</small><br>
+					주요전화번호와 진료과 전화번호<br>
+					및 내선번호를 확인하실 수 있습니다.
+				</h3>
+				<div class="cont-box">
+					<h4 class="cont-label">주요전화번호</h4>
+					<div class="cont">
+						<div class="tableType-01">
+							<table width="100%">
+								<colgroup>
+									<col style="width:33.3333%;">
+									<col style="width:33.3333%;">
+									<col style="width:33.3333%;">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">구 분</th>
+										<th scope="col">전 화 번 호</th>
+										<th scope="col">내 선 번 호</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr class="c-blue">
+										<td>*대표전화</td>
+										<td>031-980-9114</td>
+										<td>-</td>
+									</tr>
+									<tr class="c-blue">
+										<td>*응급실</td>
+										<td>031-980-9119</td>
+										<td>119, 129, 139</td>
+									</tr>
+									<tr>
+										<td>원무과 팩스</td>
+										<td>031-982-9800</td>
+										<td>-</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="cont-box">
+					<h4 class="cont-label">진료과 전화번호</h4>
+					<div class="cont">
+						<div class="tableType-01">
+							<table width="100%">
+								<colgroup>
+									<col style="width:33.3333%;">
+									<col style="width:33.3333%;">
+									<col style="width:33.3333%;">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">구 분</th>
+										<th scope="col">전 화 번 호</th>
+										<th scope="col">내 선 번 호</th>
+									</tr>
+								</thead>
+								<tbody class="text-center">
+									<tr>
+										<td>내과</td>
+										<td>031-980-9114</td>
+										<td>223, 231</td>
+									</tr>
+									<tr>
+										<td>척추센터</td>
+										<td>031-980-9118</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>신경과</td>
+										<td>031-980-9114</td>
+										<td>239</td>
+									</tr>
+									<tr>
+										<td>뇌혈관센터</td>
+										<td>031-980-9161</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>심혈관센터</td>
+										<td>031-980-9114</td>
+										<td>264</td>
+									</tr>
+									<tr>
+										<td>일반외과(비만클리닉)</td>
+										<td>031-980-9114</td>
+										<td>222</td>
+									</tr>
+									<tr>
+										<td>소아과</td>
+										<td>031-980-9179</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>산부인과</td>
+										<td>031-980-9114</td>
+										<td>234</td>
+									</tr>
+									<tr>
+										<td>통증클리닉</td>
+										<td>031-980-9120</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>치과</td>
+										<td>031-982-7541</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>평생건강증진센터</td>
+										<td>031-980-9191</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>영상의학과</td>
+										<td>031-980-9126</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>진단검사의학과</td>
+										<td>031-980-9168</td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- //end .cont-box -->
+
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

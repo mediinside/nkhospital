@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php /* Template_ 2.2.8 2020/10/26 08:03:46 D:\home\nkhospital\www\v3\view\inc\top.tpl 000008979 */ 
+=======
+<?php /* Template_ 2.2.8 2020/10/26 07:56:40 C:\xampp\htdocs\newkorea\www\v3\view\inc\top.tpl 000008985 */ 
+>>>>>>> 3b89aa84757a5675f95fae5d85aed69bfbe338c5
 $TPL_gpa_1=empty($TPL_VAR["gpa"])||!is_array($TPL_VAR["gpa"])?0:count($TPL_VAR["gpa"]);
 $TPL_gpb_1=empty($TPL_VAR["gpb"])||!is_array($TPL_VAR["gpb"])?0:count($TPL_VAR["gpb"]);
 $TPL_gpc_1=empty($TPL_VAR["gpc"])||!is_array($TPL_VAR["gpc"])?0:count($TPL_VAR["gpc"]);?>
