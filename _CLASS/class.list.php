@@ -258,8 +258,8 @@ CLASS ListClass
 		extract($this -> page_info);
 		$startnum = ($comm_yn=="Y") ? "0" : ($page - 1) * $show_row;
 		$startnum 	= ($page - 1) * $show_row;
-		//$totalpages	= ceil($total / $show_row);
-		//$startpage 	= ((ceil(($page / $show_page) - 0.01) - 1) * $show_page) + 1;
+		$totalpages	= ceil($total / $show_row);
+		$startpage 	= ((ceil(($page / $show_page) - 0.01) - 1) * $show_page) + 1;
 		$endpage   	= $startpage + ($show_page - 1);
 		$endpage   	= ($totalpages < $endpage) ? $totalpages : $endpage;
 		$prevpage  	= ($startpage != 1) ? $startpage - $show_page : 1;
@@ -290,22 +290,25 @@ CLASS ListClass
 
 		if($total > 0)
 		{			
-			$rst ='<a href="?page='  . $prev . '&' . $tail . '" title="이전으로 이동하기" class="pagingMore">◀</a> ';
+            $prev_page = $page - 1 ;
+            $next_page = $page + 1 ;
+			$rst ='<a href="?page=1&' . $tail . '" title="처음으로 이동하기" class="btn prev"><span><img src="/resource-pc/images/page-all-left.png" width="100%" alt=""></span></a> ';
+			$rst .='<a href="?page='  . $prev_page . '&' . $tail . '" title="이전으로 이동하기" class="btn prev"><span><img src="/resource-pc/images/page-left.png" width="100%" alt=""></span></a> ';
 			for($i = $start ; $i <= $end ; $i++){
 				$pageLastclass = "";
 				if ($i>=10) {
 					$pageLastclass = "class=\"page_Last\"";
-				}
-				$rst .= ($i != $page)? "<a href='?page=" . $i . '&' . $tail . "'>":"<a href='javascript:;'>";
-				$rst .= ($i == $page)? "<span class='on'>$i</span>" : "<span>$i</span>";
-				$rst .= ($i != $page)? "</a>":"</a>";
+				}				
+				$rst .= ($i != $page)? "<a href='?page=" . $i . '&' . $tail . "' class='btn'>":"<strong class='btn current' title='현재 페이지'>";
+				$rst .= ($i == $page)? "$i" : "$i";
+				$rst .= ($i != $page)? "</a>":"</strong>";
 				$rst .= ($i != $end) ? " " : "";
 			}
-			$rst .= ' <a href="?page=' . $this -> page_info['next'] . '&'. $tail . '" title="다음 페이지 이동하기" class="pagingMore">▶</a>';
+			$rst .= ' <a href="?page=' . $next_page . '&'. $tail . '" title="다음 페이지 이동하기" class="btn next"><span><img src="/resource-pc/images/page-right.png" width="100%" alt=""</span></a>';
+			$rst .= ' <a href="?page=' . $this -> page_info['tpage'] . '&'. $tail . '" title="마지막 페이지 이동하기" class="btn next"><img src="/resource-pc/images/page-all-right.png" width="100%" alt=""></a>';
 
 		} else {
 			//$rst = ($tqry)?  "<span><font color='red'><b>$tqry</b></font> 에 대한 검색 결과가 없습니다.</span>":"<span>등록된 데이터가 없습니다.</span>";
-			$rst = ($tqry)?  "<span><font color='red'><b>$tqry</b></font> 에 대한 검색 결과가 없습니다.</span>":"";
 		}
 
 		$this -> page_info['link'] = $rst;

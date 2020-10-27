@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/24 03:04:24 D:\home\nkhospital\www\v3\view\index.tpl 000004447 */
+<?php /* Template_ 2.2.8 2020/10/26 08:03:46 D:\home\nkhospital\www\v3\view\index.tpl 000004563 */ 
 $TPL_tsdata_1=empty($TPL_VAR["tsdata"])||!is_array($TPL_VAR["tsdata"])?0:count($TPL_VAR["tsdata"]);?>
 <div class="mainSlide">
         <div class="slide">

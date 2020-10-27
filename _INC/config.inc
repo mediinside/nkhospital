@@ -773,7 +773,7 @@ $GP -> NEW_MOBILE_SPECIAL= array(
 $GP -> Navi_Dep1 = array(
 				'0' =>  array('서비스 이용안내','/guide/page01.html'),
 				'1' =>  array('진료과/의료진','/center01/page.php?depart=A&gubun=A'),
-				'2' =>  array('뉴고려커뮤니티','/health/page01.html'),
+				'2' =>  array('뉴고려커뮤니티','/notice/notice.php?jb_code=10'),
 			);
 $GP -> Navi_Dep2 = array(
 			'0' => array(
@@ -789,7 +789,7 @@ $GP -> Navi_Dep2 = array(
 					'1-3' => array('의료진 소개', '/doctor/page.php?depart=A&gubun=A'),
 				),
 			'2' => array(
-					'2-0' => array('소통/공감', '/notice/page01.html'),
+					'2-0' => array('소통/공감', '/notice/notice.php?jb_code=10'),
 					'2-1' => array('병원소개', '/notice/page07.html'),
 				)
 		);
@@ -861,15 +861,16 @@ $GP -> Navi_Dep3 = array(
 			'1-3' => array(
 					'1-3-0' => array('전문센터', '/doctor/page.php?depart=A&gubun=A'),
 					'1-3-1' => array('진료과', '/doctor/page.php?depart=AB&gubun=B'),
-					'1-3-2' => array('특수클리닉', '/doctor/page.php?depart=A&gubun=C'),
+					'1-3-2' =>  array('특수클리닉', '/doctor/page.php?depart=A&gubun=C'),
 				),
             '2-0' => array(
-					'2-0-0' => array('건강증진센터소개', '/health/page01.html'),
-					'2-0-1' => array('보험공단검진', '/health/page02-1.html'),
-                    '2-0-2' => array('개인종합검진', '/health/page03-1.html'),
-                    '2-0-3' => array('기업검진', '/health/page04.html'),
-                    '2-0-4' => array('특수검진', '/health/page05.html'),
-                    '2-0-5' => array('기타검진', '/health/page06-1.html'),
+					'2-0-0' => array('병원소식', '/notice/notice.php?jb_code=10'),
+					'2-0-1' => array('포토뉴스', '/notice/notice.php?jb_code=80'),
+                    '2-0-2' => array('CH NK', '/notice/notice.php?jb_code=140'),
+                    '2-0-3' => array('언론보도', '/notice/notice.php?jb_code=90'),
+                    '2-0-4' => array('건강정보', '/notice/notice.php?jb_code=50'),
+                    '2-0-5' => array('전문의 상담', '/notice/notice.php?jb_code=40'),
+					'2-0-6' => array('칭찬합니다', '/notice/notice.php?jb_code=20'),
 				),
 			//'2-1' => array(
 			//		'2-1-0' => array('이용안내', '/health/page07.html'),

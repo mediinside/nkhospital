@@ -642,7 +642,11 @@ CLASS JHBoard extends Dbconn
 		}
 			
 		//검색 키워드 지정시
-		if($search_key || $search_keyword) {
+		if($search_key == 'jb_all'){           
+			if($search_key && $search_keyword) {
+				$addQry .= " AND (jb_title LIKE '%${search_keyword}%' || jb_content LIKE '%${search_keyword}%')";
+			}	
+		}else if($search_key || $search_keyword) {
 			$addQry.=" AND (";
 			$search_query="";
 			$search_key_cnt = count($search_key);
