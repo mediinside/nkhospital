@@ -1,0 +1,89 @@
+<?php
+
+$title = "MEMBER";
+$page_title = "회원가입";
+$page_sub_title = "회원가입";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont" style="max-width:800px">
+				<h2 class="pageTitle join">회원가입<span>2/2</span></h2>
+				<div class="section">
+					<form action="?" id="frmJoin" name="frmJoin" method="post" novalidate="novalidate">
+						<input type="hidden" value="MEM_REG" id="mode" name="mode">
+						<table class="joinInputTable">
+							<caption>회원가입 정보 입력</caption>
+							<tbody>
+								<tr>
+									<th scope="row">아이디<span class="essential">*</span></th>
+									<td class="btnOn">
+										<input type="text" class="inputTxt" placheolder="영문 4자이상" id="mb_id" name="mb_id">
+										<button type="button" class="btnCom">중복확인</button>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">이름<span class="essential">*</span></th>
+									<td>
+										<input type="text" class="inputTxt" placheolder="입력해주세요." id="mb_name" name="mb_name">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">이메일<span class="essential">*</span></th>
+									<td>
+										<input type="text" class="inputTxt" placheolder="입력해주세요." id="mb_email" name="mb_email">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">비밀번호<span class="essential">*</span></th>
+									<td>
+										<input type="password" class="inputTxt" placheolder="영문+숫자조합 6자 이상" id="mb_pwd" name="mb_pwd">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">비밀번호 확인<span class="essential">*</span></th>
+									<td>
+										<input type="password" class="inputTxt" placheolder="입력해주세요." id="mb_pwd_ok" name="mb_pwd_ok">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">휴대전화<span class="essential">*</span></th>
+									<td>
+										<input type="tel" class="inputTxt" placheolder="숫자만 입력해주세요." id="mb_mobile" name="mb_mobile">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div id="btn-box" class="flex center">
+							<a href="/" class="btn bg-red">취소</a>
+							<a href="#" class="btn bg-deepblue">회원가입</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

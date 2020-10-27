@@ -10,7 +10,7 @@
   word-break: keep-all; }
 
 .c-blue {
-  color: #1795d0;
+  color: #1795d0 !important;
   font-weight: 400; }
 
 .pad {
@@ -325,7 +325,6 @@
       right: 19px;
       transform: translateY(-48%); }
 
-/* 게시판 댓글 */
 /** 게시판 상세 댓글 영역 **/
 .viewComment {
   margin-top: 40px; }
@@ -429,6 +428,48 @@
 
 .viewComment li ul.replyBox {
   padding-left: 20px; }
+
+/** 게시판 글쓰기 영역 **/
+.writeType {
+  border-top: 1px solid #e5e5e5; }
+
+.writeType a {
+  color: #545454;
+  text-decoration: none; }
+
+.writeType tbody th,
+.writeType tbody td {
+  padding: 12px 0;
+  color: #545454;
+  border-bottom: 1px solid #e5e5e5; }
+
+.writeType tbody th:first-child,
+.writeType tbody td:first-child {
+  padding-left: 30px; }
+
+.writeType > tbody th {
+  text-align: left;
+  font-weight: 100; }
+
+.writeType > tbody th.alignTop {
+  vertical-align: top;
+  padding-top: 20px; }
+
+.writeType > tbody .txtInput,
+.writeType > tbody textarea {
+  border: 1px solid #e1e1e1; }
+
+.writeType > tbody .txtInput {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 10px; }
+
+.writeType > tbody .fileInput {
+  height: 28px;
+  line-height: 28px; }
+
+.writeType > tbody textarea {
+  padding: 10px; }
 
 /* 페이지네이션 */
 .pagination {
@@ -1811,31 +1852,31 @@ nav {
   .pageTitle.find span:before {
     width: 2.6rem;
     height: 2.6rem;
-    background-image: url("/resource/images/contents/icon_sub_find.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_find.png"); }
   .pageTitle.joinCom {
-    background-image: url("/resource/images/contents/icon_sub_join_com.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_join_com.png"); }
   .pageTitle.mypage {
-    background-image: url("/resource/images/contents/icon_sub_mp.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_mp.png"); }
   .pageTitle.write {
-    background-image: url("/resource/images/contents/icon_sub_write.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_write.png"); }
   .pageTitle.letter {
-    background-image: url("/resource/images/contents/icon_sub_letter.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_letter.png"); }
   .pageTitle.recruit {
-    background-image: url("/resource/images/contents/icon_sub_recruit.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_recruit.png"); }
   .pageTitle.collabo {
-    background-image: url("/resource/images/contents/icon_sub_collabo.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_collabo.png"); }
   .pageTitle.tel {
-    background-image: url("/resource/images/contents/icon_sub_tel.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_tel.png"); }
   .pageTitle.terms {
-    background-image: url("/resource/images/contents/icon_sub_terms.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_terms.png"); }
   .pageTitle.privacy {
-    background-image: url("/resource/images/contents/icon_sub_privacy.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_privacy.png"); }
   .pageTitle.signature {
-    background-image: url("/resource/images/contents/icon_sub_signature.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_signature.png"); }
   .pageTitle.infomation {
-    background-image: url("/resource/images/contents/icon_sub_infomation.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_infomation.png"); }
   .pageTitle.right {
-    background-image: url("/resource/images/contents/icon_sub_right.png"); }
+    background-image: url("https://nkhospital.net/resource/images/contents/icon_sub_right.png"); }
 
 .pageTxt {
   font-size: r(44);
@@ -1888,6 +1929,98 @@ nav {
   .loginWrap .helpTxt {
     margin: 1rem 1rem 0;
     text-align: left; }
+
+/* 회원가입 */
+.agreeSection ~ .agreeSection {
+  margin-top: 20px; }
+.agreeSection .title {
+  margin: 0 0 5px;
+  font-size: 1.8rem;
+  color: #111; }
+.agreeSection .agreeTxtWrap {
+  overflow: auto;
+  height: 200px;
+  margin: 0 0 10px;
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #1c2536;
+  color: #666; }
+
+.agreeChk {
+  margin-top: 25px;
+  padding-top: 25px;
+  text-align: center;
+  border-top: 1px solid #22314e; }
+
+.joinInputTable {
+  width: 100%;
+  margin-top: -10px; }
+  .joinInputTable tbody,
+  .joinInputTable tr,
+  .joinInputTable th,
+  .joinInputTable td {
+    display: block;
+    text-align: left; }
+  .joinInputTable th {
+    padding: 10px 0 5px;
+    font-size: 1.4rem; }
+  .joinInputTable .btnOn {
+    position: relative;
+    padding-right: 110px; }
+    .joinInputTable .btnOn .btnCom {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 30px;
+      background: #22314e;
+      color: #fff;
+      font-size: 1.4rem;
+      border: none; }
+  .joinInputTable .inputTxt {
+    width: 100%;
+    height: 3rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    background: #fff;
+    border: 0.05rem solid #111;
+    vertical-align: super; }
+
+.essential {
+  color: #f0141e; }
+
+.outReason label {
+  display: block;
+  margin: 0 0 8px; }
+.outReason textarea {
+  width: 100%;
+  height: 200px; }
+
+.outAlert {
+  margin: 20px 0 0;
+  padding: 55px 0 25px;
+  background: #fafafa url("/resource/images/icon_alert2.png") no-repeat 50% r(40);
+  background-size: 30px;
+  border-top: 1px solid #111;
+  text-align: center; }
+
+.outAgree {
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid #1c2536;
+  border-bottom: 1px solid #1c2536; }
+
+.joinComTxt {
+  text-align: center;
+  color: #22314e;
+  font-size: 1.4rem; }
+
+/* 가입완료 */
+#success {
+  width: 600px;
+  margin: 100px auto 200px;
+  padding: 40px;
+  border: 1px solid #ccc; }
 
 /* 오시는길 */
 #map-text {

@@ -1,0 +1,47 @@
+<?php
+
+$title = "MEMBER";
+$page_title = "회원가입";
+$page_sub_title = "회원가입";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once "../inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr01.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont" style="max-width:800px">
+				<div id="success">
+					<h2 class="pageTitle joinCom">가입완료</h2>
+					<div class="section">
+						<h3 class="cont-tit center">회원가입이 완료되었습니다!</h3>
+						<div id="btn-box" class="flex center">
+							<a href="/" class="btn bg-orange">로그인</a>
+							<a href="/" class="btn bg-deepblue">홈으로</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>
