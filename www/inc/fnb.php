@@ -5,8 +5,8 @@
 					<div class="row">
 						<dl>
 							<dt><a href="#none">예약/발급</a></dt>
-							<dd><a href="/service/page01.html">진료예약</a></dd>
-							<dd><a href="/service/page02.html">검진예약</a></dd>
+							<dd><a href="#none" onclick="window.open('http://nkhospital.net/m/main.html', 'pop', 'menubar=no,status=no,scrollbars=no,resizable=no ,width=500,height=700,top=100,left=100');" title="새창">진료예약</a></dd>
+							<dd><a href="#none" onclick="window.open('http://smart.nkhospital.net/index.html', 'pop', 'menubar=no,status=no,scrollbars=no,resizable=no ,width=500,height=700,top=100,left=100');">검진예약</a></dd>
 							<dd><a href="/service/page03.html">증명서발급안내</a></dd>
 						</dl>
 						<dl>

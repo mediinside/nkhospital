@@ -39,8 +39,8 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 							<div class="row">
 								<dl>
 									<dt><a href="#none">예약/발급</a></dt>
-									<dd><a href="/service/page01.html">진료예약</a></dd>
-									<dd><a href="/service/page02.html">검진예약</a></dd>
+									<dd><a href="#none" onclick="window.open('http://nkhospital.net/m/main.html', 'pop', 'menubar=no,status=no,scrollbars=no,resizable=no ,width=500,height=700,top=100,left=100');">진료예약</a></dd>
+									<dd><a href="#none" onclick="window.open('http://smart.nkhospital.net/index.html', 'pop', 'menubar=no,status=no,scrollbars=no,resizable=no ,width=500,height=700,top=100,left=100');">검진예약</a></dd>
 									<dd><a href="/service/page03.html">증명서발급안내</a></dd>
 								</dl>
 								<dl>
@@ -153,11 +153,11 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 				</div>
 				<!-- //end #gnb -->
 				<div id="reserve-btn-group">
-					<a href="#">
+					<a href="/service/page12.html">
 						<img src="/resource-pc/images/tel.png" alt="">
 						<span>전화예약<br>하러가기</span>
 					</a>
-					<a href="#">
+					<a href="#none" onclick="window.open('http://nkhospital.net/m/main.html', 'pop', 'menubar=no,status=no,scrollbars=no,resizable=no ,width=500,height=700,top=100,left=100');" title="새창">
 						<img src="/resource-pc/images/reserve.png" alt="">
 						<span>간편예약<br>하러가기</span>
 					</a>
