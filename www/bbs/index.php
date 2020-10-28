@@ -1,15 +1,19 @@
 <?php
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/www/_init.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/_init.php";
 	include_once $GP -> INC_WWW . '/head.php';
 	include_once($GP -> CLS."class.jhboard.php");
 	$C_JHBoard = new JHBoard();
 	
 	$index_page = "index.php";
 	$query_page = "query.php";
-
-    $jb_code = $_GET['jb_code'];	
+	
+	if(!$_GET['jb_code']) {
+		$jb_code = "10";
+	}else{
+		$jb_code = $_GET['jb_code'];	
+	}
 			
-			
+		
 	//$_SESSION['suserlevel'] = "9";			
 	//$_SESSION['suserid'] = "jhsmh";	
 	//$_SESSION['susername'] = "관리자";	
@@ -22,18 +26,19 @@
 		die("게시판 설정 에러입니다. 설정부분을 확인해주세요.");
 	}
 ?>
-
-<div class="Wrap">
-<div>
-		<div class="ContentsBody" style="padding:15px;">
-			<h2>
-				<?=$db_config_data['jba_title'];?>
-			</h2>
-			<!--게시판시작 -->
-			<?php include $GP -> INC_PATH ."/board_inc.php"; ?>
-			<!-- 게시판끝 -->
-		</div>
+<body>
+	<div id="subCon2" class="wrap">
+		<section class="wrapBody">
+			<div class="guideWrap">
+				<div class="bbsWrap">
+					<div class="titCustomer">
+						<h4><?=$db_config_data['jba_title'];?></h4>						
+					</div>
+					<!--게시판시작 -->
+					<?php include $GP -> INC_PATH ."/board_inc.php"; ?>
+					<!-- 게시판끝 -->		
+			</div>
+		</section>
 	</div>
-</div>
 </body>
 </html>

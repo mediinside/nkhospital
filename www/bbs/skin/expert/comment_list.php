@@ -1,14 +1,10 @@
 <?php
 if($jb_comment_count > 0) {						
-?>
-<ul class="replyList">
-<?
 	$args = array();
-	$args['show_row'] = 100;
+	$args['show_row'] = 5;
 	$args['show_page'] = 5;
 	$args['jb_code']  = $jb_code;	
-	$args['jb_idx'] 	= $jb_idx;	
-	$args['pagetype'] = "comment";
+	$args['jb_idx'] = $jb_idx;	
 	
 	$Comm_data = "";
 	$Comm_data = $C_JHBoard -> Board_Comment_List(array_merge($_GET,$_POST,$args));
@@ -26,30 +22,28 @@ if($jb_comment_count > 0) {
 	
 	
 	for($i=0; $i<$comm_data_list_cnt; $i++) {
-		$jbc_idx 		= $comm_data_list[$i]['jbc_idx'];
+		$jbc_idx = $comm_data_list[$i]['jbc_idx'];
 		$jbc_mb_id	= $comm_data_list[$i]['jbc_mb_id'];
-		$jbc_name_ori	= $comm_data_list[$i]['jbc_name'];
-		$jbc_p_id_ori	= $comm_data_list[$i]['jbc_p_id'];
-		$jbc_p_name	= $comm_data_list[$i]['jbc_p_name'];
-		$jbc_step		= $comm_data_list[$i]['jbc_step'];
-		$jbc_depth		= $comm_data_list[$i]['jbc_depth'];
-		$jbc_group		= $comm_data_list[$i]['jbc_group'];
-		$jbc_reg_date =  date("Y.m.d", strtotime($comm_data_list[$i]['jbc_reg_date']));
-		$jbc_mod_date =  date("Y.m.d", strtotime($comm_data_list[$i]['jbc_mod_date']));	
+		$jbc_reg_ip	= $comm_data_list[$i]['jbc_reg_ip'];
+		$jbc_reg_ip =  $C_Func->blindInfo($jbc_reg_ip, 11);
 		//등록일
-		$jbc_reg_date 				= date("Y.m.d", strtotime($comm_data_list[$i]['jbc_reg_date']));	
-		$jbc_reg_time 				= date("H:i", strtotime($comm_data_list[$i]['jbc_reg_date']));	
+		$jbc_reg_date = date("Y/m/d H:i", strtotime($comm_data_list[$i]['jbc_reg_date']));
 		//수정일
-		$jbc_mod_date 				= date("Y.m.d", strtotime($comm_data_list[$i]['jbc_mod_date']));	
+		$jbc_mod_date = substr($comm_data_list[$i]['jbc_mod_date'], 0, 16);
 		
+		//등록자아이피
+		# => 끝자리 숨겨야 할 경우 이부분에 처리		
+		
+		//작성회원아이디
+		# => 아이디에 따른 닉네임 처리시 관련 함수 호출
+		
+		//비밀번호
+		# => 비빌번호 암호화 필요시 관련 함수 호출
+		
+		//작성자 (길이, HTML TAG제한여부 처리)
 		//이름 ** 처리
 		$jbc_name =  $C_Func->blindInfo($comm_data_list[$i]['jbc_name'], 6);
-		$jb_id =  $C_Func->blindInfo($comm_data_list[$i]['jbc_mb_id'], 6);
-		
-		
-		$jbc_p_id	=  $C_Func->blindInfo($comm_data_list[$i]['jbc_p_id'],6);
-		$jbc_p_name	=  $C_Func->blindInfo($comm_data_list[$i]['jbc_p_name'],6);
-
+		//$jbc_name = $C_Func->replace_string($comm_data_list[$i]['jbc_name'], 10, "");
 		
 		
 		//내용 (HTML TAG제한)
@@ -60,104 +54,30 @@ if($jb_comment_count > 0) {
 				$depth_icon = $C_Func->reply_depth($comm_data_list[$i]['[jbc_step'], "");
 		else
 				$depth_icon = ""; //매 글마다 초기화를 해 주어야 한다.			
-		
-		$get_c_par = "";
+								
 		$get_c_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}";
 		$get_c_par .= "&jb_group=${jb_group}&jb_step=${jb_step}&jb_depth=${jb_depth}&jbc_idx=${jbc_idx}";
 		$get_c_par .= "&${search_key}&search_keyword=${search_keyword}&page=${page}";
 	?>
-  <li <? if($jbc_step > 0) { echo " class='reReply' ";}?>>
-    <span class="replyInfo">    	
-      <span class="name"><strong><?=$jbc_name?></strong> (<?=$jb_id?>)</span>
-      <span class="date"><?=$jbc_reg_date?></span>
-      <span class="time"><?=$jbc_reg_time?></span>
-    </span>
-    <? if($check_level == 9 || $check_id == $jbc_mb_id) { ?>
-    <span class="util">
-      <a href="#;" onclick="comm_reply('<?=$jbc_idx?>','<?=$jb_idx?>','<?=$jb_code?>','<?=$jbc_group?>','<?=$jbc_step?>','<?=$jbc_depth?>','<?=$jbc_name_ori?>','<?=$jbc_mb_id?>');">답글</a> |
-      <a href="<?php echo "${get_c_par}&jbc_idx=${jbc_idx}&jb_mode=comment_modify";?>">수정</a> |
-      <a href="<?php echo "${get_c_par}&jb_mode=comment_delete";?>">삭제</a>
-    </span>
-    <? } ?>
-    <span class="cont">
-    	<?
-      	if($jbc_p_id_ori != '' && $jbc_step > 1) {
-      		echo "<strong>" . $jbc_p_name . "</strong> (". $jbc_p_id .")";
-				}
-				echo htmlspecialchars_decode ($jbc_content, ENT_NOQUOTES);
-			?>
-    </span>
-    <div id="comm_reply_<?=$jbc_idx?>" class="reReplyWrite"></div>
-  </li>
+	<li>
+			<p class="name">
+				<strong><?=${jbc_name};?></strong>
+				<span><?=${jbc_reg_ip};?></span>
+			</p>
+			<p class="replyTxt">
+				<?=strip_tags($C_Func->dec_contents_edit($jbc_content), '<br>');?>
+				<br/><span class="date"><?=${jbc_reg_date};?></span>
+			</p>
+			<div class="btns">
+				<?					
+					if($check_level == 9 || $check_id == $jbc_mb_id) {
+				?>
+				<a href="<?php echo "${get_c_par}&jbc_idx=${jbc_idx}&jb_mode=comment_modify";?>" title="덧글 수정">수정</a>
+				<a href="<?php echo "${get_c_par}&jb_mode=comment_delete";?>" title="덧글 삭제">삭제</a>
+				<? } ?>
+			</div>
+	</li>
 <?php
 	} // end for
-?>
-</ul>
-<?
 } //end_of_if($jb_comment_count > 0)	
 ?>
-<script type="text/javascript">	
-	var show = 0;
-	function comm_reply(jbc_idx, jb_idx, jb_code, jbc_group, jbc_step, jbc_depth, jbc_name, jbc_mb_id) {		
-		var url = "query.php?jb_mode=comment_reply&jb_code=" + jb_code + "&jb_idx=" + jb_idx  + "&jbc_group=" + jbc_group + "&jbc_step=" + jbc_step + "&jbc_depth=" + jbc_depth+ "&jbc_p_name=" + jbc_name+ "&jbc_p_id=" + jbc_mb_id;
-		var str = "";
-		str += '<form name="frm_re_comment" id="frm_re_comment" action="' + url + '" method="post">';
-		str += '<div class="reCont reRegi">';		
-		
-		<?
-			if(empty($_SESSION['suserid']))
-	  	{
-		?>
-		str += '<div class="cmtRegister guest">';		
-		str += '<p class="guestInput">';
-		str += '<label>이름 : <input type="text" name="jbc_name" id="jbc_name" size="18" maxlength="30" value="<?=$check_name?>" class="text"></label>';		
-		str += '<label>비밀번호 : <input type="password" name="jbc_password" id="jbc_password" size="18" maxlength="50" class="text"></label>';
-	  str += '</p>';
-		<?
-			}else{
-				$password_key1=md5($check_id);	
-				$tm1=explode(" ",microtime());
-				$jbc_password_re = $password_key1 . $tm1[1];
-		?>
-		str += '<div class="cmtRegister">';
-		str += '<input type="hidden" name="jbc_name" id="jbc_name" value="<?=$check_name?>">';
-		str += '<input type="hidden" name="jbc_password" id="jbc_password" value="<?=$jbc_password_re?>">';			
-		<?
-			}
-		?>
-		
-		str += '<textarea name="jbc_re_content" id="jbc_re_content" cols="30" rows="10"></textarea>';
-		str += '<div class="cmtBtn">';
-		str += '<a href="javascript:;" class="btnRegi" onclick="frm_submit();">등록</a>';
-		str += '<a href="javascript:;" class="btnRegi" onclick="frm_cancel(' + jbc_idx + ');">취소</a>';
-		str += '</div>';
-		str += '</div></div></form>';		
-		
-		if(show == 0) {
-			$('#comm_reply_' + jbc_idx).append(str);
-			show = 1;
-		}else{
-			$('#comm_reply_' + jbc_idx).html('');
-			show = 0;
-		}		
-	}
-	
-	function frm_cancel(jbc_idx){
-			$('#comm_reply_' + jbc_idx).html('');
-			show = 0;		
-	}
-	
-	function frm_submit() {
-		var t = $.base64Encode($('#jbc_re_content').val()); 
-		$('#jbc_re_content').val(t);				
-		
-		if ( $('#jbc_re_content').val() == "") {
-			alert('내용을 입력하세요.');
-			$('#jbc_re_content').focus();
-			return false;
-		}
-		
-		$('#frm_re_comment').submit();
-		return false;	
-	}
-</script>

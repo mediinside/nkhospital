@@ -25,7 +25,6 @@ $args['jb_code'] = $jb_code;
 $args['jb_idx'] = $jb_idx;
 $rst = $C_JHBoard->Board_Comment_Depth_Max($args);
 
-/*
 //Depth
 if($rst['max_depth'] > 0)
 	$jbc_depth=($rst['max_depth'] + 10); //답변 9개
@@ -34,25 +33,13 @@ else
 
 //Group
 $jbc_group=($jbc_depth / 10);
-*/
-
-//Group
-if($rst['max_group'] > 0)
-	$jbc_group=($rst['max_group'] + 1); 
-else
-	$jbc_group = 1;
-
-//Group
-$jbc_depth = '';
-//$jbc_group = (($jbc_depth * -1) / 10);
 
 $safe = new HTML_Safe; // xss filter 객체 생성
 $input = base64_decode($jbc_content); 
 $output = $safe->parse($input); // html 태그를 필터링 하여 $output에 대입
 //$output = iconv("UTF-8", "EUC-KR", $output);
-$output = addslashes($output);
-$jbc_content = htmlspecialchars($output);
-
+//$jbc_content = htmlspecialchars($output);
+$jbc_content = addslashes($jbc_content);
 $jbc_del_flag = 'N';
 
 
@@ -95,8 +82,49 @@ if($result_key)
 }
 
 
+//온라인 상담일 경우 답변 요청
+if(($jb_code == "120" || $jb_code == "130") && $_SESSION['suserlevel'] == "9") {
+	
+	include_once($GP -> CLS."class.sms.php");
+	$C_Sms 	= new Sms;
+	
+	
+	//고객정보 가져오기
+	$args = "";
+	$args['jb_code'] = $jb_code;
+	$args['jb_idx'] = $jb_idx;
+	$data = $C_JHBoard->Board_User_Info($args);		
+	
+	$user_name = $data['mb_name'];
+	
+	$msg = $user_name ."님 답변이 등록되었습니다[뉴고려병원]";
+	
+	//보낼 데이터
+	$data = array(
+		'type' => 'send',
+		'msg' => $msg,    
+		'sm_to' => $data['mb_mobile'],
+		'destination' => '',
+		'sm_from1' => $GP -> SMS_HP1,
+		'sm_from2' => $GP -> SMS_HP2,
+		'sm_from3' => $GP -> SMS_HP3,
+		'send_date' => '',
+		'send_time' => '',
+		'returnurl' => '',
+		'testflag' => 'N',			//Y:실방송 N:테스트발송
+		'repeatFlag' => '',
+		'repeatNum' => '1',
+		'repeatTime' => '15',			
+		'send_num' => '1',
+		'return_type' => 'json',			
+		'login_id' => $GP -> SMS_ID,			
+		'login_pwd' => $GP -> SMS_PWD	
+	);	
+	$result = $C_Func->post_request('http://mediinside.co.kr/api/sms_api.php', $data); 	
+}
+
 //페이지 이동 관련 변수 설정
-$get_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}&${search_key}&search_keyword=${search_keyword}&page=${page}";
+$get_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}&jb_mode=tdetail&${search_key}&search_keyword=${search_keyword}&page=${page}";
 
 $C_Func->put_msg_and_go("등록되었습니다.", "${get_par}");
 ?>

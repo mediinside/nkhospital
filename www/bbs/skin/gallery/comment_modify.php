@@ -1,47 +1,38 @@
-<script type="text/javascript" src="<?=$GP -> JS_PATH?>/admin/jquery.base64.js"></script>
-<form name="frm_comment" id="frm_comment" action="<?=$get_c_par;?>" method="post">
 <?php
-  //회원일 경우 비밀번호를 입력할 필요가 없다.
-  if(empty($_SESSION['suserid']) || empty($jbc_password))
-  {
-  ?>
-<div class="replyText guest">
-  <p class="guestInput">
-    <label>이름 : <input type="text" name="jbc_name" id="jbc_name" size="18" maxlength="30" value="<?=$check_name;?>" class="txtInput"></label>  		
-		<label>비밀번호 : <input type="password" name="jbc_password" id="jbc_password" size="18" maxlength="50" class="txtInput"></label>
-  </p>
-  <?php
-  }
-  else
-  {
-echo "<div class=\"replyText\">";
-		echo ("<input type=\"hidden\" name=\"jbc_name\" id=\"jbc_name\"  value=\"${jbc_name}\">");		   
-    echo ("<input type=\"hidden\" name=\"jbc_password\" id=\"jbc_password\" value=\"${jbc_password}\">");
-  }
-  ?>
-  <textarea rows="10" cols="20" name="jbc_content" id="jbc_content"><?=$jbc_content;?></textarea>
-</div>
-<div class="btnWrap">
-  <span class="btnLeft">
-    <a href="javascript:;" class="btnM btnConfirm" id="comment_modi_submit">수정</a>
-		<a href="javascript:history.go(-1);" class="btnM btnCancel">취소</a>
-  </span>
-</div>    
-</form>
-<script type="text/javascript">
-	$(document).ready(function() {		
-		$('#comment_modi_submit').click(function() {
-			var t = $.base64Encode($('#jbc_content').val()); 
-			$('#jbc_content').val(t);			
-			
-			if ( $('#jbc_content').val() == "") {
-				alert('내용을 입력하세요.');
-				$('#jbc_content').focus();
-				return false;
-			}
-			
-			$('#frm_comment').submit();
-			return false;
-		});		
-	});
-</script>
+if(!$jb_code || !$jb_idx || !$jbc_idx) {
+	$C_Func->put_msg_and_back("비정상적인 접근입니다.");
+	die;
+}
+
+
+//페이지 이동 관련 변수 설정 - 폼의 액션
+$get_c_par = "${query_page}?jb_mode=comment_modify&jb_code=${jb_code}&jb_idx=${jb_idx}&jbc_idx=${jbc_idx}";
+$get_c_par .= "&${search_key}&search_keyword=${search_keyword}&page=${page}";
+
+$args = '';
+$args['jb_code'] = $jb_code;
+$args['jb_idx'] = $jb_idx;
+$args['jbc_idx'] = $jbc_idx;
+$args['check_level'] = $check_level;
+$args['check_id'] = $check_id;
+$rst = $C_JHBoard->Board_Comment_Detail($args);
+
+foreach($rst as $key=>$value) {
+	//textarea 필드 타입의 특수문자는 그대로 둠
+	if($key=="jbc_content")	{
+		$$key=stripslashes($value);
+	}else {
+		$$key= $C_Func->replace_quot($value);
+	}
+}
+unset($key);
+unset($value);
+
+//회원 또는 관리자의 경우 비밀번호
+if(isset($check_id)) {	
+	$jbc_password=$rst['jbc_password'];
+} else {
+	$jbc_password="";
+}
+?>
+

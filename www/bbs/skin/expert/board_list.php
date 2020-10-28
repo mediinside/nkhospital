@@ -26,16 +26,29 @@
 							<?php include $GP -> INC_PATH . "/${skin_dir}/board_list_inc.php";	?>
 							</tbody>
 					</table>
-					<div id="btn-box" class="right">
-						<a href="#" class="btn bg-red">글쓰기</a>
-						<a href="#" class="btn bg-deepblue">수정</a>
-					</div>
-					</div>
-							<div class="pagination">
-								<?=$page_link?>		
-														
-							</div>
+						<div id="btn-box" class="right">					
+							<!--a href="#" class="btn bg-deepblue">수정</a-->
+							<?php
+								if($_GET['search_key'] && $_GET['search_keyword']) {
+									echo "<a href=\"javascript:;\" class=\"btn0\" onclick=\"javascript:location.href='${index_page}?jb_code=${jb_code}'\" title='목록'><span>목록</span></a>";
+								}
+								?>
+
+								<?php
+								//쓰기권한
+								if($check_level >= $db_config_data['jba_write_level']) {
+									echo "<a class='btn bg-red' href=\"#\" onclick=\"javascript:location.href='${index_page}?jb_code=${jb_code}&jb_mode=twrite'\" title='글쓰기'><span>글쓰기</span></a>";
+								} else {
+								//	echo "<a class='btn btn_middle' id='twrite_btn' title='글쓰기'><strong>글쓰기</strong></a>";
+								}
+							?>
+						
 						</div>
+					</div>
+						<div class="pagination">
+							<?=$page_link?>														
+						</div>
+					</div>
 						<!-- //end .inner -->
 					</div>
 					<!-- //end .main-clinic-list -->

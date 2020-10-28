@@ -98,12 +98,7 @@ if($jb_notice_check == "Y") {
 
 if($jb_etc2_chk == "채용시까지"){
     $jb_etc2 = "채용시까지" ;
-}
-
-
-
-$jb_email =   $jb_email1 ."@". $jb_email2 ;
-			
+}			
 
 //자동구문변수처리
 $jb_step=0;

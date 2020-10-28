@@ -31,8 +31,8 @@ $safe = new HTML_Safe; // xss filter 객체 생성
 $input = base64_decode($jbc_content); 
 $output = $safe->parse($input); // html 태그를 필터링 하여 $output에 대입
 //$output = iconv("UTF-8", "EUC-KR", $output);
-$output = addslashes($output);
 $jbc_content = htmlspecialchars($output);
+$jbc_content = addslashes($jbc_content);
 
 
 //==============================================================================================
@@ -52,8 +52,6 @@ for($i=0; $i<count($rst_board); $i++) {
 	if($rst_board[$i][Field]=="jbc_mb_id") continue;
 	if($rst_board[$i][Field]=="jbc_password") continue;
 	if($rst_board[$i][Field]=="jbc_del_flag") continue;
-	if($rst_board[$i][Field]=="jbc_p_id") continue;
-	if($rst_board[$i][Field]=="jbc_p_name") continue;
 	
 	$keys_values.=$rst_board[$i][Field] . "='" . $$rst_board[$i][Field] . "',"; //자동 Update Query 생성
 }
@@ -76,7 +74,7 @@ if($keys_values)
 
 
 //페이지 이동 관련 변수 설정
-$get_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}";
+$get_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}&jb_mode=tdetail";
 $get_par .= "&${search_key}&search_keyword=${search_keyword}&page=${page}";
 
 $C_Func->put_msg_and_go("수정이 완료되었습니다.", "${get_par}");

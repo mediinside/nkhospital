@@ -1,6 +1,8 @@
 <script type="text/javascript" src="<?=$GP -> JS_SMART_PATH?>/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="/resource/js/jquery.base64.js"></script>
 <form name="frm_Board" id="frm_Board" action="<?=$get_par;?>" method="post" enctype="multipart/form-data">
+
+
 <div class="detail-conts service">
 	<div class="subttile">
 		<h3>자주하는 질문</h3>

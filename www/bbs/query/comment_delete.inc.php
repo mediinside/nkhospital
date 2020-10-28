@@ -39,8 +39,8 @@ if($result_key)
 
 
 //페이지 이동 관련 변수 설정
-$get_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}";
-$get_par .= "&${search_key}&search_keyword=${search_keyword}&page=${page}";
+$get_par = "${index_page}?jb_code=${jb_code}&jb_idx=${jb_idx}&jb_mode=tdetail";
+//$get_par .= "&${search_key}&search_keyword=${search_keyword}&page=${page}";
 
 $C_Func->put_msg_and_go("삭제가 완료되었습니다.", "${get_par}");
 ?>

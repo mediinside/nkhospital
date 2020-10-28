@@ -38,7 +38,8 @@ if($data_list_cnt > 0) {
 			$jb_order					= $data_list[$i]['jb_order'];
 			$jb_idx						= $data_list[$i]['jb_idx'];
 			$jb_step					= $data_list[$i]['jb_step'];
-			$jb_title 					= $C_Func->strcut_utf8($data_list[$i]['jb_title'], 43, true, "...");	//제목 (길이, HTML TAG제한여부 처리)
+			$jb_treat				  = $data_list[$i]['jb_treat'];
+			$jb_title 					= $C_Func->strcut_utf8($data_list[$i]['jb_title'], 200, true, "...");	//제목 (길이, HTML TAG제한여부 처리)
 			$jb_content					= $C_Func->dec_contents_view($data_list[$i]['jb_content']);
 			$jb_content					= trim(strip_tags($jb_content));
 			$jb_content 				= $C_Func->strcut_utf8($jb_content, 100, true, "...");	//제목 (길이, HTML TAG제한여부 처리)
@@ -141,6 +142,14 @@ if($data_list_cnt > 0) {
 				}else{
 					$img_src = "<img src='/public/images/default.jpg' alt='이미지 없음'  >";
 				}
+				
+			
+			if($jb_treat == '' ) {
+				$treat_type = "기타";				
+			}
+			else{
+				$treat_type = $GP -> CLINIC_TYPE_NEW[$jb_treat];				
+			}
 			
 		/*	
 		*/	
@@ -148,7 +157,7 @@ if($data_list_cnt > 0) {
 				
 				echo ("	
 							<tr>
-								<td><a href='" . $get_par . "'><a>${jb_title}</td>
+								<td><a href='" . $get_par . "'>[" . $treat_type ."]${jb_title}<a></td>
 								<td>${jb_name}</td>
 								<td>${jb_reg_date}</td>
 							</tr>

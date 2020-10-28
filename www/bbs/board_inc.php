@@ -29,8 +29,6 @@ include $GP -> INC_PATH . "/board_config.php";
 $search_key = "search_key=" . $_GET['search_key'];
 
 
-
-
 # 목록보기 (상세보기 코드가 없거나 상세보기페이지에 리스트를 보여줄 경우)
 # 아래 프로그램은 게시판스킨의 페이지수, 총게시물수 표기를 위해 list.inc.php include전에 선처리 해야함
 if (!$jb_idx || $db_config_data['jba_list_use'] == "Y") {
@@ -80,7 +78,8 @@ if (!$jb_idx || $db_config_data['jba_list_use'] == "Y") {
 //게시판 제어 모듈
 switch($jb_mode) {
     # 상세보기
-    case("tdetail") :
+	case("tdetail") :
+	case("comment_modify") :
         # 상세보기 처리 루틴 및 스킨
         include $GP -> INC_PATH . "/action/tdetail.inc.php";
         include $GP -> INC_PATH . "/${skin_dir}/board_read.php";		
@@ -223,8 +222,8 @@ switch($jb_mode) {
 						</script>\n
 			");
 		}
-        break;
-        
+		break;
+
         # Default(글 읽기와 글 리스트)
 	default :
     include $GP -> INC_PATH . "/${skin_dir}/board_list.php";	
