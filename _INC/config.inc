@@ -771,16 +771,16 @@ $GP -> NEW_MOBILE_SPECIAL= array(
 
 //메뉴 네비관련
 $GP -> Navi_Dep1 = array(
-				'0' =>  array('서비스 이용안내','/guide/page01.html'),
+				'0' =>  array('서비스 이용안내',''),
 				'1' =>  array('진료과/의료진','/center01/page.php?depart=A&gubun=A'),
 				'2' =>  array('뉴고려커뮤니티','/notice/notice.php?jb_code=10'),
 			);
 $GP -> Navi_Dep2 = array(
 			'0' => array(
-					'0-0' => array('예약/발급', '/guide/page01.html'),
-					'0-1' => array('진료안내', '/guide/page03.html'),
-					'0-2' => array('입/퇴원 안내', '/guide/page06.html'),
-					'0-3' => array('병원안내', '/guide/page08.html'),
+					'0-0' => array('예약/발급', ''),
+					'0-1' => array('진료안내', '/service/page04.html'),
+					'0-2' => array('입/퇴원 안내', '/service/page06.html'),
+					'0-3' => array('병원안내', '/service/page09-1.html'),
 				),
 			'1' => array(
 					'1-0' => array('전문센터', '/center01/page.php?depart=A&gubun=A'),
@@ -790,7 +790,7 @@ $GP -> Navi_Dep2 = array(
 				),
 			'2' => array(
 					'2-0' => array('소통/공감', '/notice/notice.php?jb_code=10'),
-					'2-1' => array('병원소개', '/notice/page07.html'),
+					'2-1' => array('병원소개', '/notice/page06.html'),
 				)
 		);
 $GP -> Navi_Dep3 = array(
@@ -800,19 +800,19 @@ $GP -> Navi_Dep3 = array(
 					'0-0-2' => array('증명서발급안내', '/guide/page02.html'),
 				),
 			'0-1' => array(
-					'0-1-0' => array('외래진료안내', '/guide/page03.html'),
-					'0-1-1' => array('응급진료안내', '/guide/page04.html'),
+					'0-1-0' => array('외래진료안내', '/service/page04.html'),
+					'0-1-1' => array('응급진료안내', '/service/page05.html'),
 				),
 			'0-2' => array(
-					'0-2-0' => array('입/퇴원 안내', '/guide/page06.html'),
-					'0-2-1' => array('입원생활안내', '/guide/page06.html'),
-					'0-2-2' => array('면회안내', '/guide/page06.html'),
+					'0-2-0' => array('입/퇴원 안내', '/service/page06.html'),
+					'0-2-1' => array('입원생활안내', '/service/page07.html'),
+					'0-2-2' => array('면회안내', '/service/page08.html'),
 				),
 			'0-3' => array(
-					'0-3-0' => array('병원둘러보기', '/guide/page08.html'),
-					'0-3-1' => array('오시는길/주차안내', '/guide/page08.html'),
-					'0-3-2' => array('장례식장', '/guide/page08.html'),
-					'0-3-3' => array('전화번호 안내', '/guide/page08.html'),
+					'0-3-0' => array('병원둘러보기', '/service/page09-1.html'),
+					'0-3-1' => array('오시는길/주차안내', '/service/page10-1.html'),
+					'0-3-2' => array('장례식장', '/service/page11.html'),
+					'0-3-3' => array('전화번호 안내', '/service/page12.html'),
 				),
 			'1-0' => array(
 					'1-0-0' => array('관절센터', '/center01/page.php?depart=A&gubun=A'),
@@ -872,9 +872,15 @@ $GP -> Navi_Dep3 = array(
                     '2-0-5' => array('전문의 상담', '/notice/notice.php?jb_code=40'),
 					'2-0-6' => array('칭찬합니다', '/notice/notice.php?jb_code=20'),
 				),
-			//'2-1' => array(
-			//		'2-1-0' => array('이용안내', '/health/page07.html'),
-			//	)
+			'2-1' => array(
+					'2-1-0' => array('이용안내', '/notice/page06.html'),
+					'2-1-1' => array('인사말', '/notice/page07.html'),
+					'2-1-2' => array('연혁', '/notice/page08.html'),
+					'2-1-3' => array('미션,비전,가치', '/notice/page09.html'),
+					'2-1-4' => array('채용정보', '/notice/notice.php?jb_code=100'),
+					'2-1-5' => array('협력병원 및 기관', '/notice/page11.html'),
+					
+				)
 		);
 $GP-> WEB_TITLE = "뉴고려병원";
 $GP-> ADM_TITLE = "뉴고려병원 관리자 페이지";

@@ -1,0 +1,148 @@
+<?php
+	include_once  '../../_init.php';
+	include_once $GP -> CLS . 'class.member.php';
+	$C_Member = new Member();
+	
+	$refer = $_SERVER['HTTP_REFERER'];
+	$server = $_SERVER['HTTP_HOST'];	
+/*
+	if(!ereg($server, $refer)){
+		$C_Func->put_msg_and_go("올바른 경로로 접근 바랍니다1", "/");
+		exit();
+	}			
+*/	
+	
+	switch($_POST['mode']){
+		
+		case "MEM_REG" :			
+			if (is_array($_POST)) foreach ($_POST as $k => $v) ${$k} = $v;					
+			
+			$mb_email = trim(strip_tags(mysql_real_escape_string($mb_email)));
+			$mb_email = str_replace('\\', '', $mb_email);
+
+			$mb_id = trim($mb_id);
+            $mb_id = preg_replace("/\s+/", "", $mb_id);
+			$mb_pwd = trim($mb_pwd);
+			$mb_name = trim(strip_tags(mysql_real_escape_string($mb_name)));
+            $mb_name = preg_replace("/\s+/", "", $mb_name);
+			$mb_mobile1 = trim(strip_tags(mysql_real_escape_string($mb_mobile1)));
+			$mb_mobile2 = trim(strip_tags(mysql_real_escape_string($mb_mobile2)));
+			$mb_mobile3 = trim(strip_tags(mysql_real_escape_string($mb_mobile3)));
+
+
+			$arr_email = explode("@", $mb_email);      
+			$args = "";
+			$args['mb_id']       	 	= $mb_id;
+            $args['mb_memo']        	= $mb_memo;
+			$args['mb_email']     		= $mb_email1 . "@" . $mb_email2;
+			$args['mb_password']  		= md5($mb_pwd);	
+			$args['mb_name'] 			= $mb_name;
+			$args['mb_sex'] 			= $mb_sex;
+            $args['mb_sms'] 			= $mb_sms;
+            $args['mb_email_flag'] 		= $mb_email_flag;
+			$args['mb_mobile']    		= $mb_mobile1 ."-". $mb_mobile2 ."-". $mb_mobile3;
+			$args['mb_address1']		= $tsr_post;
+			$args['mb_address2']		= $tsr_addr1;
+			$args['mb_load_address1']	= $tsr_addr2;
+			$rst = $C_Member->Mem_Join($args);	
+			if ($rst) {
+                $args = "";
+                $args['mb_id']       	 	= $mb_id;
+				$rtn = $C_Member->Mem_Info_ID($args);	
+                    $_SESSION['suserid']    = $rtn['mb_id'];
+                    $_SESSION['susername']  = $rtn['mb_name'];
+                    $_SESSION['suserphone'] = $rtn['mb_mobile'];
+                    $_SESSION['suserbirth'] = $rtn['mb_birth'];
+                    $_SESSION['suseremail'] = $rtn['mb_email'];
+                    $_SESSION['suserlevel'] = $rtn['mb_level'];
+                    $_SESSION['susersex']   = $rtn['mb_sex'];
+                    $_SESSION['susercode']  = $rtn['mb_code'];
+                    $_SESSION['susergubun'] = $rtn['mb_gubun'];
+                    $_SESSION['susermemo']  = $rtn['mb_memo'];
+				
+				$C_Func->put_msg_and_go ("회원가입이 완료되었습니다", "/");
+			}else{
+				$C_Func->put_msg_and_back("회원가입이 실패하였습니다.\n오류가 발생하였습니다.");
+			}
+		break;
+		
+		case "MEM_MODIFY":
+			if (is_array($_POST)) foreach ($_POST as $k => $v) ${$k} = $v;
+
+      
+			$mb_email1 = trim(strip_tags(mysql_real_escape_string($mb_email1)));
+			$mb_email1 = str_replace('\\', '', $mb_email1);
+
+			$mb_email2 = trim(strip_tags(mysql_real_escape_string($mb_email2)));
+			$mb_email2 = str_replace('\\', '', $mb_email2);     
+              
+			
+			$mb_name = trim(strip_tags(mysql_real_escape_string($mb_name)));
+			$mb_mobile1 = trim(strip_tags(mysql_real_escape_string($mb_mobile1)));
+			$mb_mobile2 = trim(strip_tags(mysql_real_escape_string($mb_mobile2)));
+			$mb_mobile3 = trim(strip_tags(mysql_real_escape_string($mb_mobile3)));
+
+			$args = "";
+			$args['mb_code'] 				  = $mb_code;
+			$args['mb_name'] 				  = $mb_name;
+            $args['mb_memo'] 				  = $mb_memo;
+			$args['mb_email']     			  = $mb_email1 . "@" . $mb_email2;
+			$args['mb_mobile'] 				  =	$mb_mobile1 . "-". $mb_mobile2 . "-". $mb_mobile3;
+            $args['mb_email_flag'] 			  = $mb_email_flag;
+			$args['mb_sms'] 			 	  = $mb_sms;
+			$args['mb_address1']			  = $tsr_post;
+			$args['mb_address2']			  = $tsr_addr1;
+			$args['mb_load_address1']		  = $tsr_addr2;
+			$rst = $C_Member -> Mem_Info_Modify($args);
+			
+			$_SESSION['susermemo'] = $args['mb_memo'];
+            $_SESSION['suserpost'] 	= $args['mb_address1'];
+			$_SESSION['suseraddress1']	= $args['mb_address2'];
+			$_SESSION['suseraddress2'] 	= $args['mb_load_address1'];
+            
+			$C_Func -> put_msg_and_go('회원정보가 수정 되었습니다.','/member/mypage.php');
+			exit();
+		break;
+		
+		case "MEM_PASS_CH" :
+			if (is_array($_POST)) foreach ($_POST as $k => $v) ${$k} = $v;
+      
+			$mb_pwd_ch = trim($mb_pwd_ch);
+
+			$args = "";
+			$args['mb_code'] 	 = $mb_code;
+			$args['mb_password'] = md5($mb_pwd_ch);
+			$rst = $C_Member -> Mem_Pass_Modify($args);
+
+			$C_Func -> put_msg_and_go('비밀번호가 변경 되었습니다.','/member/passch.php');			
+			exit();
+		break;
+		
+		case "MEM_WITH" :		
+			if (is_array($_POST)) foreach ($_POST as $k => $v) ${$k} = $v;
+			
+			$args = "";
+			$args['mb_code'] 				= $mb_code;
+			$args['mb_withdrawal'] 			= $reason;
+			$args['mb_withdrawal_reason'] 	= $proposal;
+			$rst = $C_Member -> Mem_Withdrawal($args);
+
+			include_once($GP->CLS."class.naver.php");
+
+			// 네이버 로그아웃 처리
+			$naver = new Naver(array(
+		        "CLIENT_ID" => $GP->NAVER_CLIENT_ID,
+		        "CLIENT_SECRET" => $GP->NAVER_CLIENT_SECRET,
+		        "RETURN_URL" => $GP->NAVER_RETURN_URL,
+		        "AUTO_CLOSE" => true,
+		        "SHOW_LOGOUT" => false
+		        )
+		    );
+		    $naver->logout();
+			
+			session_destroy();			
+			$C_Func -> put_msg_and_go('탈퇴되었습니다. 그동안 이용해주셔서 감사합니다.','/');			
+			exit();						
+		break;
+	}
+?>

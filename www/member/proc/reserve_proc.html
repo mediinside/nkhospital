@@ -1,0 +1,69 @@
+<?php
+	include_once  '../../_init.php';
+	include_once $GP -> CLS . 'class.reserve.php';
+	include_once($GP -> CLS . "class.sms.php");
+	include_once($GP -> CLS . "class.api.php");
+	$C_Sms 	= new Sms;
+	$C_Api = new Api;
+	$C_Reserve = new Reserve();
+  
+  
+ 	$refer = $_SERVER['HTTP_REFERER'];
+	$server = $_SERVER['HTTP_HOST'];	
+
+	if(!ereg($server, $refer)){
+		$C_Func->put_msg_and_go("올바른 경로로 접근 바랍니다", "/");
+		exit();
+	}	
+  
+  //발송히스토리 기억
+	function SMS_send_history($args) {
+		global $C_Api, $GP, $C_Func;		
+	
+		$year = date("Y");		//년
+		$table = "tblSmsSendList_". $year;	 //생성테이블명		
+		$ck_table = $C_Func->TableExists($table, $GP->DB_TABLE);	//테이블 존재여부		
+		
+		if($ck_table)	{ //테이블이 존재하면 등록
+			$args['table'] = $table;
+			$rst = $C_Api -> SMS_Send_Insert($args);
+		}else{
+			$args['table'] = $table;
+			$rst = $C_Api -> Creat_Sms_Table($args);
+			
+			if($rst) {
+				$rst = $C_Api -> SMS_Send_Insert($args);
+			}
+		}		
+	}
+  
+  
+  switch($_POST['mode']){
+    
+    case 'RESERVE_DEL':
+      if (is_array($_POST)) foreach ($_POST as $k => $v) ${$k} = $v;
+    
+      $args = '';
+      $args['rd_idx'] 	= $rd_idx;	
+	  $args['mb_code'] = $_SESSION['susercode'];
+      $data = $C_Reserve->Reserve_Detail($args);
+      
+      $doctor_date = $data['rd_date'];
+      $doctor_time = $data['rd_s_time'];
+      $user_mobile = $data['mb_mobile'];
+            
+      //$msg = "힘내라병원 예약취소 " .  $doctor_date . " " . $doctor_time . " " . $dr_name;
+	  $msg = "예약 신청 취소가 완료되었습니다" .  $doctor_date . " " . $doctor_time . " " . $dr_name;
+      
+      $rst = $C_Reserve -> Reserve_Del($args);      
+        
+		
+    
+	
+
+      echo "true";
+      exit();
+    break;
+    
+  }
+ ?>

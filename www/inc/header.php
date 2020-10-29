@@ -21,7 +21,12 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 						<input type="text" id="schtxt">
 						<button><img src="/resource-pc/images/search-gray.png" alt="검색" id="schbtn"></button>
 					</li>
+					<?if($_SESSION['suserid'] == ''){?>
 					<li><a href="#" onclick="modal_on_login(); return false;">LOGIN</a></li>
+					<?}else{?>
+					<li><a href="/member/mypage01.html">MYPAGE</a></li>
+					<li><a href="/member/logout.html">LOGOUT</a></li>
+					<?}?>
 				</ul>
 			</div>
 			<nav>
@@ -145,7 +150,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 									<dd><a href="/notice/page07.html">인사말</a></dd>
 									<dd><a href="/notice/page08.html">연혁</a></dd>
 									<dd><a href="/notice/page09.html">미션,비전,가치</a></dd>
-									<dd><a href="/notice/page10.html">채용정보</a></dd>
+									<dd><a href="/notice/notice.php?jb_code=100">채용정보</a></dd>
 									<dd><a href="/notice/page11.html">협력병원 및 기관</a></dd>
 								</dl>
 							</div>

@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/28 11:07:49 D:\home\nkhospital\www\v3\view\join.step2.tpl 000003188 */ ?>
+<?php /* Template_ 2.2.8 2020/10/29 03:31:05 D:\home\nkhospital\www\v3\view\join.step2.tpl 000003167 */ ?>
 <script type="text/javascript" src="/js/jquery.validate.js"></script>
 	<script type="text/javascript" src="/js/jquery.alphanumeric.js"></script>
 
@@ -49,7 +49,7 @@
             </tbody>
         </table>
         <div class="btnWrap">
-            <span><a href="http://nkhospital.net/v3/join.php" class="btnType1">취소</a></span>
+            <span><a href="/v3/join.php" class="btnType1">취소</a></span>
             <span><a href="#" class="btnType2" id="btn_submit">회원가입</a></span>
         </div>
     </form>                

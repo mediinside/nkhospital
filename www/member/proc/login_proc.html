@@ -1,0 +1,251 @@
+<?php
+
+//error_reporting(E_ALL^E_NOTICE);
+//ini_set("display_errors", 1);    
+
+
+	include_once  '../../_init.php';
+	include_once $GP -> CLS . 'class.login.php';
+  	include_once $GP -> CLS . 'class.member.php';
+	$C_Member = new Member();
+	$C_Login = new Login();
+	
+	$refer = $_SERVER['HTTP_REFERER'];
+	$server = $_SERVER['HTTP_HOST'];	
+
+//	if(!ereg($server, $refer)){
+//		$C_Func->put_msg_and_go("올바른 경로로 접근 바랍니다", "/");
+//		exit();
+//	}	
+	
+	$mode = ($_POST['mode']) ? $_POST['mode'] : $_GET['mode'];
+    
+    switch($mode){
+
+
+		//일반회원 로그인
+		case "LOGIN":
+			if (is_array($_POST)) foreach ($_POST as $k => $v) ${$k} = $v;
+      
+			$args				 = array();      
+			$args['mb_id']	   = mysql_escape_string($m_id);
+     		$args['mb_password'] = md5(trim($m_pwd));
+			$rst = $C_Login -> userLogin_ID($args);			
+			
+			//비밀번호가 같다면
+			if($rst['mb_password'] ==  md5(trim($m_pwd))) {
+				
+				$_SESSION['suserid'] 		= $rst['mb_id'];
+				$_SESSION['susername'] 	= $rst['mb_name'];
+				$_SESSION['suserphone'] = $rst['mb_mobile'];
+                $_SESSION['suserbirth'] = $rst['mb_birth'];
+				$_SESSION['suseremail'] = $rst['mb_email'];
+				$_SESSION['suserlevel'] = $rst['mb_level'];
+				$_SESSION['susercode'] 	= $rst['mb_code'];
+                $_SESSION['susergubun'] 	= $rst['mb_gubun'];
+				$_SESSION['susermemo'] 	= $rst['mb_memo'];
+				$_SESSION['suserpost'] 	= $rst['mb_address1'];
+				$_SESSION['suseraddress1']	= $rst['mb_address2'];
+				$_SESSION['suseraddress2'] 	= $rst['mb_load_address1'];
+				
+
+				//마지막 로그인 날짜, 마지막 로그인 아이피, 로그인 누적횟수 수정
+				$args = '';
+				$args['mb_id'] = $_POST['m_id'];
+				$args['mb_lastlogin_date'] = date('Y-m-d H:i:s');
+				$args['mb_lastlogin_ip']   = $_SERVER['REMOTE_ADDR'];
+				$result = $C_Login -> Mem_Login_history_ID($args);
+
+				if ($re_url != "") {
+					$C_Func ->	go_url($re_url);
+				} else {
+				  $C_Func ->	go_url("/member/mypage.html");
+				//$C_Func ->	go_url("/");
+				}
+			} else {
+				$C_Func -> put_msg_and_back('아이디 혹은 패스워드가 틀립니다.');
+			}
+		break;
+        
+        case 'naver':
+			include_once($GP->CLS."class.naver.php");
+			$naver = new Naver(array(
+					"CLIENT_ID" => $GP->NAVER_CLIENT_ID,        
+					"CLIENT_SECRET" => $GP->NAVER_CLIENT_SECRET
+					)
+			);
+			$profile = $naver->getUserProfile('JSON');
+			$profile = json_decode($profile, true);
+			
+			$mb_email 	= $profile["response"]["email"];
+			$mb_name  	= $profile["response"]["name"];
+			$mb_id		= $profile["response"]["id"];
+			$mb_sex 	= $profile["response"]["gender"];
+			$mb_birth 	= $profile["response"]["birth"];
+//            echo $naver->getAccess_token();
+			if($mb_name == "" || $mb_email==""){
+				$naver->logout();
+           		$C_Func->put_msg_and_close('필수정보 제공 동의를 하셔야 가입이 가능합니다.');
+				exit;
+            }
+
+			$mb_email1 = explode("@",$mb_email);
+			
+			$args['mb_id'] = $mb_id;
+			
+			$rst = $C_Member->ID_DobuleCheck($args);
+			//echo "==================";
+			if($rst["cnt"] == 0){
+				//회원이 아닌경우 회원정보에 담는다
+					$args = "";
+					$args['mb_id'] = $mb_id;
+					$args['mb_email'] = $mb_email;
+					$args['mb_password'] = md5($mb_id);  //비밀번호 네이버 고유아이디로 지정
+					$args['mb_name'] = $mb_name;
+					$args['mb_sex'] = $mb_sex;
+					$args['mb_birthday'] = $mb_birth;
+					$args['mb_sms'] = 'Y';
+                    $args['mb_email_flag'] = 'N';
+					$args['mb_gubun'] = 'naver';
+					$rst = $C_Member->Mem_Join($args);
+                    $gojoin = "Y";
+
+			}					
+				//세션처리
+					$args = "";
+					$args['mb_email'] = $mb_email;
+					$rst = $C_Login -> userLoginNaver($args);
+				
+					if($rst['mb_name'] == '' || $rst['mb_email'] == '') {
+						$args = "";
+                        $args['mb_id'] = $mb_id;
+                        $args['mb_name'] = $mb_name;
+                        $args['mb_email'] = $mb_email;
+						$rst = $C_Member->Mem_Naver_Modify($args);	
+					}                
+                
+					$_SESSION['suserid'] 	= $rst['mb_id'];
+					$_SESSION['susername']  = $rst['mb_name'];
+					$_SESSION['suserphone'] = $rst['mb_mobile'];
+					$_SESSION['suseremail'] = $rst['mb_email'];
+					$_SESSION['suserlevel'] = $rst['mb_level'];
+					$_SESSION['susercode']  = $rst['mb_code'];
+                    $_SESSION['susergubun']  = $rst['mb_gubun'];
+
+					//마지막 로그인 날짜, 마지막 로그인 아이피, 로그인 누적횟수 수정
+					$args = '';
+					$args['mb_email'] = $_POST['m_email'];
+					$args['mb_lastlogin_date'] = date('Y-m-d H:i:s');
+					$args['mb_lastlogin_ip']   = $_SERVER['REMOTE_ADDR'];
+					$result = $C_Login -> Mem_Login_history($args);	
+					if($gojoin == "Y") {
+						$C_Func ->	go_replace_opener2($GP -> SERVICE_DOMAIN . "/member/mypage.php");
+                    }else{
+	                    $C_Func ->	go_replace_opener2($GP -> SERVICE_DOMAIN . "/");
+                    }
+			
+		break;	       
+        
+           case 'facebook': 
+           if($mb_id != "undefined") {
+			$mb_id = $_GET["mb_id"];
+			$mb_email = $_GET["mb_email"];
+            $mb_name = $_GET["mb_name"];
+            if($mb_email == "undefined") $mb_email = "";
+      		$args['mb_id'] = $mb_id;
+			$rst = $C_Member->ID_DobuleCheck($args);
+			//echo "==================";
+			if($rst["cnt"] == 0){
+				//혜민안과 회원이 아닌경우 회원정보에 담는다
+					$args = "";
+					$args['mb_id'] = $mb_id;
+					$args['mb_email'] = $mb_email;
+					$args['mb_password'] = md5($mb_id);  //비밀번호 페이스북 고유아이디로 지정
+					$args['mb_name'] = $mb_name;
+					$args['mb_sex'] = $mb_sex;
+					$args['mb_birthday'] = $mb_birth;
+					$args['mb_sms'] = 'Y';
+                    $args['mb_email_flag'] = 'N';
+					$args['mb_gubun'] = 'facebook';
+					$rst = $C_Member->Mem_Join($args);
+			}					
+				//세션처리
+					$args = "";
+					$args['mb_id'] = $mb_id;
+					$rst = $C_Login -> userLoginFB($args);
+				
+					$_SESSION['suserid'] 	= $rst['mb_id'];
+					$_SESSION['susername']  = $rst['mb_name'];
+					$_SESSION['suserphone'] = $rst['mb_mobile'];
+					$_SESSION['suseremail'] = $rst['mb_email'];
+					$_SESSION['suserlevel'] = $rst['mb_level'];
+					$_SESSION['susercode']  = $rst['mb_code'];
+                    $_SESSION['susergubun']  = $rst['mb_gubun'];
+					
+					//마지막 로그인 날짜, 마지막 로그인 아이피, 로그인 누적횟수 수정
+					$args = '';
+					$args['mb_id'] = $mb_id;
+					$args['mb_lastlogin_date'] = date('Y-m-d H:i:s');
+					$args['mb_lastlogin_ip']   = $_SERVER['REMOTE_ADDR'];
+					$result = $C_Login -> Mem_Login_history($args);				
+        			$C_Func->go_url($GP -> SERVICE_DOMAIN . "/");
+           }else{
+           		$C_Func->go_url($GP -> SERVICE_DOMAIN . "/member/login.html");
+          } 
+		break;
+        
+        case 'kakao':
+			$mb_id 	= $_POST["mb_id"];
+			$mb_name  	= $_POST["mb_name"];
+            
+            $args['mb_id'] = $mb_id;
+            
+            
+			
+            $rst = $C_Member->ID_DobuleCheck($args);
+            
+			if($rst["cnt"] == 0){
+				//회원이 아닌경우 회원정보에 담는다
+					$args = "";
+					$args['mb_id'] = $mb_id;
+					$args['mb_email'] = $mb_email;
+					$args['mb_password'] = md5($mb_id);  //비밀번호 네이버 고유아이디로 지정
+					$args['mb_name'] = $mb_name;
+					$args['mb_sex'] = $mb_sex;
+					$args['mb_birthday'] = $mb_birth;
+                    $args['mb_email_flag'] = 'N';
+					$args['mb_sms'] = 'Y';
+					$args['mb_gubun'] = 'kakao';
+					$rst = $C_Member->Mem_Join($args);
+			}					
+				//세션처리
+					$args = "";
+					$args['mb_id'] = $mb_id;
+					$rst = $C_Login -> userLogin_ID($args);
+				
+					$_SESSION['suserid'] 	= $rst['mb_id'];
+					$_SESSION['susername']  = $rst['mb_name'];
+					$_SESSION['suserphone'] = $rst['mb_mobile'];
+					$_SESSION['suseremail'] = $rst['mb_email'];
+					$_SESSION['suserlevel'] = $rst['mb_level'];
+					$_SESSION['susercode']  = $rst['mb_code'];
+                    $_SESSION['susergubun'] 	= $rst['mb_gubun'];
+					
+					//마지막 로그인 날짜, 마지막 로그인 아이피, 로그인 누적횟수 수정
+					$args = '';
+					$args['mb_email'] = $_POST['m_email'];
+					$args['mb_lastlogin_date'] = date('Y-m-d H:i:s');
+					$args['mb_lastlogin_ip']   = $_SERVER['REMOTE_ADDR'];
+					$result = $C_Login -> Mem_Login_history($args);				
+					
+					// $C_Func -> put_msg_top('로그인 되었습니다.');	
+			
+				if ($re_url != "") {
+					$C_Func ->	go_url("/".$re_url);
+				} else {
+					$C_Func ->	go_url("/");
+				}
+			
+		break;	 
+	}
+?>
