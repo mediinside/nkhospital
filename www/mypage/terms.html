@@ -1,0 +1,31 @@
+<?php
+	include_once  '../_init.php';
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php';
+?>
+<body>
+	<style type="text/css">
+		.privacy {padding:10px;height:600px;overflow-y:auto;border:1px solid #eee;}
+	</style>
+	<div id="subCon6" class="wrap">
+		<? include_once $GP -> INC_WWW . '/header.php'; ?>
+
+		<section class="container wrapSubPageTop">
+			<div class="boxSubPageTop">
+				<? include_once $GP -> INC_WWW . '/location.php'; ?>
+			</div>
+		</section>
+		
+		<section class="wrapBody">
+			<div class="introWrap intro2Cont">
+				<h4 class="sTit mg-t60"><span>이용약관</span></h4>
+					<div class="privacy">
+					<? include_once 'agree1.txt' ?>
+					</div>
+			</div>
+		</section>
+
+		<? include_once $GP -> INC_WWW . '/foot.php'; ?>
+	</div>
+</body>
+</html>

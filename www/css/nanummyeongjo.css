@@ -1,0 +1,33 @@
+/* 
+ * Nanum Myeongjo (Korean) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Nanum Myeongjo';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Regular.eot);
+  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Regular.woff2) format('woff2'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Regular.woff) format('woff'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Myeongjo';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Bold.eot);
+  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Bold.eot?#iefix) format('embedded-opentype'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Bold.woff2) format('woff2'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Bold.woff) format('woff'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Myeongjo';
+  font-style: normal;
+  font-weight: 800;
+  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-ExtraBold.eot);
+  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-ExtraBold.eot?#iefix) format('embedded-opentype'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-ExtraBold.woff2) format('woff2'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-ExtraBold.woff) format('woff'),
+       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanummyeongjo/v3/NanumMyeongjo-ExtraBold.ttf) format('truetype');
+}

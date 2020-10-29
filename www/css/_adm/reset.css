@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* ouheung (http://ouheung.cafe24.com/) author:Sung, Sun A */
+
+/* base */
+* {-webkit-text-size-adjust:none;}
+textarea, select, input, body {font:12px Dotum, "돋움", Gulim, "굴림", sans-serif; color:#333; line-height:18px;}
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form, fieldset, input, table, tr, th, td {margin:0; padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:100%;}
+ul, ol, li {list-style:none;}
+fieldset, img {border:none;}
+hr, button img, caption, legend {display:none;}
+img{vertical-align: top;}
+/* cross */
+* html input {margin:-1px 0;} 
+*:first-child+html input {margin:-1px 0}
+input.checkbox {width:13px; height:13px; vertical-align:top;}
+
+/* a-style */
+a {color:#333; text-decoration:none;}
+a:hover, a:active {color:auto; text-decoration:none;}
+
+/* html5 */
+address, article, aside, figure, footer, header, hgroup, menu, nav, section {display:block;}

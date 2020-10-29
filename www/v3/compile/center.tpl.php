@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/23 10:46:10 /home/hosting_users/nkmed/www/v3/view/center.tpl 000009508 */
+<?php /* Template_ 2.2.8 2020/10/23 10:46:10 /home/hosting_users/nkmed/www/v3/view/center.tpl 000009508 */ 
 $TPL_gpa_1=empty($TPL_VAR["gpa"])||!is_array($TPL_VAR["gpa"])?0:count($TPL_VAR["gpa"]);
 $TPL_gpb_1=empty($TPL_VAR["gpb"])||!is_array($TPL_VAR["gpb"])?0:count($TPL_VAR["gpb"]);
 $TPL_gpc_1=empty($TPL_VAR["gpc"])||!is_array($TPL_VAR["gpc"])?0:count($TPL_VAR["gpc"]);
@@ -34,9 +34,9 @@ $TPL_list4_1=empty($TPL_VAR["list4"])||!is_array($TPL_VAR["list4"])?0:count($TPL
                     	 <li><a href="/v3/center.php?depart=<?php echo $TPL_K1?>&gubun=C"><?php echo $TPL_V1?></a></li>
 <?php }}?>
 <?php }?>
-<?php if($TPL_dlist_1){foreach($TPL_VAR["dlist"] as $TPL_V1){?>
+<?php if($TPL_dlist_1){foreach($TPL_VAR["dlist"] as $TPL_V1){?>                        
 	                    <li class="dlist" style="display:none;"><a href="/v3/detail.php?idx=<?php echo $TPL_V1["code"]?>&gubun=D"><?php echo $TPL_V1["name"]?></a></li>
-<?php }}?>
+<?php }}?>                    
             </ul>
         </div>
     </nav>
@@ -45,14 +45,14 @@ $TPL_list4_1=empty($TPL_VAR["list4"])||!is_array($TPL_VAR["list4"])?0:count($TPL
     <div class="vod" style="top:0;left:0;width:100%;min-height:203px; height:auto;" id="play_main">
 		 <div class="vlayer" style="width:100%; padding-bottom:56.25%; z-index:7;" id="layer_main">
 <?php if($TPL_list1_1){foreach($TPL_VAR["list1"] as $TPL_V1){?>
-<?php if($TPL_V1["vd_thumb"]){?>
-					<img src="<?php echo $TPL_VAR["vdurl"]?><?php echo $TPL_V1["vd_thumb"]?>" alt="" style="width:100%; z-index:7; position:absolute; ">
-<?php }else{?>
-					<img src="/resource-pc/images/sample2.jpg" alt="" style="width:100%; z-index:7; position:absolute; ">
-<?php }?>
+<?php if($TPL_V1["vd_thumb"]){?> 
+					<img src="<?php echo $TPL_VAR["vdurl"]?><?php echo $TPL_V1["vd_thumb"]?>" alt="" style="width:100%; z-index:7; position:absolute; ">                
+<?php }else{?> 
+					<img src="/resource/images/sample2.jpg" alt="" style="width:100%; z-index:7; position:absolute; ">
+<?php }?> 
              <img src="/images/mask_720405.png" alt="" style="width:100%; z-index:8; position:absolute;" id="vstart_main" data-vid="<?php echo $TPL_V1["vd_uid"]?>">
 <?php }}?>
-        </div>
+        </div>        
     </div>
     <div class="vodLink">
         <p class="share">공유하기</p>
@@ -143,7 +143,7 @@ $TPL_list4_1=empty($TPL_VAR["list4"])||!is_array($TPL_VAR["list4"])?0:count($TPL
         </div>
 <?php if($TPL_VAR["list4"]){?>
 		<section class="relationList" id="board_result">
-			<ul>
+			<ul> 
 <?php if($TPL_list4_1){foreach($TPL_VAR["list4"] as $TPL_V1){?>
                 <li>
                     <a href="?bidx=<?php echo $TPL_V1["jb_idx"]?>&m=v&gubun=<?php echo $TPL_VAR["gubun"]?>&depart=<?php echo $TPL_VAR["depart"]?>">
@@ -163,21 +163,21 @@ $TPL_list4_1=empty($TPL_VAR["list4"])||!is_array($TPL_VAR["list4"])?0:count($TPL
             <!--<div class="btnWrap" <?php echo $TPL_VAR["mbtn"]?>>
                 <span><a href="javascript:void(0);" class="btnType1" id="bmore" data-total=<?php echo $TPL_VAR["bcnt"]?>>더보기 </a></span>
             </div>-->
-        </section>
-<?php }?>
+        </section>           
+<?php }?>    
             <section class="relationVod" id="vod_result">
             </section>
             <br />
-
+		
 	</div>
 <style>
-.vod{position:relative;min-height:231px;height:auto;overflow:hidden;}
-.vod iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;}
+.vod{position:relative;min-height:231px;height:auto;overflow:hidden;} 
+.vod iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;} 
 </style>
 <script>
    var cl1 = "<?php echo $TPL_VAR["cl1"]?>";
    var cl2 = "<?php echo $TPL_VAR["cl2"]?>";
-   var cl3 = "<?php echo $TPL_VAR["cl3"]?>";
-   var psize = "3";
+   var cl3 = "<?php echo $TPL_VAR["cl3"]?>";    
+   var psize = "3";  
 </script>
 <?php if($TPL_VAR["list3"]){?><script>vod_page_load();</script><?php }?>

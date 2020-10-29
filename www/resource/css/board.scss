@@ -1,0 +1,660 @@
+.boardSearch {
+	margin: 0 0 r(40);
+	.inputBox {
+		position: relative;
+		padding-right: r(50);
+		border-bottom: r(2) solid #1d366d;
+		.inputTxt {
+			width: 100%;
+			padding: 0;
+			background: none;
+			border: 0;
+			font-size: r(28);
+		}
+		.btnSearch {
+			@include pos($p: absolute, $t: 0, $r: 0);
+			width: r(40);
+			height: 100%;
+			background: url('/resource/images/btn_search.png') no-repeat 50%;
+			background-size: 100%;
+			font-size: 0;
+		}
+	}
+}
+.boardSort {
+	position: relative;
+	margin: r(20) 0 0;
+	.btn {
+		position: relative;
+		width: 100%;
+		height: r(60);
+		padding: 0 r(20);
+		border-bottom: r(2) solid #ddd;
+		font-size: r(28);
+		text-align: left;
+		&:after {
+			content: "";
+			@include pos($p: absolute, $t: r(26), $r: r(20));
+			width: r(18); height: r(12);
+			background: url('/resource/images/btn_sort_arrow.png') no-repeat;
+			background-size: 100%;
+			transition: all .3s;
+		}
+	}
+	.list {
+		display: none;
+		max-height: r(338);
+		overflow: auto;
+		@include pos($p: absolute, $t: r(56), $l: 0, $r: 0, $z: 5);
+		background: #fff;
+		border: r(2) solid #ddd;
+		li ~ li { border-top: r(2) solid #ddd;}
+		button {
+			width: 100%;
+			height: r(66);
+			padding: 0 r(20);
+			font-size: r(28);
+			text-align: left;
+		}
+	}
+	&.active {
+		.btn:after {
+			transform: rotate(180deg);
+		}
+	}
+
+}
+
+.boardList {
+	border-bottom: r(2) solid #bbb;
+	li {
+		border-bottom: r(1) solid #ddd;
+		a {
+			position: relative;
+			display: block;
+			padding: r(30) 0;
+			overflow: hidden;
+		}
+	}
+	.subject {
+		display: block;
+		font-size: r(28);
+		@extend .txtOverflow;
+	}
+	.opt {
+		display: block;
+		margin: r(20) 0 0 r(-15);
+		span {
+			position: relative;
+			display: inline-block;
+			padding: 0 r(15);
+			&:after {
+				content: "";
+				@include pos($p: absolute, $t: r(14), $l: r(-4));
+				height: r(16);
+				border-left: r(1) solid #999;
+			}
+			&.lock {
+				width: r(20); height: r(26);
+				padding: 0;
+				background: url('/resource/images/icon_lock.png') no-repeat;
+				background-size: r(20);
+				font-size: 0;
+				vertical-align: middle;
+				&:after {display: none;}
+			}
+		}
+	}
+	.state {
+		@include pos($p: absolute, $b: r(30), $r: 0);
+		&.com {
+			padding-left: r(30);
+			background: url('/resource/images/icon_chk2.png') no-repeat 0 50%;
+			background-size: r(24);
+			color: #f0141e;
+		}
+	}
+	.nonList {
+		padding: r(60) 0;
+		text-align: center;
+		font-size: r(28);
+	}
+}
+.boardThumb {
+	border-top: r(2) solid #bbb;
+	border-bottom: r(2) solid #bbb;
+	li {
+		position: relative;
+		height: r(180);
+		padding: r(40) 0 r(40) r(340);
+		& ~ li {border-top: r(1) solid #ddd;}
+		.thumb {
+			@include pos($p: absolute, $t: r(40), $l: 0);
+			width: r(320);
+			&.vod:after {
+				content: "";
+				@include pos($p: absolute, $a: 0);
+				background: rgba(0,0,0,.6) url('/resource/images/main/btn_vod.png') no-repeat 50%;
+				background-size: r(60);
+			}
+			img {
+				width: 100%;
+			}
+		}
+		.tit {
+			display: block;
+			font-size: r(28);
+			line-height: 1.4;
+			@include font($w: 400, $c: #111);
+			@include lineOverflow($line: 2, $h: r(80));
+		}
+		.opt {
+			display: block;
+			margin: r(50) 0 0;
+			font-size: r(24);
+			.source {
+				color: #1c2536;
+				font-weight: 400;
+			}
+			span ~ span {
+				margin: 0 0 0 r(16);
+				padding: 0 0 0 r(20);
+				line-height: 1;
+				border-left: r(1) solid #999;
+				vertical-align: -1px;
+			}
+			.date {
+				display: inline-block;
+				color: #888;
+			}
+		}
+		.doc {
+			position: relative;
+			display: block;
+			height: r(80);
+			margin: r(20) 0 0;
+			padding: r(10) 0 0;
+			padding-left: r(90);
+			font-weight: 400;
+			line-height: 1.2;
+			.name {
+				display: block;
+			}
+			img {
+				@include pos($p: absolute, $t: 0, $l: 0);
+				width: r(80); height: r(80);
+				border-radius: 50%;
+				border: 1px solid #ddd;
+				overflow: hidden;
+			}
+
+		}
+	}
+}
+
+.boardView {
+	.viewHead {
+		position: relative;
+		overflow: hidden;
+		.title {
+			font-size: r(28);
+			color: #000;
+		}
+		.info {
+			padding: r(20) 0 r(30);
+			margin-left: r(-20);
+			span {
+				position: relative;
+				padding: 0 r(20);
+				&:after {
+					content: "";
+					@include pos($p: absolute, $t: r(13), $l: r(-4));
+					height: r(18);
+					border-left: r(1) solid #ddd;
+				}
+			}
+		}
+		.mod {
+			@include pos($p: absolute, $r: 0, $b: r(30));
+			&:before {
+				content: "";
+				@include display($type: inline-block, $w: r(22), $h: r(28));
+				background: url('/resource/images/icon_trash.png') no-repeat;
+				background-size: 100%;
+				vertical-align: -3px;
+			}
+		}
+	}
+	.contents {
+		min-height: 340px;
+		padding: r(40) 0 r(50);
+		border-top: r(2) solid #1c2536;
+		border-bottom: r(2) solid #1c2536;
+		img {
+			width: 100% !important;
+			height: auto !important;
+			max-width: 100%;
+		}
+		a {
+			display: inline-block;
+			padding-right: r(36);
+			background: url('/resource/images/icon_link.png') no-repeat 100% 50%;
+			background-size: r(22);
+			color: #1d366d;
+			text-decoration: underline;
+		}
+	}
+	.answer {
+		margin: r(40) 0 0;
+		padding-top: r(120);
+		background: url('/resource/images/bg_answer.png') no-repeat 50% r(40);
+		background-size: r(55);
+		border-top: r(1) solid #ddd;
+	}
+}
+
+.boardWrite {
+	tbody, tr, th, td {
+		display: block;
+		text-align: left;
+	}
+	th {
+		padding: r(20) 0 r(10);
+		font-size: r(28);
+	}
+	tr:first-child th {padding-top: 0;}
+	textarea {width: 100%; height: r(280);}
+	.inputTxt {width: 100%;}
+	.formRow {
+		display: flex;
+		margin: 0 r(-10);
+		.cell {
+			width: 100%;
+			padding: 0 r(10);
+		}
+		select {width: 100%;}
+	}
+}
+
+.boardAlert {
+	margin: r(40) 0 0;
+	padding: r(110) 0 r(50);
+	background: #fafafa url('/resource/images/icon_alert2.png') no-repeat 50% r(40);
+	background-size: r(60);
+	border-top: r(1) solid #111;
+	border-bottom: r(2) solid #111;
+	text-align: center;
+}
+.boardAgree {
+	padding: r(40) 0;
+	text-align: center;
+	border-bottom: r(2) solid #111;
+}
+
+.passSection {
+	.inputPassword {
+		margin: 20px 0 0;
+		padding: 20px 0;
+		border-top: r(1) solid #1f75b0;
+		border-bottom: r(1) solid #1f75b0;
+		text-align:center;
+		label {
+			margin: 0 15px 0 0;
+			font-weight: bold;
+		}
+	}
+}
+
+.boardBtn {
+	margin: 20px -5px 0;
+	text-align: center;
+	@media screen and (max-width: 767px) {
+		margin: r(40) r(-10) 0;
+	}
+	.left {float:left;}
+	.right {float:right;}
+	
+	@media screen and (max-width: 767px) {
+		.only, .left, .right {
+			&:only-child {
+				display: flex;
+				width: 100%;
+				[class*="btn"] {
+					width: 100%;
+				}
+			}
+		}
+	}
+	@include clear();
+	[class*="btn"] {
+		@include display($type: inline-block, $w: 200px);
+		margin: 0 5px;
+		padding: 12px 0 11px;
+		font-size: 18px;
+		font-weight: 400;
+		border-radius: 6px;
+		&.btn0 {
+			background: #fff;
+			border: r(1) solid #1f75b0;
+			color: #1f75b0;
+		}
+		&.btn1 {
+			background: #fbfbfb;
+			border: r(1) solid #ddd;
+			color: #000;
+		}
+		@media screen and (max-width: 767px) {
+			width: auto;
+			font-size: r(26);
+			margin: 0 r(10);
+			padding: r(20) r(40);
+			box-sizing: border-box;
+			&:only-child {
+				display: block;
+			}
+		}
+	}
+}
+.btnReplace {
+	@include display($type: inline-block, $w: 80px, $h: 40px);
+	line-height: 40px;
+	text-align: center;
+	background: #fbfbfb;
+	border: r(1) solid #ddd;
+	color: #000;
+	vertical-align: middle;
+	@media screen and (max-width: 767px) {
+		width: r(160); height: r(56); line-height: r(56);
+	}
+}
+
+.pagination {
+	margin: 40px 0 0;
+	text-align: center;
+	font-size: 0;
+	@media all and (max-width: 767px) {
+		margin: r(40) 0 0;
+	}
+	.btn {
+		display: inline-block;
+		width: 46px;
+		line-height: 46px;
+		margin: 0 0 0 -1px;
+		background: #fff;
+		border: r(1) solid #ddd;
+		color: #333;
+		font-size: 16px;
+		font-weight: 400;
+		vertical-align: middle;
+		@media all and (max-width: 767px) {
+			width: r(58);
+			line-height: r(58);
+			font-size: r(24);
+		}
+		&.prev, &.next {
+			font: 0/0 a;
+			width: 46px;
+			height: 46px;
+			background: #fff url('/resource/images/btn_page_prev.png') no-repeat 50%;
+			@media all and (max-width: 767px) {
+				width: r(58);
+				height: r(58);
+				background-image: url('/resource/images/btn_page_prev_mo.png');
+				background-size: r(13);
+			}
+		}
+		&.next {
+			background-image: url('/resource/images/btn_page_next.png');
+			@media all and (max-width: 767px) {
+				background-image: url('/resource/images/btn_page_next_mo.png');
+				background-size: r(13);
+			}
+		}
+		&.current {
+			background: #1f75b0;
+			border: r(1) solid #1f75b0;
+			color: #fff;
+			font-weight: 400;
+		}
+	}
+}
+
+.replyText {
+	position: relative;
+	margin: 10px 0 0;
+	padding: 10px 100px 10px 10px;
+	background: #fbfbfc;
+	border: r(1) solid #ddd;
+	.guestInput { margin: 0 0 10px; }
+	.guestInput label { margin: 0 10px 0 0; }
+	@media screen and (max-width: 767px) {
+		margin: r(40) 0 0;
+		padding: r(20) r(200) r(20) r(20);
+		.guestInput { margin: 0 0 r(20); }
+		.guestInput label { margin: 0 r(20) 0 0;}
+	}
+	textarea {
+		width: 100%;
+		height: 100px;
+		vertical-align: top;
+		@media screen and (max-width: 767px) {
+			height: r(150);
+		}
+	}
+	.btnReply {
+		@include pos($p: absolute, $t: 10px, $r: 10px);
+		width: 80px;
+		height: 100px;
+		background: #384451;
+		color: #fff;
+		@media screen and (max-width: 767px) {
+			top: r(20);
+			right: r(20);
+			width: r(160);
+			height: r(150);
+		}
+	}
+	.btnReplyMod {
+		@extend .btnReply;
+		height: 48px;
+		@media screen and (max-width: 767px) {
+			height: 4.8rem;
+		}
+	}
+	.btnReplyCancel {
+		@extend .btnReplyMod;
+		top: auto;
+		bottom: 10px;
+		@at-root .mobile #{&} {
+			bottom: 1rem;
+		}
+	}
+}
+.titComment {
+	margin: 50px 0 15px;
+	@include font($s: 20px, $c: #333);
+	@media screen and (max-width: 767px) {
+		margin: r(50) 0 r(5);
+		font-size: r(30);
+	}
+}
+.txtComment {
+	float: right;
+	margin-top: -40px;
+	@media screen and (max-width: 767px) {
+		float: none;
+		margin: 0;
+		font-size: r(22);
+	}
+}
+.replyList {
+	margin: 0 0 40px;
+	@media screen and (max-width: 767px) {
+		margin: r(20) 0 r(40);
+	}
+	li {
+		position: relative;
+		padding: 30px 40px 100px;
+		background: #fbfbfc;
+		border: r(1) solid #ddd;
+		@media screen and (max-width: 767px) {
+			padding: r(20);
+		}
+	}
+	.replyInfo {
+		display: none;
+		span {margin: 0 5px 0 0;}
+		.name strong {
+			&.me {color:#000;}
+		}
+	}
+	.cont {
+		display: block;
+	}
+	.util {
+		display: none;
+		@include pos($p: absolute, $t: 20px, $r: 0);
+		a {
+			margin:0 4px;
+		}
+		@media screen and (max-width: 767px) {
+			top: auto;
+			bottom: 1rem;
+		}
+	}
+	.replyWrite {
+		position: relative;
+		padding: 20px 125px 10px 90px;
+		textarea {
+			width: 100%;
+			height: 50px;
+		}
+		.name {
+			@include pos($p: absolute, $t: 20px, $l: 0);
+			color: #333;
+			font-weight: bold;
+		}
+		.btn {
+			@include pos($p: absolute, $t: 20px, $r: 0);
+			width: 100px;
+			height: 62px;
+			background: #384451;
+			color: #fff;
+		}
+		
+	}
+	.reReply {
+		padding-left: 20px;
+	}
+	.reReplyWrite {
+		.reCont {
+			margin:8px 0 0;
+			padding: 10px 10px 10px;
+			background: #f7f7f7;
+			border: r(1) solid #d7d7d7;
+		}
+		textarea {
+			width: 100%;
+			height: 50px;
+		}
+	}
+}
+
+.ui-datepicker {
+	position: absolute;
+	top: -1000%;
+	display: block;
+	width: 300px;
+	padding: 5px;
+	border: r(1) solid #ddd;
+	background: #eee;
+	text-align:center;
+	z-index: 200 !important;
+	.ui-datepicker-header {
+		position: relative;
+		display: block;
+		padding: 0 15px;
+		a {
+			position: absolute;
+			top: 2px;
+			&.ui-state-disable {
+				cursor: default;
+				opacity: .3;
+			}
+			span {font: 0/0 a;}
+			&:before {
+				content: "";
+				@include display($type: inline-block, $w: 15px, $h: 15px);
+				margin: 8px auto 0;
+				transform: rotate(45deg);
+			}
+			&.ui-datepicker-prev {
+				left: 20px;
+				&:before {
+					border-left: r(4) solid #47505b;
+					border-bottom: r(4) solid #47505b;
+				}
+			}
+			&.ui-datepicker-next {
+				right: 20px;
+				&:before {
+					border-top: r(4) solid #47505b;
+					border-right: r(4) solid #47505b;
+				}
+			}
+		}
+	}
+	.ui-datepicker-title {
+		display: inline-block;
+		text-align: center;
+		padding: 5px 0 10px;
+		select {
+			height: 30px;
+			margin: 0 4px;
+			vertical-align: middle;
+		}
+	}
+	.ui-datepicker-calendar {
+		background: #fff;
+	}
+	.ui-datepicker-week-end:first-child {
+		border-left: r(1) solid #ddd;
+	}
+	.ui-datepicker-week-end:last-child {
+		border-right: r(1) solid #ddd;
+	}
+	thead {
+		background: #47505b;
+		th {
+			height: 30px;
+			padding: 0;
+			font-size: 12px;
+			background: #47505b;
+			color: #fff;
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+	td {
+		border-bottom: r(1) solid #ddd;
+		span, a {
+			display: block;
+			padding: 5px;
+			font-size:12px;
+		}
+		&.ui-datepicker-current-day a {
+			background: #384451;
+			color: #fff;
+		}
+	}
+	.ui-datepicker .dummy {
+		border: r(1) solid #ddd;
+		border-top: 0;
+	}
+	.non {
+		color:#999; text-decoration: line-through;
+	}
+	.cho {
+		background: #90c31f;
+	}
+}

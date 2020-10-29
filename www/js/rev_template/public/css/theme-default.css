@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+.default [class*="icon-before-"]:before {background-repeat:no-repeat;background-size:500px 500px;background-image:url(../images/icon-theme-default.png);}
+.default [class*="icon-after-"]:after {background-repeat:no-repeat;background-size:500px 500px;background-image:url(../images/icon-theme-default.png);}
+.default .entry-datepicker .ui-datepicker .ui-datepicker-header > a .ui-icon {background-repeat:no-repeat;background-size:500px 500px;background-image:url(../images/icon-theme-default.png);}
+.default .entry-datepicker .ui-datepicker .ui-datepicker-header .ui-datepicker-prev .ui-icon {background-position:0 -40px;}
+.default .entry-datepicker .ui-datepicker .ui-datepicker-header .ui-datepicker-next .ui-icon {background-position:0 -70px;}
+.default .entry-datepicker .ui-datepicker .ui-datepicker-calendar .ui-datepicker-today .ui-state-default {color:#ff8162;border:1px solid #ff8162;background-color:#f4f4f4;}
+.default .entry-datepicker .ui-datepicker .ui-datepicker-calendar .ui-state-default.ui-state-select {color:#fff !important;border:1px solid #ff8162 !important;background-color:#ff8162 !important;}
+.default .btn-kakao:before {background-repeat:no-repeat;background-size:500px 500px;background-image:url(../images/icon-theme-default.png);background-position:0 -180px;}
+
+.default .radio-label span:before {background-repeat:no-repeat;background-size:500px 500px;background-image:url(../images/icon-theme-default.png);background-position:0 -100px;}
+.default .radio-label input[type="radio"]:checked + span:before {background-position:0 -120px;}
+
+.default .check-label span:before {background-repeat:no-repeat;background-size:500px 500px;background-image:url(../images/icon-theme-default.png);background-position:0 -140px;}
+.default .check-label input[type="checkbox"]:checked + span:before {background-position:0 -160px;}
+
+.default .entry-datepicker-attr .today:before {border-color:#ff8162;background-color:#f4f4f4;}
+
+.default .another-sign a {color:#ff8162;border-bottom:1px solid #ff8162;}
+
+.default .icon-before-previous:before {background-position:0 0;}
+.default .icon-before-logout:before {background-position:0 -20px;}
+.default .icon-after-calendar:after {background-position:-50px 0;}
+.default .icon-after-document:after {background-position:-50px -70px;}
+.default .icon-after-keyhole:after {background-position:-50px -140px;}
+
+.default select:focus,
+.default input[type="text"]:focus,
+.default input[type="number"]:focus,
+.default input[type="password"]:focus,
+.default input[type="email"]:focus,
+.default .select-tab-layout label input:checked + span,
+.default .swipe-header li.active a,
+.default .swipe-header li.active span {border-color:#ff8162;}
+
+.default .select-layout.success .trigger {background-color:#ff8162;background-position:right -420px;}
+
+.default .skip-nav li a,
+.default .switch-label span,
+.default .dotted-list li:before {background-color:#ff8162;}
+
+.default .text-point,
+.default .page-title,
+.default .section-title,
+.default .config-list .btn-invite,
+.default .explain-list li:before,
+.default .explain-text:before,
+.default .reserv-info .date,
+.default .reserv-info .btn-remove,
+.default .entry-section li.required:after,
+.default .radio-label input[type="radio"]:checked + span,
+.default .swipe-contain .result .result-user-id,
+.default .pagination strong {color:#ff8162;}
+
+.default .bullet,
+.default .btn-group .btn {color:#fff;background-color:#ff8162;}
+.default .btn-group .btn.btn-empty {color:#666;border-color:#999;background-color:#fff;}
+.default .btn-group .btn.btn-disabled {color:#fff;background-color:#999;}
+.default .btn-group .btn.btn-kakao {color:#3b1e1e;background-color:#fbe300;}
+
+

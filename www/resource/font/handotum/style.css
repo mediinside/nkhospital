@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'Han Dotum';
+	font-weight: 400;
+	font-style: normal;
+	src: url('KHNPHDRegular.eot');
+	src: url('KHNPHDRegular.eot?#iefix') format('embedded-opentype'),
+		url('KHNPHDRegular.woff2') format('woff2'),
+		url('KHNPHDRegular.woff') format('woff'),
+		url('KHNPHDRegular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Han Dotum';
+	font-style: normal;
+	font-weight: 700;
+	src: url('KHNPHDBold.eot');
+	src: url('KHNPHDBold.eot?#iefix') format('embedded-opentype'),
+		url('KHNPHDBold.woff2') format('woff2'),
+		url('KHNPHDBold.woff') format('woff'),
+		url('KHNPHDBold.ttf') format('truetype');
+}

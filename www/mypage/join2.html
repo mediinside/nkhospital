@@ -1,0 +1,207 @@
+<?php
+	include_once  '../_init.php';		
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php'; 
+	
+	$sel_email = $C_Func->makeSelect('email_sel', $GP -> EMAIL , $email_sel, "'",'직접선택');
+  $sel_mobile = $C_Func->makeSelect('mb_mobile1', $GP -> MOBILE , $mb_mobile1, "'",':::선택:::');
+?>
+<body>
+	<div id="subCon6" class="wrap">
+		<? include_once $GP -> INC_WWW . '/header.php'; ?>	
+		
+		<section class="container wrapSubPageTop">
+			<div class="boxSubPageTop">
+				<? include_once $GP -> INC_WWW . '/location.php'; ?>
+			</div>
+			<div class="subVisual">
+				<h4>회원서비스</h4>
+				<p class="txt">
+					<span>회원서비스에 가입하시면</span>
+					<strong>뉴고려병원 웹사이트의 <br />모든 서비스를 이용하실 수 있습니다.</strong>
+				</p>
+				<p class="type1"><img src="/images/content/img-join.jpg" alt="회원서비스"></p>
+			</div>	
+		</section>
+		<section class="wrapBody">
+			<div class="joinWrap">
+				<h4>상세정보입력</h4>
+				<script type="text/javascript">
+				jQuery(function($){
+
+					// Input Clear
+					var iText = $('.iLabel').next('.iText');
+					iText
+						.focus(function(){
+							$(this).prev('.iLabel').css('visibility','hidden');
+						})
+						.blur(function(){
+							if($(this).val() == ''){
+								$(this).prev('.iLabel').css('visibility','visible');
+							} else {
+								$(this).prev('.iLabel').css('visibility','hidden');
+							}
+						})
+						.change(function(){
+							if($(this).val() == ''){
+								$(this).prev('.iLabel').css('visibility','visible');
+							} else {
+								$(this).prev('.iLabel').css('visibility','hidden');
+							}
+						})
+						.blur();
+
+				});
+				</script>
+				<form action="?" id="frmJoin" name="frmJoin" method="post" novalidate="novalidate">
+					<input type="hidden" value="MEM_REG" id="mode" name="mode">
+					<fieldset>
+					<legend>회원가입 상세정보 입력</legend>
+						<div class="wrapSubMember">
+							<p class="sTitTxt">(<span class="txtStar">*</span>)표 항목은 필수입력 사항입니다.</p>
+							<!-- Input 위에 있는 label 클릭시 사라짐 현상 필요 -->
+							<table width="100%" class="joinData">
+								<caption>회원가입 정보 입력</caption>
+								<colgroup>
+									<col width="20%" />
+									<col width="80%" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 아이디</th>
+										<td>
+											<div class="inputBox">
+												<label for="uid" class="iLabel">아이디입력</label>
+												<input type="text" id="mb_id" name="mb_id" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 이름</th>
+										<td>
+											<div class="inputBox">
+												<label for="uid" class="iLabel">이름입력</label>
+												<input type="text" value="" id="mb_name" name="mb_name" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<!-- tr>
+										<th scope="row"><span class="txtStar">*</span> 닉네임</th>
+										<td>
+											<div class="inputBox">
+												<label for="uid" class="iLabel">닉네임입력</label>
+												<input type="text" value="" id="mb_nick" name="mb_nick" class="iText" />
+											</div>
+										</td>
+									</tr -->
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 이메일</th>
+										<td>
+											<div class="inputBox">
+												<label for="eMail" class="iLabel">이메일입력</label>
+												<input type="text" value="" id="mb_email1" name="mb_email1" class="iText" />
+												<span class="txt">@</span>
+												<input type="text" class="iText" title="이메일 주소 입력" value="" id="mb_email2" name="mb_email2" />
+												<?=$sel_email?>
+												<span class="my_error_display"></span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 비밀번호</th>
+										<td>
+											<div class="inputBox">
+												<label for="upw" class="iLabel">비밀번호 입력</label>
+												<input type="password" id="mb_pwd" name="mb_pwd" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 비밀번호 확인</th>
+										<td>
+											<div class="inputBox">
+												<label for="pwOk" class="iLabel">비밀번호 재입력</label>
+												<input type="password" id="mb_pwd_ok" name="mb_pwd_ok" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<!-- tr>
+										<th scope="row"><span class="txtStar">*</span> 생년월일</th>
+										<td>
+											<div class="inputBox">
+												<label for="birth" class="iLabel">예)830127</label>
+												<input type="text" id="mb_birth" name="mb_birth" style="ime-mode: disabled;" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 성별</th>
+										<td>
+											<div class="gender">
+												<input type="radio" id="gMan" value="M" name="mb_sex" /><label for="gMan">남성</label>
+												<input type="radio" id="gWoman" value="F" name="mb_sex" /><label for="gWoman">여성</label>
+											</div>
+										</td>
+									</tr -->
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 휴대전화</th>
+										<td>
+											<?=$sel_mobile?>
+											<span class="txt">-</span>
+											<label for="hpFirst" class="srOnly">휴대전화 앞자리</label>
+											<input type="text" style="ime-mode: disabled;" value="" maxlength="4" id="mb_mobile2" name="mb_mobile2" class="iText" />
+											<span class="txt">-</span>
+											<label for="hpEnd" class="srOnly">휴대전화 뒷자리</label>
+											<input type="text" style="ime-mode: disabled;" value="" maxlength="4" id="mb_mobile3" name="mb_mobile3" class="iText" />
+											<span class="my_error_display"></span>
+										</td>
+									</tr>
+									<!-- tr>
+										<th scope="row">&nbsp;&nbsp; 주소</th>
+										<td>
+											<label for="postFirst" class="srOnly">우편번호 앞자리</label>
+											<input type="text" value="" id="mb_post1" name="mb_post1" class="iText" style="width:28px;" />
+											<span class="txt">-</span>
+											<label for="postEnd" class="srOnly">우편번호 뒷자리</label>
+											<input type="text" value="" id="mb_post2" name="mb_post2" class="iText" style="width:28px;" />
+											<a href="javascript:;" class="btnPost" id="search_post">우편번호 찾기</a>
+											<div class="add">
+												<label for="addInput" class="srOnly">주소입력</label>
+												<input type="text" id="mb_addr1" name="mb_addr1" class="iText" />
+											</div>
+											<div class="inputBox add2">
+												<label for="detailAdd" class="iLabel">상세주소를 입력하십시오.</label>
+												<input type="text" id="mb_addr2" name="mb_addr2" class="iText" />
+											</div>
+											<div class="add">
+												<label for="addInput" class="srOnly">주소입력</label>
+												<input type="text" id="mb_load_addr1" name="mb_load_addr1" class="iText" />
+											</div>
+											<div class="inputBox add2">
+												<label for="detailAdd" class="iLabel">상세주소를 입력하십시오.</label>
+												<input type="text" id="mb_load_addr2" name="mb_load_addr2" class="iText" />
+											</div>
+										</td>
+									</tr -->
+								</tbody>
+							</table>
+						
+						</div>
+						
+						<div class="imgCalign">
+							<a class="btnBox btBlue" href="javascript:;" id="btn_submit">회원가입</a>
+							<a class="btnBox btGray" href="javascript:history.back();">취소</a>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+				
+		<? include_once $GP -> INC_WWW . '/foot.php'; ?>	
+	</div>
+	<script type="text/javascript" src="/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="/js/admin/common.js"></script>
+	<script type="text/javascript" src="/js/jquery.alphanumeric.js"></script>
+	<script type="text/javascript" src="/js/mem_join.js"></script>
+</body>
+</html>

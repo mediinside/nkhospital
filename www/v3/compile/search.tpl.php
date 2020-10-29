@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/26 06:02:56 C:\xampp\htdocs\newkorea\www\v3\view\search.tpl 000005725 */ 
+<?php /* Template_ 2.2.8 2020/10/28 11:07:49 D:\home\nkhospital\www\v3\view\search.tpl 000005719 */ 
 $TPL_list1_1=empty($TPL_VAR["list1"])||!is_array($TPL_VAR["list1"])?0:count($TPL_VAR["list1"]);
 $TPL_list2_1=empty($TPL_VAR["list2"])||!is_array($TPL_VAR["list2"])?0:count($TPL_VAR["list2"]);
 $TPL_list3_1=empty($TPL_VAR["list3"])||!is_array($TPL_VAR["list3"])?0:count($TPL_VAR["list3"]);?>

@@ -7,7 +7,7 @@
                 </li>
                 <!--{/}-->
                 <!--<li class="swiper-slide">
-                    <a href="#"><img src="/resource-pc/images/main/img_top_banner01.jpg" alt=""></a>
+                    <a href="#"><img src="/resource/images/main/img_top_banner01.jpg" alt=""></a>
                 </li>-->
             </ul>
         </div>
@@ -30,23 +30,23 @@
             <ul class="swiper-wrapper" id="main_slide">
                 <li class="swiper-slide" data-vid="rAi4wNFMEdU">
                    <a href="javascript:void(0);" data-vid="rAi4wNFMEdU">
-                        <img src="/resource-pc/images/main/img_mid_banner01.jpg" alt="">
+                        <img src="/resource/images/main/img_mid_banner01.jpg" alt="">
 
                     </a>
                 </li>
                 <li class="swiper-slide" data-vid="CuaKAJZLxZ8">
                     <a href="javascript:void(0);" data-vid="CuaKAJZLxZ8">
-                        <img src="/resource-pc/images/main/img_mid_banner02.jpg" alt="" data-vid="CuaKAJZLxZ8">
+                        <img src="/resource/images/main/img_mid_banner02.jpg" alt="" data-vid="CuaKAJZLxZ8">
                     </a>
                 </li>
                 <li class="swiper-slide" data-vid="mCawo_WsjvM">
                     <a href="http://naver.com" data-vid="mCawo_WsjvM">
-                        <img src="/resource-pc/images/main/img_mid_banner03.jpg" alt="">
+                        <img src="/resource/images/main/img_mid_banner03.jpg" alt="">
                     </a>
                 </li>
                 <li class="swiper-slide" data-vid="mCawo_WsjvM">
                     <a href="http://naver.com" data-vid="mCawo_WsjvM">
-                        <img src="/resource-pc/images/main/img_mid_banner03.png" alt="">
+                        <img src="/resource/images/main/img_mid_banner03.png" alt="">
                     </a>
                 </li>
             </ul>

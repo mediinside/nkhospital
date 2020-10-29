@@ -1,0 +1,199 @@
+<?php
+	include_once  '../_init.php';		
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php'; 
+	include_once $GP -> INC_WWW . '/inc.login_check.php';    
+	
+	include_once($GP -> CLS."/class.member.php");
+	$C_Member 	= new Member;
+	
+	$args = "";
+	$args['mb_code'] = $_SESSION['susercode'];
+	$data = $C_Member->Mem_Info($args);
+	
+	if($data) {
+		extract($data);
+		
+		$arr_post = explode("-", $mb_zip_code);
+		$mb_post1 = $arr_post[0];
+		$mb_post2 = $arr_post[1];
+		
+		$arr_mobile = explode("-", $mb_mobile);
+		$mb_mobile1 = $arr_mobile[0];
+		$mb_mobile2 = $arr_mobile[1];
+		$mb_mobile3 = $arr_mobile[2];				
+
+
+		$arr_email = explode("@", $mb_email);
+		$mb_email1 = $arr_email[0];
+		$mb_email2 = $arr_email[1];
+
+		$sel_mobile = $C_Func -> makeSelect('mb_mobile1', $GP -> MOBILE, $mb_mobile1, '', '::선택::');		
+    $sel_email = $C_Func->makeSelect('email_sel', $GP -> EMAIL , $mb_email2, "'",'직접선택');
+	}
+?>
+<body>
+	<div id="subCon6" class="wrap">
+		<? include_once $GP -> INC_WWW . '/header.php'; ?>	
+		
+		<section class="container wrapSubPageTop">
+			<div class="boxSubPageTop">
+				<? include_once $GP -> INC_WWW . '/location.php'; ?>
+			</div>	
+		</section>
+		<section class="wrapBody">
+			<div class="mypageWrap">				
+					
+					<menu class="tabMenu ">
+						<a href="mypage.html" >내정보</a>						
+						<a href="passch.html" >비밀번호변경</a>						
+						<a href="memout.html" class="on">회원탈퇴</a>						
+						<a href="counsel.html" >내진료상담</a>						
+						<a href="mtom.html" >1:1상담</a>							
+					</menu>				
+					
+	
+					<div class="titCustomer">
+						<h4>회원탈퇴</h4>		
+					</div>
+					<form action="?" id="frmWith" name="frmWith" method="post">
+					<input type="hidden" name="mode" id="mode" value="MEM_WITH" />
+					<input type="hidden" name="mb_code" id="mb_code" value="<?=$mb_code?>" />
+					<fieldset>
+					<legend>회원탈퇴 정보 입력</legend>
+						<div class="wrapSubMember">
+							<p class="sTitTxt2 mg-t40">
+								그동안 뉴고려병원의 온라인 서비스를 이용해 주셔서 감사합니다.<br>
+								탈퇴 후에는 <span class="txtStar"><?=$mb_id?></span>(으)로 다시 가입할 수 없으며, 아이디와 데이터는 복구할 수 없습니다.<br>
+								게시판 등의 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다. 
+							</p>
+
+							<table width="100%" class="joinData memOut">
+								<caption>회원가입 정보 입력</caption>
+								<colgroup>
+									<col width="100%" />
+								</colgroup>
+								<tbody>		
+									<tr>
+										<th scope="row" style=";">
+											<p>잔존 데이터 정책 확인</p>
+										</th>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="dropoutAgree" name="dropoutAgree">
+											<span>안내 사항을 모두 확인하였으며, 이에 동의합니다.</span> 
+										</td>
+									</tr>
+									<tr>
+										<th scope="row" style="line-height:24px;"> 
+											<p>탈퇴 아이디 확인</p>
+										</th>
+									</tr>
+									<tr>
+										<td>
+											<ul class="tbMemRight">
+												<li class="first"><span>아이디</span> : <span class="txtStar"><?=$mb_id?></span></li>
+												<li><span>이름</span> : <span class="txtStar"><?=$mb_name?></span></li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row" style="line-height:24px;">
+											<p>뉴고려병원의 온라인 서비스를 탈퇴하시는 이유는 무엇인가요?</p>
+										</th>
+									</tr>
+									<tr>
+										<td>
+											<ul class="boxWithdraw01 list-unstyled">
+												<li>
+													<input type="radio" value="1" name="reason">
+													<label for="bbsRadio1">사생활 기록 삭제 목적</label>
+												</li>
+												<li>
+													<input type="radio" value="2" name="reason">
+													<label for="bbsRadio2">이벤트 등의 목적으로 한시 사용함</label>
+												</li>
+												<li>
+													<input type="radio" value="3" name="reason">
+													<label for="bbsRadio3">제재조치로 이용제한됨</label>
+												</li>
+												<li>
+													<input type="radio" value="4" name="reason">
+													<label for="bbsRadio4">개인정보 및 보안 우려</label>
+												</li>
+												<li>
+													<input type="radio" value="5" name="reason">
+													<label for="bbsRadio6">새 아이디 생성 목적 </label>
+												</li>
+												<li>
+													<input type="radio" value="6" name="reason">
+													<label for="bbsRadio7">서비스 기능 불편</label>
+												</li>
+												<li>
+													<input type="radio" value="7" name="reason">
+													<label for="bbsRadio8">본 웹싸이트 정책 불만</label>
+												</li>
+											</ul>
+											<ul>
+												<li>
+													<input type="radio" value="9" name="reason">
+													<label for="bbsRadio5">기타 </label>
+												</li>
+												<li>
+													<textarea type="text" name="proposal" id="proposal" title="탈퇴 사유 입력" style="width:60%; height:150px;"></textarea>
+													<span id="my_with_error"></span> </li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						
+						</div>
+						
+						<div class="imgCalign">
+							<a class="btnBox btBlue" href="javascript:;" id="btn_with_submit">탈퇴신청</a>
+							<a class="btnBox btGray" href="javascript:;" id="btn_with_cancel">취소</a>
+						</div>
+					</fieldset>
+				</form>
+
+
+			</div>
+		</section>
+				
+		<? include_once $GP -> INC_WWW . '/foot.php'; ?>	
+	</div>
+	<script type='text/javascript' src='/js/jquery.alphanumeric.js'></script>
+	<script type='text/javascript' src='/js/jquery.validate.js'></script>
+	<script type='text/javascript' src='/js/admin/common.js'></script>
+	<script type='text/javascript' src='/js/mem_page.js'></script>
+	<script type="text/javascript">
+	jQuery(function($){
+
+		// Input Clear
+		var iText = $('.iLabel').next('.iText');
+		iText
+			.focus(function(){
+				$(this).prev('.iLabel').css('visibility','hidden');
+			})
+			.blur(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.change(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.blur();
+
+	});
+	</script>
+</body>
+</html>

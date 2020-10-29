@@ -3,7 +3,7 @@
 <![endif]-->
 <div id="wrap">
 		<header id="header">
-			<h1><a href="/v3/"><img src="/resource-pc/images/img_logo.png" alt="인봉의료재단 뉴고려 병원"></a></h1>
+			<h1><a href="/v3/"><img src="/resource/images/img_logo.png" alt="인봉의료재단 뉴고려 병원"></a></h1>
 			<button type="button" class="btnMenu" onclick="$('html').toggleClass('menuOn');"><span>메뉴</span></button>
 			<button type="button" class="btnSearch" onclick="$('html').addClass('searchOn');">검색</button>
 

@@ -1,0 +1,81 @@
+<?php
+	include_once  '../_init.php';		
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php'; 
+	include_once $GP -> INC_WWW . '/inc.login_check.php';    
+	
+	$index_page = "counsel.html";
+	$query_page = "query.php";
+
+	if(!$jb_code)
+		$jb_code="40";
+		
+		
+	$mypage_id = $_SESSION['suserid'];
+?>
+<body>
+	<div id="subCon6" class="wrap">
+		<? include_once $GP -> INC_WWW . '/header.php'; ?>	
+		
+		<section class="container wrapSubPageTop">
+			<div class="boxSubPageTop">
+				<? include_once $GP -> INC_WWW . '/location.php'; ?>
+			</div>	
+		</section>
+		<section class="wrapBody">
+			<div class="mypageWrap">				
+					
+					<menu class="tabMenu ">
+						<a href="mypage.html" >내정보</a>						
+						<a href="passch.html" >비밀번호변경</a>						
+						<a href="memout.html" >회원탈퇴</a>						
+						<a href="counsel.html" class="on">내진료상담</a>						
+						<a href="mtom.html" >1:1상담</a>							
+					</menu>				
+					
+					<div class="bbsWrap">
+						<div class="titCustomer">
+							<h4>내진료상담</h4>		
+						</div>
+						<!--게시판시작 -->
+						<?php include $GP -> INC_PATH ."/board_inc.php"; ?>
+						<!-- 게시판끝 -->						
+					</div>
+
+			</div>
+		</section>
+				
+		<? include_once $GP -> INC_WWW . '/foot.php'; ?>	
+	</div>
+	<script type='text/javascript' src='/js/jquery.alphanumeric.js'></script>
+	<script type='text/javascript' src='/js/jquery.validate.js'></script>
+	<script type='text/javascript' src='/js/admin/common.js'></script>
+	<script type="text/javascript">
+	jQuery(function($){
+
+		// Input Clear
+		var iText = $('.iLabel').next('.iText');
+		iText
+			.focus(function(){
+				$(this).prev('.iLabel').css('visibility','hidden');
+			})
+			.blur(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.change(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.blur();
+
+	});
+	</script>
+</body>
+</html>

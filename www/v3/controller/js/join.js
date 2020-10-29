@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	console.log("join");
 	$(document).on("click","#chkall",function(){	
 		 console.log("chk");
         var chk = $(this).is(":checked");
@@ -22,7 +21,7 @@ $(document).ready(function(){
 			$("#jForm").attr("action","join.step2.php");
 			$("#jForm").submit();
 		}
-	});
+	});	
 	
 	$('#mb_pwd').alphanumeric();
 	$('#mb_pwd_ok').alphanumeric();
@@ -42,7 +41,8 @@ $(document).ready(function(){
 		$(".layerAlert").hide()
 		return false;
 	});		
-	$(".btnCom").click(function(){
+	
+	$(".btnCom").click(function(){		
 		var postURL = "/inc/DoubleIDCheck.php";
 		var mb_id = $("#mb_id").val();	
 		if(mb_id.length < "6" || mb_id.length > "20") {

@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2019/08/12 16:23:37 /home/hosting_users/nkmed/www/v3/view/login.tpl 000003785 */ ?>
+<?php /* Template_ 2.2.8 2020/10/28 11:07:49 D:\home\nkhospital\www\v3\view\login.tpl 000003778 */ ?>
 <h2 class="pageTitle login">로그인</h2>
     <form action="?" method="post" id="login-form" name="login-form">
         <input type="hidden" id="mode" name="mode" value="LOGIN" />

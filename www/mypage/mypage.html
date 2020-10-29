@@ -1,0 +1,221 @@
+<?php
+	include_once  '../_init.php';		
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php'; 
+	include_once $GP -> INC_WWW . '/inc.login_check.php';    
+	
+	include_once($GP -> CLS."/class.member.php");
+	$C_Member 	= new Member;
+	
+	$args = "";
+	$args['mb_code'] = $_SESSION['susercode'];
+	$data = $C_Member->Mem_Info($args);
+	
+	if($data) {
+		extract($data);
+		
+		$arr_post = explode("-", $mb_zip_code);
+		$mb_post1 = $arr_post[0];
+		$mb_post2 = $arr_post[1];
+		
+		$arr_mobile = explode("-", $mb_mobile);
+		$mb_mobile1 = $arr_mobile[0];
+		$mb_mobile2 = $arr_mobile[1];
+		$mb_mobile3 = $arr_mobile[2];				
+
+
+		$arr_email = explode("@", $mb_email);
+		$mb_email1 = $arr_email[0];
+		$mb_email2 = $arr_email[1];
+
+		$sel_mobile = $C_Func -> makeSelect('mb_mobile1', $GP -> MOBILE, $mb_mobile1, '', '::선택::');		
+    $sel_email = $C_Func->makeSelect('email_sel', $GP -> EMAIL , $mb_email2, "'",'직접선택');
+	}
+?>
+<body>
+	<div id="subCon6" class="wrap">
+		<? include_once $GP -> INC_WWW . '/header.php'; ?>	
+		
+		<section class="container wrapSubPageTop">
+			<div class="boxSubPageTop">
+				<? include_once $GP -> INC_WWW . '/location.php'; ?>
+			</div>	
+		</section>
+		<section class="wrapBody">
+				<div class="mypageWrap">				
+					<menu class="tabMenu ">
+						<a href="mypage.html" class="on">내정보</a>						
+						<a href="passch.html" >비밀번호변경</a>						
+						<a href="memout.html" >회원탈퇴</a>						
+						<a href="counsel.html" >내진료상담</a>						
+						<a href="mtom.html" >1:1상담</a>						
+					</menu>
+	
+					<div class="titCustomer">
+						<h4>내정보</h4>		
+					</div>
+					<form action="?" id="frmJoin" name="frmJoin" method="post">
+					<input type="hidden" value="MEM_MODIFY" id="mode" name="mode">
+					<input type="hidden" name="old_email" id="old_email" value="<?=$mb_email?>" />
+					<input type="hidden" name="old_nick" id="old_nick" value="<?=$mb_nick?>" />
+					<input type="hidden" name="mb_code" id="mb_code" value="<?=$mb_code?>" />
+					<fieldset>
+					<legend>회원가입 상세정보 입력</legend>
+						<div class="wrapSubMember">
+							<p class="sTitTxt">(<span class="txtStar">*</span>)표 항목은 필수입력 사항입니다.</p>
+							<!-- Input 위에 있는 label 클릭시 사라짐 현상 필요 -->
+							<table width="100%" class="joinData">
+								<caption>회원가입 정보 입력</caption>
+								<colgroup>
+									<col width="20%" />
+									<col width="80%" />
+								</colgroup>
+								<tbody>									
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 이름</th>
+										<td>
+											<div class="inputBox">
+												<label for="uid" class="iLabel">이름입력</label>
+												<input type="text" value="<?=$mb_name?>" id="mb_name" name="mb_name" class="iText"  />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 닉네임</th>
+										<td>
+											<div class="inputBox">
+												<label for="uid" class="iLabel">닉네임입력</label>
+												<input type="text" value="<?=$mb_nick?>" id="mb_nick" name="mb_nick" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 이메일</th>
+										<td>
+											<div class="inputBox">
+												<label for="eMail" class="iLabel">이메일입력</label>
+												<input type="text" id="mb_email1" name="mb_email1" class="iText" value="<?=$mb_email1?>" />
+												<span class="txt">@</span>
+												<input type="text" class="iText" title="이메일 주소 입력" id="mb_email2" name="mb_email2" value="<?=$mb_email2?>" />
+												<?=$sel_email?>
+												<span class="my_error_display"></span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span>현재 비밀번호</th>
+										<td>
+											<div class="inputBox">
+												<label for="upw" class="iLabel">현재 비밀번호 입력</label>
+												<input type="password" id="mb_pwd" name="mb_pwd" class="iText" />
+											</div>
+										</td>
+									</tr>								
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 생년월일</th>
+										<td>
+											<div class="inputBox">
+												<label for="birth" class="iLabel">예)830127</label>
+												<input type="text" id="mb_birth" name="mb_birth" style="ime-mode: disabled;" class="iText" value="<?=$mb_birthday?>" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 성별</th>
+										<td>
+											<div class="gender">
+												<input type="radio" id="gMan" value="M" name="mb_sex" <?if($mb_sex =='M'){ echo "checked";}?> /><label for="gMan">남성</label>
+												<input type="radio" id="gWoman" value="F" name="mb_sex" <?if($mb_sex =='F'){ echo "checked";}?> /><label for="gWoman">여성</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span> 휴대전화</th>
+										<td>
+											<?=$sel_mobile?>
+											<span class="txt">-</span>
+											<label for="hpFirst" class="srOnly">휴대전화 앞자리</label>
+											<input type="text" style="ime-mode: disabled;" value="<?=$mb_mobile2?>" maxlength="4" id="mb_mobile2" name="mb_mobile2" class="iText" />
+											<span class="txt">-</span>
+											<label for="hpEnd" class="srOnly">휴대전화 뒷자리</label>
+											<input type="text" style="ime-mode: disabled;" value="<?=$mb_mobile3?>" maxlength="4" id="mb_mobile3" name="mb_mobile3" class="iText" />
+											<span class="my_error_display"></span>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">&nbsp;&nbsp; 주소</th>
+										<td>
+											<label for="postFirst" class="srOnly">우편번호 앞자리</label>
+											<input type="text" value="<?=$mb_post1?>" id="mb_post1" name="mb_post1" class="iText" style="width:28px;" />
+											<span class="txt">-</span>
+											<label for="postEnd" class="srOnly">우편번호 뒷자리</label>
+											<input type="text" value="<?=$mb_post2?>" id="mb_post2" name="mb_post2" class="iText" style="width:28px;" />
+											<a href="javascript:;" class="btnPost" id="search_post">우편번호 찾기</a>
+											<div class="add">
+												<label for="addInput" class="srOnly">주소입력</label>
+												<input type="text" id="mb_addr1" name="mb_addr1" class="iText" value="<?=$mb_address1?>" />
+											</div>
+											<div class="inputBox add2">
+												<label for="detailAdd" class="iLabel">상세주소를 입력하십시오.</label>
+												<input type="text" id="mb_addr2" name="mb_addr2" class="iText" value="<?=$mb_address2?>" />
+											</div>
+											<div class="add">
+												<label for="addInput" class="srOnly">주소입력</label>
+												<input type="text" id="mb_load_addr1" name="mb_load_addr1" class="iText" value="<?=$mb_load_address1?>" />
+											</div>
+											<div class="inputBox add2">
+												<label for="detailAdd" class="iLabel">상세주소를 입력하십시오.</label>
+												<input type="text" id="mb_load_addr2" name="mb_load_addr2" class="iText" value="<?=$mb_load_address2?>" />
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						
+						</div>
+						
+						<div class="imgCalign">
+							<a class="btnBox btBlue" href="javascript:;" id="btn_submit">정보수정</a>
+							<a class="btnBox btGray" href="javascript:;" id="btn_cancel">취소</a>
+						</div>
+					</fieldset>
+				</form>				
+
+			</div>
+		</section>
+				
+		<? include_once $GP -> INC_WWW . '/foot.php'; ?>	
+	</div>
+	<script type='text/javascript' src='/js/jquery.alphanumeric.js'></script>
+	<script type='text/javascript' src='/js/jquery.validate.js'></script>
+	<script type='text/javascript' src='/js/admin/common.js'></script>
+	<script type='text/javascript' src='/js/mem_page.js'></script>
+	<script type="text/javascript">
+	jQuery(function($){
+
+		// Input Clear
+		var iText = $('.iLabel').next('.iText');
+		iText
+			.focus(function(){
+				$(this).prev('.iLabel').css('visibility','hidden');
+			})
+			.blur(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.change(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.blur();
+
+	});
+	</script>
+</body>
+</html>

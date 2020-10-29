@@ -2,7 +2,7 @@
 
 // 읽기권한체크	
 if($check_level < $db_config_data['jba_read_level']) {
-	$C_Func->put_msg_and_go("해당게시판의 읽기권한이 없습니다.", "/member/login.html");
+	$C_Func->put_msg_and_go("해당게시판의 읽기권한이 없습니다.", "javascript:modal_on_login();");
 	die;
 }
 

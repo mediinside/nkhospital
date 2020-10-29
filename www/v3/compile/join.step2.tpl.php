@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2019/07/30 10:11:13 /home/hosting_users/nkmed/www/v3/view/join.step2.tpl 000003195 */ ?>
+<?php /* Template_ 2.2.8 2020/10/28 11:07:49 D:\home\nkhospital\www\v3\view\join.step2.tpl 000003188 */ ?>
 <script type="text/javascript" src="/js/jquery.validate.js"></script>
 	<script type="text/javascript" src="/js/jquery.alphanumeric.js"></script>
 

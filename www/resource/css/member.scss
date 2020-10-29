@@ -1,0 +1,161 @@
+.loginWrap {
+	background-size: r(52);
+	.inputTxt {
+		display: block;
+		width: 100%;
+		line-height: r(66);
+		margin: 0 0 r(15);
+		border: 0;
+		border-bottom: r(4) solid #c0c8d6;
+		font-size: r(28);
+	}
+	.loginOption {
+		position: relative;
+		margin: r(30) 0 0;
+		.link {
+			@include pos($p: absolute, $t: 0, $r: 0);
+		}
+	}
+	.btnSns {
+		margin: r(60) 0 0;
+		padding: r(30) 0 0;
+		border-top: 1px solid #c0c8d6;
+		text-align: center;
+		a ~ a {margin-left: r(90);}
+		[class*="btn"] {
+			display: inline-block;
+			&:before {
+				content: "";
+				@include display($type: inline-block, $w: r(60), $h: r(60));
+				margin-right: r(16);
+				background: {
+					size: cover;
+					repeat: no-repeat;
+				}
+				vertical-align: -10px;
+			}
+			&.btnNaver {
+				color: #1cbf00;
+				&:before {background-image: url('/resource/images/naver.png');}
+			}
+			&.btnKakao {
+				color: #412e34;
+				&:before {background-image: url('/resource/images/kakao.png');}
+			}
+		}
+	}
+	.helpTxt {
+		margin: r(20) r(20) 0;
+		text-align: left;
+	}
+}
+.findWrap {
+	.inputTxt {
+		display: block;
+		width: 100%;
+		line-height: r(66);
+		margin: 0 0 r(15);
+		border: 0;
+		border-bottom: r(2) solid #1c2536;
+		font-size: r(28);
+	}
+}
+.agreeSection {
+	& ~ .agreeSection {margin-top: r(40);}
+	.title {
+		margin: 0 0 r(10);
+		font-size: r(36);
+		color: #111;
+	}
+	.agreeTxtWrap {
+		overflow: auto;
+		height: r(200);
+		margin: 0 0 r(20);
+		padding: r(20);
+		background: #fafafa;
+		border: 1px solid #1c2536;
+		color: #666;
+	}
+}
+.agreeChk {
+	margin-top: r(50);
+	padding-top: r(50);
+	text-align: center;
+	border-top: r(2) solid #22314e;
+}
+
+.joinInputTable {
+	margin-top: r(-20);
+	tbody, tr, th, td {
+		display: block;
+		text-align: left;
+	}
+	th {
+		padding: r(20) 0 r(10);
+		font-size: r(28);
+	}
+	.btnOn {
+		position: relative;
+		padding-right: r(220);
+		.btnCom {
+			@include pos($p: absolute, $t: 0, $r: 0);
+			width: r(200); height: r(60);
+			background: #22314e;
+			color: #fff;
+			font-size: r(28);
+		}
+	}
+	.inputTxt {width: 100%;}
+}
+.essential {color: #f0141e;}
+
+.outReason {
+	label {
+		display: block;
+		margin: 0 0  r(15);
+	}
+	textarea {
+		width: 100%;
+		height: r(400);
+	}
+}
+.outAlert {
+	margin: r(40) 0 0;
+	padding: r(110) 0 r(50);
+	background: #fafafa url('/resource/images/icon_alert2.png') no-repeat 50% r(40);
+	background-size: r(60);
+	border-top: 1px solid #111;
+	text-align: center;
+}
+.outAgree {
+	padding: r(40) 0;
+	text-align: center;
+	border: {
+		top: r(2) solid #1c2536;
+		bottom: r(2) solid #1c2536;
+	}
+}
+
+.joinComTxt {
+	text-align: center;
+	color: #22314e;
+	font-size: r(28);
+}
+.btnJoin {
+	@include display($type: block, $w: 100%, $h: r(80));
+	line-height: r(80);
+	margin: r(60) 0 0;
+	background: $bgColor2;
+	color: #fff;
+	font-size: r(28);
+	text-align: center;
+}
+.btnConfirm {
+	@include display($type: block, $w: 100%, $h: r(80));
+	line-height: r(80);
+	margin: r(60) 0 0;
+	background: $bgColor0;
+	color: #fff;
+	font-size: r(28);
+	text-align: center;
+}

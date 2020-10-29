@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
 BY-SHIN - 2019-06-11
 */
@@ -32,7 +32,7 @@ switch($gubun) {
 
 $rtn = $C_Doctor->Doctor_Detail_List($args);
 foreach($rtn  as $key=>$val){
-	$treat = ($GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic2"]]) ? $GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic2"]] : $GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic3"]];
+	$treat = ($GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic2"]]) ? $GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic2"]] : $GP->NEW_MOBILE_CENTER_ALL[$val["dr_clinic3"]]; 
 	$result[] = array('name'=> $val["dr_name"].'('.$treat.')','code'=>$val["dr_idx"]);
 }
 
@@ -41,7 +41,7 @@ $args = array();
 if($gubun == "C") {
 	$args["sp_type"] = $depart;
 	$args["vd_clinic3"] = $depart;
-	$josa = ($depart == "F") ? "는" : "은";
+	$josa = ($depart == "F") ? "는" : "은";		
 	$ctxt = $GP->NEW_MOBILE_SPECIAL[$depart];
 }else {
 	$josa = "는";
@@ -50,7 +50,7 @@ if($gubun == "C") {
 		$args["vd_clinic1"] = $depart;
 		$ctxt = $GP->NEW_MOBILE_CENTER[$depart];
 	}else{
-		$args["vd_clinic2"] = $depart;
+		$args["vd_clinic2"] = $depart;			
 		$ctxt = $GP->NEW_MOBILE_CLINIC[$depart];
 	}
 }
@@ -62,8 +62,8 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 	if($m=="v"){
 		$args['jb_idx'] = $bidx;
 		$data = "";
-		$data = $C_JHBoard -> Board_New_Read_Data($args);
-		$cdata = $C_JHBoard -> Comment_New_List($args);
+		$data = $C_JHBoard -> Board_New_Read_Data($args);	
+		$cdata = $C_JHBoard -> Comment_New_List($args);	
 		extract($data);
 			if($jb_secret_check == "Y" && $_SESSION['suserlevel'] < 9) {
 				if($jb_mb_id == "") {
@@ -76,13 +76,13 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 						$C_Func -> put_msg_and_back('작성회원만 글을 읽을 수 있습니다.');
 						exit;
 					}else{
-						if(!$cdata) {
+						if(!$cdata) {	
 							$C_Func ->	go_url("/v3/board.php?jb_code=".$jb_code."&idx=".$jb_idx."&mode=m");
 						}
 					}
 				}
-			}
-
+			}	
+			
 		$reg_date = date("Y.m.d", strtotime($jb_reg_date));
 		$content	= $C_Func->dec_contents_edit($jb_content);
 		if($jb_file_name!="") {
@@ -92,25 +92,25 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 		} else {
 			$file_cnt = 0;
 		}
-
+	
 		if($file_cnt > 0)
 			{
 				for($i=0; $i<$file_cnt; $i++)
 				{
 					if($ex_jb_file_name[$i])
-					{
-						$code_file = $GP->UP_IMG_SMARTEDITOR. "jb_${jb_code}/${ex_jb_file_code[$i]}";
-						$file_info .= "<a href=\"/bbs/download.php?downview=1&file=" . $code_file . "&name=" . $ex_jb_file_name[$i] . " \">".$ex_jb_file_name[$i]."</a>";
-					}
+					{		
+						$code_file = $GP->UP_IMG_SMARTEDITOR. "jb_${jb_code}/${ex_jb_file_code[$i]}";							
+						$file_info .= "<a href=\"/bbs/download.php?downview=1&file=" . $code_file . "&name=" . $ex_jb_file_name[$i] . " \">".$ex_jb_file_name[$i]."</a>";																
+					}	 
 				}
 			}
 		if($cdata) {
 			foreach($cdata as $k=>$v){
 				$jbc_content = nl2br(strip_tags($v['jbc_content'], '<br>'));
 					$cmt_info .= '<div class="answer">'.$jbc_content.'</div>';
-			   }
+			   } 
 		}
-		$tpl->assign(array(
+		$tpl->assign(array(		
 				'vtitle' 	=> $jb_title,
 				'vttxt'  	=> $vttxt,
 				'vdate' 	=> $reg_date,
@@ -119,8 +119,8 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 				'vfile'		=> $file_info,
 				'vcmt' 		=> $cmt_info,
 		));
-
-		$skin = "center.view";
+					
+		$skin = "center.view";	
 	}else{
 		$bargs = "";
 		$bargs['jb_code'] = "240";
@@ -132,7 +132,7 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 			$p=0;
 			$mbtn = ($psize >= count($bdata)) ? " style='display:none;'" : "";
 			for($i=0;$i<count($bdata);$i++) {
-
+		
 				$fread 		= "Y";
 				$jb_idx 	= $bdata[$i]["jb_idx"];
 				$jb_mb_id  	= $bdata[$i]["jb_mb_id"];
@@ -143,19 +143,19 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 				$regDt 		= date("Y.m.d", strtotime($bdata[$i]['jb_reg_date']));
 				$content			= $C_Func->dec_contents_edit($bdata[$i]['jb_content']);
 				$content			= trim(strip_tags($content));
-				$content 			= $C_Func->strcut_utf8($content, 200, true, "...");
-				$jb_comment_count 		= $C_Func->num_f($bdata[$i]['jb_comment_count']);
+				$content 			= $C_Func->strcut_utf8($content, 200, true, "...");			
+				$jb_comment_count 		= $C_Func->num_f($bdata[$i]['jb_comment_count']);		
 				$treat_type = "기타";
-				if($bdata[$i]['jb_treat'] != '' ) {
+				if($bdata[$i]['jb_treat'] != '' ) {				
 					$treat_type = $GP -> CLINIC_TYPE_NEW[$bdata[$i]['jb_treat']];
-				}
+				}		
 				$sec = ($secret =="Y") ? '<span class="lock">비밀글</span>' : "";
 				if(strlen($bdata[$i]["jb_name"]) > 6) {
 					$jb_name 				=  $C_Func->blindInfo($bdata[$i]["jb_name"], 6);
 				}else{
-					$jb_name 				=  $C_Func->blindInfo($bdata[$i]["jb_name"], 3);
-				}
-
+					$jb_name 				=  $C_Func->blindInfo($bdata[$i]["jb_name"], 3);	
+				}		
+				
 				//파일명 분리 및 저장된 파일 갯수
 				if($bdata[$i]["jb_file_name"]!="") {
 					$ex_jb_file_name = explode("|", $bdata[$i]["jb_file_name"]);
@@ -166,22 +166,22 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 				}
 				$img_src = "";
 				if($file_cnt > 0)
-				{
-					$file_ext = substr( strrchr($ex_jb_file_code[0], "."),1);
+				{	
+					$file_ext = substr( strrchr($ex_jb_file_code[0], "."),1); 
 					$file_ext = strtolower($file_ext);	//확장자를 소문자로...
-
+					
 					if ($file_ext=="gif" || $file_ext=="jpg" || $file_ext=="png"){
 						$code_file = $GP->UP_IMG_SMARTEDITOR_URL. "jb_${jb_code}/${ex_jb_file_code[0]}";
-						$img_src = "<img src='" . $code_file. "' alt='" . $title. "'>";
+						$img_src = "<img src='" . $code_file. "' alt='" . $title. "'>";	
 					}else{
-						$img_src = "<img src='/resource/images/contents/thumb_sample.jpg'>";
+						$img_src = "<img src='/resource/images/contents/thumb_sample.jpg'>";		
 					}
 				}else{
-					$img_src = "<img src='/resource/images/contents/thumb_sample.jpg'>";
+					$img_src = "<img src='/resource/images/contents/thumb_sample.jpg'>";	
 				}
 				if($i%$psize == 0) $p++;
 				if($p > 1) $style = 'style=display:none';
-
+				
 				if($secret == "Y" && $_SESSION['suserlevel'] < 9) {
 					if($jb_mb_id != "") {
 						if($_SESSION['suserid'] != $jb_mb_id) {
@@ -189,70 +189,70 @@ if($gubun == "A" && ($depart == "A" || $depart == "B")){
 						}
 					}
 				}else{
-					$secret = "N";
+					$secret = "N";	
 				}
 				$args["jb_code"] = $jb_code;
-				$bname = $C_JHBoard -> Board_Config_data($args);
-
+				$bname = $C_JHBoard -> Board_Config_data($args);		
+				
 				$answer = ($jb_comment_count > 0) ? '<span class="state com">완료</span>' : '<span class="state">대기</span>';
-
+				
 				$vdata[] = array(
 						'jb_idx' 		 => $jb_idx,
 						'jb_code'		 => $jb_code,
-						'title'			 => $title,
+						'title'			 => $title,						
 						'regDt' 		 => $regDt,
 						'bname'			 => $bname["jba_title"],
-						'img_src'		 => $img_src,
+						'img_src'		 => $img_src,						
 						'style' 		 => $style,
 						'p'				 => $p,
 						'secret'		 => $secret,
 						'fread'			 => $fread,
 						'sec'			 => $sec,
-						'treat_type'	 => $treat_type,
+						'treat_type'	 => $treat_type,												
 						'jb_name'		 => $jb_name,
 						'answer'		 => $answer,
-						'content'		 => $content
+						'content'		 => $content													
 				);
 			}
 		}
 }else{
-	$args["vd_cnt"] = "Y";
+	$args["vd_cnt"] = "Y"; 
 	$vdata = $C_Video->Video_List_Mobile(array_merge($_GET,$_POST,$args));
 }
-$args["vd_cnt"] = "";
-$args["vd_gubun"] = "I";
+$args["vd_cnt"] = ""; 
+$args["vd_gubun"] = "I"; 
 $vidata = $C_Video->Video_List_Mobile(array_merge($_GET,$_POST,$args));
 
-$th_img = ($vidata["0"]["vd_thumb"]) ? $GP -> UP_VIDEO_URL.$vidata["0"]["vd_thumb"] : "/resource-pc/images/sample2.jpg";
+$th_img = ($vidata["0"]["vd_thumb"]) ? $GP -> UP_VIDEO_URL.$vidata["0"]["vd_thumb"] : "/resource/images/sample2.jpg";
 $th_img = '<img src="'.$th_img.'" alt="" style="width:100%; z-index:7; position:absolute; ">';
 $tpl->define("main",$skin.".tpl");
 
-foreach($data as $k=>$v){
-	$dr_ps = $GP -> DOCTOR_POSITION[$v["dr_position"]];
-	$dr_treat  = nl2br($C_Func->dec_contents_edit($v["dr_treat"]));
+foreach($data as $k=>$v){ 
+	$dr_ps = $GP -> DOCTOR_POSITION[$v["dr_position"]];	
+	$dr_treat  = nl2br($C_Func->dec_contents_edit($v["dr_treat"]));	
 	$dr_mobile_img	= $v['dr_mobile_img'];
 	if($dr_mobile_img !=  '') {
 		$dr_img = "<img src='" . $GP -> UP_DOCTOR_URL . $dr_mobile_img . "' alt='' />";
-	}
-	$moning_arr = explode(',', $v["dr_m_sd"]);
+	}	
+	$moning_arr = explode(',', $v["dr_m_sd"]);	
 	$after_arr = explode(',', $v["dr_a_sd"]);
 	$moning_txt = "";
-	$after_txt = "";
+	$after_txt = "";	
 	$moning_txt .= (in_array("월", $moning_arr)) ? "<td>진료</td>" : "<td>-</td>";
 	$moning_txt .= (in_array("화", $moning_arr)) ? "<td>진료</td>" : "<td>-</td>";
 	$moning_txt .= (in_array("수", $moning_arr)) ? "<td>진료</td>" : "<td>-</td>";
 	$moning_txt .= (in_array("목", $moning_arr)) ? "<td>진료</td>" : "<td>-</td>";
-	$moning_txt .= (in_array("금", $moning_arr)) ? "<td>진료</td>" : "<td>-</td>";
+	$moning_txt .= (in_array("금", $moning_arr)) ? "<td>진료</td>" : "<td>-</td>";				
 	$after_txt  .= (in_array("월", $after_arr)) ? "<td>진료</td>" : "<td>-</td>";
 	$after_txt  .= (in_array("화", $after_arr)) ? "<td>진료</td>" : "<td>-</td>";
 	$after_txt  .= (in_array("수", $after_arr)) ? "<td>진료</td>" : "<td>-</td>";
 	$after_txt  .= (in_array("목", $after_arr)) ? "<td>진료</td>" : "<td>-</td>";
-	$after_txt  .= (in_array("금", $after_arr)) ? "<td>진료</td>" : "<td>-</td>";
-
+	$after_txt  .= (in_array("금", $after_arr)) ? "<td>진료</td>" : "<td>-</td>";									
+			
 	$list[] = array(
 			"dr_idx"			=> $v["dr_idx"],
-			"dr_ps" 			=> $dr_ps,
-			"dr_img" 			=> $dr_img,
+			"dr_ps" 			=> $dr_ps, 
+			"dr_img" 			=> $dr_img,			
 			"dr_treat" 			=> $dr_treat,
 			"dr_mobile_img" 	=> $dr_mobile_img,
 			"moning_txt" 		=> $moning_txt,
@@ -263,11 +263,11 @@ foreach($data as $k=>$v){
 
 $tpl->assign(array(
 	"depart" => $depart,
-	"gubun"  => $gubun,
+	"gubun"  => $gubun,	
 	"josa" 	 => $josa,
 	"ctxt" 	 => $ctxt,
 	"gtxt" 	 => $gtxt,
-	"stxt" 	 => $stxt,
+	"stxt" 	 => $stxt,	
 	"vdurl"  => $GP->UP_VIDEO_URL,
 	"list1"  => $vidata,
 	"list2"  => $list,

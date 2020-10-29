@@ -1,0 +1,151 @@
+<?php
+	include_once  '../_init.php';		
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php'; 
+	include_once $GP -> INC_WWW . '/inc.login_check.php';    
+	
+	include_once($GP -> CLS."/class.member.php");
+	$C_Member 	= new Member;
+	
+	$args = "";
+	$args['mb_code'] = $_SESSION['susercode'];
+	$data = $C_Member->Mem_Info($args);
+	
+	if($data) {
+		extract($data);
+		
+		$arr_post = explode("-", $mb_zip_code);
+		$mb_post1 = $arr_post[0];
+		$mb_post2 = $arr_post[1];
+		
+		$arr_mobile = explode("-", $mb_mobile);
+		$mb_mobile1 = $arr_mobile[0];
+		$mb_mobile2 = $arr_mobile[1];
+		$mb_mobile3 = $arr_mobile[2];				
+
+
+		$arr_email = explode("@", $mb_email);
+		$mb_email1 = $arr_email[0];
+		$mb_email2 = $arr_email[1];
+
+		$sel_mobile = $C_Func -> makeSelect('mb_mobile1', $GP -> MOBILE, $mb_mobile1, '', '::선택::');		
+    $sel_email = $C_Func->makeSelect('email_sel', $GP -> EMAIL , $mb_email2, "'",'직접선택');
+	}
+?>
+<body>
+	<div id="subCon6" class="wrap">
+		<? include_once $GP -> INC_WWW . '/header.php'; ?>	
+		
+		<section class="container wrapSubPageTop">
+			<div class="boxSubPageTop">
+				<? include_once $GP -> INC_WWW . '/location.php'; ?>
+			</div>	
+		</section>
+		<section class="wrapBody">
+			<div class="mypageWrap">				
+					
+					<menu class="tabMenu ">
+						<a href="mypage.html" >내정보</a>						
+						<a href="passch.html" class="on">비밀번호변경</a>						
+						<a href="memout.html" >회원탈퇴</a>								
+						<a href="counsel.html" >내진료상담</a>						
+						<a href="mtom.html" >1:1상담</a>							
+					</menu>				
+					
+	
+					<div class="titCustomer">
+						<h4>비밀번호변경</h4>		
+					</div>
+					<form action="?" id="frmPass" name="frmPass" method="post">
+					<input type="hidden" name="mode" id="mode" value="MEM_PASS_CH" />
+					<input type="hidden" name="mb_code" id="mb_code" value="<?=$mb_code?>" />
+					<fieldset>
+					<legend>패스워드 정보 입력</legend>
+						<div class="wrapSubMember">
+							<p class="sTitTxt">(<span class="txtStar">*</span>)표 항목은 필수입력 사항입니다.</p>
+							<!-- Input 위에 있는 label 클릭시 사라짐 현상 필요 -->
+							<table width="100%" class="joinData">
+								<caption>회원가입 정보 입력</caption>
+								<colgroup>
+									<col width="20%" />
+									<col width="80%" />
+								</colgroup>
+								<tbody>		
+									<tr>
+										<th scope="row"><span class="txtStar">*</span>현재 비밀번호</th>
+										<td>
+											<div class="inputBox">
+												<label for="upw" class="iLabel">현재 비밀번호 입력</label>
+												<input type="password" id="mb_pwd" name="mb_pwd" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span>변경할 비밀번호</th>
+										<td>
+											<div class="inputBox">
+												<label for="upw" class="iLabel">변경할 비밀번호 입력</label>
+												<input type="password" id="mb_pwd_ch" name="mb_pwd_ch" class="iText" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span class="txtStar">*</span>변경할 비밀번호 확인</th>
+										<td>
+											<div class="inputBox">
+												<label for="upw" class="iLabel">변경할 비밀번호 입력</label>
+												<input type="password" id="mb_pwd_ok" name="mb_pwd_ok" class="iText" />
+											</div>
+										</td>
+									</tr>		
+								</tbody>
+							</table>
+						
+						</div>
+						
+						<div class="imgCalign">
+							<a class="btnBox btBlue" href="javascript:;" id="btn_pass_submit">정보수정</a>
+							<a class="btnBox btGray" href="javascript:;" id="btn_pass_cancel">취소</a>
+						</div>
+					</fieldset>
+				</form>
+
+
+			</div>
+		</section>
+				
+		<? include_once $GP -> INC_WWW . '/foot.php'; ?>	
+	</div>
+	<script type='text/javascript' src='/js/jquery.alphanumeric.js'></script>
+	<script type='text/javascript' src='/js/jquery.validate.js'></script>
+	<script type='text/javascript' src='/js/admin/common.js'></script>
+	<script type='text/javascript' src='/js/mem_page.js'></script>
+	<script type="text/javascript">
+	jQuery(function($){
+
+		// Input Clear
+		var iText = $('.iLabel').next('.iText');
+		iText
+			.focus(function(){
+				$(this).prev('.iLabel').css('visibility','hidden');
+			})
+			.blur(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.change(function(){
+				if($(this).val() == ''){
+					$(this).prev('.iLabel').css('visibility','visible');
+				} else {
+					$(this).prev('.iLabel').css('visibility','hidden');
+				}
+			})
+			.blur();
+
+	});
+	</script>
+</body>
+</html>

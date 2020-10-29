@@ -1,0 +1,7 @@
+<?
+include_once '../_init.php';
+
+session_destroy();
+//$reurl = ($re_url)? $re_url : '/';
+$C_Func->put_msg_and_go('정상적으로 로그 아웃 되었습니다.' , "/m/login.html");
+?>

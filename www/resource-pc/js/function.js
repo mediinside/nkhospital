@@ -172,6 +172,13 @@ $(document).ready(function(){
 
 
 });
+//로그인 모달창
+function modal_on_login(){	
+	console.log("aa");
+	//$("#loginModalCenter").modal("show");
+	$('.modal-box').fadeIn();
+	
+}
 
 $(window).on("load resize",function(){
 	var $iframe_h = $('iframe, video').width() * 0.57;

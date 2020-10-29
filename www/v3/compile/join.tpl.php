@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/08/24 11:27:24 /home/hosting_users/nkmed/www/v3/view/join.tpl 000001866 */ ?>
+<?php /* Template_ 2.2.8 2020/10/28 11:07:49 D:\home\nkhospital\www\v3\view\join.tpl 000001859 */ ?>
 <h2 class="pageTitle join">회원가입<span>1/2</span></h2>
 <div class="section">
     <form id="jForm" method="post" action="?">

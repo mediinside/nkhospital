@@ -1,5 +1,7 @@
 <?php
+include_once '../member/login.html';
 include_once $GP -> HOME."main_lib/main_proc.php";
+
 $Main_Slide = Main_Slide("PC");//슬라이드
 ?>
 <header>
@@ -19,7 +21,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 						<input type="text" id="schtxt">
 						<button><img src="/resource-pc/images/search-gray.png" alt="검색" id="schbtn"></button>
 					</li>
-					<li><a href="#" >LOGIN</a></li>
+					<li><a href="#" onclick="modal_on_login(); return false;">LOGIN</a></li>
 				</ul>
 			</div>
 			<nav>

@@ -26,9 +26,9 @@
                     	 <li><a href="/v3/center.php?depart={.key_}&gubun=C">{.value_}</a></li>
                     <!--{/}-->
                 {/}
-               		<!--{@dlist}-->
+               		<!--{@dlist}-->                        
 	                    <li class="dlist" style="display:none;"><a href="/v3/detail.php?idx={.code}&gubun=D">{.name}</a></li>
-                    <!--{/}-->
+                    <!--{/}-->                    
             </ul>
         </div>
     </nav>
@@ -37,14 +37,14 @@
     <div class="vod" style="top:0;left:0;width:100%;min-height:203px; height:auto;" id="play_main">
 		 <div class="vlayer" style="width:100%; padding-bottom:56.25%; z-index:7;" id="layer_main">
          	<!--{@list1}-->
-            	{?.vd_thumb}
-					<img src="{vdurl}{.vd_thumb}" alt="" style="width:100%; z-index:7; position:absolute; ">
-                {:}
-					<img src="/resource-pc/images/sample2.jpg" alt="" style="width:100%; z-index:7; position:absolute; ">
-                {/}
+            	{?.vd_thumb} 
+					<img src="{vdurl}{.vd_thumb}" alt="" style="width:100%; z-index:7; position:absolute; ">                
+                {:} 
+					<img src="/resource/images/sample2.jpg" alt="" style="width:100%; z-index:7; position:absolute; ">
+                {/} 
              <img src="/images/mask_720405.png" alt="" style="width:100%; z-index:8; position:absolute;" id="vstart_main" data-vid="{.vd_uid}">
 			<!--{/}-->
-        </div>
+        </div>        
     </div>
     <div class="vodLink">
         <p class="share">공유하기</p>
@@ -121,8 +121,8 @@
         <div class="section">
         {?cl1=="A" || cl1=="B"}
 		<section class="relationList">
-			<ul>
-	            <!--{@list3}-->
+			<ul> 
+	            <!--{@list3}-->       
                 <li>
                     <a href="?bidx={.jb_idx}&m=v&gubun=A&depart={depart}">
                         <div class="thumb">
@@ -140,7 +140,7 @@
             <div class="btnWrap" {mbtn}>
                 <span><a href="#" class="btnType1">더보기 </a></span>
             </div>
-        </section>
+        </section>           
         {:}
             <div class="tabMenu">
                 <ul id="vod_gubun">
@@ -153,16 +153,16 @@
             <br />
         {/}
         </div>
-<!--{/}-->
+<!--{/}-->    
 
 
 <style>
-.vod{position:relative;min-height:231px;height:auto;overflow:hidden;}
-.vod iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;}
+.vod{position:relative;min-height:231px;height:auto;overflow:hidden;} 
+.vod iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;} 
 </style>
 <script>
    var cl1 = "{cl1}";
    var cl2 = "{cl2}";
-   var cl3 = "{cl3}";
-   var psize = "3";
+   var cl3 = "{cl3}";    
+   var psize = "3";  
 </script>

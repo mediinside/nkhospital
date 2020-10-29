@@ -8,10 +8,10 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row" colspan="3">뉴고려병원에 오신것을 환영합니다.</th>
+								<th scope="row" colspan="3"><?=$jb_title?></th>
 							</tr>
 							<tr>
-								<td style="text-align:left;">작성자 : <strong class="mg-l10"><?=$jb_title?></strong></td>
+								<td style="text-align:left;">작성자 : <strong class="mg-l10"><?=$jb_name?></strong></td>
 								<td style="text-align:left;">조회수 : <strong class="mg-l10"><?=$jb_see?></strong></td>
 								<td style="text-align:left;">작성일 : <strong class="mg-l10"><?=$jb_reg_date?></strong></td>
 							</tr>

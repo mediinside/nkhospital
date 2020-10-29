@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2019/06/13 16:09:21 /nkmed/www/v3/view/mypage/myout.tpl 000001344 */ ?>
+<?php /* Template_ 2.2.8 2019/06/13 16:09:21 /home/hosting_users/nkmed/www/v3/view/mypage/myout.tpl 000001363 */ ?>
 <?php $this->print_("mymenu",$TPL_SCP,1);?>
 
     <h3 class="subTitle">회원탈퇴</h3>

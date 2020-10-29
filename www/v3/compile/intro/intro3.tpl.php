@@ -8,9 +8,9 @@
         <div class="historySlide1">
             <div class="slide">
                 <ul class="swiper-wrapper">
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_01.jpg" alt=""> 2주기 보건복지부 인증의료기관</li>
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_02.jpg" alt=""> 뉴고려병원 2020 비전 선포</li>
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_03.jpg" alt=""> 제 2신관 개관</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_01.jpg" alt=""> 2주기 보건복지부 인증의료기관</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_02.jpg" alt=""> 뉴고려병원 2020 비전 선포</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_03.jpg" alt=""> 제 2신관 개관</li>
                 </ul>
             </div>
             <div class="slidePage"></div>
@@ -38,10 +38,10 @@
         <div class="historySlide2">
             <div class="slide">
                 <ul class="swiper-wrapper">
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_04.jpg" alt=""> 간호간병통합서비스 병동 운영(5병동 48병상)</li>
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_05.jpg" alt=""> 인공신장센터 개소</li>
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_06.jpg" alt=""> 뇌혈관 및 심혈관센터 설립</li>
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_07.jpg" alt=""> 국가지정 메르스 국민안심병원 지정 </li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_04.jpg" alt=""> 간호간병통합서비스 병동 운영(5병동 48병상)</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_05.jpg" alt=""> 인공신장센터 개소</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_06.jpg" alt=""> 뇌혈관 및 심혈관센터 설립</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_07.jpg" alt=""> 국가지정 메르스 국민안심병원 지정 </li>
                 </ul>
             </div>
             <div class="slidePage"></div>
@@ -76,8 +76,8 @@
         <div class="historySlide3">
             <div class="slide">
                 <ul class="swiper-wrapper">
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_08.jpg" alt=""> 고려병원 설립(120병상)</li>
-                    <li class="swiper-slide"><img src="/resource-pc/images/contents/img_history_09.jpg" alt=""> 뉴고려병원 건축 착공</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_08.jpg" alt=""> 고려병원 설립(120병상)</li>
+                    <li class="swiper-slide"><img src="/resource/images/contents/img_history_09.jpg" alt=""> 뉴고려병원 건축 착공</li>
                 </ul>
             </div>
             <div class="slidePage"></div>

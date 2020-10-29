@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2019/07/30 10:15:39 /nkmed/www/v3/view/find.tpl 000002134 */ ?>
+<?php /* Template_ 2.2.8 2019/07/30 10:15:39 /home/hosting_users/nkmed/www/v3/view/find.tpl 000002153 */ ?>
 <div class="section">
     <div class="tabMenu">
         <ul>

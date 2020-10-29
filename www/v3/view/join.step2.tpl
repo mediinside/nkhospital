@@ -48,7 +48,7 @@
             </tbody>
         </table>
         <div class="btnWrap">
-            <span><a href="http://nkhospital.net/v3/join.php" class="btnType1">취소</a></span>
+            <span><a href="/v3/join.php" class="btnType1">취소</a></span>
             <span><a href="#" class="btnType2" id="btn_submit">회원가입</a></span>
         </div>
     </form>                

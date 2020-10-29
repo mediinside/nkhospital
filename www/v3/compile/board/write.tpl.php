@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2019/07/02 15:13:16 /nkmed/www/v3/view/board/write.tpl 000005576 */ 
+<?php /* Template_ 2.2.8 2019/07/02 15:13:16 /home/hosting_users/nkmed/www/v3/view/board/write.tpl 000005595 */ 
 $TPL_menu_1=empty($TPL_VAR["menu"])||!is_array($TPL_VAR["menu"])?0:count($TPL_VAR["menu"]);?>
 <?php $this->print_("btop",$TPL_SCP,1);?>
 
