@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/10/28 11:07:49 D:\home\nkhospital\www\v3\view\join.tpl 000001859 */ ?>
+<?php /* Template_ 2.2.8 2020/10/26 06:02:56 C:\xampp\htdocs\newkorea\www\v3\view\join.tpl 000001865 */ ?>
 <h2 class="pageTitle join">회원가입<span>1/2</span></h2>
 <div class="section">
     <form id="jForm" method="post" action="?">
