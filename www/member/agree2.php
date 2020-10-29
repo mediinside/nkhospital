@@ -234,7 +234,7 @@
 									<a class="c-blue" href="/mypage/privacy3.html" alt="개인정보취급방침 이전버전" target="_blank">개인정보취급방침 이전버전<br>2016년 4월 1일</a>
 								</p>
 								<p>
-									<a class="c-blue" href="/mypage/privacy4.html" alt="개인정보취급방침 이전버전" target="_blank">개인정보취급방침 이전버전<br>2019년 7월 1일</a>
+									<a class="c-blue" href="/member/agree-page190701.html" alt="개인정보취급방침 이전버전" target="_blank">개인정보취급방침 이전버전<br>2019년 7월 1일</a>
 								</p>
 							</div>
 							<label>
