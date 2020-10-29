@@ -1,28 +1,27 @@
 <?php
 
 $title = "MEMBER";
-$page_title = "환자권리장전";
-$page_sub_title = "환자권리장전";
+$page_title = "개인정보처리방침";
+$page_sub_title = "개인정보처리방침";
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
 include_once "../inc/head.php";
 
 ?>
 <style>
-	.agreeSection .agreeTxtWrap {height: auto;}
+	.agreeSection>label {
+		display: none;
+	}
 
-	pre {width:100%;padding:20px;box-sizing: border-box;font-weight: 400;white-space: pre-line;font-family: 'Noto Sans KR';}
-
-	caption {display: none;}
-
-	table {width: 100%;margin-top: 15px;}
-
-	th,
-	td {border: 1px solid #ddd;padding: 6px 10px;}
+	.agreeSection .agreeTxtWrap {
+		height: auto;
+		padding: 30px;
+		box-sizing: border-box;
+	}
 </style>
 <script>
 	$(function () {
-		$("h2.title").text('환자권리장전');
+		$("h2.title").text('개인정보처리방침(2014년 4월 21일)');
 	});
 </script>
 
@@ -40,10 +39,10 @@ include_once "../inc/head.php";
 			</div>
 			<!-- //end #sub-bnnr -->
 			<div id="innerCont">
-				<h2 class="pageTitle privacy">환자권리장전</h2>
+				<h2 class="pageTitle privacy">개인정보처리방침</h2>
 				<div class="section">
 					<?php
-						include_once "agree5.php";
+						include_once "agree140421.php";
 					?>
 				</div>
 				<!-- //Content -->

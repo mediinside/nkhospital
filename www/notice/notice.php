@@ -43,7 +43,7 @@ elseif($jb_code == "20"){ //칭찬합니다
 		<div id="container">
 			<?php include_once "../inc/location.php" ?>
 			<div id="sub-bnnr">
-				<img src="/resource-pc/images/subBnnr06.png" alt="">
+				<img src="/resource-pc/images/subBnnr08.png" alt="">
 				<h2>
 					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
 					<small><?=$page_sub_title?></small>
@@ -52,7 +52,7 @@ elseif($jb_code == "20"){ //칭찬합니다
 			<!-- //end #sub-bnnr -->
 
 			<div id="innerCont">
-                <?php include $GP -> INC_PATH ."/board_inc.php"; ?>				
+                <?php include $GP -> INC_PATH ."/board_inc.php"; ?>
 			</div>
 		</div>
 		<!-- //end #container -->

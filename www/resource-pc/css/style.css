@@ -9,6 +9,9 @@
 * {
   word-break: keep-all; }
 
+html, body {
+  min-width: 1330px; }
+
 .c-blue {
   color: #1795d0 !important;
   font-weight: 400; }
@@ -1675,12 +1678,14 @@ nav {
           font-size: 1.8rem; }
 
 #mission {
+  overflow: hidden;
   width: 100%;
-  padding-bottom: 200px;
-  background-image: url(/resource-pc/images/mission.png);
-  background-repeat: no-repeat;
-  background-position: 0 100px;
-  background-size: 100.09% auto; }
+  padding-bottom: 200px; }
+  #mission img {
+    position: relative;
+    left: 50%;
+    min-width: 1900px;
+    transform: translateX(-50%); }
 
 .cardList {
   display: flex;
@@ -2216,7 +2221,9 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding: 50px 0; }
+    max-width: 1569px;
+    padding: 50px 30px;
+    box-sizing: border-box; }
     footer .inner .foot-logo {
       width: 100%; }
     footer .inner .f-l .f-l-list {
