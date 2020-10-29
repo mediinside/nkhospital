@@ -72,6 +72,14 @@ if (!$jb_idx || $db_config_data['jba_list_use'] == "Y") {
 	$data_list_cnt 	= count($data_list);
 	
 	#리스트 처리 루틴 및 스킨
+
+	if($jb_code == "20"){
+		$cardtype = "";
+	}
+	elseif($jb_code == "100"){
+		$cardtype = "typeRecruit";
+	}
+	
 	
 }
 

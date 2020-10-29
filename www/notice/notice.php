@@ -33,7 +33,9 @@ elseif($jb_code == "40"){ //전문의 상담
 elseif($jb_code == "20"){ //칭찬합니다
 	$dep1 = "2";$dep2 = "2-0";$dep3 = "2-0-6";$page_sub_title = "칭찬합니다"; //다른스킨 04.html
 }
-
+elseif($jb_code == "100"){ //채용정보
+	$dep1 = "2";$dep2 = "2-1";$dep3 = "2-1-4";$page_sub_title = "칭찬합니다"; //다른스킨 04.html
+}
 
 ?>
 

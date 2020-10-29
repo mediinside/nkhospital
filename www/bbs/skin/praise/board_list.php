@@ -8,7 +8,7 @@
 					</div>
 					</form>
 					<!-- 게시판 목록 -->
-					<ul class="cardList">
+					<ul class="cardList <?=$cardtype?>">
 						<?php include $GP -> INC_PATH . "/${skin_dir}/board_list_inc.php";	?>
 					</ul>
 					<!-- 글스기 수정 삭제 등등.. 버튼 -->

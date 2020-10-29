@@ -12,14 +12,9 @@
         )
     );
 ?>
-<form name="r_form" id="r_form" method="post">
-	<input type="hidden" name="re_url" id="re_url" value="<?=$_GET["re_url"]?>">
-	<input type="hidden" name="mode" id="mode" value="kakao">
-	<input type="hidden" name="mb_id" id="r_id">
-	<input type="hidden" name="mb_name" id="r_name">
-</form>
 <script type="text/javascript" src="/js/jquery.validate.js"></script>
 <script type="text/javascript" src="/v3/controller/js/login.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 	$(document).ready(function(){
 		function getKakaotalkUserProfile(){
@@ -63,16 +58,18 @@
 </script>
 <div class="modal-box" >
 	<div class="modal small">
+	<form action="" method="post" id="loginForm" name="loginForm" novalidate autocomplete="off">
+	<input type="hidden" id="mode" name="mode" value="LOGIN">
 		<div class="login">
 			<h2 class="pageTitle login">로그인</h2>
 			<fieldset class="loginWrap section">
 				<legend>로그인 입력</legend>
 				<input type="text" class="inputTxt" name="m_id" id="m_id" placeholder="아이디를 입력해주세요.">
 				<input type="password" class="inputTxt" name="m_pwd" id="m_pwd" placeholder="비밀번호를 입력해주세요.">
-				<button class="btn bg-orange block" id="img_login">로그인</button>
+				<button type="submit" class="btn bg-orange block" id="login_submit">로그인</button>
 				<div class="loginOption">
 					<label>
-						<input type="checkbox" class="inputChk" name="saveid" id="saveid" onclick="confirmSave()"> 아이디 저장
+						<input type="checkbox" class="inputChk" id="checkbox10" name="idsave" onclick="confirmSave()"> <label for="checkbox10">아이디 저장</label>
 					</label>
 					<a href="/member/idPwSearch.html" class="link">아이디/비밀번호 찾기</a>
 				</div>
@@ -90,4 +87,68 @@
 		</div>
 		<a href="#none" class="close" onclick="$(this).parents('.modal-box').fadeOut(100)">&times;</a>
 	</div>
+	</form>
 </div>
+<form name="r_form" id="r_form" method="post">
+	<input type="hidden" name="re_url" id="re_url" value="<?=$_GET["re_url"]?>">
+	<input type="hidden" name="mode" id="mode" value="kakao">
+	<input type="hidden" name="mb_id" id="r_id">
+	<input type="hidden" name="mb_name" id="r_name">
+</form>
+<script>
+$('#login_submit').click(function(){
+
+		if($('#m_id').val() == '') {
+			alert('아이디를 입력해 주세요.');
+			$('#mb_id').focus();
+			return false;
+		}
+
+		if($('#m_pwd').val() == '') {
+			alert('비밀번호를 입력해 주세요');
+			$('#mb_pwd').focus();
+			return false;
+		}	
+		
+		if (document.loginForm.idsave.checked == true) { // 아이디 저장을 체크 하였을때
+            setCookie("idcookie", document.loginForm.m_id.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+        } else { // 아이디 저장을 체크 하지 않았을때
+            setCookie("idcookie", document.loginForm.m_id.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+		}
+
+		window.onload = function() {
+
+		if (getCookie("idcookie")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
+			document.loginForm.m_id.value = getCookie("idcookie"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+			document.loginForm.idsave.checked = true; // 체크는 체크됨으로
+		}
+
+		}
+
+		function setCookie(name, value, expiredays) //쿠키 저장함수
+		{
+		var todayDate = new Date();
+		todayDate.setDate(todayDate.getDate() + expiredays);
+		document.cookie = name + "=" + escape(value) + "; path=/; expires="
+				+ todayDate.toGMTString() + ";"
+		}
+
+		function getCookie(Name) { // 쿠키 불러오는 함수
+		var search = Name + "=";
+		if (document.cookie.length > 0) { // if there are any cookies
+			offset = document.cookie.indexOf(search);
+			if (offset != -1) { // if cookie exists
+				offset += search.length; // set index of beginning of value
+				end = document.cookie.indexOf(";", offset); // set index of end of cookie value
+				if (end == -1)
+					end = document.cookie.length;
+				return unescape(document.cookie.substring(offset, end));
+			}
+		}
+		}
+
+		$('#loginForm').attr('action','/member/proc/login_proc.php');
+		$('#loginForm').submit();
+		return false;
+});
+</script>

@@ -33,7 +33,7 @@ if (!$jb_idx || $db_config_data['jba_list_use'] == "Y") {
 		if($_SESSION['suserlevel'] < 9){
 			$args['jb_etc3'] = 'A';	
 		}
-	}
+	}	
 	
 	$data = "";
 	$data = $C_JHBoard -> Board_List(array_merge($_GET,$_POST,$args));

@@ -1,0 +1,18 @@
+<?
+	// error_reporting(E_ALL);
+	// ini_set("display_errors", 1);
+
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+	include_once $GP -> INC_WWW . '/count_inc.php';
+	include_once $GP -> INC_WWW . '/head.php';
+	include_once $GP -> HOME."lib/sub_lib.php";
+
+   	session_destroy();
+	$_SESSION['suseremail'] = '';
+
+	$C_Func -> put_msg_and_go('로그아웃이 완료 되었습니다.', '/');
+?>
+</head>
+<body>
+</body>
+</html>
