@@ -16,6 +16,10 @@ html, body {
   color: #1795d0 !important;
   font-weight: 400; }
 
+.c-red {
+  color: #e6001f !important;
+  font-weight: 400; }
+
 .pad {
   padding: 100px 0; }
 
@@ -451,8 +455,8 @@ html, body {
   padding-left: 30px; }
 
 .writeType > tbody th {
-  text-align: left;
-  font-weight: 100; }
+  font-size: 1.6rem;
+  text-align: left; }
 
 .writeType > tbody th.alignTop {
   vertical-align: top;
@@ -2302,7 +2306,7 @@ footer {
 	modal
 */
 .modal-box {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   bottom: 0;

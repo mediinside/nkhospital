@@ -21,6 +21,10 @@ html,body {
 	color:#1795d0 !important;
 	font-weight: 400;
 }
+.c-red {
+	color: #e6001f !important;
+	font-weight: 400;
+}
 .pad {
 	padding:100px 0;
 }
@@ -566,8 +570,8 @@ html,body {
 }
 
 .writeType>tbody th {
+	font-size: 1.6rem;
 	text-align: left;
-	font-weight: 100;
 }
 
 .writeType>tbody th.alignTop {

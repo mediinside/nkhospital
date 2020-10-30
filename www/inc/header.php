@@ -24,7 +24,7 @@ $Main_Slide = Main_Slide("PC");//슬라이드
 					<?if($_SESSION['suserid'] == ''){?>
 					<li><a href="#" onclick="modal_on_login(); return false;">LOGIN</a></li>
 					<?}else{?>
-					<li><a href="/member/mypage01.html">MYPAGE</a></li>
+					<li><a href="/mypage/mypage01.html">MYPAGE</a></li>
 					<li><a href="/member/logout.html">LOGOUT</a></li>
 					<?}?>
 				</ul>

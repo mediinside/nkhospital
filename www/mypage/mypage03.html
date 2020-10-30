@@ -1,0 +1,146 @@
+<?php
+
+$title = "MyPage";
+$page_title = "MyPage";
+$page_sub_title = "회원탈퇴";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once $GP -> INC_WWW . '/count_inc.php';
+
+include_once "../inc/head.php";
+$dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr09.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tabMenu">
+					<ul>
+						<li><a href="/mypage/mypage01.html">내정보</a></li>
+						<li><a href="/mypage/mypage02.html">비밀번호변경</a></li>
+						<li class="active"><a href="/mypage/mypage03.html">회원탈퇴</a></li>
+						<li><a href="/mypage/mypage04.html">내진료상담</a></li>
+					</ul>
+				</div>
+				<fieldset>
+					<legend>회원탈퇴</legend>
+					<p class="help-text">
+						그동안 뉴고려병원의 온라인 서비스를 이용해 주셔서 감사합니다.<br>
+						탈퇴 후에는 <span class="c-red">cdg9572</span>(으)로 다시 가입할 수 없으며, 아이디와 데이터는 복구할 수 없습니다.<br>
+						게시판 등의 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.
+					</p>
+					<div class="tableType-01 green">
+						<!-- Input 위에 있는 label 클릭시 사라짐 현상 필요 -->
+						<table width="100%" class="writeType">
+							<tbody>
+								<tr>
+									<th scope="row">
+										<p>잔존 데이터 정책 확인</p>
+									</th>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" id="dropoutAgree" name="dropoutAgree">
+										<label for="dropoutAgree">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row" style="line-height:24px;">
+										<p>탈퇴 아이디 확인</p>
+									</th>
+								</tr>
+								<tr>
+									<td>
+										<ul class="tbMemRight">
+											<li class="first"><span>아이디</span> : <span class="c-blue">cdg9572</span></li>
+											<li><span>이름</span> : <span class="c-blue">최도규</span></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row" style="line-height:24px;">
+										<p>뉴고려병원의 온라인 서비스를 탈퇴하시는 이유는 무엇인가요?</p>
+									</th>
+								</tr>
+								<tr>
+									<td>
+										<ul>
+											<li>
+												<input type="radio" value="1" name="reason" id="bbsRadio1">
+												<label for="bbsRadio1">사생활 기록 삭제 목적</label>
+											</li>
+											<li>
+												<input type="radio" value="2" name="reason" id="bbsRadio2">
+												<label for="bbsRadio2">이벤트 등의 목적으로 한시 사용함</label>
+											</li>
+											<li>
+												<input type="radio" value="3" name="reason" id="bbsRadio3">
+												<label for="bbsRadio3">제재조치로 이용제한됨</label>
+											</li>
+											<li>
+												<input type="radio" value="4" name="reason" id="bbsRadio4">
+												<label for="bbsRadio4">개인정보 및 보안 우려</label>
+											</li>
+											<li>
+												<input type="radio" value="5" name="reason" id="bbsRadio6">
+												<label for="bbsRadio6">새 아이디 생성 목적 </label>
+											</li>
+											<li>
+												<input type="radio" value="6" name="reason" id="bbsRadio7">
+												<label for="bbsRadio7">서비스 기능 불편</label>
+											</li>
+											<li>
+												<input type="radio" value="7" name="reason" id="bbsRadio8">
+												<label for="bbsRadio8">본 웹싸이트 정책 불만</label>
+											</li>
+										</ul>
+										<ul>
+											<li>
+												<input type="radio" value="9" name="reason" id="bbsRadio5">
+												<label for="bbsRadio5">기타 </label>
+											</li>
+											<li>
+												<textarea type="text" name="proposal" id="proposal" cols="100" rows="10" title="탈퇴 사유 입력"></textarea>
+												<span id="my_with_error"></span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div id="btn-box" class="center">
+						<a class="btn bg-deepblue" href="javascript:;" id="btn_submit">탈퇴신청</a>
+						<a class="btn bg-red" href="javascript:;" id="btn_cancel">취소</a>
+					</div>
+				</fieldset>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+		<script type="text/javascript">
+			$('.cont-step li').each(function (index, item) {
+				console.log(item);
+			});
+		</script>
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

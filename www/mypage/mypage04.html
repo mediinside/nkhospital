@@ -1,0 +1,107 @@
+<?php
+
+$title = "MyPage";
+$page_title = "MyPage";
+$page_sub_title = "내진료상담";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once $GP -> INC_WWW . '/count_inc.php';
+
+include_once "../inc/head.php";
+$dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr09.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tabMenu">
+					<ul>
+						<li><a href="/mypage/mypage01.html">내정보</a></li>
+						<li><a href="/mypage/mypage02.html">비밀번호변경</a></li>
+						<li><a href="/mypage/mypage03.html">회원탈퇴</a></li>
+						<li class="active"><a href="/mypage/mypage04.html">내진료상담</a></li>
+					</ul>
+				</div>
+				<div class="search">
+					<input type="text" placeholder="검색어를 입력하세요.">
+					<button><img src="/resource-pc/images/search-gray.png" alt="검색"></button>
+				</div>
+				<div class="tableType-01 red">
+					<table>
+						<colgroup>
+							<col>
+							<col style="width:180px">
+							<col style="width:180px">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="#">[통증센터] 대상포진 후 통증</a></td>
+								<td>박미*</td>
+								<td>2020.09.25</td>
+							</tr>
+							<tr>
+								<td><a href="#"><img src="/resource-pc/images/reply.gif" alt=""> [통증센터] 대상포진 후 통증</a></td>
+								<td>뉴고려병원</td>
+								<td>2020.09.25</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="btn-box" class="right">
+						<a href="#" class="btn bg-red">글쓰기</a>
+						<a href="#" class="btn bg-deepblue">수정</a>
+					</div>
+				</div>
+
+				<div class="pagination">
+					<a href="#none" title="처음으로 이동하기" class="btn prev">
+						<img src="/resource-pc/images/page-all-left.png" width="100%" alt="">
+					</a>
+					<a href="#none" title="이전으로 이동하기" class="btn prev">
+						<img src="/resource-pc/images/page-left.png" width="100%" alt="">
+					</a>
+
+					<strong class="btn current" title="현재 페이지">1</strong>
+					<a href="#none" class="btn">2</a>
+
+					<a href="#none" title="다음 페이지 이동하기" class="btn next">
+						<img src="/resource-pc/images/page-right.png" width="100%" alt="">
+					</a>
+					<a href="#none" title="마지막 페이지 이동하기" class="btn next">
+						<img src="/resource-pc/images/page-all-right.png" width="100%" alt="">
+					</a>
+				</div>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+		<script type="text/javascript">
+			$('.cont-step li').each(function (index, item) {
+				console.log(item);
+			});
+		</script>
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

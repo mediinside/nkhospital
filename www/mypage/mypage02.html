@@ -1,0 +1,91 @@
+<?php
+
+$title = "MyPage";
+$page_title = "MyPage";
+$page_sub_title = "비밀번호변경";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once $GP -> INC_WWW . '/count_inc.php';
+
+include_once "../inc/head.php";
+$dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr09.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tabMenu">
+					<ul>
+						<li><a href="/mypage/mypage01.html">내정보</a></li>
+						<li class="active"><a href="/mypage/mypage02.html">비밀번호변경</a></li>
+						<li><a href="/mypage/mypage03.html">회원탈퇴</a></li>
+						<li><a href="/mypage/mypage04.html">내진료상담</a></li>
+					</ul>
+				</div>
+				<fieldset>
+					<legend>비밀번호변경</legend>
+					<p class="help-text">(<span class="c-red">*</span>)표 항목은 필수입력 사항입니다.</p>
+					<div class="tableType-01 green">
+						<!-- Input 위에 있는 label 클릭시 사라짐 현상 필요 -->
+						<table width="100%" class="writeType">
+							<colgroup>
+								<col width="220">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 현재 비밀번호</th>
+									<td>
+										<input type="text" value="" id="" name="" class="txtInput" placeholder="현재 비밀번호 입력">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 변경할 비밀번호</th>
+									<td>
+										<input type="text" value="" id="" name="" class="txtInput" placeholder="변경할 비밀번호 입력">
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 변경할 비밀번호 확인</th>
+									<td>
+										<input type="text" value="" id="" name="" class="txtInput" placeholder="변경할 비밀번호 확인">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div id="btn-box" class="center">
+						<a class="btn bg-deepblue" href="javascript:;" id="btn_submit">정보수정</a>
+						<a class="btn bg-red" href="javascript:;" id="btn_cancel">취소</a>
+					</div>
+				</fieldset>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+		<script type="text/javascript">
+			$('.cont-step li').each(function (index, item) {
+				console.log(item);
+			});
+		</script>
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<?php
+
+$title = "MyPage";
+$page_title = "MyPage";
+$page_sub_title = "내정보";
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once $GP -> INC_WWW . '/count_inc.php';
+
+include_once "../inc/head.php";
+$dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "../inc/header.php" ?>
+		<div id="container">
+			<?php include_once "../inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr09.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+			<div id="innerCont">
+				<div class="tabMenu">
+					<ul>
+						<li class="active"><a href="/mypage/mypage01.html">내정보</a></li>
+						<li class=""><a href="/mypage/mypage02.html">비밀번호변경</a></li>
+						<li class=""><a href="/mypage/mypage03.html">회원탈퇴</a></li>
+						<li class=""><a href="/mypage/mypage04.html">내진료상담</a></li>
+					</ul>
+				</div>
+				<fieldset>
+					<legend>회원가입 상세정보 입력</legend>
+					<p class="help-text">(<span class="c-red">*</span>)표 항목은 필수입력 사항입니다.</p>
+					<div class="tableType-01 green">
+						<!-- Input 위에 있는 label 클릭시 사라짐 현상 필요 -->
+						<table width="100%" class="writeType">
+							<colgroup>
+								<col width="160">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 이름</th>
+									<td>
+										<div class="inputBox">
+											<input type="text" value="최도규" id="mb_name" name="mb_name" class="txtInput valid" placeholder="이름입력">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 닉네임</th>
+									<td>
+										<div class="inputBox">
+											<input type="text" value="" id="mb_nick" name="mb_nick" class="txtInput" placeholder="닉네임입력">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 이메일</th>
+									<td>
+										<div class="inputBox">
+											<input type="text" id="mb_email1" name="mb_email1" class="txtInput valid" value="dogyupower" placeholder="이메일 아이디 입력">
+											<span class="txt">@</span>
+											<input type="text" class="txtInput" title="이메일 주소 입력" id="mb_email2" name="mb_email2" value="naver.com" placeholder="이메일 주소 입력">
+											<select name="email_sel" id="email_sel" class="txtInput">
+												<option value="">직접선택</option>
+												<option value="msn.com">MSN</option>
+												<option value="gmail.com">구글</option>
+												<option value="netian.com">네띠앙</option>
+												<option value="naver.com" selected="">네이버</option>
+												<option value="nate.com">네이트</option>
+												<option value="hanmail.net">다음(한메일)</option>
+												<option value="dreamwiz.com">드림위즈</option>
+												<option value="lycos.co.kr">라이코스</option>
+												<option value="yahoo.com">야후</option>
+												<option value="empal.com">엠팔</option>
+												<option value="orgio.net">오르지오</option>
+												<option value="unitel.co.kr">유니텔</option>
+												<option value="chol.com">천리안</option>
+												<option value="kornet.net">코넷</option>
+												<option value="korea.com">코리아닷컴</option>
+												<option value="paran.com">파란</option>
+												<option value="freechal.com">프리첼</option>
+												<option value="hanafos.com">하나포스</option>
+												<option value="hitel.net">하이텔</option>
+												<option value="hanmir.com">한미르</option>
+												<option value="hotmail.com">핫메일</option>
+											</select>
+											<span class="my_error_display"></span>
+										</div>
+									</td>
+								</tr>
+								<!-- <tr>
+									<th scope="row"><span class="c-red">*</span> 현재 비밀번호</th>
+									<td>
+										<div class="inputBox">
+											<input type="password" id="mb_pwd" name="mb_pwd" class="txtInput" placeholder="현재 비밀번호 입력">
+										</div>
+									</td>
+								</tr> -->
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 생년월일</th>
+									<td>
+										<div class="inputBox">
+											<input type="text" id="mb_birth" name="mb_birth" class="txtInput" value="" placeholder="예)830127">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 성별</th>
+									<td>
+										<div class="gender">
+											<input type="radio" id="gMan" value="M" name="mb_sex"><label for="gMan">남성</label>
+											<input type="radio" id="gWoman" value="F" name="mb_sex"><label for="gWoman">여성</label>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span class="c-red">*</span> 휴대전화</th>
+									<td>
+										<select name="mb_mobile1" id="mb_mobile1" class="txtInput">
+											<option value="">::선택::</option>
+											<option value="010">010</option>
+											<option value="011">011</option>
+											<option value="016">016</option>
+											<option value="017">017</option>
+											<option value="018">018</option>
+											<option value="019">019</option>
+										</select>
+										<span class="txt">-</span>
+										<input type="text" value="" maxlength="4" id="mb_mobile2" name="mb_mobile2" class="txtInput" placeholder="휴대전화 앞자리">
+										<span class="txt">-</span>
+										<input type="text" value="" maxlength="4" id="mb_mobile3" name="mb_mobile3" class="txtInput" placeholder="휴대전화 뒷자리">
+										<span class="my_error_display"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div id="btn-box" class="center">
+						<a class="btn bg-deepblue" href="javascript:;" id="btn_submit">정보수정</a>
+						<a class="btn bg-red" href="javascript:;" id="btn_cancel">취소</a>
+					</div>
+				</fieldset>
+			</div>
+			<!-- //end #innerCont -->
+		</div>
+		<!-- //end #container -->
+		<script type="text/javascript">
+			$('.cont-step li').each(function (index, item) {
+				console.log(item);
+			});
+		</script>
+		<?php include_once "../inc/fnb.php" ?>
+		<?php include_once "../inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>
