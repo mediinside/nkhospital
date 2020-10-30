@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/05/04 17:57:38 /home/hosting_users/nkmed/www/v3/view/board/view.tpl 000000987 */ ?>
+<?php /* Template_ 2.2.8 2020/10/26 06:02:56 C:\xampp\htdocs\newkorea\www\v3\view\board\view.tpl 000000986 */ ?>
 <?php $this->print_("btop",$TPL_SCP,1);?>
 
 <br>

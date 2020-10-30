@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/07/08 10:11:58 /home/hosting_users/nkmed/www/v3/view/detail.tpl 000006104 */ 
+<?php /* Template_ 2.2.8 2020/10/26 06:02:56 C:\xampp\htdocs\newkorea\www\v3\view\detail.tpl 000006221 */ 
 $TPL_dlist_1=empty($TPL_VAR["dlist"])||!is_array($TPL_VAR["dlist"])?0:count($TPL_VAR["dlist"]);?>
 <div class="subTop2">
     <p class="category"><strong>진료과/의료진</strong> 첨단 의료장비와 전문 의료진들이 최상의 서비스를 제공합니다.</p>

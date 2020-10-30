@@ -1,0 +1,356 @@
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
+include_once $GP -> INC_WWW . '/count_inc.php';
+$title = "검색";
+$page_title = "검색";
+$page_sub_title = "검색";
+
+include_once "/inc/head.php";
+
+?>
+
+<body>
+	<div id="wrap">
+		<?php include_once "/inc/header.php" ?>
+		<div id="container">
+			<?php include_once "/inc/location.php" ?>
+			<div id="sub-bnnr">
+				<img src="/resource-pc/images/subBnnr06.png" alt="">
+				<h2>
+					<span><img src="/resource-pc/images/sub-bnnr-text.png" alt="믿으니까 뉴고려"></span>
+					<small><?=$page_sub_title?></small>
+				</h2>
+			</div>
+			<!-- //end #sub-bnnr -->
+
+			<div id="innerCont">
+				<div class="search">
+					<input type="text" placeholder="검색어를 입력하세요.">
+					<button><img src="/resource-pc/images/search-gray.png" alt="검색"></button>
+				</div>
+
+				<!-- 관련영상 시작 -->
+				<h3 class="cont-tit">관련영상</h3>
+				<div id="sub-notice">
+					<div id="search-list-01">
+						<ul>
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2418&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/5f3c0063c421063.png">
+									</div>
+									<span class="txt">
+										<b>
+											뇌신경센터 의료진 3인, 뇌혈관내치료의학(...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.10.20</span>
+										<span class="view">32 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2414&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/0f8f1b9a4a32284.png">
+									</div>
+									<span class="txt">
+										<b>
+											뉴고려병원 재활치료센터(물리치료실) 10층...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.10.13</span>
+										<span class="view">66 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2389&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/819716a26e11634.png">
+									</div>
+									<span class="txt">
+										<b>
+											뉴고려병원, 코로나19 생활치료센터 운영 ...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.06.22</span>
+										<span class="view">518 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2378&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/79cb75157728321.png">
+									</div>
+									<span class="txt">
+										<b>
+											파주 국가대표트레이닝센터(NFC) 코로나19 ...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.05.06</span>
+										<span class="view">866 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2326&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/a660e8ae9c26086.png">
+									</div>
+									<span class="txt">
+										<b>
+											뉴고려병원 부설 파란잎어린이집 설맞이 행...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.01.28</span>
+										<span class="view">1,158 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2277&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/0caf9119cc22903.jpg">
+									</div>
+									<span class="txt">
+										<b>
+											유행성 감염병 위기대응 모의 훈련을 실시...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2019.12.06</span>
+										<span class="view">1,349 </span>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<div class="pagination">
+							<a href="?page=1&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" title="처음으로 이동하기"
+								class="btn prev"><span><img src="/resource-pc/images/page-all-left.png" width="100%" alt=""></span></a> <a
+								href="?page=0&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" title="이전으로 이동하기"
+								class="btn prev"><span><img src="/resource-pc/images/page-left.png" width="100%" alt=""></span></a>
+							<strong class="btn current" title="현재 페이지">1</strong> <a
+								href="?page=2&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">2</a> <a
+								href="?page=3&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">3</a> <a
+								href="?page=4&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">4</a> <a
+								href="?page=5&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">5</a> <a
+								href="?page=6&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">6</a> <a
+								href="?page=7&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">7</a> <a
+								href="?page=8&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">8</a> <a
+								href="?page=9&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">9</a> <a
+								href="?page=10&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">10</a> <a
+								href="?page=2&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" title="다음 페이지 이동하기"
+								class="btn next"><span><img src="/resource-pc/images/page-right.png" width="100%" alt="" <=""
+										span=""></span></a> <a href="?page=43&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword="
+								title="마지막 페이지 이동하기" class="btn next"><img src="/resource-pc/images/page-all-right.png" width="100%" alt=""></a>
+
+						</div>
+					</div>
+					<!-- //end #search-list-01 -->
+
+
+
+					<script type="text/javascript">
+						$(document).ready(function () {
+							$('#search_submit').click(function () {
+								$('#search_form').submit();
+								return false;
+							});
+
+							$('#page_row').change(function () {
+								var val = $(this).val();
+								location.href = "?dep1=&dep2=&search_key=&search_keyword=&page=&page_row=" + val;
+							});
+
+							$('#twrite_btn').click(function () {
+								alert("로그인 후 이용가능 합니다.");
+								location.href = '/member/login.html?reurl=/community/page03.html';
+							});
+						});
+					</script>
+				</div>
+				<!-- //관련영상 끝 -->
+
+
+				<!-- 커뮤니티 시작 -->
+				<h3 class="cont-tit">커뮤니티</h3>
+				<div id="sub-notice">
+					<div id="search-list-02">
+						<ul>
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2418&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/5f3c0063c421063.png">
+									</div>
+									<span class="txt">
+										<b>
+											뇌신경센터 의료진 3인, 뇌혈관내치료의학(...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.10.20</span>
+										<span class="view">32 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2414&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/0f8f1b9a4a32284.png">
+									</div>
+									<span class="txt">
+										<b>
+											뉴고려병원 재활치료센터(물리치료실) 10층...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.10.13</span>
+										<span class="view">66 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2389&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/819716a26e11634.png">
+									</div>
+									<span class="txt">
+										<b>
+											뉴고려병원, 코로나19 생활치료센터 운영 ...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.06.22</span>
+										<span class="view">518 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2378&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/79cb75157728321.png">
+									</div>
+									<span class="txt">
+										<b>
+											파주 국가대표트레이닝센터(NFC) 코로나19 ...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.05.06</span>
+										<span class="view">866 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2326&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/a660e8ae9c26086.png">
+									</div>
+									<span class="txt">
+										<b>
+											뉴고려병원 부설 파란잎어린이집 설맞이 행...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2020.01.28</span>
+										<span class="view">1,158 </span>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="notice.php?jb_code=80&amp;jb_mode=tdetail&amp;jb_idx=2277&amp;search_key=&amp;search_keyword=&amp;page=&amp;dep1=2&amp;dep2=2-0"
+									class="dec">
+									<div class="img">
+										<img src="http://localhost/bbs/files//jb_80/0caf9119cc22903.jpg">
+									</div>
+									<span class="txt">
+										<b>
+											유행성 감염병 위기대응 모의 훈련을 실시...<i class="fa fa-paperclip" aria-hidden="true"></i>
+										</b>
+									</span>
+									<div class="dec-foot">
+										<span class="label">병원소식</span>
+										<span>2019.12.06</span>
+										<span class="view">1,349 </span>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<div class="pagination">
+							<a href="?page=1&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" title="처음으로 이동하기"
+								class="btn prev"><span><img src="/resource-pc/images/page-all-left.png" width="100%" alt=""></span></a> <a
+								href="?page=0&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" title="이전으로 이동하기"
+								class="btn prev"><span><img src="/resource-pc/images/page-left.png" width="100%" alt=""></span></a>
+							<strong class="btn current" title="현재 페이지">1</strong> <a
+								href="?page=2&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">2</a> <a
+								href="?page=3&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">3</a> <a
+								href="?page=4&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">4</a> <a
+								href="?page=5&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">5</a> <a
+								href="?page=6&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">6</a> <a
+								href="?page=7&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">7</a> <a
+								href="?page=8&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">8</a> <a
+								href="?page=9&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">9</a> <a
+								href="?page=10&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" class="btn">10</a> <a
+								href="?page=2&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword=" title="다음 페이지 이동하기"
+								class="btn next"><span><img src="/resource-pc/images/page-right.png" width="100%" alt="" <=""
+										span=""></span></a> <a href="?page=43&amp;jb_code=80&amp;search_key[jb_title]=Y&amp;search_keyword="
+								title="마지막 페이지 이동하기" class="btn next"><img src="/resource-pc/images/page-all-right.png" width="100%" alt=""></a>
+
+						</div>
+					</div>
+					<!-- //end #search-list-02 -->
+				</div>
+				<!-- //커뮤니티 끝 -->
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+		<!-- //end #container -->
+
+		<?php include_once "/inc/fnb.php" ?>
+		<?php include_once "/inc/footer.php" ?>
+	</div>
+	<!-- //end #wrap -->
+</body>
+
+</html>

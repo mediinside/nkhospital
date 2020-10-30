@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.8 2020/05/11 15:12:24 /home/hosting_users/nkmed/www/v3/view/inc/board.top.tpl 000001490 */ ?>
+<?php /* Template_ 2.2.8 2020/10/26 06:02:56 C:\xampp\htdocs\newkorea\www\v3\view\inc\board.top.tpl 000001489 */ ?>
 <script>
 var psize = "<?php echo $TPL_VAR["psize"]?>";
 </script>
