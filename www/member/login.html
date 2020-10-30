@@ -13,7 +13,7 @@
     );
 ?>
 <script type="text/javascript" src="/js/jquery.validate.js"></script>
-<script type="text/javascript" src="/v3/controller/js/login.js"></script>
+
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -49,11 +49,7 @@
 			});
 			//$("#kakao-logged-group").prepend(loginBtn)
 		//}
-		if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
-			//getKakaotalkUserProfile();
-		}else{
-			// createKakaotalkLogin();
-		}
+		
 	});
 </script>
 <div class="modal-box" >
@@ -78,7 +74,7 @@
 					<!-- <a href="javascript:;" class="class="btnKakao" id="kakao_login">카카오톡 로그인</a> -->
 					<a href="javascript:;"  onclick="javascript:void(0);" id="kakao_login"  class="btnKakao" id="kakao_login">카카오톡 로그인</a>
 				</div>
-				<a href="/v3/join.php" class="btn bg-deepblue block">회원가입</a>
+				<a href="/member/join01.html" class="btn bg-deepblue block">회원가입</a>
 				<p class="helpTxt">
 					저희 뉴고려병원 웹사이트에서는 의료법령에 의거 일부 컨텐츠를 열람하실 때 꼭 로그인이 필요합니다.<br>
 					또한 온라인 예약이나 상담 등은 개개인의 예약/상담 정보를 보관하여 상담 및 진료품질 향상에 사용합니다.<br>
