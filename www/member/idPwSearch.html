@@ -8,6 +8,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
 include_once "../inc/head.php";
 
 ?>
+<script type="text/javascript" src="/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/jquery.alphanumeric.js"></script>
+<script type="text/javascript" src="/js/mem_find.js"></script>
 <style>
 	.loginWrap .inputTxt {font-size: 1.8rem; height: 50px;}
 	.tabMenu {margin-bottom: 50px;}
@@ -24,7 +27,7 @@ include_once "../inc/head.php";
 					<small><?=$page_sub_title?></small>
 				</h2>
 			</div>
-			<!-- //end #sub-bnnr -->
+			<!-- //end #sub-bnnr -->			
 			<div id="innerCont" style="max-width:600px">
 				<div class="loginWrap">
 					<div class="tabMenu">
@@ -33,36 +36,46 @@ include_once "../inc/head.php";
 							<li><a href="#none">PW</a></li>
 						</ul>
 					</div>
-					<div class="tabContents">
-						<section class="tabCont con1" style=" display: block;">
-							<h2 class="pageTitle find" style="text-align:center;"><span>ID</span></h2>
-							<fieldset class="findWrap">
-								<legend>가입 된 이름 이메일 입력</legend>
-								<input type="text" class="inputTxt" placeholder="회원 이름을 입력해주세요." id="fi_name">
-								<input type="text" class="inputTxt" placeholder="등록된 이메일을 입력해주세요." id="fi_email">
-								<div id="btn-box">
-									<a href="#" class="btn bg-deepblue block" id="find_id">아이디 찾기</a>
-								</div>
-							</fieldset>
-						</section>
-						<section class="tabCont con2" style="display: none;">
-							<h2 class="pageTitle find" style="text-align:center;"><span>PW</span></h2>
-							<fieldset class="findWrap">
-								<legend>가입 된 아이디 이메일 입력</legend>
-								<input type="text" class="inputTxt" placeholder="아이디를 입력해주세요." id="fp_id">
-								<input type="text" class="inputTxt" placeholder="등록된 이메일을 입력해주세요." id="fp_email">
-								<div id="btn-box">
-									<a href="#" class="btn bg-deepblue block" id="find_pw">비밀번호 찾기</a>
-								</div>
-							</fieldset>
-						</section>
+					<div class="tabContents">						
+							<section class="tabCont con1" style=" display: block;">
+							<form name="find-id-form" id="find-id-form" novalidate="novalidate">
+								<h2 class="pageTitle find" style="text-align:center;"><span>ID</span></h2>
+								<fieldset class="findWrap">
+									<legend>가입 된 이름 이메일 입력</legend>
+									<input type="text" class="inputTxt" placeholder="회원 이름을 입력해주세요." id="mb_name" name="mb_name" >
+									<input type="text" class="inputTxt" placeholder="등록된 이메일을 입력해주세요." id="mb_email" name="mb_email">
+									<div id="btn-box">
+										<a href="#" class="btn bg-deepblue block" id="id_find">아이디 찾기</a>
+									</div>
+								</fieldset>
+								</form>
+							</section>							
+							<div style="display:none;" id="resultWrap">
+									<span>검색된 결과는 다음과 같습니다.</span>
+									<ul id="findIdResult" style="padding-top:10px;"></ul>
+							</div>												
+							<section class="tabCont con2" style="display: none;">
+								<form name="find-pw-form" id="find-pw-form" novalidate="novalidate">
+								<h2 class="pageTitle find" style="text-align:center;"><span>PW</span></h2>
+								<fieldset class="findWrap">
+									<legend>가입 된 아이디 이메일 입력</legend>								
+									<input type="text" class="inputTxt" placeholder="회원 이름을 입력해주세요." id="mb_name" name="mb_name" >
+									<input type="text" class="inputTxt" placeholder="아이디를 입력해주세요." id="mb_id" name="mb_id">
+									<div id="btn-box">
+										<a href="#" class="btn bg-deepblue block" id="pwd_find">비밀번호 찾기</a>
+									</di>							
+								</fieldset>
+								<span id="pwWrap">                   
+									<p class="bbsIdTxt1" id="pwresult"></p>
+								</span>		
+								</form>	
+							</section>											
 					</div>
 				</div>
 			</div>
 			<!-- //end #innerCont -->
 		</div>
-		<!-- //end #container -->
-
+		
 		<?php include_once "../inc/fnb.php" ?>
 		<?php include_once "../inc/footer.php" ?>
 	</div>
@@ -80,4 +93,12 @@ include_once "../inc/head.php";
 	</script>
 </body>
 
+</html>
+						
+					
+	</div>
+	<script type="text/javascript" src="/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="/js/jquery.alphanumeric.js"></script>
+	<script type="text/javascript" src="/js/mem_find.js"></script>
+</body>
 </html>

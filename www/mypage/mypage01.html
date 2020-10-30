@@ -6,9 +6,37 @@ $page_sub_title = "내정보";
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/_init.php';
 include_once $GP -> INC_WWW . '/count_inc.php';
-
 include_once "../inc/head.php";
-$dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
+include_once $GP -> INC_WWW . '/inc.login_check.php';    
+	
+include_once($GP -> CLS."/class.member.php");
+$C_Member 	= new Member;
+
+$args = "";
+$args['mb_code'] = $_SESSION['susercode'];
+$data = $C_Member->Mem_Info($args);
+
+if($data) {
+	extract($data);
+	
+	$arr_post = explode("-", $mb_zip_code);
+	$mb_post1 = $arr_post[0];
+	$mb_post2 = $arr_post[1];
+	
+	$arr_mobile = explode("-", $mb_mobile);
+	$mb_mobile1 = $arr_mobile[0];
+	$mb_mobile2 = $arr_mobile[1];
+	$mb_mobile3 = $arr_mobile[2];				
+
+
+	$arr_email = explode("@", $mb_email);
+	$mb_email1 = $arr_email[0];
+	$mb_email2 = $arr_email[1];
+
+	$sel_mobile = $C_Func -> makeSelect('mb_mobile1', $GP -> MOBILE, $mb_mobile1, '', '::선택::');		
+$sel_email = $C_Func->makeSelect('email_sel', $GP -> EMAIL , $mb_email2, "'",'직접선택');
+}
+$dep1 = "0";$dep2 = "0-0";$dep3 = "0-0-0";
 
 ?>
 
@@ -49,7 +77,7 @@ $dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
 									<th scope="row"><span class="c-red">*</span> 이름</th>
 									<td>
 										<div class="inputBox">
-											<input type="text" value="최도규" id="mb_name" name="mb_name" class="txtInput valid" placeholder="이름입력">
+											<input type="text" value="<?=$mb_name?>" id="mb_name" name="mb_name" class="txtInput valid" placeholder="이름입력">
 										</div>
 									</td>
 								</tr>
@@ -57,7 +85,7 @@ $dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
 									<th scope="row"><span class="c-red">*</span> 닉네임</th>
 									<td>
 										<div class="inputBox">
-											<input type="text" value="" id="mb_nick" name="mb_nick" class="txtInput" placeholder="닉네임입력">
+											<input type="text" value="<?=$mb_nick?>" id="mb_nick" name="mb_nick" class="txtInput" placeholder="닉네임입력">
 										</div>
 									</td>
 								</tr>
@@ -65,33 +93,10 @@ $dep1 = "4";$dep2 = "0-2";$dep3 = "0-2-0";
 									<th scope="row"><span class="c-red">*</span> 이메일</th>
 									<td>
 										<div class="inputBox">
-											<input type="text" id="mb_email1" name="mb_email1" class="txtInput valid" value="dogyupower" placeholder="이메일 아이디 입력">
+											<input type="text" id="mb_email1" name="mb_email1" class="txtInput valid" value="<?=$mb_email1?>" placeholder="이메일 아이디 입력">
 											<span class="txt">@</span>
-											<input type="text" class="txtInput" title="이메일 주소 입력" id="mb_email2" name="mb_email2" value="naver.com" placeholder="이메일 주소 입력">
-											<select name="email_sel" id="email_sel" class="txtInput">
-												<option value="">직접선택</option>
-												<option value="msn.com">MSN</option>
-												<option value="gmail.com">구글</option>
-												<option value="netian.com">네띠앙</option>
-												<option value="naver.com" selected="">네이버</option>
-												<option value="nate.com">네이트</option>
-												<option value="hanmail.net">다음(한메일)</option>
-												<option value="dreamwiz.com">드림위즈</option>
-												<option value="lycos.co.kr">라이코스</option>
-												<option value="yahoo.com">야후</option>
-												<option value="empal.com">엠팔</option>
-												<option value="orgio.net">오르지오</option>
-												<option value="unitel.co.kr">유니텔</option>
-												<option value="chol.com">천리안</option>
-												<option value="kornet.net">코넷</option>
-												<option value="korea.com">코리아닷컴</option>
-												<option value="paran.com">파란</option>
-												<option value="freechal.com">프리첼</option>
-												<option value="hanafos.com">하나포스</option>
-												<option value="hitel.net">하이텔</option>
-												<option value="hanmir.com">한미르</option>
-												<option value="hotmail.com">핫메일</option>
-											</select>
+											<input type="text" class="txtInput" title="이메일 주소 입력" id="mb_email2" name="mb_email2" value="<?=$mb_email2?>"  placeholder="이메일 주소 입력">
+												<?=$sel_email?>
 											<span class="my_error_display"></span>
 										</div>
 									</td>

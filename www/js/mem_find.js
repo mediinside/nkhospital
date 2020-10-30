@@ -1,7 +1,8 @@
 $(document).ready(function(){
-			$('#mb_mobile').numeric({allow:'-'});								   		
+			$('#mb_mobile').numeric({allow:'-'});										   		
 		
 			$('#id_find').click(function(){
+				
 				$('#findIdResult').html('');
 				$('#resultWrap').css('display','none');	
 				
