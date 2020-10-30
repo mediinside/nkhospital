@@ -17,6 +17,9 @@
 html,body {
 	min-width: 1330px;
 }
+iframe.active {
+	min-height:463px;
+}
 .c-blue {
 	color:#1795d0 !important;
 	font-weight: 400;

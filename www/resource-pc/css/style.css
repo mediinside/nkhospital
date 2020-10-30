@@ -12,6 +12,9 @@
 html, body {
   min-width: 1330px; }
 
+iframe.active {
+  min-height: 463px; }
+
 .c-blue {
   color: #1795d0 !important;
   font-weight: 400; }
@@ -2429,7 +2432,7 @@ footer {
 	modal
 */
 .modal-box {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   bottom: 0;
