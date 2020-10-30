@@ -4,6 +4,7 @@ include_once $GP -> HOME."main_lib/main_proc.php";
 
 $Main_Slide = Main_Slide("PC");//슬라이드
 ?>
+<a id="top" href="#none"><span>▲</span>TOP</a>
 <header>
 			<div id="login-bar">
 				<ul class="left">

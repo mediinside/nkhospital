@@ -170,14 +170,30 @@ $(document).ready(function(){
 	});
 
 
+	//탑버튼
+	$(window).scroll(function(){
+		var window_h = $(window).scrollTop();
+		console.log(window_h);
+		if(window_h > 300){
+			$("#top").fadeIn(200);
+		}else{
+			$("#top").fadeOut(200);
+		}
+	});
+	$("#top").on("click",function(){
+		$("html,body").animate({
+			scrollTop:0
+		},400);
+	});
+
 
 });
 //로그인 모달창
-function modal_on_login(){	
+function modal_on_login(){
 	console.log("aa");
 	//$("#loginModalCenter").modal("show");
 	$('.modal-box').fadeIn();
-	
+
 }
 
 $(window).on("load resize",function(){
